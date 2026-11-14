@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>今日热榜是什么？ - 使用指南 - 今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+<script>
+$(document).ready(function() {
+    // 获取当前页面的 URL
+    var currentUrl = window.location.href;
+    // 提取当前页面的域名部分
+    var domain = window.location.origin;
+    var activeElement = null;
+    
+    // 遍历所有的 <a> 标签
+    $('.documentation-list a').each(function() {
+        // 获取当前 <a> 标签的 href 属性值
+        var href = $(this).attr('href');
+        // 如果 href 以当前页面的域名开头，则将域名部分去除，只保留相对路径
+        if (href.startsWith(domain)) {
+            href = href.replace(domain, '');
+        }
+        // 检查 href 是否与当前页面的 URL 相匹配
+        if (href === window.location.pathname) {
+            // 如果匹配，为匹配的 <a> 标签添加指定的 class
+            $(this).addClass('w--current');
+            activeElement = $(this);
+            
+            // 如果匹配的是子菜单项，展开其父菜单
+            var parentLi = $(this).closest('li').parent('ul').parent('li');
+            if (parentLi.length) {
+                parentLi.addClass('active');
+            }
+        }
+    });
+    
+    // 如果找到了匹配的菜单项，将其滚动到可见区域
+    if (activeElement) {
+        // 延迟执行，确保DOM已完全加载
+        setTimeout(function() {
+            // 获取左侧菜单容器
+            var container = $('.docs-col-left');
+            // 获取选中元素的位置
+            var elemTop = activeElement.offset().top;
+            var elemBottom = elemTop + activeElement.outerHeight();
+            // 获取容器的可见区域
+            var containerTop = container.offset().top;
+            var containerBottom = containerTop + container.height();
+            
+            // 如果元素不在可见区域内，滚动到元素位置
+            if (elemTop < containerTop || elemBottom > containerBottom) {
+                // 计算滚动位置，使元素在容器中居中显示
+                var scrollTo = elemTop - containerTop - (container.height() / 2) + (activeElement.outerHeight() / 2);
+                container.animate({
+                    scrollTop: container.scrollTop() + scrollTo
+                }, 300);
+            }
+        }, 100);
+    }
+});
+</script>
+<style>
+code,pre{font-family:SFMono-Regular,Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:1em;background-color:#f5f5f5;color:#333}
+code{padding:.1rem .2rem;border-radius:.2rem;font-size:90%}
+pre{display:block;margin:1rem 0;padding:.75rem 1rem;max-height:20rem;border-radius:.3rem;line-height:1.6;overflow:auto;font-size:.75rem;word-break:normal;white-space:pre}
+pre code{padding:0;border-radius:0;background-color:transparent;color:inherit;font-size:inherit;white-space:pre}
+hr{border-top:0;border-color:#f4f4f4;}
+.dark hr{border-color:rgba(85,85,85,.45);}
+.docs-wrapper{display:flex;height:calc(100vh - 64px);align-items:stretch;flex-wrap:nowrap;padding-top:64px}
+.docs-col{display:flex;flex-direction:column;height:calc(100vh - 64px)}
+.docs-col-left{position:relative;width:280px;min-width:240px;max-width:320px;flex-shrink:0;border-right:1px solid #eee;background-color:#f9f9f9;transition:all .3s ease;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.dark .docs-col-left{background-color:#222;border-right-color:#333}
+.docs-aside{padding:1.5rem 1rem}
+.docs-col-left::-webkit-scrollbar{width:4px}
+.docs-col-left::-webkit-scrollbar-track{background:0 0}
+.docs-col-left::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2);border-radius:4px;visibility:hidden}
+.docs-col-left:hover::-webkit-scrollbar-thumb{visibility:visible}
+.dark .docs-col-left::-webkit-scrollbar-thumb{background-color:rgba(255,255,255,.2)}
+.docs-col-right{position:relative;display:flex;background-color:#fff;flex-grow:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.dark .docs-col-right{background-color:#1a1a1a}
+.docs-content{flex-grow:1;width:100%}
+.docs-content::-webkit-scrollbar{width:6px}
+.docs-content::-webkit-scrollbar-track{background:0 0}
+.docs-content::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2);border-radius:4px}
+.dark .docs-content::-webkit-scrollbar-thumb{background-color:rgba(255,255,255,.2)}
+.docs-content-inner{margin:0 auto;padding:2rem 2.5rem;max-width:48rem}
+.text-weight--bold{font-weight:700}
+.documentation-block{position:relative;font-size:.9rem;line-height:1.7;color:#333}
+.dark .documentation-block{color:#eee}
+.documentation-block:target:before{display:block;margin:-2rem 0 0;height:2rem;content:""}
+.documentation-block table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem;border:1px solid #eee}
+.documentation-block table th{background-color:#f5f5f5;font-weight:600;text-align:left;padding:.75rem;border:1px solid #eee}
+.dark .documentation-block table th{background-color:#2a2a2a;border-color:#444}
+.documentation-block table td{padding:.75rem;border:1px solid #eee;vertical-align:top;line-height:1.6}
+.dark .documentation-block table td{border-color:#444}
+.documentation-block table tr:nth-child(even){background-color:#f9f9f9}
+.dark .documentation-block table tr:nth-child(even){background-color:#222}
+.documentation-block h1,.documentation-block h2,.documentation-block h3,.documentation-block h4,.documentation-block h5{margin:0 0 1rem;padding:0;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,'San Francisco','Helvetica Neue',Helvetica,Ubuntu,Roboto,Noto,'Segoe UI',Arial,sans-serif;}
+.documentation-block h1{font-size:1.8rem;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:1px solid #eee;line-height:1.3}
+.dark .documentation-block h1{border-bottom-color:#333;color:#fff;}
+.documentation-block h2{font-size:1.4rem;margin-top:2.5rem;margin-bottom:1rem;padding-top:1rem;border-top:1px solid #eee;line-height:1.3}
+.dark .documentation-block h2{border-top-color:#333;color:#fff;}
+.documentation-block h3{font-size:1.1rem;margin-top:1.8rem;margin-bottom:.8rem;}
+.documentation-block h4,.documentation-block h5{font-size:1rem;margin-top:1.5rem;margin-bottom:.6rem;line-height:1.3;}
+.documentation-block ol,.documentation-block p,.documentation-block ul{margin:1rem 0;font-size:.9rem;line-height:1.7}
+.documentation-block ol,.documentation-block ul{padding-left:1.5rem}
+.documentation-block ol li,.documentation-block ul li{margin-bottom:.5rem}
+.documentation-block p+p{margin-top:1rem}
+.documentation-block code{background-color:#f5f5f5;padding:.2rem .4rem;border-radius:3px;font-size:.85em;color:#e83e8c}
+.dark .documentation-block code{background-color:#2a2a2a;color:#ff85ad}
+.documentation-block pre{background-color:#f5f5f5;padding:1rem;border-radius:5px;overflow-x:auto;margin:1.5rem 0}
+.dark .documentation-block pre{background-color:#2a2a2a}
+.documentation-block blockquote{border-left:4px solid #0084ff;padding:.5rem 1rem;margin:1.5rem 0;background-color:rgba(0,132,255,.05)}
+.dark .documentation-block blockquote{border-left-color:#3a9bff;background-color:rgba(58,155,255,.1)}
+.documentation-block img{max-width:100%;height:auto;border-radius:5px;margin:1.5rem 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.dark .documentation-block img{box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.documentation-list ul{margin-left:0;padding-left:0;list-style:none}
+.documentation-list ul .nav-section-title{display:block;margin:1.5rem 0 .75rem;padding:.5rem .75rem;color:#333;font-weight:700;font-size:.95rem;font-family:-apple-system,BlinkMacSystemFont,'San Francisco','Helvetica Neue',Helvetica,Ubuntu,Roboto,Noto,'Segoe UI',Arial,sans-serif;border-left:3px solid transparent}
+.dark .documentation-list ul .nav-section-title{color:#eee}
+.documentation-list ul>li:first-child .nav-section-title{margin-top:0}
+.documentation-list ul>li{margin-top:.75rem}
+.documentation-list ul>li a{display:block;padding:.5rem .75rem;color:#555;text-decoration:none;font-size:.85rem;border-radius:4px;transition:all .2s ease;border-left:3px solid transparent}
+.dark .documentation-list ul>li a{color:#bbb}
+.documentation-list ul>li a:hover{background-color:rgba(0,132,255,.08);color:#0084ff}
+.dark .documentation-list ul>li a:hover{background-color:rgba(58,155,255,.1);color:#3a9bff}
+.documentation-list ul>li a.w--current{background-color:rgba(0,132,255,.08);color:#0084ff;font-weight:500;border-left-color:#0084ff}
+.dark .documentation-list ul>li a.w--current{background-color:rgba(58,155,255,.1);color:#3a9bff;border-left-color:#3a9bff}
+.documentation-list ul>li>ul{margin:.25rem 0 .75rem .75rem}
+.documentation-list ul>li>ul>li{margin:.25rem 0}
+.documentation-list ul>li>ul>li a{padding:.35rem .75rem;font-size:.8rem;color:#666}
+.dark .documentation-list ul>li>ul>li a{color:#999}
+.documentation-list ul>li>ul>li:last-of-type{margin-bottom:.5rem}
+.doc-title{margin-bottom:1.25rem;padding-bottom:.75rem;font-size:1.3rem;font-weight:700;color:#000;border-bottom:1px solid #eee}
+.dark .doc-title{color:#fff;border-bottom-color:#333}
+@media (max-width:768px){.docs-wrapper{flex-direction:column;height:auto}
+.docs-col{height:auto}
+.docs-col-left{width:100%;max-width:none;border-right:none;border-bottom:1px solid #eee;height:auto;max-height:50vh}
+.dark .docs-col-left{border-bottom-color:#333}
+.docs-aside{padding:1rem}
+.docs-content-inner{padding:1.5rem 1rem}
+.documentation-list ul .nav-section-title{font-size:.9rem;padding:.4rem .6rem}
+.documentation-list ul>li a{padding:.4rem .6rem}
+.documentation-block h1{font-size:1.5rem}
+.documentation-block h2{font-size:1.25rem}
+.documentation-block h3{font-size:1rem}
+}
+</style>
+</head>
+<body class="">
+<div id="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+            <div class="I-J">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                        <input type="hidden" name="e" value="item">
+                    </form>
+                </div>
+            </div>
+            
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+                        
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+        
+        <div class="H-B">
+            <div class="H-B-T">
+              <h3>更多作品推荐</h3>
+            </div>
+            <div class="H-I-C">
+              <div class="H-I">
+                  <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                        <span class="H-I-I-T">今日简报 AI</span>
+                        <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                    </a>
+                    <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                          <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                          <span class="H-I-I-T">即时写作 AI</span>
+                          <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                      </a>
+                <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                    <span class="H-I-I-T">今日历</span>
+                    <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+                </a>
+                <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                      <span class="H-I-I-T">今日解忧</span>
+                      <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+                 </a>
+                 <a href="https://remai.today/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                         <span class="H-I-I-T">今日热卖</span>
+                         <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                    </a>
+                <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                        <span class="H-I-I-T">百晓生 AI</span>
+                        <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                   </a>
+                   <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                           <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                           <span class="H-I-I-T">榜眼数据</span>
+                           <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                      </a>
+              </div>
+            </div>
+        </div>
+
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>        
+    </div>
+</div>
+    <div class="docs-wrapper">
+        <div class="docs-col-left docs-col hidden-xs">
+            <div class="docs-content">
+                <aside class="docs-aside">
+                    <div class="documentation-list">
+                        <div class="delta text-weight--bold doc-title">使用指南</div>
+    
+                        <ul>
+                            <li><a href="#getting-started" class="nav-section-title">入门指南</a>
+                                <ul>
+                                    <li><a href="/help">今日热榜是什么？</a></li>
+                                    <li><a href="/help/how-to-use">如何使用今日热榜？</a></li>
+                                    <li><a href="/help/node-subscription">节点订阅功能</a></li>
+                                    <li><a href="/help/customize-rule">自定义节点提取规则</a></li>
+                                    <li><a href="/help/search">搜索功能使用指南</a></li>
+                                    <li><a href="/help/mobile-app">移动应用下载指南</a></li>
+                                    <li><a href="/help/dark-mode">深色模式</a></li>
+                                </ul>
+                            </li>
+    
+                            <li><a href="#feature-guide" class="nav-section-title">功能指南</a>
+                                <ul>
+                                    <li><a href="/help/vip-features">VIP特权功能</a></li>
+                                    <li><a href="/help/vip-alerts">热榜追踪机器人</a></li>
+                                    <li><a href="/help/vip-filter">过滤机器人</a></li>
+                                    <li><a href="/help/vip-history">全部历史数据</a></li>
+                                    <li><a href="/help/vip-snapshot">榜单快照</a></li>
+                                    <li><a href="/help/vip-custom-node">私人定制节点</a></li>
+                                    <li><a href="/help/vip-calendar">热点日历</a></li>
+                                    <li><a href="/help/vip-library">热文库</a></li>
+                                    <li><a href="/help/vip-export">数据导出</a></li>
+                                    <li><a href="/help/vip-notify">通知机器人</a></li>
+                                    <li><a href="/help/vip-access">专线访问</a></li>
+                                </ul>
+                            </li>
+    
+                            <li><a href="#troubleshooting" class="nav-section-title">常见问题</a>
+                                <ul>
+                                    <li><a href="/help/account-issues">账号相关问题</a></li>
+                                    <li><a href="/help/payment-issues">支付相关问题</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li><a href="#policy" class="nav-section-title">政策与声明</a>
+                                <ul>
+                                    <li><a href="/help/terms">使用条款</a></li>
+                                    <li><a href="/help/privacy">隐私政策</a></li>
+                                    <li><a href="/help/copyright">版权声明</a></li>
+                                </ul>
+                            </li>
+    
+                        </ul>
+    
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <div class="docs-col-right docs-col">
+            <div class="docs-content">
+                <article class="docs-content-inner">
+                    <div class="documentation-block code-light js-anchors">
+                        <h1>今日热榜是什么？</h1>
+<h2>基本介绍</h2>
+<p>今日热榜（<a href="https://tophub.today">tophub.today</a>）是一个专注于聚合全网热点信息的平台，提供各大网站热榜内容的一站式浏览体验。作为一个内容聚合工具，今日热榜不同于传统的信息流推送平台，它不依赖于所谓的"智能推荐"或"大数据算法"，而是按照内容的热门程度以各种排行榜的形式展示信息，让用户能够自主选择感兴趣的内容进行阅读。</p>
+<h2>核心功能</h2>
+<h3>全网热榜聚合</h3>
+<p>今日热榜提供了对各大平台热榜的聚合服务，包括但不限于：</p>
+<ul>
+<li>微信公众号热门文章</li>
+<li>今日头条热榜</li>
+<li>百度热搜</li>
+<li>知乎热榜</li>
+<li>V2EX热门话题</li>
+<li>微博热搜</li>
+<li>贴吧热门</li>
+<li>豆瓣热门</li>
+<li>天涯热帖</li>
+<li>虎扑热帖</li>
+<li>GitHub热门项目</li>
+<li>抖音热门视频</li>
+</ul>
+<p>这些平台的热榜内容每5分钟更新一次，确保用户能够及时了解全网热点动态。</p>
+<h3>个性化订阅</h3>
+<p>用户可以根据自己的兴趣爱好，订阅特定平台的热榜内容。登录后，这些订阅的节点会显示在首页，方便用户快速访问自己关注的内容。</p>
+<h3>多端同步</h3>
+<p>今日热榜支持全平台使用，包括：</p>
+<ul>
+<li>网页版（PC端和移动端）</li>
+<li>iOS应用（iPhone和iPad）</li>
+<li>Android应用</li>
+</ul>
+<p>用户的订阅内容和阅读历史可以通过账号在多个设备间同步，提供无缝的使用体验。</p>
+<h3>阅读体验优化</h3>
+<p>今日热榜注重用户的阅读体验，提供了多种功能来优化阅读：</p>
+<ul>
+<li>自动阅读模式：优化文章排版，提供更舒适的阅读环境</li>
+<li>多种主题：支持白天、傍晚、夜晚、深夜四种模式，适应不同的阅读环境</li>
+<li>历史记录：本地记录浏览历史，并支持iCloud同步</li>
+</ul>
+<h3>特色功能</h3>
+<p>除了基本的热榜聚合功能外，今日热榜还提供了一些特色功能：</p>
+<ul>
+<li>每日早晚报：汇总一天内的热点内容</li>
+<li>订阅动态聚合：将用户订阅的内容聚合成个性化信息流</li>
+<li>榜中榜：展示在多个平台同时热门的话题</li>
+<li>热点日历：记录每天的热点事件，方便回顾</li>
+<li>热点追踪：持续关注特定话题的发展动态</li>
+</ul>
+<h2>VIP特权功能</h2>
+<p>今日热榜还提供了一系列VIP特权功能，为高级用户提供更全面的服务：</p>
+<ul>
+<li>热榜追踪机器人：自动追踪特定话题的热度变化</li>
+<li>过滤机器人：根据关键词过滤不感兴趣的内容</li>
+<li>全部历史数据：访问所有历史热榜数据</li>
+<li>榜单快照：保存特定时间点的热榜快照</li>
+<li>私人定制节点：根据个人需求定制特定内容节点</li>
+<li>热点日历：查看所有日期的热点事件</li>
+<li>热文库：收藏和管理感兴趣的热门文章</li>
+<li>数据导出：将热榜数据导出为多种格式</li>
+<li>通知机器人：设置关键词，获取实时热点通知</li>
+<li>专线访问：享受更快速、稳定的访问体验</li>
+</ul>
+<h2>使用方法</h2>
+<h3>网页版</h3>
+<ol>
+<li>访问<a href="https://tophub.today">今日热榜官网</a></li>
+<li>浏览首页展示的热榜内容</li>
+<li>点击感兴趣的平台或话题，查看详细内容</li>
+<li>注册/登录账号，订阅喜欢的节点</li>
+<li>在个人中心管理订阅内容和设置</li>
+</ol>
+<h3>移动应用</h3>
+<ol>
+<li>从应用商店下载"今日热榜"应用</li>
+<li>安装并打开应用</li>
+<li>浏览首页热榜内容</li>
+<li>点击底部导航栏的不同选项，探索更多功能</li>
+<li>注册/登录账号，同步订阅内容和设置</li>
+</ol>
+<h2>为什么选择今日热榜？</h2>
+<h3>信息获取的高效工具</h3>
+<p>在信息爆炸的时代，今日热榜帮助用户快速了解各大平台的热点内容，节省时间的同时不错过重要信息。</p>
+<h3>回归信息流本真</h3>
+<p>不同于其他平台的算法推荐，今日热榜让用户重新掌握信息选择的主动权，避免算法推荐带来的信息茧房效应。</p>
+<h3>尊重原创内容</h3>
+<p>今日热榜不提供内容转码服务，点击内容会直接跳转到原始网站，尊重原创平台的权益。</p>
+<h3>简洁高效的用户体验</h3>
+<p>简洁的界面设计和高效的功能实现，让用户能够专注于内容本身，提供纯粹的阅读体验。</p>
+<h2>总结</h2>
+<p>今日热榜作为一个专注于热点聚合的平台，通过简单直接的方式帮助用户了解全网热点，是信息获取和内容发现的理想工具。无论是日常资讯浏览，还是热点追踪研究，今日热榜都能提供高效、便捷的服务。</p>
+<hr />
+<p>欢迎访问<a href="https://tophub.today">今日热榜官网</a>，开始您的热点探索之旅！</p>                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+		
+	
+</div>
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script></body>
+</html>

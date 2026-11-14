@@ -1,0 +1,8 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <ShortName>今日热榜</ShortName>
+  <Description>搜索热榜</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/x-icon">https://tophub.today/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://tophub.today/search?q={searchTerms}&amp;ref=opensearch"/>
+  <moz:SearchForm>https://tophub.today/search</moz:SearchForm>
+</OpenSearchDescription>

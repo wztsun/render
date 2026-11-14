@@ -1,0 +1,13 @@
+html bytes: 1163459
+refs: 488
+done: 122 new files, 425/497 assets ok, 72 failed
+  - https://file.ipadown.com/tophub -> HTTP Error 403: Forbidden
+  - https://file.ipadown.com/tophub/assets/images/favicon/apple-icon-144x144.png -> <urlopen error _ssl.c:1012: The handshake operation timed out>
+  - https://tophub.today/n/0MdKLK2ew1 -> HTTP Error 403: Forbidden
+  - https://tophub.today/n/12owgX0oNV -> HTTP Error 403: Forbidden
+  - https://tophub.today/n/20MdKx4ew1 -> HTTP Error 403: Forbidden
+  - https://tophub.today/n/0MdKam4ow1 -> HTTP Error 403: Forbidden
+  - https://s4.zstatic.net/ajax/libs -> [Errno 21] Is a directory: '/data/tophub/cdn/s4.zstatic.net/ajax/libs'
+  - https://tophub.today/n/4anopWBelZ -> HTTP Error 403: Forbidden
+  - https://tophub.today/n/3adqqzadng -> HTTP Error 403: Forbidden
+  - https://tophub.today/n/4qv95bnvaK -> HTTP Error 403: Forbidden

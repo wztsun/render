@@ -1,0 +1,27 @@
+
+<a id="a-link"></a>
+<script>
+  localStorage.x5referer = window.location.href;	
+  var link = document.getElementById("a-link");
+  var isMobile = navigator.userAgent.match(/.*(iPhone|iPad|Android|ios|SymbianOS|Windows Phone).*/i);
+  var host = isMobile ? "https://www.aliexpress.com/p/ug-login-page/login.html?forceAdapt=mobile&return_url=" : "https://login.aliexpress.com/?from=sm&return_url=";
+  try {
+	var hostValue = window.location.host;
+	var parts = hostValue && hostValue.split('.');
+	var exp = new Date();
+	var maxAge = -100;
+	exp.setTime(exp.getTime() + maxAge);
+	var cookie = 'x5secdata=;maxAge=' + maxAge + ';expires=' + exp.toUTCString() + ';path=/;domain=.' + parts.slice(-2).join('.') + ';';
+	document.cookie = cookie;
+	document.cookie = cookie + 'Secure;SameSite=None';
+  } catch(e) {}
+  link.href = host + "https%3a%2f%2fuland.taobao.com:443/coupon/edetail%2F_____tmd_____%2Fpage%2Flogin_jump%3Frand%3DS3WxGHAgAt756EpznwfNzJq2AFA2qBNla3j6EINUS8We9dazM_iKElp8DwVSHZUevpC41Bx7RzivXIj9RnZgdg%26_lgt_%3D4271e5bfee30d7121354163128b599fe___121243___ef212e3927e206a5ba9550305561caa9___eaebc79cac1eb5d2f7d8b4595e00ec73344a42d5a0b8cf56539c823cd24ac06c2b1cc42195b8dd472a43f8fb4952c2dd01ee0a53500f986be8696dd7ced76127d12f415ee8b572c95998c12a625d29ffdda8aee33ede3e750ec95323089cf601848cc58651e8be4c0ba6bfe7e1e3ccf5d1c3b43657ec031c8976f38dcd4d4ab0fe3167929a4912aa13a7c518e2ed27df0665dcc07ded4587110461a462301c2babb5bf4684b94c6afdd8569c2e9e03b96a32da680499b9c5821386d78240ec3bf70c9a3b6d0b15beaf4a931d1682746ba6acc90687738c5909917096a596a262e5931e99b01284ed90a6e2c48e4c19e89065d8bfb99c4a78994cd1db0d9ffc613c1d01196260dd320abad6037228ea10&uuid=4271e5bfee30d7121354163128b599fe";
+  link.click();
+ window._config_ = {
+   "action": "login",
+   "url": "https://www.aliexpress.com/p/ug-login-page/login.html?forceAdapt=mobile&return_url=https%3a%2f%2fuland.taobao.com:443/coupon/edetail%2F_____tmd_____%2Fpage%2Fclose_iframe_page%3Frand%3DS3WxGHAgAt756EpznwfNzJq2AFA2qBNla3j6EINUS8We9dazM_iKElp8DwVSHZUevpC41Bx7RzivXIj9RnZgdg%26uuid%3D4271e5bfee30d7121354163128b599fe%26_lgt_%3D4271e5bfee30d7121354163128b599fe___121243___ef212e3927e206a5ba9550305561caa9___eaebc79cac1eb5d2f7d8b4595e00ec73344a42d5a0b8cf56539c823cd24ac06c2b1cc42195b8dd472a43f8fb4952c2dd01ee0a53500f986be8696dd7ced76127d12f415ee8b572c95998c12a625d29ffdda8aee33ede3e750ec95323089cf601848cc58651e8be4c0ba6bfe7e1e3ccf5d1c3b43657ec031c8976f38dcd4d4ab0fe3167929a4912aa13a7c518e2ed27df0665dcc07ded4587110461a462301c2babb5bf4684b94c6afdd8569c2e9e03b96a32da680499b9c5821386d78240ec3bf70c9a3b6d0b15beaf4a931d1682746ba6acc90687738c5909917096a596a262e5931e99b01284ed90a6e2c48e4c19e89065d8bfb99c4a78994cd1db0d9ffc613c1d01196260dd320abad6037228ea10",
+   "h5url": "https://www.aliexpress.com/p/ug-login-page/login.html?forceAdapt=mobile&return_url=https%3a%2f%2fuland.taobao.com:443/coupon/edetail%2F_____tmd_____%2Fpage%2Fclose_iframe_page%3Frand%3DS3WxGHAgAt756EpznwfNzJq2AFA2qBNla3j6EINUS8We9dazM_iKElp8DwVSHZUevpC41Bx7RzivXIj9RnZgdg%26uuid%3D4271e5bfee30d7121354163128b599fe%26_lgt_%3D4271e5bfee30d7121354163128b599fe___121243___ef212e3927e206a5ba9550305561caa9___eaebc79cac1eb5d2f7d8b4595e00ec73344a42d5a0b8cf56539c823cd24ac06c2b1cc42195b8dd472a43f8fb4952c2dd01ee0a53500f986be8696dd7ced76127d12f415ee8b572c95998c12a625d29ffdda8aee33ede3e750ec95323089cf601848cc58651e8be4c0ba6bfe7e1e3ccf5d1c3b43657ec031c8976f38dcd4d4ab0fe3167929a4912aa13a7c518e2ed27df0665dcc07ded4587110461a462301c2babb5bf4684b94c6afdd8569c2e9e03b96a32da680499b9c5821386d78240ec3bf70c9a3b6d0b15beaf4a931d1682746ba6acc90687738c5909917096a596a262e5931e99b01284ed90a6e2c48e4c19e89065d8bfb99c4a78994cd1db0d9ffc613c1d01196260dd320abad6037228ea10",
+   "dialogSize": {"width": "", "height": ""}
+};
+</script>
+<!--rgv587_flag:sm-->

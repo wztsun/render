@@ -1,0 +1,3368 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery.lazyload/1.8.3/jquery.lazyload.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+</head>
+<body class="">
+<div id="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e">
+		
+		<div class="abcdefg"><div class="ax" data-key="top" data-limit="6" data-sponsors-status="1"></div></div>
+
+		
+				<div class="pb-qb">
+			<div class="pb-qb-b">
+				<div class="grid">
+					<div class='pb-qb-t-t'>热门榜单</div>
+					<div class='pb-qb-t-c'>
+												<a  href="/c/developer?q=Github">Github</a>
+												<a  href="/c/developer?q=GitOther">GitOther</a>
+												<a  href="/c/developer?q=%E6%8E%98%E9%87%91">掘金</a>
+												<a  href="/c/developer?q=CSDN">CSDN</a>
+												<a  href="/c/developer?q=%E5%8D%9A%E5%AE%A2%E5%9B%AD">博客园</a>
+												<a  href="/c/developer?q=HuggingFace">HuggingFace</a>
+												<a  href="/c/developer?q=%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86">产品经理</a>
+												<a  href="/c/developer?q=%E5%91%A8%E5%88%8A">周刊</a>
+												<a  href="/c/developer?q=%E5%AE%89%E5%85%A8">安全</a>
+												<a  href="/c/developer?q=%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91">独立开发</a>
+												<a  href="/c/developer?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">人工智能</a>
+												<a  href="/c/developer?q=%E8%90%A5%E9%94%80">营销</a>
+												<a  href="/c/developer?q=%E5%A4%A7%E6%A8%A1%E5%9E%8B">大模型</a>
+												<a  href="/c/developer?q=%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE">思维导图</a>
+												<a  href="/c/developer?q=%E4%B8%BB%E6%9C%BA">主机</a>
+											</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+		<div class="bc">
+									<div class="bc-tc">
+				<div class="bc-tc-tb">
+					开发 <small>
+						290个
+					</small>
+				</div>
+								<div class="bc-tc-ob"><a href="?"><span class="bc-tc-ob-i active">热门</span></a>|<a href="?order=ID"><span class="bc-tc-ob-i ">最新</span></a></div>			</div>
+			<div class="bc-cc ">
+								<div class="cc-cd" id="node-54">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/rYqoXQ8vOD">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/github.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										GitHub									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										Trending Today									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://github.com/alibaba/open-code-review" target="_blank" rel="nofollow" itemid="240157893">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">alibaba / open-code-review</span>
+													<span class="e">5.1万</span>
+												</div>
+											</a>
+											<a href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="nofollow" itemid="239111726">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">GoogleChrome / modern-web-guidance-src</span>
+													<span class="e">5073</span>
+												</div>
+											</a>
+											<a href="https://github.com/openai/codex-security" target="_blank" rel="nofollow" itemid="244619758">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">openai / codex-security</span>
+													<span class="e">1.3万</span>
+												</div>
+											</a>
+											<a href="https://github.com/ZhuLinsen/daily_stock_analysis" target="_blank" rel="nofollow" itemid="233050265">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">ZhuLinsen / daily_stock_analysis</span>
+													<span class="e">7.2万</span>
+												</div>
+											</a>
+											<a href="https://github.com/we-promise/sure" target="_blank" rel="nofollow" itemid="237339353">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">we-promise / sure</span>
+													<span class="e">1.5万</span>
+												</div>
+											</a>
+											<a href="https://github.com/backnotprop/plannotator" target="_blank" rel="nofollow" itemid="232018121">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">backnotprop / plannotator</span>
+													<span class="e">1.1万</span>
+												</div>
+											</a>
+											<a href="https://github.com/louislam/uptime-kuma" target="_blank" rel="nofollow" itemid="45861114">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">louislam / uptime-kuma</span>
+													<span class="e">9.4万</span>
+												</div>
+											</a>
+											<a href="https://github.com/block/buzz" target="_blank" rel="nofollow" itemid="241612019">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">block / buzz</span>
+													<span class="e">3.7万</span>
+												</div>
+											</a>
+											<a href="https://github.com/tradermonty/claude-trading-skills" target="_blank" rel="nofollow" itemid="252861805">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">tradermonty / claude-trading-skills</span>
+													<span class="e">4301</span>
+												</div>
+											</a>
+											<a href="https://github.com/tailscale/tailcat" target="_blank" rel="nofollow" itemid="246976161">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">tailscale / tailcat</span>
+													<span class="e">9571</span>
+												</div>
+											</a>
+											<a href="https://github.com/Likely7/Veyra-NRVideo" target="_blank" rel="nofollow" itemid="252861804">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">Likely7 / Veyra-NRVideo</span>
+													<span class="e">1716</span>
+												</div>
+											</a>
+											<a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="nofollow" itemid="219251859">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">ChromeDevTools / chrome-devtools-mcp</span>
+													<span class="e">5.6万</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">2分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="54"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="54" hashid="rYqoXQ8vOD"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-12">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/n3moBVoN5O">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/csdn.net.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										CSDN									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										今日头条热点									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://blog.csdn.net/csdnnews/article/details/146255345?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="200251275">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">院士领衔、IEEE Fellow 坐镇，清华、上交大、复旦、同济等专家齐聚 2025 全球机器学习技术大会</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146193813?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="200073408">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">最高判10年！55岁程序员遭降级不满，怒植“自毁代码”：被裁当天，公司系统全面崩溃.</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146167895?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199876521">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">哥大学生用AI“拿下”亚马逊Offer，却被校方调查，怒怼：程序员工作两年内全灭！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146109880?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199737365">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">顶配超10万！两台Mac Studio在家就能跑满血DeepSeek，网友：这是性价比最高的大模型一体机</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146084709?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199461230">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">实测 Manus：DeepSeek 之后，AI 又点了一把火</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146057377?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199348486">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">谷歌传奇师徒对话：改变世界的 Jeff Dean 与创造 Transformer 的 Noam Shazeer</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146031765?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199217769">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">AI三小时造出游戏、10天狂赚28万！游戏开发小白逆袭，获马斯克点赞：AI游戏要火！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146003736?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199103356">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">继亲自写代码、加班到凌晨后，谷歌联创布林再喊话员工：每周工作60小时冲刺AGI！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145941214?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198992577">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">耗时一年，写3.5万亿行代码、消耗90GB内存，只为让Doom跑在TS类型系统中？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/146308944" target="_blank" rel="nofollow" itemid="200477127">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">华为PC全面转鸿蒙</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146218991?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="200073407">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">前 OpenAI 研究员、清华大学吴翼博士亮相 2025 ML-Summit，剖析大型推理模型强化学习系统</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/146179243?sharetype=blogdetail&sharerId=146179243&sharerefer=PC&sharesource=weixin_39786569&spm=1011.2480.3001.8118" target="_blank" rel="nofollow" itemid="199876520">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">00后用DeepSeek直播1天卖出3.3亿</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146158439" target="_blank" rel="nofollow" itemid="199777417">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">国产编程语言MoonBit迈进顶级学府、发布重磅LLVM后端，受邀欧美顶级大会</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/146146722" target="_blank" rel="nofollow" itemid="199737364">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">反内卷，大疆强制21点下班</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/146089555" target="_blank" rel="nofollow" itemid="199470443">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">微信聊天记录上线“瘦身”新功能</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://csdnnews.blog.csdn.net/article/details/146191727" target="_blank" rel="nofollow" itemid="199960990">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">H20在DeepSeek部署中碰壁</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146084774?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199470442">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">解码小红书、京东等头部企业大模型落地实践，2025 ML-Summit 为你揭秘！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/146063841?spm=1000.2115.3001.5926" target="_blank" rel="nofollow" itemid="199348485">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">全球首款通用Agent发布</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/146034341" target="_blank" rel="nofollow" itemid="199217767">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">曝罗永浩挖走小米前50号员工要做AIOS</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146031236?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199217766">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">清华大学朱军教授将出席 2025 全球机器学习技术大会并发表演讲！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146031677?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199217765">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">GOSIM AI Paris 2025 即将启幕</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146023488" target="_blank" rel="nofollow" itemid="199148420">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">深度解读 AIBrix：字节跳动大模型推理的云原生实践</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/146007899?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199103355">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">小米SU7 Ultra上市三天吸金超100亿</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145936054?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198992576">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">系统解读大模型诸神之战</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146065722" target="_blank" rel="nofollow" itemid="199352840">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">打破传统存储，以数据为中心</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://edu.csdn.net/cloud/houjie?utm_source=home" target="_blank" rel="nofollow" itemid="189698515">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">侯捷的 C++ 系列精品课</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145982550" target="_blank" rel="nofollow" itemid="198992575">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">DeepSeek理论利润率高达545%</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145920770" target="_blank" rel="nofollow" itemid="198703777">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">GPT-4.5来了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145870650?spm=1000.2115.3001.5927" target="_blank" rel="nofollow" itemid="198449819">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">微信Windows新版首次支持电脑端收取红包</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://marketing.csdn.net/p/4ea20af6c274a7edf1441a25008bcb95" target="_blank" rel="nofollow" itemid="199013150">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">阿里云操作系统控制台</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145867581" target="_blank" rel="nofollow" itemid="198437098">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">31</span>
+													<span class="t">DeepSeek 创新驱动的 AI 产业生态与应用战略</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145822236" target="_blank" rel="nofollow" itemid="198205949">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">32</span>
+													<span class="t">英伟达确认RTX 5090和5070 Ti存在制造问题</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145770314" target="_blank" rel="nofollow" itemid="197919282">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">33</span>
+													<span class="t">苹果高管回应自研C1基带</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://marketing.csdn.net/questions/Q2502211541353296738" target="_blank" rel="nofollow" itemid="197963154">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">34</span>
+													<span class="t">DeepSeek-R1开发者效能洞察</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145747333" target="_blank" rel="nofollow" itemid="197788478">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">35</span>
+													<span class="t">苹果iPhone 16e发布，4499元起售</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/SmartCodeTech/article/details/145704145" target="_blank" rel="nofollow" itemid="197717115">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">36</span>
+													<span class="t">从大模型性能优化到DeepSeek部署｜得物技术</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145723096" target="_blank" rel="nofollow" itemid="197676857">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">37</span>
+													<span class="t">DeepSeek发布最新技术论文</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145710653" target="_blank" rel="nofollow" itemid="197596272">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">38</span>
+													<span class="t">CSDN C知道接入DeepSeek-R1满血版</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145682658" target="_blank" rel="nofollow" itemid="197468337">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">39</span>
+													<span class="t">学 C++，赢好礼！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdngeeknews/article/details/145675833" target="_blank" rel="nofollow" itemid="197444396">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">40</span>
+													<span class="t">字节CEO反思在大模型新机遇前迟钝</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146296710?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="200477126">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">41</span>
+													<span class="t">实测文心大模型X1与文心大模型4.5，我们发现了这些惊喜</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146220701?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="200073406">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">42</span>
+													<span class="t">微软弃用C#、Rust，选Go拯救TypeScript编译器“中年危机”！C#之父亲自操刀，150万行代码编译现仅需7.5秒</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146219848?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="200073405">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">43</span>
+													<span class="t">“我辞掉了 FAANG 大厂的工程师工作，因为 AI 正在接管一切！”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146194524?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="200073404">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">44</span>
+													<span class="t">美司法部欲强制谷歌拆分Chrome，Android也岌岌可危？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146179635" target="_blank" rel="nofollow" itemid="199875932">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">45</span>
+													<span class="t">季逸超回应Manus代码遭越狱：“团队一直有开源传统，即将开源不少好东西，多Agent是关键特性”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146167863?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199876519">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">46</span>
+													<span class="t">LLM是初级程序员的外挂，却让高级工程师无感？解析LLM的影响曲线！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146109880?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199737365">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">47</span>
+													<span class="t">顶配超10万！两台Mac Studio在家就能跑满血DeepSeek，网友：这是性价比最高的大模型一体机</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146109831?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199737363">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">48</span>
+													<span class="t">体验Manus无需「天价」邀请码？不到1天，Manus开源平替火速上线：5人仅用3小时完成！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146084197?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199470441">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">49</span>
+													<span class="t">邀请码炒到5万元！Manus一夜爆火，创始人为中国90后</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146084259?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199470440">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">50</span>
+													<span class="t">涉嫌用ChatGPT写论文，中国留美博士遭学校开除：怒告校方，要求公开道歉+索赔57.5万美元</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146084098?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199470439">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">51</span>
+													<span class="t">2024年图灵奖授予强化学习之父Richard Sutton及其导师！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146064534?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199470438">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">52</span>
+													<span class="t">阿里深夜发布 QwQ-32B 模型：仅1/20参数就可媲美DeepSeek R1</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146056825?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199348484">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">53</span>
+													<span class="t">4000万用户的开源广告拦截神器遭Google封杀？网友实测：2步还能救回！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146031765?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199217769">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">54</span>
+													<span class="t">AI三小时造出游戏、10天狂赚28万！游戏开发小白逆袭，获马斯克点赞：AI游戏要火！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146003736?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199103356">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">55</span>
+													<span class="t">继亲自写代码、加班到凌晨后，谷歌联创布林再喊话员工：每周工作60小时冲刺AGI！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146031716?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199217764">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">56</span>
+													<span class="t">苹果的“软伤”：强大硬件被自家软件拖垮？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146007855?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199103354">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">57</span>
+													<span class="t">Anthropic完成35亿美元融资，估值达615亿美元</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/146003732?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="199103353">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">58</span>
+													<span class="t">教下载盗版Win11、输出被删掉的GitHub库，Copilot被指“背刺”微软</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145920948?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198703776">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">59</span>
+													<span class="t">价格近 DeepSeek 的三百倍！GPT-4.5 深夜炸场，奥特曼直呼 GPU 供不应求</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145917854?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198703775">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">60</span>
+													<span class="t">揭秘 DeepSeek 内幕，为什么强化学习是下一个 Scaling Law？ | 万有引力</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145910643?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198703774">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">61</span>
+													<span class="t">腾讯混元新一代模型Turbo S发布</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145917980?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198703773">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">62</span>
+													<span class="t">DeepSeek开源周第四弹！一次性发布3个开源项目，梁文锋亲自参与开发</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145917910?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198703772">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">63</span>
+													<span class="t">“16万行代码、零停机！我们是如何将JavaScript代码迁移到TypeScript？”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145867907?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198449818">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">64</span>
+													<span class="t">豪掷 2.2 亿美元！MongoDB 官宣收购一家刚成立 17 个月的 AI 公司，由清华姚班校友创立</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145866525?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198449817">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">65</span>
+													<span class="t">编码能力超 DeepSeek R1、o3-mini！全球首个混合推理模型 Claude 3.7 Sonnet 重磅发布</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/145789126?spm=1001.2014.3001.5502" target="_blank" rel="nofollow" itemid="198205948">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">66</span>
+													<span class="t">大模型在无人驾驶最有效的应用是什么？| Open AGI Forum</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145788543?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198205946">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">67</span>
+													<span class="t">马斯克“查美国社保”后怒批150岁领保障金，竟是年轻程序员不懂COBOL惹了祸！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145789309?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="198205945">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">68</span>
+													<span class="t">AI也“耍赖”？DeepSeek R1和o1-preview被曝在棋局中「输急眼就作弊」！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145767107?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="197919280">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">69</span>
+													<span class="t">“3000万行C代码暂时不会消失，新内核驱动可用Rust写写看”，Linux二把手表态支持Rust！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/csdnnews/article/details/145768012?spm=1001.2014.3001.5501" target="_blank" rel="nofollow" itemid="197919278">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">70</span>
+													<span class="t">8 年老设备“逆天改命”！硬核开发者把大模型塞进 U 盘，树莓派 Zero W 变身「AI 神器」</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/145742881?spm=1001.2014.3001.5502" target="_blank" rel="nofollow" itemid="197788477">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">71</span>
+													<span class="t">Grok 3是否意味着大力出奇迹的大模型法则仍然成立？</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">2分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="12"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="12" hashid="n3moBVoN5O"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-213">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/20MdKx4ew1">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/woshipm.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										人人都是产品经理									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										日榜									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://www.woshipm.com/?p=6493527" target="_blank" rel="nofollow" itemid="252853765">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">为什么哪怕双十一了，品牌依然不肯给你最低价？</span>
+													<span class="e">潘乱</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493525" target="_blank" rel="nofollow" itemid="252853767">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">英伟达商业模式画布：20年豪赌，并没有赌GPU</span>
+													<span class="e">亨亨</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493523" target="_blank" rel="nofollow" itemid="252853769">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">给微信小程序大赛当了一天评委：AI让哪些「小需求」变成了产品？</span>
+													<span class="e">快刀青衣</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493466" target="_blank" rel="nofollow" itemid="252849163">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">做智能硬件产品4个绕不开的问题，和4条系统性的应对原则</span>
+													<span class="e">Eric祝</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493503" target="_blank" rel="nofollow" itemid="252853770">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">豆包工作重大更新：接入Kimi、DeepSeek多款大模型，只需0.01x倍率还送30天订阅！</span>
+													<span class="e">晓庄同学</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493393" target="_blank" rel="nofollow" itemid="252849166">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">22 岁成了世界上最年轻的白手起家亿万富翁，他们做的是什么生意？</span>
+													<span class="e">深思圈</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493513" target="_blank" rel="nofollow" itemid="252853768">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">刚刚，Claude Fable 5.2 登顶世界第一，一夜斩杀 Opus 5.5</span>
+													<span class="e">易安说AI</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493390" target="_blank" rel="nofollow" itemid="252849162">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">从 Demo 到生产：给 LangChain 售后助手补上上下文、长期记忆、流式输出和可观测性</span>
+													<span class="e">叶小钗</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6479128" target="_blank" rel="nofollow" itemid="252849165">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">汽车租赁平台商业模式及运营机制 竞品分析报告</span>
+													<span class="e">麻辣香瓜</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493736" target="_blank" rel="nofollow" itemid="252900866">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">AI 落地前的活儿，比 AI 本身多：一个用户反馈闭环的实操拆解</span>
+													<span class="e">零壹</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493746" target="_blank" rel="nofollow" itemid="252900864">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">搞 AI 人工智能，有必要生个孩子养</span>
+													<span class="e">大伟的数字分身</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493149" target="_blank" rel="nofollow" itemid="252897844">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">到底是 SaaS+AI，还是 AI+SaaS？</span>
+													<span class="e">产品方法论集散地</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493813" target="_blank" rel="nofollow" itemid="252903818">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">WorkBuddy像极了活字印刷术</span>
+													<span class="e">AI高手杜小虎</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493831" target="_blank" rel="nofollow" itemid="252903816">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">一词一画，点亮星海：近期最惊艳的开源英语项目，连带 3.7 万+份音画数据全免费开放</span>
+													<span class="e">AI李子</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493822" target="_blank" rel="nofollow" itemid="252903817">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">双11，印象里高冷的WorkBuddy也来送福利了</span>
+													<span class="e">AI异类弗兰克</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493858" target="_blank" rel="nofollow" itemid="252903814">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">热点收藏了却不会做？我用Flova做出4次风扇变装</span>
+													<span class="e">AI高手杜小虎</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493838" target="_blank" rel="nofollow" itemid="252903815">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">Qwen4-Max Preview实测：4800万条数据26分钟跑完，强！</span>
+													<span class="e">向阳乔木推荐看</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493871" target="_blank" rel="nofollow" itemid="252903813">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">MiniMax，狂卷字节、OpenAI</span>
+													<span class="e">AIX财经</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493668" target="_blank" rel="nofollow" itemid="252900867">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">微信AI的老班底与新面孔</span>
+													<span class="e">Z Finance</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493680" target="_blank" rel="nofollow" itemid="252900865">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">WorkBuddy又给用户发积分，每人至少1000，截止到11月30日</span>
+													<span class="e">产品笔记</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493844" target="_blank" rel="nofollow" itemid="252906703">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">充了 1300 测即梦短剧工作室，结果。。。</span>
+													<span class="e">饼干哥哥</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493883" target="_blank" rel="nofollow" itemid="252906702">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">「豆包工作」开窍， Logo终于换成了豆包姐</span>
+													<span class="e">产品笔记</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491405" target="_blank" rel="nofollow" itemid="252554427">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">95后，开始掌管大厂的AI命脉</span>
+													<span class="e">怪哥</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493081" target="_blank" rel="nofollow" itemid="252794487">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">张一鸣开始重拳出击WorkBuddy</span>
+													<span class="e">欧阳俊杰</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493677" target="_blank" rel="nofollow" itemid="252900863">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">被围剿的黄仁勋，暴露了AI投资的最大风险</span>
+													<span class="e">硅基观察Pro</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492533" target="_blank" rel="nofollow" itemid="252745288">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">AI影视剧爆发元年，Seedance拿到了大结果</span>
+													<span class="e">光锥智能</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6490536" target="_blank" rel="nofollow" itemid="252457100">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">腾讯首个游戏陪伴Agent：「鹅次元」全网首测</span>
+													<span class="e">产品笔记</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6489961" target="_blank" rel="nofollow" itemid="252340122">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">RAG这次真死了！SAG2才是本地知识库的神，又快又准又便宜～</span>
+													<span class="e">袋鼠帝</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6487220" target="_blank" rel="nofollow" itemid="251943730">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">2个月涨粉60万、单集获赞超百万，谁会成为第二个方桃子？</span>
+													<span class="e">新榜</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6490871" target="_blank" rel="nofollow" itemid="252507300">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">腾讯云ADP产品分析：企业级 Service Agent 平台—从「搭 Agent」到「管 Agent」</span>
+													<span class="e">拆个产品</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493825" target="_blank" rel="nofollow" itemid="252903812">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">31</span>
+													<span class="t">为什么全世界都在为数据中心吵架？</span>
+													<span class="e">电厂</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493833" target="_blank" rel="nofollow" itemid="252903811">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">32</span>
+													<span class="t">AI办公开打二番战</span>
+													<span class="e">伯虎财经</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492636" target="_blank" rel="nofollow" itemid="252754154">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">33</span>
+													<span class="t">从小学到高中，12 年教材被做成了一张能追溯知识断层的地图</span>
+													<span class="e">AI李子</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491262" target="_blank" rel="nofollow" itemid="252543991">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">34</span>
+													<span class="t">WorkBuddy又道歉了，还要给你退积分</span>
+													<span class="e">产品笔记</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6490337" target="_blank" rel="nofollow" itemid="252411065">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">35</span>
+													<span class="t">12 个超火的 DeepSeek Harness 插件，大肥鱼已经落后 N 个版本了。。。</span>
+													<span class="e">程序员鱼皮</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493395" target="_blank" rel="nofollow" itemid="252858575">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">36</span>
+													<span class="t">靠买买买做到年收入 40 亿美金，Bending Spoons 怎么用 AI 管更多公司</span>
+													<span class="e">深思 SenseAI</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6457232" target="_blank" rel="nofollow" itemid="247329120">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">37</span>
+													<span class="t">workbuddy每天自动签到领取100 积分，攻略来了！</span>
+													<span class="e">晓庄同学</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491984" target="_blank" rel="nofollow" itemid="252666300">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">38</span>
+													<span class="t">京东的“外卖大战”到底在打什么？</span>
+													<span class="e">唐辰同学</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6490740" target="_blank" rel="nofollow" itemid="252512197">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">39</span>
+													<span class="t">Grok 土豆姐的 Agent 实战经验，这套 Harness 已开源！</span>
+													<span class="e">Ai学习的老章</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6488001" target="_blank" rel="nofollow" itemid="252085661">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">40</span>
+													<span class="t">DevEco Code 上手：免费 GLM + 三种模式，AI 干完整个需求</span>
+													<span class="e">万少</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493004" target="_blank" rel="nofollow" itemid="252824377">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">41</span>
+													<span class="t">20元泡面，399羽绒服，外企山姆为啥这么会玩流量？</span>
+													<span class="e">寻空</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493251" target="_blank" rel="nofollow" itemid="252834016">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">42</span>
+													<span class="t">美团松了一口气：烧了 600 亿，UE涨了1毛钱</span>
+													<span class="e">鲸选AI</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493304" target="_blank" rel="nofollow" itemid="252834015">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">43</span>
+													<span class="t">Character.AI都要破产了，AI陪伴却开始闷声赚大钱</span>
+													<span class="e">硅基观察Pro</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492538" target="_blank" rel="nofollow" itemid="252745289">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">44</span>
+													<span class="t">10秒出一张4K图？实测MiniMax H3-Image速度、质量已达到Sota级别</span>
+													<span class="e">AI高手杜小虎</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492523" target="_blank" rel="nofollow" itemid="252754158">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">45</span>
+													<span class="t">腾讯混元Hy4去同福客栈打工，干得怎么样？</span>
+													<span class="e">数智奔流</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6488971" target="_blank" rel="nofollow" itemid="252198962">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">46</span>
+													<span class="t">红果 1.68 亿日活，逼出了微信绿泡泡！附保姆级入驻攻略！</span>
+													<span class="e">晓庄同学</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491042" target="_blank" rel="nofollow" itemid="252526829">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">47</span>
+													<span class="t">【经验开源】我的AI内容创作和一鱼多吃工作流</span>
+													<span class="e">林卿LinQ.</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493087" target="_blank" rel="nofollow" itemid="252824378">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">48</span>
+													<span class="t">把外卖平台当“抖加”用，这波人把“孙割法则”学透了</span>
+													<span class="e">互联网江湖</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493239" target="_blank" rel="nofollow" itemid="252834005">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">49</span>
+													<span class="t">我用Codex做了一个 AI 分镜工具，一键复刻爆款 AI 短剧，开源免费！</span>
+													<span class="e">萤柳</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493200" target="_blank" rel="nofollow" itemid="252834012">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">50</span>
+													<span class="t">教你用WorkBuddy本地部署MiniMax-H3-Image开源生图模型</span>
+													<span class="e">马佳彬</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492666" target="_blank" rel="nofollow" itemid="252757947">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">51</span>
+													<span class="t">手把手教你用 Fable 5.2 做个精致的 HTML 的 3D 动作游戏</span>
+													<span class="e">歸藏的AI工具箱</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492541" target="_blank" rel="nofollow" itemid="252745285">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">52</span>
+													<span class="t">千问办公三连击，硬刚WorkBuddy</span>
+													<span class="e">产品笔记</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6488056" target="_blank" rel="nofollow" itemid="252080083">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">53</span>
+													<span class="t">2027年AI运营转型手册</span>
+													<span class="e">云洲说</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491701" target="_blank" rel="nofollow" itemid="252614765">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">54</span>
+													<span class="t">Harness 到底是什么？这是今年最透彻的解读</span>
+													<span class="e">Ai学习的老章</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493325" target="_blank" rel="nofollow" itemid="252834008">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">55</span>
+													<span class="t">视频号的逆袭路，绿泡泡走不了</span>
+													<span class="e">表外表里</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492651" target="_blank" rel="nofollow" itemid="252757948">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">56</span>
+													<span class="t">Gemini 4 Carbon 全面开放，谷歌这次是真的想卷死同行</span>
+													<span class="e">易安说AI</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492829" target="_blank" rel="nofollow" itemid="252770156">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">57</span>
+													<span class="t">淘宝闪购、美团闪购、京东秒送：双11即时零售三强对决</span>
+													<span class="e">野豹财观</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491394" target="_blank" rel="nofollow" itemid="252584025">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">58</span>
+													<span class="t">我用 ChatCut + Claude Code 复刻了猫子柒，附全流程教程、完整提示词</span>
+													<span class="e">Ai学习的老章</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491802" target="_blank" rel="nofollow" itemid="252666296">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">59</span>
+													<span class="t">Claude Fable 5.2 首发实测，顶级的审美，蛋疼的价格。。</span>
+													<span class="e">程序员鱼皮</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491810" target="_blank" rel="nofollow" itemid="252897843">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">60</span>
+													<span class="t">ANT终将奔向10万亿</span>
+													<span class="e">字母榜</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6489841" target="_blank" rel="nofollow" itemid="252332678">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">61</span>
+													<span class="t">WorkBuddy新版发布，首页迎来最大改版</span>
+													<span class="e">产品笔记</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493519" target="_blank" rel="nofollow" itemid="252858576">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">62</span>
+													<span class="t">AI作弊不稀奇，它还懂“抗拒从严，回家过年”</span>
+													<span class="e">字母榜</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492544" target="_blank" rel="nofollow" itemid="252745286">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">63</span>
+													<span class="t">Qwen4-Max 预览版来了！实测，谈谈感受。</span>
+													<span class="e">Ai学习的老章</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492549" target="_blank" rel="nofollow" itemid="252750294">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">64</span>
+													<span class="t">财税业这样用WorkBuddy就对了</span>
+													<span class="e">马佳彬</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6459938" target="_blank" rel="nofollow" itemid="250772138">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">65</span>
+													<span class="t">奶茶杯子为啥越来越高？</span>
+													<span class="e">寻空</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6488179" target="_blank" rel="nofollow" itemid="252090437">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">66</span>
+													<span class="t">找姿势、挑穿搭、定角色脸：这个零依赖开源图库，把 4345 张视觉参考装进了一个网页</span>
+													<span class="e">AI李子</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491161" target="_blank" rel="nofollow" itemid="252540011">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">67</span>
+													<span class="t">刚刚，Anthropic公开Claude内部记忆架构设计</span>
+													<span class="e">易安说AI</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491607" target="_blank" rel="nofollow" itemid="252605559">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">68</span>
+													<span class="t">Coze 下线，死的不冤</span>
+													<span class="e">叶小钗</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6490419" target="_blank" rel="nofollow" itemid="252419918">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">69</span>
+													<span class="t">8款国内主流办公Agent横测，第一竟然是...</span>
+													<span class="e">袋鼠帝</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493011" target="_blank" rel="nofollow" itemid="252824376">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">70</span>
+													<span class="t">下一代社交 App，正在想办法让你赶紧离开</span>
+													<span class="e">张艾拉</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493281" target="_blank" rel="nofollow" itemid="252834003">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">71</span>
+													<span class="t">小红书内测“搭搭”App，能找活人感AI搭子，还支持群聊</span>
+													<span class="e">读佳</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6475470" target="_blank" rel="nofollow" itemid="250346907">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">72</span>
+													<span class="t">WorkBuddy国际版实测，双持打开新世界</span>
+													<span class="e">产品笔记</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6488772" target="_blank" rel="nofollow" itemid="252184617">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">73</span>
+													<span class="t">把整座理化生实验室和硬件开发板装进浏览器，这两个 3D 交互网站太惊艳了</span>
+													<span class="e">AI李子</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6486874" target="_blank" rel="nofollow" itemid="252004950">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">74</span>
+													<span class="t">WorkBuddy产品分析：从「能生成」到「能交付、可治理、可复用」</span>
+													<span class="e">拆个产品</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6491094" target="_blank" rel="nofollow" itemid="252531164">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">75</span>
+													<span class="t">卧槽！我竟然发现了workbuddy白嫖版，每天都能领5000积分！</span>
+													<span class="e">晓庄同学</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493267" target="_blank" rel="nofollow" itemid="252844895">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">76</span>
+													<span class="t">黄仁勋辞职背后：Anthropic的4000万美元捐款给了谁？</span>
+													<span class="e">甲子光年</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493196" target="_blank" rel="nofollow" itemid="252829672">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">77</span>
+													<span class="t">BAT新旗舰杀回第一阵营，压力来到字节这边</span>
+													<span class="e">字母榜</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493383" target="_blank" rel="nofollow" itemid="252840983">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">78</span>
+													<span class="t">你单曲循环的歌，正在被300元的AI音乐挤出歌单</span>
+													<span class="e">显微故事</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6493891" target="_blank" rel="nofollow" itemid="252909071">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">79</span>
+													<span class="t">AI录音设备，正在争夺“最懂你”的位置</span>
+													<span class="e">霞光社</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6492570" target="_blank" rel="nofollow" itemid="252750296">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">80</span>
+													<span class="t">一周涨粉超448万，男性情感赛道跑出新爆款</span>
+													<span class="e">新播场</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6488276" target="_blank" rel="nofollow" itemid="252106516">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">81</span>
+													<span class="t">刚刚，DeepSeek 重磅发布全新 Agent 架构：AI 开始指挥 AI 干活</span>
+													<span class="e">易安说AI</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6461537" target="_blank" rel="nofollow" itemid="248173343">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">82</span>
+													<span class="t">AI漫剧从0到1：零基础怎么做出一部能赚钱的漫剧？（保姆级教程）</span>
+													<span class="e">子文</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6458164" target="_blank" rel="nofollow" itemid="247444517">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">83</span>
+													<span class="t">揭秘：workbuddy白嫖积分的5个途径！（每月可薅3500+积分）</span>
+													<span class="e">晓庄同学</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6409303" target="_blank" rel="nofollow" itemid="240347643">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">84</span>
+													<span class="t">AI 时代的产品经理：不是被取代，是工作流被重写了</span>
+													<span class="e">瑞叔</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6367455" target="_blank" rel="nofollow" itemid="234889895">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">85</span>
+													<span class="t">凌晨3点上班的AI漫剧公司，被算力逼疯的“错峰生产”</span>
+													<span class="e">微果酱</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6424970" target="_blank" rel="nofollow" itemid="242714071">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">86</span>
+													<span class="t">豆包、千问同步下线UGC智能体：做情感AI产品，千万别踩这4个合规死坑</span>
+													<span class="e">AI合规研究者</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6395153" target="_blank" rel="nofollow" itemid="238315165">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">87</span>
+													<span class="t">被同事折磨的不想上班？送你一份识破职场NPD应对手册</span>
+													<span class="e">菩提果果</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6336917" target="_blank" rel="nofollow" itemid="230373568">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">88</span>
+													<span class="t">2026年小红书经营趋势预判</span>
+													<span class="e">林卿LinQ.</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6328838" target="_blank" rel="nofollow" itemid="229328549">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">89</span>
+													<span class="t">抖音运营：从了解推流机制开始</span>
+													<span class="e">铭航创想</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6326220" target="_blank" rel="nofollow" itemid="228998827">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">90</span>
+													<span class="t">想入行/转型 AI PM？深扒 54 份头部企业 JD，我的6 大发现</span>
+													<span class="e">辛康在进化</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6334333" target="_blank" rel="nofollow" itemid="238996450">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">91</span>
+													<span class="t">一文讲透AI的三大核心要素之一：算力</span>
+													<span class="e">向上的小霍</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6352860" target="_blank" rel="nofollow" itemid="233540501">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">92</span>
+													<span class="t">从实验设计到结果回归：我的AB实验实战方法</span>
+													<span class="e">是个游子</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6333618" target="_blank" rel="nofollow" itemid="229851363">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">93</span>
+													<span class="t">产品经理，你的领导不是人，是一股势力！</span>
+													<span class="e">咔嗒库栗</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6325698" target="_blank" rel="nofollow" itemid="228911743">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">94</span>
+													<span class="t">阿里千问 vs 字节豆包：当 AI 开始“点外卖”，Agent 的 0-1 终局已定？</span>
+													<span class="e">Junliu</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6334532" target="_blank" rel="nofollow" itemid="238996449">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">95</span>
+													<span class="t">Web组件加载PDF时，如何禁止用户点击PDF中的某些链接？</span>
+													<span class="e">华为开发者联盟</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6324816" target="_blank" rel="nofollow" itemid="228811597">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">96</span>
+													<span class="t">快递江湖的“钱袋子”：万字长文深度拆解加盟制快递结算体系建设</span>
+													<span class="e">mico</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6319414" target="_blank" rel="nofollow" itemid="229328548">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">97</span>
+													<span class="t">供应链金融四方关系与资金流向全解析</span>
+													<span class="e">EVE的星球</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6326073" target="_blank" rel="nofollow" itemid="229238204">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">98</span>
+													<span class="t">47秒搞定！阿里千问一键点外卖实测：AI从聊天到办事，本地生活变天了</span>
+													<span class="e">造梦产品论</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6315929" target="_blank" rel="nofollow" itemid="227783046">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">99</span>
+													<span class="t">刷完Manus肖弘的即刻，我看到了AI时代创业的教科书范式：Day One开始直通结局</span>
+													<span class="e">超越爱丽丝</span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/?p=6325584" target="_blank" rel="nofollow" itemid="228842400">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">100</span>
+													<span class="t">为什么90%的AI项目都失败？因为从老板到团队，都没搞懂AI底层概念到商业决策的逻辑</span>
+													<span class="e">Blues</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">37秒前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="213"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="213" hashid="20MdKx4ew1"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-100">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/QaqeEaVe9R">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/juejin.cn.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										掘金									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										全站本周最热									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://juejin.cn/post/7705987138957328427" target="_blank" rel="nofollow" itemid="252537879">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">永别了，程序员！(转）</span>
+													<span class="e">8167</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706345830358695971" target="_blank" rel="nofollow" itemid="252673535">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">HarmonyOS ArkTS 把组件截图保存成 PNG 再调系统分享面板的做法</span>
+													<span class="e">1.0万</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706534471420461098" target="_blank" rel="nofollow" itemid="252675377">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">你们公司有 35 岁以上的前端吗？</span>
+													<span class="e">6233</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705995320547278888" target="_blank" rel="nofollow" itemid="252611628">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">鸿蒙 ArkTS 独立开发者的项目结构 model / dao / viewmodel / page / common 的分层</span>
+													<span class="e">5410</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705621037036421120" target="_blank" rel="nofollow" itemid="252513743">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">HarmonyOS ArkUI Dialog 复用 用 @CustomDialog + enum type 做多类型统一管理的做法</span>
+													<span class="e">5139</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706832865795702818" target="_blank" rel="nofollow" itemid="252752922">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">HarmonyOS 做桌面卡片 onAddForm 要同步返回但数据在数据库里的解法</span>
+													<span class="e">4614</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706826190912880680" target="_blank" rel="nofollow" itemid="252763346">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">Qwen4 被嘲笑了！国模被啥锁死了？</span>
+													<span class="e">2774</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705961716425490447" target="_blank" rel="nofollow" itemid="252588859">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">AI 正在蚕食我们的编码能力</span>
+													<span class="e">3143</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7704993320619950120" target="_blank" rel="nofollow" itemid="252425569">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">HarmonyOS ArkUI List 的侧滑删除 用 ListItem 的 swipeAction + endIcon 的做法</span>
+													<span class="e">3520</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706418656682803200" target="_blank" rel="nofollow" itemid="252676543">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">再见了 Typora</span>
+													<span class="e">2493</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705724831249432591" target="_blank" rel="nofollow" itemid="252512949">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">AI 写页面像说明书，修 Bug 像贴膏药？把这两句话写进 AGENTS.md</span>
+													<span class="e">2124</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705911807923322943" target="_blank" rel="nofollow" itemid="252605407">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">workbuddy接管我的浏览器，帮我干活了</span>
+													<span class="e">2450</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706346256684023846" target="_blank" rel="nofollow" itemid="252632054">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">为什么越来越多人用 AI Gateway？</span>
+													<span class="e">1908</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705291560008531977" target="_blank" rel="nofollow" itemid="252453607">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">Codex中必装的11个Skills</span>
+													<span class="e">1984</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705134065616207882" target="_blank" rel="nofollow" itemid="252512956">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">从 Coze 居然要下线了说起</span>
+													<span class="e">1759</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706740008510963722" target="_blank" rel="nofollow" itemid="252743990">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">Flutter 3.50 & Dart 3.14  发布，快来看看有什么更新吧</span>
+													<span class="e">1086</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705316753005674511" target="_blank" rel="nofollow" itemid="252489349">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">C++26 草案被否，二十八年来头一回</span>
+													<span class="e">1071</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706740769264566322" target="_blank" rel="nofollow" itemid="252804210">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">如何看待 Fable 5.2 用纯代码生成 1.4MB 视觉作品：光追、水面、倒影、火光的程序化生成原理</span>
+													<span class="e">1302</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707101130299539496" target="_blank" rel="nofollow" itemid="252776226">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">别再抬杠，前端岗已经没了！无论前后端，我们最终都要成“全干”工程师</span>
+													<span class="e">986</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705623263632457738" target="_blank" rel="nofollow" itemid="252516308">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">LangChain ToolRuntime 入门：context、state 与 store 的实际用法</span>
+													<span class="e">1300</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">1分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="100"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="100" hashid="QaqeEaVe9R"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-391">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/Om4ejk3oxE">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/woshipm.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										人人都是产品经理									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										最新									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.woshipm.com/ai/6493883.html" target="_blank" rel="nofollow" itemid="252903832">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">「豆包工作」开窍， Logo终于换成了豆包姐</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493844.html" target="_blank" rel="nofollow" itemid="252903831">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">充了 1300 测即梦短剧工作室，结果。。。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493871.html" target="_blank" rel="nofollow" itemid="252903830">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">MiniMax，狂卷字节、OpenAI</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/share/6493864.html" target="_blank" rel="nofollow" itemid="252903829">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">黄仁勋辞职，美国AI换打法</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/share/6493840.html" target="_blank" rel="nofollow" itemid="252903828">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">抖音本地生活：付费、成交、核销与真实ROI</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493838.html" target="_blank" rel="nofollow" itemid="252902304">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">Qwen4-Max Preview实测：4800万条数据26分钟跑完，强！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493858.html" target="_blank" rel="nofollow" itemid="252902303">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">热点收藏了却不会做？我用Flova做出4次风扇变装</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/share/6493002.html" target="_blank" rel="nofollow" itemid="252902302">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">家具行业这么难做，源氏木语凭什么10年开出1600家门店，现在还敢持续扩张开大店？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493831.html" target="_blank" rel="nofollow" itemid="252900885">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">一词一画，点亮星海：近期最惊艳的开源英语项目，连带 3.7 万+份音画数据全免费开放</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493828.html" target="_blank" rel="nofollow" itemid="252900884">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">教你用WorkBuddy本地部署MiniMax H3开源生视频模型</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493822.html" target="_blank" rel="nofollow" itemid="252900883">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">双11，印象里高冷的WorkBuddy也来送福利了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493813.html" target="_blank" rel="nofollow" itemid="252900882">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">WorkBuddy像极了活字印刷术</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/share/6493688.html" target="_blank" rel="nofollow" itemid="252899364">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">熊本熊之父水野学：23条从“卖”到“大卖”的设计和品牌逻辑</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/pd/6493736.html" target="_blank" rel="nofollow" itemid="252899363">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">AI 落地前的活儿，比 AI 本身多：一个用户反馈闭环的实操拆解</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.woshipm.com/ai/6493746.html" target="_blank" rel="nofollow" itemid="252899362">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">搞 AI 人工智能，有必要生个孩子养</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">11分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="391"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="391" hashid="Om4ejk3oxE"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-310">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/rYqoXZzdOD">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/oschina.net.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										开源中国									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										热门资讯									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://www.oschina.net/news/503576" target="_blank" rel="nofollow" itemid="252906717">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">phimint v0.10.0 发布：卡在「等你输入」的命令上，agent 能自己接上</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503575" target="_blank" rel="nofollow" itemid="252862565">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">开源赋能数智未来| openKylin全球生态推广会成功举办</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503572" target="_blank" rel="nofollow" itemid="252861859">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">通用代码生成器光船，特默尔尝鲜版二，人工智能设置项目会话</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503570" target="_blank" rel="nofollow" itemid="252861921">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">qData 数据中台开源版 v1.6.7 发布：修复消息通知与时间范围增量读取问题</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503552" target="_blank" rel="nofollow" itemid="252824646">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">MetaForge 2026.0.0 正式发布：从数据库管理到可视化分析，700+ 项改进带来全面升级</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503551" target="_blank" rel="nofollow" itemid="252825313">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">Jync 捷同 v2.1.0 发布：CDC 流内 DDL 闭环，ETL 支持主键更新</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503550" target="_blank" rel="nofollow" itemid="252820337">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">Argus v0.5.0 发布：纯 Rust 与 GPU 原生绘制的现代 Windows 任务管理器（已获 1.4k Star）</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503549" target="_blank" rel="nofollow" itemid="252820336">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">星甘（StarGantt）支持 .mpp 双向读写了：导进来能改，改完能导回去</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503547" target="_blank" rel="nofollow" itemid="252776179">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">JeecgBoot 低代码 + 敲敲云零代码：开源 AI 低代码双平台一次打通</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503545" target="_blank" rel="nofollow" itemid="252769512">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">全球化筑基，AI 赋能新体验，openKylin 3.0 SP1 正式发布</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503499/claude-fable-and-mythos-5-2" target="_blank" rel="nofollow" itemid="252592486">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">Anthropic 发布 Fable 5.2 与 Mythos 5.2，声称“8 天写出一个能开机的操作系统”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503514" target="_blank" rel="nofollow" itemid="252619955">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">10x 工程师变成 100x 了，普通工程师还是那么普通</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503542/microsoft-announcing-dotnet-11" target="_blank" rel="nofollow" itemid="252752425">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">.NET 11 正式发布，C# 15 补上了它欠缺二十年的东西</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503536" target="_blank" rel="nofollow" itemid="252746245">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">15 分钟让你有 C 语言超能力！！！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503540/apple-new-mac-app-coming-to-make-running-local-ai-models-easy" target="_blank" rel="nofollow" itemid="252750525">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">苹果正在开发一个把 Mac 变成私有 AI 推理服务器的应用</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503535" target="_blank" rel="nofollow" itemid="252709844">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">Casvisor 开源：Apache-2.0 的堡垒机，一个 Go 二进制支持 SSH、RDP、VNC、Telnet 与会话录像</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503505" target="_blank" rel="nofollow" itemid="252606572">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">从路透社到 Linux Magazine：openKylin 3.0 收获全球关注</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503507" target="_blank" rel="nofollow" itemid="252607793">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">开源新生力：一群中学生登上 GOTC 主会场</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503569/in-memoriam-tim-peters-1952-2026" target="_blank" rel="nofollow" itemid="252854034">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">写《Python 之禅》的那个人走了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.oschina.net/news/503518" target="_blank" rel="nofollow" itemid="252662920">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">OwnCoder 0.2.0 发布，面向开发者的桌面端 AI 编程工具</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">16秒前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="310"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="310" hashid="rYqoXZzdOD"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-273">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/9Jndklye3V">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/coffee.pmcaff.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										咖啡日报									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										PMCAFF精选									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://coffee.pmcaff.com/article/G2QdolJ2LZ" target="_blank" rel="nofollow" itemid="126493171">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">大厂产品专家手把手教你系列（13）：如何写好周报（附模版）</span>
+													<span class="e">2.3万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/oDLm49AAkO" target="_blank" rel="nofollow" itemid="125658770">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">一文了解从0到1设计会员产品</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/Oak7N0vyBJ" target="_blank" rel="nofollow" itemid="126492454">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">1个Prompt框架+4个公式，讲清产品经理如何用ChatGPT让工作效率翻倍</span>
+													<span class="e">2.4万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/EeLGpZ2VQy" target="_blank" rel="nofollow" itemid="126493170">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">一文讲清产品设计中的文案表达</span>
+													<span class="e">1.9万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/xvQ3wo1aQW" target="_blank" rel="nofollow" itemid="95275299">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">【万字长文】BIM在家装领域的应用与实践</span>
+													<span class="e">15.2万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/qVkVgeW7LO" target="_blank" rel="nofollow" itemid="94654672">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">2万字 | 全面剖析需求的挖掘与分析（建议收藏）</span>
+													<span class="e">16.9万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/qVkVge3eLO" target="_blank" rel="nofollow" itemid="94411343">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">PRD里面，一个完整的功能模块需求，应该怎么写？</span>
+													<span class="e">16.2万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/Oak7Nye3BJ" target="_blank" rel="nofollow" itemid="93946919">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">最重要的两种思维：逻辑思维与结构化思维</span>
+													<span class="e">16.4万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/G2Qdo2ngLZ" target="_blank" rel="nofollow" itemid="84545510">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">1.5万字讲清楚从0到1搭建电商营销中心（建议收藏）</span>
+													<span class="e">22.2万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/gjkyM3N5kM" target="_blank" rel="nofollow" itemid="83910024">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">1.5万字深度雄文：这才是实际工作中的竞品分析</span>
+													<span class="e">23.4万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/a1LR8Vo8BZ" target="_blank" rel="nofollow" itemid="83599541">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">B端产品设计流程--如何进行产品架构设计（下）</span>
+													<span class="e">20.5万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/pNBlm78mkA" target="_blank" rel="nofollow" itemid="83379422">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">【6000字长文】需求评审总是被怼？强烈推荐你试试这三招</span>
+													<span class="e">19.8万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/j5L4wzK8kg" target="_blank" rel="nofollow" itemid="83027331">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">万字长文 | 十个模型，总结产品经理沟通方法论</span>
+													<span class="e">20.9万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/a1LR8D9xBZ" target="_blank" rel="nofollow" itemid="83266087">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">原型绘制提效技巧分享</span>
+													<span class="e">21.1万</span>
+												</div>
+											</a>
+											<a href="https://coffee.pmcaff.com/article/rPLDwR7RkY" target="_blank" rel="nofollow" itemid="82691817">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">向阅读致敬！微信读书产品设计策略推导</span>
+													<span class="e">21.4万</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="hidden">2026-04-28</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="273"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="273" hashid="9Jndklye3V"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-96">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/rx9ozQ6eXb">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/juejin.cn.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										掘金									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										工具资源本周最热									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://juejin.cn/post/7705837677615562792" target="_blank" rel="nofollow" itemid="252608517">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">早在八十年代我们就有国产操作系统，但为什么最后还是Windows一统天下，答案藏在时间里</span>
+													<span class="e">618</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706270077893263403" target="_blank" rel="nofollow" itemid="252617582">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">AI 编程时代，聊聊我的 Mac mini 双屏桌面</span>
+													<span class="e">587</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706584659240452115" target="_blank" rel="nofollow" itemid="252709779">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">IntelliJ IDEA 2026.3 发布：智能体住进 IDE</span>
+													<span class="e">523</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705412224673366051" target="_blank" rel="nofollow" itemid="252504051">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">把别人的软件拆开看，推荐5个主流逆向工具</span>
+													<span class="e">490</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705907853609304114" target="_blank" rel="nofollow" itemid="252544496">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">GitHub 日榜趋势速报 | 2026-11-09</span>
+													<span class="e">435</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706583027480723496" target="_blank" rel="nofollow" itemid="252754134">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">GUI的时代过去了</span>
+													<span class="e">269</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706807603482361907" target="_blank" rel="nofollow" itemid="252761972">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">从命令到工作流：juejin-cli 如何让写作自动化更可靠</span>
+													<span class="e">200</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705232032440713242" target="_blank" rel="nofollow" itemid="252667035">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">以 Obsidian 为核心的知识库体系：工具生态、AI 协同与最佳实践方案</span>
+													<span class="e">278</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705249934229078059" target="_blank" rel="nofollow" itemid="252669694">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">探索Pinyin4j-Java中的拼音转换利器</span>
+													<span class="e">222</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705232032440614938" target="_blank" rel="nofollow" itemid="252694881">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">GitHub 周榜趋势速报 | 2026-11-08</span>
+													<span class="e">251</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706833656823906330" target="_blank" rel="nofollow" itemid="252815225">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">Lite模式 缓解微信开发者工具卡顿，附 uni-app 实践方案</span>
+													<span class="e">181</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706743522150187043" target="_blank" rel="nofollow" itemid="252846989">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">太牛了，不插线不 root，两行命令就能隔空操控 Android 真机</span>
+													<span class="e">217</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706474677127921673" target="_blank" rel="nofollow" itemid="252799798">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">45 万星的开源逆向 MCP：REA 让 Agent 无源码读懂任意应用，把证据和边界写进设计</span>
+													<span class="e">210</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706456581143494698" target="_blank" rel="nofollow" itemid="252846988">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">AI 编程工具越用越多，模型配置越来越乱：用 Magpie 把它们管起来</span>
+													<span class="e">191</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706420276863909903" target="_blank" rel="nofollow" itemid="252861808">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">花了三毛六，我把 Claude Code 和 DSH 测了三轮：同一个 DeepSeek，两个壳差距有多大</span>
+													<span class="e">190</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706350973791731712" target="_blank" rel="nofollow" itemid="252857027">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">为什么模型标称 1M，Google Antigravity 聊到 256K 却突然失忆？我们给它做了个原生行内监控圆环</span>
+													<span class="e">171</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705314576863248447" target="_blank" rel="nofollow" itemid="252846987">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">从一个类名到一张类图：用 Class 对象自动生成 PlantUML</span>
+													<span class="e">181</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7704958359514497039" target="_blank" rel="nofollow" itemid="252899908">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">深色 IDE 截图 OCR 老是漏字，我加了一层预处理，顺手把识别结果做成了可搜索历史</span>
+													<span class="e">184</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706912573577642022" target="_blank" rel="nofollow" itemid="252902740">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">我用 Go 和 AI 做了一个 macOS 磁盘清理工具：Vole（开源）</span>
+													<span class="e">115</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705807831229251622" target="_blank" rel="nofollow" itemid="252903321">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">Claude Code 会话攒太多，我用 Go 写了个本地管理台</span>
+													<span class="e">171</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">2分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="96"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="96" hashid="rx9ozQ6eXb"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-55">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/Q1Vd5xKv85">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/github.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										GitHub									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										Trending Weekly									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://github.com/sherlock-project/sherlock" target="_blank" rel="nofollow" itemid="1433907">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">sherlock-project / sherlock</span>
+													<span class="e">11.1万</span>
+												</div>
+											</a>
+											<a href="https://github.com/anthropics/skills" target="_blank" rel="nofollow" itemid="221066958">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">anthropics / skills</span>
+													<span class="e">19.4万</span>
+												</div>
+											</a>
+											<a href="https://github.com/milind-soni/OpenMausBot" target="_blank" rel="nofollow" itemid="251692836">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">milind-soni / OpenMausBot</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="nofollow" itemid="228565037">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">vercel-labs / agent-browser</span>
+													<span class="e">5.1万</span>
+												</div>
+											</a>
+											<a href="https://github.com/google/elephant-goldfish-model" target="_blank" rel="nofollow" itemid="251177777">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">google / elephant-goldfish-model</span>
+													<span class="e">1.9万</span>
+												</div>
+											</a>
+											<a href="https://github.com/ZhuLinsen/daily_stock_analysis" target="_blank" rel="nofollow" itemid="233050265">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">ZhuLinsen / daily_stock_analysis</span>
+													<span class="e">7.2万</span>
+												</div>
+											</a>
+											<a href="https://github.com/NVIDIA/auto-ontology" target="_blank" rel="nofollow" itemid="251600865">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">NVIDIA / auto-ontology</span>
+													<span class="e">1.3万</span>
+												</div>
+											</a>
+											<a href="https://github.com/google-deepmind/mujoco" target="_blank" rel="nofollow" itemid="144675251">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">google-deepmind / mujoco</span>
+													<span class="e">1.8万</span>
+												</div>
+											</a>
+											<a href="https://github.com/mattpocock/skills" target="_blank" rel="nofollow" itemid="235094096">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">mattpocock / skills</span>
+													<span class="e">32.4万</span>
+												</div>
+											</a>
+											<a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="nofollow" itemid="235314554">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">addyosmani / agent-skills</span>
+													<span class="e">11.7万</span>
+												</div>
+											</a>
+											<a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="nofollow" itemid="246582260">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">cloudflare / security-audit-skill</span>
+													<span class="e">7.2万</span>
+												</div>
+											</a>
+											<a href="https://github.com/zed-industries/zed" target="_blank" rel="nofollow" itemid="156688768">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">zed-industries / zed</span>
+													<span class="e">9.5万</span>
+												</div>
+											</a>
+											<a href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="nofollow" itemid="225312106">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">anthropics / claude-quickstarts</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>
+											<a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="nofollow" itemid="252037826">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">vercel-labs / agent-desktop</span>
+													<span class="e">2.3万</span>
+												</div>
+											</a>
+											<a href="https://github.com/lobehub/lobehub" target="_blank" rel="nofollow" itemid="229978424">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">lobehub / lobehub</span>
+													<span class="e">8.5万</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">2分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="55"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="55" hashid="Q1Vd5xKv85"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-98">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/rYqoXz8dOD">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/juejin.cn.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										掘金									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										人工智能本周最热									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://juejin.cn/post/7706826190912880680" target="_blank" rel="nofollow" itemid="252763346">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">Qwen4 被嘲笑了！国模被啥锁死了？</span>
+													<span class="e">2774</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705961716425490447" target="_blank" rel="nofollow" itemid="252588859">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">AI 正在蚕食我们的编码能力</span>
+													<span class="e">3143</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705911807923322943" target="_blank" rel="nofollow" itemid="252605407">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">workbuddy接管我的浏览器，帮我干活了</span>
+													<span class="e">2450</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705134065616207882" target="_blank" rel="nofollow" itemid="252512956">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">从 Coze 居然要下线了说起</span>
+													<span class="e">1759</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706394247621443599" target="_blank" rel="nofollow" itemid="252777460">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">别再连线了：Coze、n8n、Dify 退潮，AI 正式终结工作流时代</span>
+													<span class="e">983</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705988547135717386" target="_blank" rel="nofollow" itemid="252677611">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">Hy4正式发布一手实测，腾讯这波起飞了。</span>
+													<span class="e">922</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706124316778266667" target="_blank" rel="nofollow" itemid="252705437">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">我宣布！Magpie就是版本答案！</span>
+													<span class="e">845</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706090261218558015" target="_blank" rel="nofollow" itemid="252715295">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">程序员转型抉择：转 Agent 开发还是转全栈？一份基于招聘市场的冷静分析</span>
+													<span class="e">922</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707194766860025907" target="_blank" rel="nofollow" itemid="252845632">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">黄仁勋辞去英伟达 CEO，结束 33 年掌舵生涯</span>
+													<span class="e">906</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706384412187164710" target="_blank" rel="nofollow" itemid="252706671">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">Fable5.2 画手柄很牛，小测3个例子！</span>
+													<span class="e">542</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707227810214150178" target="_blank" rel="nofollow" itemid="252884258">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">GPT6.2Astra也很强啊，国模...！</span>
+													<span class="e">578</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705330413946093583" target="_blank" rel="nofollow" itemid="252618974">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">Lomo Agent：面向创作型、持续协作 Agent 的架构设计与工程实践</span>
+													<span class="e">524</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706833656825004058" target="_blank" rel="nofollow" itemid="252822267">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">4 个 3D 游戏，总体积 3.82MB：拆解 Claude 的 one-shot 工程链路</span>
+													<span class="e">583</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705412224672366627" target="_blank" rel="nofollow" itemid="252688227">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">DeepSeek-V4.1-Flash-1017 官方许愿案例太吸睛，我也复刻了一个</span>
+													<span class="e">646</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707231949409026058" target="_blank" rel="nofollow" itemid="252865058">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">官方点名，DeepSeek Harness 的 4 个神级插件。</span>
+													<span class="e">631</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707593859757539366" target="_blank" rel="nofollow" itemid="252905481">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">黄仁勋被裁第一天，就收到了橄榄枝</span>
+													<span class="e">409</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707106224123166755" target="_blank" rel="nofollow" itemid="252776211">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">DeepSeek Harness 完全指南，打造你的专属工作台</span>
+													<span class="e">500</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705716341147631631" target="_blank" rel="nofollow" itemid="252690395">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">AI 日报（2026年11月9日）</span>
+													<span class="e">549</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705232032440172570" target="_blank" rel="nofollow" itemid="252706104">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">WorkBuddy 自动化工作流实测：从分镜脚本到 MP4 成片的 18 步复盘</span>
+													<span class="e">531</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705071459534438454" target="_blank" rel="nofollow" itemid="252693359">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">把五个网页版 AI 拉进同一个群聊：不用 API key 的多 Agent 编排</span>
+													<span class="e">528</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">2分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="98"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="98" hashid="rYqoXz8dOD"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-126">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/WYKd6JqdaP">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/wanqu.co.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										湾区日报									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										最新期刊									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://sahillavingia.com/doge" target="_blank" rel="nofollow" itemid="207833741">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">DOGE 日记 - 在 DOGE 上班的 55 天，我都做了什么</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.bondcap.com/reports/usa25" target="_blank" rel="nofollow" itemid="208379885">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">Mary Meeker - 如果美国这个国家是一家上市公司的话，财报应该长什么样子？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://signal.org/blog/signal-is-expensive/" target="_blank" rel="nofollow" itemid="147898913">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">聊天软件 Signal 是非营利性的公司，目前每年服务器运营成本1400万美金，人工成本1900万美金；预计到 2025 年的时候每年总运营成本将达到5000万美金</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://restofworld.org/series/china-shopping-cart/" target="_blank" rel="nofollow" itemid="147777967">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">How China became the world’s shopping cart - 从“世界工厂”到“世界商场”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.npr.org/2023/11/15/1213003434/she-lived-in-a-new-york-hotel-for-more-than-40-years-but-her-life-was-a-mystery" target="_blank" rel="nofollow" itemid="147738435">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">在纽约的酒店里住了40多年</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://minimaxir.com/2023/11/open-source-dead-github/" target="_blank" rel="nofollow" itemid="147637490">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">请尊重开源项目的维护者，有点同理心，好不好？别人不欠你什么，你免费享受别人的劳动果实，不要唧唧歪歪的，行不？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.gatesnotes.com/AI-agents" target="_blank" rel="nofollow" itemid="147078752">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">在Bill Gates的博客文章中，他强调了 AI 即将如何彻底改变我们使用计算机的方式。目前的软件在很多方面仍然相当原始，例如它们不能理解我们的工作、生活、兴趣和...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://staysaasy.com/startups/2023/11/10/imprecise-asks.html" target="_blank" rel="nofollow" itemid="147296313">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">领导常常会向员工提出模糊的工作要求，这会导致员工浪费大量时间和精力。为避免这种情况，建议领导们在提出要求时，说明需要的时间投入和优先级，同时鼓励员工在...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.builder.io/blog/build-ai" target="_blank" rel="nofollow" itemid="147204958">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">Don’t Build AI Products The Way Everyone Else Is Doing It</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://github.com/getlago/lago/wiki/Open-Source-does-not-win-by-being-cheaper" target="_blank" rel="nofollow" itemid="141948651">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">讨论了开源项目不能仅仅依靠低成本来竞争。Lago的创始人分享，仅将Lago描述为“开源版的Stripe Billing”是不够的。他们认识到，开源工具不能只是成功商业产品的...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://josem.co/the-beauty-of-finished-software/" target="_blank" rel="nofollow" itemid="146014207">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">The beauty of finished software - 探讨了“完成的软件”概念，强调其稳定性和可靠性。以WordStar 4.0为例，展示了这类软件的持久价值和用户满意度。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://paraxial.io/blog/elixir-savings" target="_blank" rel="nofollow" itemid="138167805">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">Elixir Saves Pinterest $2 Million a Year In Server Costs - 从原来的200台跑python的服务器，减少到2台跑Elixir的服务器</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.dancowell.com/software-engineers-hate-code/" target="_blank" rel="nofollow" itemid="131465464">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">软件工程师们普遍都讨厌读别人写的代码</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://nira.com/evernote-history/" target="_blank" rel="nofollow" itemid="100631600">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">Why Evernote Failed to Realize Its Potential - Evernote 原本有个美好的前途，怎么现在变成这样了？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.eugenewei.com/blog/2023/7/6/how-to-blow-up-a-timeline" target="_blank" rel="nofollow" itemid="131468201">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">How to Blow Up a Timeline - 这就给 Twitter 判死刑了。Twitter 是互联网里一个很奇葩的存在，产品很简单，多年来没有怎么改进，都是用户（缓慢地）推着走，而...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.nngroup.com/articles/ai-paradigm/" target="_blank" rel="nofollow" itemid="129257495">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">这次 AI 热潮带来的新的用户界面：Intent-Based Outcome Specification - 听起来像是 SQL 这样的 declarative language，通过 UI 表达你想要什么，而不用知道具...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://world.hey.com/dhh/until-the-end-of-the-internet-439ccfce" target="_blank" rel="nofollow" itemid="129435078">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">Until the end of the internet - 做为用户，我们已经经历了很多软件产品的消亡；那么，将心比心，作为开发者，我们愿不愿意让自己做的软件产品“永远”地运行下...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://lopespm.com/notes/2023/07/02/writing-as-a-form-of-thinking.html" target="_blank" rel="nofollow" itemid="130722912">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">Writing as a form of thinking - 以后写文字的活儿都靠 ChatGPT 之类的 AI 工具自动生成，那人类还需要手动写文字吗？写下文字的过程是思考的过程；即使不再阅...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.pragmaticengineer.com/inside-agodas-private-cloud/" target="_blank" rel="nofollow" itemid="131126494">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">旅游网站 Agoda 自建数据中心：6000多个员工，其中有1600多个技术人员，其中有几十个人全职管理数据中心的硬件，6500多台服务器</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://stephanango.com/file-over-app" target="_blank" rel="nofollow" itemid="130759634">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">File over app — 网站与app 来来去去，总会有消亡的一天，但数据是永恒的；让用户导出数据吧，即使app将来不能用了，自己还能写代码来读取这些数据</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://docs.google.com/spreadsheets/d/1dKfDyKKiP6SC9LPXzatQcHR80dDlfbXlUTYwrqxHx7k/edit" target="_blank" rel="nofollow" itemid="129180695">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">Twitch 创始人 Emmett Shear 用电子表格画出来的人生旅程</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.engineersneedart.com/blog/samestop/samestop.html" target="_blank" rel="nofollow" itemid="126121266">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">在 Apple 做了 26 年的程序员退休了，他在退休后还写代码吗？当做是一种兴趣爱好休闲娱乐？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.field-guide.unusual.vc/field-guide-enterprise/open-source-fundraising-pitch-deck" target="_blank" rel="nofollow" itemid="130962930">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">越来越多的开源项目其实都有融资，甚至是巨额融资；那么风投们都如何评估开源项目的？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.youtube.com/watch?v=otbnC2zE2rw" target="_blank" rel="nofollow" itemid="27632020">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">Designing the Ideal Bootstrapped Business - 先定个小目标：如何做一个软件能每个月给你赚 $1 万？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://newsletter.pragmaticengineer.com/p/datadogs-65myear-customer-mystery" target="_blank" rel="nofollow" itemid="125129319">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">Coinbase 是 Datadog 的大客户，在2021年crypto 大热的时候，每年花 $6500 万美金在 Datadog 身上</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://blog.thunderbird.net/2023/05/thunderbird-is-thriving-our-2022-financial-report/" target="_blank" rel="nofollow" itemid="124892550">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">Mozilla 前几年把开源邮箱客户端 Thunderbird 独立出来成为子公司；2022 年 Thunderbird 全年收到的捐款有 $640 万美金，有 24 个全职员工，全年支出 $356 万美...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.similarweb.com/amp/blog/insights/ai-news/stack-overflow-chatgpt/" target="_blank" rel="nofollow" itemid="130962926">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">ChatGPT 导致了 Stack Overflow 访问量的下降？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.sfchronicle.com/opinion/openforum/article/sfusd-teacher-payroll-san-francisco-bureaucracy-18000777.php" target="_blank" rel="nofollow" itemid="124651664">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">5000多名旧金山的教师无法正常领到工资，因为支付工资的软件系统有太多 bug 了；这是一个新的系统，于2019年以$950万美元外包给 Infosys 开发，项目一再延期，直...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.the5to9.xyz/p/chesscom-bootstrapping-community-50myear" target="_blank" rel="nofollow" itemid="122390357">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">Chess.com: Bootstrapping a Community to $50M/Year - 在2005年时，创始人还在 Stanford 商学院读书，简简单单地花了 $5.5 万购买域名 Chess.com；类似故事还有...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.theregister.com/2023/05/09/blackbird_github_search/" target="_blank" rel="nofollow" itemid="124918387">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">GitHub 新的代码搜索引擎：2008年时用Solr，2013年换成Elasticsearch，最近三年用 Rust 重新写了一套搜索引擎</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90" target="_blank" rel="nofollow" itemid="124394064">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">31</span>
+													<span class="t">Amazon 的 Prime Video 的某个项目弃用 AWS 的 serverless 架构，节省 90% 费用；这算自家产品的高级黑吗</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.forbes.com/sites/iainmartin/2023/04/30/bhutan-bitcoin-mining-crypto/?sh=27f827711f1b" target="_blank" rel="nofollow" itemid="130962919">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">32</span>
+													<span class="t">奉旨挖矿：不丹王国在挖比特币，从比特币价格$5000左右开始挖，充分利用水力发电</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.asktog.com/columns/027InterfacesThatKill.html" target="_blank" rel="nofollow" itemid="122912645">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">33</span>
+													<span class="t">害死人的用户界面：John Denver 之死</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://herman.bearblog.dev/my-product-is-my-garden/" target="_blank" rel="nofollow" itemid="21795405">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">34</span>
+													<span class="t">My product is my garden - 住在低生活成本的城市，自己动手做一个网站/app，赚足够生活的钱，像园丁一样悉心呵护自己的产品，去他妈的增长黑客/独角兽/高速增长...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aarp.org/research/topics/technology/info-2023/2023-gamers-50-plus.html" target="_blank" rel="nofollow" itemid="123380187">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">35</span>
+													<span class="t">50岁以上的游戏玩家</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://timozander.de/blog/why-you-should-teach/" target="_blank" rel="nofollow" itemid="123329393">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">36</span>
+													<span class="t">到社区大学去讲课，让我成为一个更好的软件工程师：对不太懂技术的电脑用户更有同理心，对自己语言沟通能力的培养</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://revelry.co/insights/development/nix-time/" target="_blank" rel="nofollow" itemid="72551560">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">37</span>
+													<span class="t">Nix: An Idea Whose Time Has Come</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://technically.substack.com/p/what-do-internal-engineering-tools" target="_blank" rel="nofollow" itemid="94773988">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">38</span>
+													<span class="t">如何做内部工具？世界上相当多的程序员都是开发/维护内部工具的；所谓内部工具，就是给内部员工用的 dashboard/admin panel，看报表/crud的ui，很重要，但不是很...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://afterschool2021.substack.com/p/30" target="_blank" rel="nofollow" itemid="130963698">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">39</span>
+													<span class="t">(中文播客）别玩他们的有限游戏，我们创造自己的无限游戏 - by 放学以后after school</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.vice.com/en/article/v7begx/overemployed-hustlers-exploit-chatgpt-to-take-on-even-more-full-time-jobs" target="_blank" rel="nofollow" itemid="122153115">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">40</span>
+													<span class="t">ChatGPT 让 ‘Overemployed’ 群体再次伟大：一个脑力劳动者最多能做多少份全职工作？并且是拿全职工资的那种哦。本文给出了几个具体案例。ChatGPT 让文字工作变...</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://lwn.net/SubscriberLink/928581/841b747332791ac4/" target="_blank" rel="nofollow" itemid="122221964">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">41</span>
+													<span class="t">我的大学同学写出了 Linux，我的电脑是全世界第一台装 Linux 的裸机，Linux这个名字是学校 ftp 服务器管理员取的</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://sive.rs/asking" target="_blank" rel="nofollow" itemid="125212999">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">42</span>
+													<span class="t">Don’t start a business until people are asking you to</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://cal.com/open" target="_blank" rel="nofollow" itemid="93108559">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">43</span>
+													<span class="t">Cal.com 的公司数据：包括所有员工的工资，融资$3千多万</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://medium.com/@herbcaudill/lessons-from-6-software-rewrite-stories-635e4c8f7c22" target="_blank" rel="nofollow" itemid="16436308">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">44</span>
+													<span class="t">完全重写巨型软件系统的6个案例，成功/失败的都有：Netscape/Firefox, Basecamp1/2/3, Visual Studio/VS Code, Gmail/Inbox, FogBugz/Trello</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://newsletter.pragmaticengineer.com/p/steve-yegge" target="_blank" rel="nofollow" itemid="121883690">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">45</span>
+													<span class="t">采访 Steve Yegge：在软件行业30年的从业经历，早期 Amazon 与 Google，相差17个时区的东南亚公司Grab</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://austinhenley.com/blog/grantbudget.html" target="_blank" rel="nofollow" itemid="121556652">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">46</span>
+													<span class="t">计算机系教授的研究经费如何分配</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://unchartedterritories.tomaspueyo.com/p/when-will-ai-take-your-job" target="_blank" rel="nofollow" itemid="119407503">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">47</span>
+													<span class="t">AI 何时会取代你的工作？分析讨论了 AI 对一些产业的可能的影响</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://github.blog/2023-04-06-building-github-with-ruby-and-rails/" target="_blank" rel="nofollow" itemid="121209895">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">48</span>
+													<span class="t">GitHub 网站的代码是基于 Ruby on Rails 的；他们每周都升级到 Rails 的 main branch 最新的 commit，一直都用最新版的 Rails；真是艺高人胆大</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://waxy.org/2023/04/the-bitcoin-whitepaper-is-hidden-in-every-modern-copy-of-macos/" target="_blank" rel="nofollow" itemid="120965153">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">49</span>
+													<span class="t">Bitcoin 白皮书的 PDF 版本在每个较新版的 macOS 里都能找到，是一个测试用的 PDF 文件</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://news.ycombinator.com/item?id=35457341" target="_blank" rel="nofollow" itemid="120949342">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">50</span>
+													<span class="t">Square 前 CTO 在旧金山街头被刺身亡；在这个 Hacker News 的帖子里，众人分享与他相处的经历，这是一个深受大家尊敬的技术大牛</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">39秒前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="126"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="126" hashid="WYKd6JqdaP"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-6439">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/wkvlB6Pez1">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/hellogithub.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										HelloGitHub									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										月刊									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://hellogithub.com/periodical/volume/127" target="_blank" rel="nofollow" itemid="251634452">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">《HelloGitHub》第 127 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/126" target="_blank" rel="nofollow" itemid="249538766">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">《HelloGitHub》第 126 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/125" target="_blank" rel="nofollow" itemid="247087759">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">《HelloGitHub》第 125 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/124" target="_blank" rel="nofollow" itemid="244534778">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">《HelloGitHub》第 124 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/123" target="_blank" rel="nofollow" itemid="242128568">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">《HelloGitHub》第 123 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/122" target="_blank" rel="nofollow" itemid="239474805">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">《HelloGitHub》第 122 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/121" target="_blank" rel="nofollow" itemid="237031441">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">《HelloGitHub》第 121 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/120" target="_blank" rel="nofollow" itemid="234453714">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">《HelloGitHub》第 120 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/119" target="_blank" rel="nofollow" itemid="232194732">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">《HelloGitHub》第 119 期</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://hellogithub.com/periodical/volume/118" target="_blank" rel="nofollow" itemid="229920841">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">《HelloGitHub》第 118 期</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">41分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="6439"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="6439" hashid="wkvlB6Pez1"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+							</div>
+					</div>
+
+		</div>
+		</div>
+
+		<div class="text-center"><ul class="pagination"><li class="pager active"><a href="javascript:void(0);">1</a></li><li class="pager"><a href="?&p=2">2</a></li><li class="pager"><a href="?&p=3">3</a></li><li class="pager"><a href="?&p=4">4</a></li><li class="pager"><a href="?&p=5">5</a></li><li class="pager"><a href="?&p=6">6</a></li><li class="pager"><a href="?&p=7">7</a></li><li class="pager"><a href="?&p=8">8</a></li><li class="pager disabled"><a class="disabled">...</a></li><li class="pager"><a href="?&p=25">25</a></li><li class="pager"><a href="?&p=2">下一页</a></li></ul><div class="keyboard-tip">
+            <span title="使用键盘左右箭头键快速翻页"><i class="m-n">&#xe778;</i> 提示：可使用键盘 <kbd>←</kbd> <kbd>→</kbd> 快速翻页</span>
+        </div>                <script>
+                $(document).ready(function() {
+                    $(document).keydown(function(e) {
+                        var currentPage = 1;
+                        var totalPages = 25;
+                        var baseUrl = "?&";
+        
+                        if (e.which == 37) { // Left arrow key
+                            if (currentPage > 1) {
+                                window.location.href = baseUrl + 'p=' + (currentPage - 1);
+                            }
+                        } else if (e.which == 39) { // Right arrow key
+                            if (currentPage < totalPages) {
+                                window.location.href = baseUrl + 'p=' + (currentPage + 1);
+                            }
+                        }
+                    });
+                });
+                </script></div>
+
+				<!-- 非VIP用户显示广告 -->
+		<div class="adsense-sidebar-container" style="margin:20px auto;max-width:960px;max-height:120px;">
+					</div>
+		
+<!-- <div class="scroller-status">
+	<div class="infinite-scroll-request"><div class="loading"><div></div><div></div><div></div><div></div></div><p>🌸 页面在开花，请耐心守候。</p></div>
+	<p class="infinite-scroll-last"><span class="loadmore-line"></span>没有更多节点了<span class="loadmore-line"></span></p>
+	<p class="infinite-scroll-error"><span class="loadmore-line"></span>加载失败，刷新页面试试<span class="loadmore-line"></span></p>
+</div> -->
+
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 检查是否存在 keyboard-tip 元素
+	var $keyboardTip = $(".keyboard-tip");
+	if ($keyboardTip.length == 0) {
+		// 如果不存在 keyboard-tip，则创建一个
+		$keyboardTip = $('<div class="keyboard-tip"></div>');
+		$('.text-center').append($keyboardTip);
+	}
+	$keyboardTip.append('<span class="batch-follow-link" title="批量订阅当前页节点"><a href="javascript:void(0);"><i class="m-n">&#xe64c;</i> 批量订阅本页全部节点</a></span>');
+});
+</script>
+</body>
+</html>

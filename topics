@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>话题聚合 ‧ 今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
+<script src="https://s4.zstatic.net/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/sshare.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/auto.refresh.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/vip.popover.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/topics.js?202505150004"></script>
+</head>
+<body class="">
+<div id="page" class="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e">
+		<div class="p-c p-c-f">
+			<div class="p-c-l">
+				<div class="cb sd">
+    <div class="st">兴趣</div>
+    <ul>
+        <li><a href="/daily">日报</a></li>
+        <li><a href="/dashboard">动态</a></li>
+        <li><a href="/alerts">追踪</a></li>
+    </ul>
+</div>
+
+<div style="clear: both; padding: 5px;"></div>
+<div class="cb sd">
+    <div class="st">热点</div>
+    <ul>
+        <li><a href="/hot">榜中榜</a></li>
+        <li><a href="/trending">热文库</a></li>
+        <li><a href="/topics">话题聚合</a></li>
+        <!-- <li><a href="/wiki">刷屏热词</a></li> -->
+    </ul>
+</div>
+
+<div style="clear: both; padding: 5px;"></div>
+<div class="cb sd">
+    <div class="st">事件</div>
+    <ul>
+        <li><a href="/calendar">热点日历</a></li>
+    </ul>
+</div>
+                            
+<div style="clear: both;padding:5px;"></div>
+<div class="cb s-t-l">
+    <div class="hh">追踪机器人</div>
+    <div class="section">
+        <div class="tt hidden">兴趣追踪</div>
+        <div class="dd">自定义追踪你感兴趣的信息。</div>
+        <a href="/alerts?x=explore">创建追踪器</a>
+    </div>
+</div>			</div>
+			
+			<div class="p-c-m">
+				<div class="p-c-m-r" data-key="sidebar" data-limit="4" data-sponsors-status="1">                    
+    <div class="m-b-mo">
+        <a href="/sponsors">成为赞助商</a>
+    </div>
+
+        <!-- 非VIP用户显示广告 -->
+    <div class="adsense-sidebar-container" style="max-height:300px;margin-top:10px;overflow:hidden;">
+            </div>
+    </div>
+
+
+
+				<div class="p-c-m-l">
+
+					<div class="c-m-l">
+						<div class="c-m">
+							<div class="c-i">
+								<div class="c-i-b" style="background-image: url(&quot;https://file.ipadown.com/tophub/assets/images/bb.png&quot;);"></div>
+								<div class="c-i-c">
+									<div class="ii"><img src="https://file.ipadown.com/tophub/assets/images/icon/icon-topics.png"/></div>
+									<div class="tt"><h3>话题聚合</h3><p>汇聚全网热门榜单，聚合相似的新闻话题。</p></div>
+									<div class="at"><a class="btn btn-node action-node-follow" href="javascript:;" id="require-vip">查看往日</a></div>
+								</div>
+							</div>
+							<div class="c-m-tab">
+								<div class="tab-classify">
+									<button type="button" class="action-auto-refresh" data-content="auto-refresh-content"><i class="m-n">&#xe601;</i><span id="refresh-status"></span></button>
+									<div id="auto-refresh-content" class="auto-refresh-popover" style="display:none;">
+										<div class="refresh-title">自动刷新</div>
+										<div class="refresh-item" data-interval="30">30秒钟</div>
+										<div class="refresh-item" data-interval="60">1分钟</div>
+										<div class="refresh-item" data-interval="120">2分钟</div>
+										<div class="refresh-item" data-interval="180">3分钟</div>
+										<div class="refresh-item" data-interval="300">5分钟</div>
+										<div class="refresh-item" data-interval="600">10分钟</div>
+                                        <div class="refresh-item" data-interval="900">15分钟</div>
+									</div>
+									<button type="button" class="action-share"><i class="m-n">&#xe7f9;</i></button>
+								</div>
+								<div class="tab-sort">
+									<a href="javascript:;" class="tab-sort-item active">2026年11月14日</a>
+								</div>
+
+							</div>
+						</div>
+						
+					</div>	
+
+					<div class="bc-tc">
+						<div class="bc-tc-tb"><small>当日已聚合 57 个热门话题</small></div>
+						<div class="bc-tc-ob">
+							<a href="/topics?orderby=hot"><span class="bc-tc-ob-i active">热门</span></a>
+							<a href="/topics?orderby=time"><span class="bc-tc-ob-i ">最新</span></a>
+						</div>
+					</div>
+					
+										<ul class="topic-list">
+																		<li topicid="1867241">
+										<div class="box">
+											<div class="word">
+												<h3>新增 12 种药品 2026 年商保创新药品目录共 28 种</h3>
+												<div class="des">2026 年商业健康保险创新药品目录调整新增 12 种药品，新纳入全球首个实体瘤 CAR-T、中国首个血友病基因治疗药物等重大创新药品。本次调整建立了商保创新药目录与基本医保目录衔接机制，有 2 个 2025 年商保创新药目录品种纳入医保目录。调整后，2026 年商业健康保险创新药品目录共有 28 种。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">格隆汇 等 14 家媒体报道</a></div>
+													<div class="time">4小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761399" target="_blank" rel="nofollow" docid="252900298">新增12种药品 2026年商业健康保险创新药品目录共有28种</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761399" rel="nofollow" docid="252900298">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.jiemian.com/article/15333030.html" target="_blank" rel="nofollow" docid="252900761">新增 12 种药品，2026 年商业健康保险创新药品目录共有 28 种</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.jiemian.com/article/15333030.html" rel="nofollow" docid="252900761">Jiemian</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://m.thepaper.cn/newsDetail_forward_34475806" target="_blank" rel="nofollow" docid="252901130">再创新高！51 个一类新药进入新版国家医保药品目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://m.thepaper.cn/newsDetail_forward_34475806" rel="nofollow" docid="252901130">澎湃新闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534407?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252901131">再创新高 51 个一类创新药进入新版国家医保药品目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534407?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252901131">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.jiemian.com/article/15333049.html" target="_blank" rel="nofollow" docid="252901132">再创新高，51 个一类新药进入新版国家医保药品目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.jiemian.com/article/15333049.html" rel="nofollow" docid="252901132">Jiemian</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.36kr.com/newsflashes/4069024183981193" target="_blank" rel="nofollow" docid="252902064">51 个一类新药进入新版国家医保药品目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.36kr.com/newsflashes/4069024183981193" rel="nofollow" docid="252902064">36氪</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.stdaily.com/web/gdxw/2026-11/14/content_613174.html" target="_blank" rel="nofollow" docid="252903656">再创新高  51个一类新药进入新版国家医保药品目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.stdaily.com/web/gdxw/2026-11/14/content_613174.html" rel="nofollow" docid="252903656">中国科技网</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534419?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252904027">盐酸沙丙蝶呤片、瑞基奥仑赛注射液从商保创新药目录转入国家基本医保目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534419?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252904027">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://m.thepaper.cn/newsDetail_forward_34475969" target="_blank" rel="nofollow" docid="252907459">第二版商保创新药目录公布，11 家企业 12 款产品纳入</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://m.thepaper.cn/newsDetail_forward_34475969" rel="nofollow" docid="252907459">澎湃新闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://bydrug.pharmcube.com/news/detail/da9a5a9cb4d015b12cdd533caf403125" target="_blank" rel="nofollow" docid="252907460">CAR-T 进了！51 种 1 类创新药进医保，商保创新药目录成功率 100%！</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://bydrug.pharmcube.com/news/detail/da9a5a9cb4d015b12cdd533caf403125" rel="nofollow" docid="252907460">Pharmcube</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://bydrug.pharmcube.com/news/detail/4db4eb24ad5267b18fadde24d5166fa4" target="_blank" rel="nofollow" docid="252907461">2026 年国谈：基本医保新增 107 个品种，商保新增 12 个品种（附名单）</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://bydrug.pharmcube.com/news/detail/4db4eb24ad5267b18fadde24d5166fa4" rel="nofollow" docid="252907461">Pharmcube</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://bydrug.pharmcube.com/news/detail/7d4656845d9dc171d819dc0ae52c38a1" target="_blank" rel="nofollow" docid="252907462">2026 版医保药品目录、第二批商保创新药目录发布，12 月内挂网，明年 1 月执行，2 月前召开药事会</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://bydrug.pharmcube.com/news/detail/7d4656845d9dc171d819dc0ae52c38a1" rel="nofollow" docid="252907462">Pharmcube</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://bydrug.pharmcube.com/news/detail/8907571134e49586db3d5c9c25e0c4be" target="_blank" rel="nofollow" docid="252909840">国家医保局公布 2026 商保创新药目录，远大钇-90 树脂微球入围，下一轮高速增长一触即发！</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://bydrug.pharmcube.com/news/detail/8907571134e49586db3d5c9c25e0c4be" rel="nofollow" docid="252909840">Pharmcube</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://bydrug.pharmcube.com/news/detail/7187806c6290e8e2eba4bdee170a97d2" target="_blank" rel="nofollow" docid="252909841">最新！CAR-T 等 51 款 1 类创新药进入 2026 版医保目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://bydrug.pharmcube.com/news/detail/7187806c6290e8e2eba4bdee170a97d2" rel="nofollow" docid="252909841">Pharmcube</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867224">
+										<div class="box">
+											<div class="word">
+												<h3>SpaceX 星舰第 15 次试飞瞄准两级全回收 飞船绕地近一天后返场捕获尚属首次</h3>
+												<div class="des">SpaceX 将星舰第 15 次试飞作为完全可重复使用火箭技术的关键验证，尝试用发射塔机械臂完整回收完成任务的超级重型助推器与入轨绕飞 22 小时的星舰飞船，若成功将实现轨道级运载系统首次完整回收。本次任务执行门槛极高，市场判断捕获成功率不足 50%。星舰全复用模式可解决此前猎鹰 9 号仅一子级回收的成本痛点，支撑后续海量星链及太空 AI 数据中心航天器的高密度发射需求，其进展直接关联 SpaceX 后续发射、AI 基础设施业务的增长，也牵动其资本市场表现。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">华尔街见闻 等 12 家媒体报道</a></div>
+													<div class="time">8小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3199982" target="_blank" rel="nofollow" docid="252886235">美国联邦航空管理局（FAA）向SpaceX颁发了发射许可证，批准其于周五从得克萨斯州进行星舰第15次飞行。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3199982" rel="nofollow" docid="252886235">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3200050" target="_blank" rel="nofollow" docid="252890285">马斯克旗下太空探索公SpaceX宣布，超重型助推器在近海着陆，发生爆炸，半空中捕获任务取消。
+
+该公司股价美股盘后跌1.5%。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3200050" rel="nofollow" docid="252890285">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534353?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252890672">SpaceX 表示，超重型助推器已按计划与星舰飞船分离。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534353?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252890672">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534354?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252890673">SpaceX 表示，超重型助推器已在海上着陆，空中捕获尝试被取消。SpaceX 盘后下跌 1.5%。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534354?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252890673">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584107.html" target="_blank" rel="nofollow" docid="252890674">SpaceX 星舰第 15 次试飞瞄准两级全回收 飞船绕地近一天后返场捕获尚属首次</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584107.html" rel="nofollow" docid="252890674">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.10jqka.com.cn/20261114/c681821740.shtml" target="_blank" rel="nofollow" docid="252890943">SpaceX：超重型助推器在近海着陆，半空中捕获任务取消</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.10jqka.com.cn/20261114/c681821740.shtml" rel="nofollow" docid="252890943">同花顺财经新闻频道</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.10jqka.com.cn/20261114/c681821738.shtml" target="_blank" rel="nofollow" docid="252890944">SpaceX：超重型助推器已按计划与星舰飞船分离</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.10jqka.com.cn/20261114/c681821738.shtml" rel="nofollow" docid="252890944">同花顺财经新闻频道</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534360?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252891250">SpaceX 表示，星舰进入地球轨道。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534360?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252891250">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniysepc0456728.shtml" target="_blank" rel="nofollow" docid="252895173">SpaceX星舰第15次试飞 助推器未能按计划返回发射场</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniysepc0456728.shtml" rel="nofollow" docid="252895173">新浪财经</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.yicai.com/news/103440658.html" target="_blank" rel="nofollow" docid="252895866">SpaceX 星舰超重型助推器捕获回收取消，海上溅落时起火燃烧</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.yicai.com/news/103440658.html" rel="nofollow" docid="252895866">第一财经</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584153.html" target="_blank" rel="nofollow" docid="252897317">SpaceX 星舰第十五飞：助推器海上溅落，飞船或绕地 14 圈挑战首次空中回收</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584153.html" rel="nofollow" docid="252897317">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584177.html" target="_blank" rel="nofollow" docid="252901600">SpaceX 星舰第十五次试飞升空：助推器取消空中捕获改海上溅落，飞船入轨待定</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584177.html" rel="nofollow" docid="252901600">ITBear科技资讯</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867229">
+										<div class="box">
+											<div class="word">
+												<h3>美国全国航班停飞令已致 7000 架次航班延误或取消</h3>
+												<div class="des">美国联邦航空局以特殊情况和安全原因为由发布全国范围的航班暂停起飞指令，该事件已导致近 7000 架次航班延误或取消。美国交通部长肖恩・达菲表示，所有航路交通管制中心均受到通信问题影响，联邦航空局因此对美国所有机场发布暂停航班起飞指令，目前技术人员正在调查这一问题。美联邦航空局称，国际航班将根据具体情况逐一处理。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">华尔街见闻 等 7 家媒体报道</a></div>
+													<div class="time">7小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3200033" target="_blank" rel="nofollow" docid="252888516">据航空数据，美国停飞令导致约7000架次航班延误或取消。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3200033" rel="nofollow" docid="252888516">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.mydrivers.com/1/1165/1165734.htm" target="_blank" rel="nofollow" docid="252891666">9·11以来第二次！美国突发全国航班停飞</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.mydrivers.com/1/1165/1165734.htm" rel="nofollow" docid="252891666">快科技</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761332" target="_blank" rel="nofollow" docid="252892268">美国全国航班停飞令已致7000架次航班延误或取消</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761332" rel="nofollow" docid="252892268">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.10jqka.com.cn/20261114/c681821609.shtml" target="_blank" rel="nofollow" docid="252892743">美国近 7000 架航班延误或取消</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.10jqka.com.cn/20261114/c681821609.shtml" rel="nofollow" docid="252892743">同花顺财经新闻频道</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniysepc0440232.shtml" target="_blank" rel="nofollow" docid="252893976">“911”以来第二次全美停飞！已有超1.3万架次航班延误或取消</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniysepc0440232.shtml" rel="nofollow" docid="252893976">新浪财经</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.10jqka.com.cn/20261114/c681823778.shtml" target="_blank" rel="nofollow" docid="252897316">进出美国及美国内已有近 1.5 万架次航班延误或取消</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.10jqka.com.cn/20261114/c681823778.shtml" rel="nofollow" docid="252897316">同花顺财经新闻频道</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.36kr.com/newsflashes/4068936138199940" target="_blank" rel="nofollow" docid="252897697">美媒：全美航班停飞令已解除</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.36kr.com/newsflashes/4068936138199940" rel="nofollow" docid="252897697">36氪</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867252">
+										<div class="box">
+											<div class="word">
+												<h3>问界新 M8 投入 15 亿兑现千条用户建议 携 126 项升级瞄准家庭旗舰 SUV</h3>
+												<div class="des">全新问界 M8 落地重庆发布，累计投入 15 亿元研发，带来 126 项技术升级，远超常规改款投入。新车起售价 37.98 万元，共 4 个版本 10 款配置，提供纯电、增程动力，覆盖五座、六座布局。该车搭载空气悬架、主动后轮转向等配置，最小转弯半径仅 4.98 米，刹停距离 34.5 米，配 800V 高压平台，全系搭载华为乾崑智驾 ADS 5，座舱围绕五感全面升级，空间、安全配置也针对性优化。发布会上双方明确新分工模式，否认「分手」传闻，称 15 亿元投入是为兑现 19 万名车主提出的千余条建议。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">Dsb 等 5 家媒体报道</a></div>
+													<div class="time">2小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.dsb.cn/p/01m7c2kdv1pzqw2y30mnc82acb" target="_blank" rel="nofollow" docid="252906255">鸿蒙智行问界新 M8 售价 37.98 万起，引领家庭智慧旗舰 SUV 价值标准</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.dsb.cn/p/01m7c2kdv1pzqw2y30mnc82acb" rel="nofollow" docid="252906255">Dsb</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584228.html" target="_blank" rel="nofollow" docid="252906256">15 亿兑现千条用户建议，问界新 M8 携 126 项升级瞄准家庭旗舰 SUV</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584228.html" rel="nofollow" docid="252906256">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584209.html" target="_blank" rel="nofollow" docid="252906257">华为赛力斯敲定五年合作，问界新 M8 携 126 项创新瞄准家庭出行</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584209.html" rel="nofollow" docid="252906257">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584124.html" target="_blank" rel="nofollow" docid="252906258">15 亿研发投入落地 问界新 M8 上市 37.98 万起聚焦家庭出行痛点</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584124.html" rel="nofollow" docid="252906258">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584254.html" target="_blank" rel="nofollow" docid="252909839">15 亿研发投入、126 项创新：问界新 M8 预埋 L3 架构瞄准家庭出行</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584254.html" rel="nofollow" docid="252909839">ITBear科技资讯</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867246">
+										<div class="box">
+											<div class="word">
+												<h3>吴清：进一步深化市场稳定长效机制研究</h3>
+												<div class="des">证监会主席吴清在 2026 中国资本市场学术年会上表示，当前中国资本市场与全球资本市场高度联动、传导共振。面对高度不确定的外部环境和输入性风险，要加强对全球资本市场周期变化、资产定价逻辑演变、风险传导联动等方面的规律性认识，进一步强化跨境跨市场跨行业风险的研究应对，系统构建稳的机制、稳的力量、稳的生态，有效防范市场异常波动。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">华尔街见闻 等 5 家媒体报道</a></div>
+													<div class="time">3小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3200092" target="_blank" rel="nofollow" docid="252903636">证监会主席吴清在参加2026中国资本市场学术年会时表示，中国资本市场从未像今天这样与全球资本市场高度联动、传导共振。面对高度不确定的外部环境和输入性风险，需要我们加强对全球资本市场周期变化、资产定价逻辑演变、风险传导联动等规律性认识，进一步强化跨境跨市场跨行业风险的研究应对，系统构建稳的机制、稳的力量、稳的生态，有效防范市场异常波动。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3200092" rel="nofollow" docid="252903636">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/p/7428144" target="_blank" rel="nofollow" docid="252904369">吴清最新讲话！进一步深化市场稳定长效机制研究</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/p/7428144" rel="nofollow" docid="252904369">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.36kr.com/newsflashes/4069079944975497" target="_blank" rel="nofollow" docid="252905193">吴清：进一步深化市场稳定长效机制研究，防范市场异常波动</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.36kr.com/newsflashes/4069079944975497" rel="nofollow" docid="252905193">36氪</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.yicai.com/news/103440706.html" target="_blank" rel="nofollow" docid="252905194">吴清：进一步深化市场稳定长效机制研究 防范市场异常波动</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.yicai.com/news/103440706.html" rel="nofollow" docid="252905194">第一财经</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.jiemian.com/article/15333196.html" target="_blank" rel="nofollow" docid="252906259">吴清：研究改善预期引导机制，减少「羊群效应」「短期化」交易带来的市场波动</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.jiemian.com/article/15333196.html" rel="nofollow" docid="252906259">Jiemian</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867240">
+										<div class="box">
+											<div class="word">
+												<h3>华为首款鸿蒙小折叠电脑 MateBook Fold S 开启预订</h3>
+												<div class="des">华为首款鸿蒙小折叠电脑 MateBook Fold S 正式开启预订，11 月 24 日付尾款，暂未公布售价，国补 1500 元，售价暗示超 9999 元。产品提供幻夜黑、天际白、云海蓝三种配色，共四个存储版本，顶配版本额外附赠手写笔。该产品为纵向小尺寸折叠形态，机身接近书本大小，面向移动办公场景，展开后是 14.7 英寸大屏，支持分屏多窗口操作。机身外侧配有 Live 小方屏，折叠状态下可查看信息、快捷操作。机身盖板采用 UTG 超薄玻璃，搭载华为玄武水滴铰链，支持开合平整与多角度悬停。产品搭载麒麟 X9 系列自研处理器，运行鸿蒙 PC 系统，支持多屏协同等功能，备忘录与 WPS Office 接入新 AI 能力。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">快科技 等 5 家媒体报道</a></div>
+													<div class="time">4小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://news.mydrivers.com/1/1165/1165750.htm" target="_blank" rel="nofollow" docid="252896838">小折叠电脑！华为MateBook Fold S预售 官方晒杨幂美图</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.mydrivers.com/1/1165/1165750.htm" rel="nofollow" docid="252896838">快科技</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/053.htm" target="_blank" rel="nofollow" docid="252898711">华为首款鸿蒙小折叠电脑 MateBook Fold S 开启预订</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/053.htm" rel="nofollow" docid="252898711">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.mydrivers.com/1/1165/1165758.htm" target="_blank" rel="nofollow" docid="252899280">华为MateBook Fold S小折叠电脑配置公布：顶配32GB+1TB</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.mydrivers.com/1/1165/1165758.htm" rel="nofollow" docid="252899280">快科技</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://notebook.cnmo.com/news/822478.html" target="_blank" rel="nofollow" docid="252900226">华为 MateBook Fold S 开启预售 大尺寸折叠屏 + 小副屏设计</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://notebook.cnmo.com/news/822478.html" rel="nofollow" docid="252900226">手机中国</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584219.html" target="_blank" rel="nofollow" docid="252906261">华为 MateBook Fold S 开启预售：三配色四档存储，顶配 32GB+1TB</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584219.html" rel="nofollow" docid="252906261">ITBear科技资讯</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867235">
+										<div class="box">
+											<div class="word">
+												<h3>DeepSeek 开放多项功能 API 开发者无需自行拼接整合</h3>
+												<div class="des">DeepSeek 正式开放应用全家桶 API，将此前仅在自家 App 和网页端可用的深度思考搜索、文件上传、链接阅读、语音交互、文字识别等功能全部整合进接口，开发者可直接调用，官方称凭此可 1:1 复刻完整的 DeepSeek 应用。此前开发者复刻同类应用需自行部署大模型、对接各类外部工具，流程繁琐。此次新 API 由服务端完成工具调用、上下文拼接等工作，开发者只需开启对应参数即可使用完整能力，还将联网搜索、网页抓取等底层能力拆分为独立接口支持灵活调用，同时配套开源了轻量级前端演示 Demo，相关隐私数据均保存在浏览器本地，大幅降低了开发门槛。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">Theblockbeats 等 5 家媒体报道</a></div>
+													<div class="time">6小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.theblockbeats.info/flash/377246" target="_blank" rel="nofollow" docid="252876006">DeepSeek 开放完整 App 能力：联网搜索、读文件、语音交互，一套 API 全搞定</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.theblockbeats.info/flash/377246" rel="nofollow" docid="252876006">Theblockbeats</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584152.html" target="_blank" rel="nofollow" docid="252895864">DeepSeek 开放搜索、语音、文件解析等 API，开发者无需再当缝合怪</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584152.html" rel="nofollow" docid="252895864">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584066.html" target="_blank" rel="nofollow" docid="252895865">DeepSeek 把 App 能力全搬进 API：联网搜索、文件解析、语音交互一键开启</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584066.html" rel="nofollow" docid="252895865">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584169.html" target="_blank" rel="nofollow" docid="252901597">DeepSeek 对话功能全面开放 API：开发者可自由组合搜索语音等能力</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584169.html" rel="nofollow" docid="252901597">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584216.html" target="_blank" rel="nofollow" docid="252904729">从模型竞赛到生态构建：DeepSeek 把自家 App 交互能力开放成标准 API</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584216.html" rel="nofollow" docid="252904729">ITBear科技资讯</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867226">
+										<div class="box">
+											<div class="word">
+												<h3>美「星舰」将首次尝试发射塔「捕获」回收助推器和飞船</h3>
+												<div class="des">美国太空探索技术公司重型运载火箭星舰于美国中部时间 13 日下午从得克萨斯州发射升空，实施第 15 次试飞。此次试飞将首次尝试让助推器和飞船均返回发射场，由发射塔机械臂实施捕获回收。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">IT之家 等 5 家媒体报道</a></div>
+													<div class="time">8小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/000.htm" target="_blank" rel="nofollow" docid="252890716">SpaceX 星舰第 15 次试飞升空：超重型助推器中途改道墨西哥湾溅落放弃回收，飞船继续飞行中</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/000.htm" rel="nofollow" docid="252890716">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.10jqka.com.cn/20261114/c681821736.shtml" target="_blank" rel="nofollow" docid="252890942">美「星舰」将首次尝试发射塔「捕获」回收助推器和飞船</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.10jqka.com.cn/20261114/c681821736.shtml" rel="nofollow" docid="252890942">同花顺财经新闻频道</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/p/7427369" target="_blank" rel="nofollow" docid="252896031">SpaceX“星舰”开启第15次试飞</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/p/7427369" rel="nofollow" docid="252896031">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://m.thepaper.cn/newsDetail_forward_34475485" target="_blank" rel="nofollow" docid="252900230">SpaceX 星舰第 15 次试飞：助推器未能按计划返回发射场，首次挑战「双回收」失利</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://m.thepaper.cn/newsDetail_forward_34475485" rel="nofollow" docid="252900230">澎湃新闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584179.html" target="_blank" rel="nofollow" docid="252901599">美国「星舰」第 15 次试飞升空 首次挑战助推器与飞船同返发射场回收</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584179.html" rel="nofollow" docid="252901599">ITBear科技资讯</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867215">
+										<div class="box">
+											<div class="word">
+												<h3>亚马逊拟研究抓取全网在售商品数据 草案目标 2027 年 10 月发布</h3>
+												<div class="des">亚马逊正研究一项抓取互联网上所有在售商品数据的计划，该项目名为 World Product Graph，将涵盖各类商品的信息，无论亚马逊自身是否销售这些商品。草案中设定的目标发布日期为 2027 年 10 月 1 日，不过目前无法确定该计划是否以及何时会正式实施，亚马逊目前正在调配人员，推动该项目启动。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">华尔街见闻 等 5 家媒体报道</a></div>
+													<div class="time">12小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3199785" target="_blank" rel="nofollow" docid="252864747">路透援引一份内部规划文件及知情人士报道称，亚马逊正在研究一项计划，拟抓取互联网上所有在售商品的数据。该项目名为World Product Graph，将涵盖各种商品的信息，无论亚马逊是否销售这些商品。无法确定该计划是否以及何时会实施，但指出草案中设定的目标发布日期为2027年10月1日。亚马逊正在调配人员，以推动该项目启动。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3199785" rel="nofollow" docid="252864747">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534092?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252885419">亚马逊考虑推出抓取全网商品数据的计划。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534092?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252885419">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://finance.jrj.com.cn/2026/11/13204959143630.shtml" target="_blank" rel="nofollow" docid="252885420">亚马逊研究抓取全网在售商品数据 草案目标 2027 年 10 月 1 日发布</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://finance.jrj.com.cn/2026/11/13204959143630.shtml" rel="nofollow" docid="252885420">金融界财经频道</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.techflowpost.com/zh-CN/newsletter/144616" target="_blank" rel="nofollow" docid="252893124">亚马逊拟建立覆盖全网商品的索引，实施时间未定</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.techflowpost.com/zh-CN/newsletter/144616" rel="nofollow" docid="252893124">Techflowpost</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761338" target="_blank" rel="nofollow" docid="252893392">亚马逊据悉拟建全球商品数据库 应对第三方AI购物助手竞争</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761338" rel="nofollow" docid="252893392">格隆汇</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867205">
+										<div class="box">
+											<div class="word">
+												<h3>景林资产第三季建仓英伟达、阿里巴巴 增持台积电等</h3>
+												<div class="des">景林资产管理香港有限公司的 13F 申报文件显示，这家对冲基金第三季度新建英伟达和阿里巴巴仓位，增持台积电等标的，同时清仓奇富科技和携程。具体操作包括增持台积电 89.221 万、增持亚朵 66.913 万、增持华住 31.783 万，减持满帮 40.55 万，建仓阿里巴巴后持有 4.73 万份阿里巴巴 ADS。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">华尔街见闻 等 5 家媒体报道</a></div>
+													<div class="time">14小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3199919" target="_blank" rel="nofollow" docid="252881405">彭博对景林资产管理香港有限公司（Greenwoods Asset Management Hong Kong）的13F申报文件分析发现，这家对冲基金第三季新建了英伟达和阿里巴巴仓位，增持台积电等，并清仓奇富科技和携程。
+
+其中，对台积电增持89.221万，对亚朵增持66.913万，对华住增持31.783万；对满帮减持40.55万。
+
+建仓阿里巴巴，持有4.73万份ADS。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3199919" rel="nofollow" docid="252881405">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761150" target="_blank" rel="nofollow" docid="252882413">景林资产第三季建仓英伟达 增持台积电</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761150" rel="nofollow" docid="252882413">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/articles/3785913" target="_blank" rel="nofollow" docid="252884256">景林资产Q3瞄准巨头：新进英伟达、阿里，大幅增持台积电</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/articles/3785913" rel="nofollow" docid="252884256">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584069.html" target="_blank" rel="nofollow" docid="252887267">景林三季度美股持仓大调整：重新买入英伟达、建仓阿里，台积电持股增逾十倍</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584069.html" rel="nofollow" docid="252887267">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://m.thepaper.cn/newsDetail_forward_34476189" target="_blank" rel="nofollow" docid="252903626">景林三季度持仓曝光：大举增持台积电，新进英伟达与阿里</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://m.thepaper.cn/newsDetail_forward_34476189" rel="nofollow" docid="252903626">澎湃新闻</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867248">
+										<div class="box">
+											<div class="word">
+												<h3>我国 10 吨级电动商用飞机有人驾驶首飞成功</h3>
+												<div class="des">我国自主研制的 10 吨级电动商用飞机 CE-25A 在山东滨州完成首次有人驾驶智能飞行。飞行当天，CE-25A 飞机搭载 2 名飞行员、1 名试飞工程师，全程飞机状态正常，各项指标均符合预期。这是该机继今年 2 月 2 日完成无人驾驶智能首飞之后，研制工作迈出的又一坚实步伐。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">IT之家 等 4 家媒体报道</a></div>
+													<div class="time">3小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/075.htm" target="_blank" rel="nofollow" docid="252904281">中国商飞 10 吨级电动商用飞机 CE-25A 有人驾驶首飞成功</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/075.htm" rel="nofollow" docid="252904281">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.mydrivers.com/1/1165/1165767.htm" target="_blank" rel="nofollow" docid="252904908">国产10吨级电动飞机！商飞CE-25A完成首次有人驾驶智能飞行</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.mydrivers.com/1/1165/1165767.htm" rel="nofollow" docid="252904908">快科技</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534428?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252905190">我国 10 吨级电动商用飞机有人驾驶首飞成功</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534428?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252905190">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.cctv.com/2026/11/14/ARTI0T3HPsiH5Mt03BTdli7r261114.shtml" target="_blank" rel="nofollow" docid="252908555">又一里程碑！我国 10 吨级电动商用飞机有人驾驶首飞成功</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.cctv.com/2026/11/14/ARTI0T3HPsiH5Mt03BTdli7r261114.shtml" rel="nofollow" docid="252908555">央视网</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867238">
+										<div class="box">
+											<div class="word">
+												<h3>微软：无迹象表明全美航班停飞与 M365 服务宕机有关</h3>
+												<div class="des">针对美国联邦航空管理局突发全国性航班地面停飞的相关猜测，微软回应称目前没有迹象表明该事件与微软任何服务有关。此前微软刚发生过多项服务大范围异常的大规模故障，两起事件时间接近引发关注。此次 FAA 停飞因空中交通管制通信问题引发，相关负责人表示暂未发现事件由恶意攻击导致，美国航空协会称正与相关部门密切沟通。目前微软已明确其服务与 FAA 停飞无关联，两起事件具体原因仍需分别调查，不能仅凭时间接近认定二者存在联系。这是美国继 911 事件及 2023 年 1 月 FAA 航行通告系统故障后，又一次全国性航班地面停飞事件。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">华尔街见闻 等 4 家媒体报道</a></div>
+													<div class="time">5小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3200057" target="_blank" rel="nofollow" docid="252890664">微软：没有迹象表明美国联邦航空管理局（FAA）的全美停飞与（我司）任何服务有关。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3200057" rel="nofollow" docid="252890664">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/003.htm" target="_blank" rel="nofollow" docid="252890966">微软：没有迹象表明全美国航班停飞与 M365 服务宕机有关</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/003.htm" rel="nofollow" docid="252890966">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/047.htm" target="_blank" rel="nofollow" docid="252897782">部长回应全美航班停飞：事件与微软无关、没有发生网络攻击，只是路由器太旧扛不住流量数据过载</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/047.htm" rel="nofollow" docid="252897782">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534432?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252905195">微软否认与全美航班停飞事件有关</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534432?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252905195">财联社</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867230">
+										<div class="box">
+											<div class="word">
+												<h3>美「星舰」第 15 次试飞 助推器未能按计划返回发射场</h3>
+												<div class="des">美国太空探索技术公司重型运载火箭星舰于美国中部时间 13 日下午实施第 15 次试飞，本次原计划首次尝试让助推器和飞船均返回发射场，由发射塔机械臂实施捕获回收。星舰于美国中部时间 13 日 16 时 48 分许从得克萨斯州南部的发射基地升空，随后完成火箭一二级分离，其中超级重型助推器未能按计划返回发射场，在墨西哥湾海域受控溅落。后续星舰飞船将继续执行飞行任务，计划进入距地球表面约 275 公里的轨道飞行，并部署 26 颗新一代星链 V3 卫星。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">格隆汇 等 4 家媒体报道</a></div>
+													<div class="time">7小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761339" target="_blank" rel="nofollow" docid="252893393">美“星舰”第15次试飞 助推器未能按计划返回发射场</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761339" rel="nofollow" docid="252893393">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://m.thepaper.cn/newsDetail_forward_34474742" target="_blank" rel="nofollow" docid="252894228">美「星舰」第 15 次试飞，助推器未能按计划返回发射场</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://m.thepaper.cn/newsDetail_forward_34474742" rel="nofollow" docid="252894228">澎湃新闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.theblockbeats.info/flash/377290" target="_blank" rel="nofollow" docid="252898590">SpaceX 盘后跌超 2%，「星舰」第 15 次试飞，助推器未能按计划返回发射场</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.theblockbeats.info/flash/377290" rel="nofollow" docid="252898590">Theblockbeats</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584166.html" target="_blank" rel="nofollow" docid="252901598">星舰” 第十五次试飞升空 助推器墨西哥湾受控溅落 飞船将部署 26 颗「星链」V3 卫星</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584166.html" rel="nofollow" docid="252901598">ITBear科技资讯</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867228">
+										<div class="box">
+											<div class="word">
+												<h3>微软面向 Win10 发布紧急带外更新 专项修复激活「参数无效」报错</h3>
+												<div class="des">微软面向 Windows 10 22H2 和 21H2 系统推送 KB5136493 非安全紧急带外更新，重点修复部分系统许可与激活操作失败的问题。本次更新适用于 Windows 10 Enterprise LTSC 2021、Windows 10 IoT Enterprise LTSC 2021，以及处于扩展服务支持状态下的 Windows 10 22H2，对应版本安装后版本号分别升至 19044.7850、19044.7850、19045.7850。故障表现为使用软件许可管理工具执行特定操作时，系统可能返回「0x80041008」并提示「参数无效」，主要影响通过相关命令或自动化流程配置 KMS 激活、安装产品密钥及管理 Windows 许可的组织。已激活设备仍保持激活，已有 KMS 配置且无需进一步执行相关命令的设备不受影响，本次修复针对许可管理操作失败，并非普遍性系统激活失效。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">IT之家 等 4 家媒体报道</a></div>
+													<div class="time">7小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/026/737.htm" target="_blank" rel="nofollow" docid="252844015">微软承认 Win11/Win10 安装 11 月更新后，部分 Word 文档无法打印</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/026/737.htm" rel="nofollow" docid="252844015">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.mydrivers.com/1/1165/1165575.htm" target="_blank" rel="nofollow" docid="252845665">Win11 Win10均受影响！微软确认11月更新引发打印故障</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.mydrivers.com/1/1165/1165575.htm" rel="nofollow" docid="252845665">快科技</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/007.htm" target="_blank" rel="nofollow" docid="252891561">微软面向 Win10 发布紧急带外更新，专项修复系统激活时「参数无效」报错</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/007.htm" rel="nofollow" docid="252891561">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/097.htm" target="_blank" rel="nofollow" docid="252907909">微软承认 10 月 Win10/Win11 更新导致数据库连接异常，部分服务器可能越跑越慢</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/097.htm" rel="nofollow" docid="252907909">IT之家</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867214">
+										<div class="box">
+											<div class="word">
+												<h3>美国总统特朗普将把石油和化肥的航运豁免期限延长 90 天</h3>
+												<div class="des">美国总统特朗普将石油和化肥的航运豁免期限延长 90 天。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">格隆汇 等 4 家媒体报道</a></div>
+													<div class="time">13小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761191" target="_blank" rel="nofollow" docid="252883931">格隆汇11月14日｜白宫官员：美国总统特朗普将石油和化肥运输豁免期延长90天。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761191" rel="nofollow" docid="252883931">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.10jqka.com.cn/20261114/c681820797.shtml" target="_blank" rel="nofollow" docid="252884049">美国总统特朗普将把石油和化肥的航运豁免期限延长 90 天</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.10jqka.com.cn/20261114/c681820797.shtml" rel="nofollow" docid="252884049">同花顺财经新闻频道</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://api3.cls.cn/share/article/2534302?os=web&sv=8.4.6&app=CailianpressWeb" target="_blank" rel="nofollow" docid="252884050">特朗普将针对石油和化肥运输的航运豁免延长 90 天。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://api3.cls.cn/share/article/2534302?os=web&sv=8.4.6&app=CailianpressWeb" rel="nofollow" docid="252884050">财联社</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniyryfp3165772.shtml" target="_blank" rel="nofollow" docid="252888040">特朗普政府据悉将再度延长《琼斯法》航运豁免 以降低燃料成本</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniyryfp3165772.shtml" rel="nofollow" docid="252888040">新浪财经</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867257">
+										<div class="box">
+											<div class="word">
+												<h3>民主党参议员要求马斯克留存乌克兰星链等相关记录</h3>
+												<div class="des">两名民主党参议员致信埃隆・马斯克，要求 SpaceX 留存并提交 9 月 1 日起所有与限制乌克兰使用星链、星盾服务相关的记录，包括马斯克及公司高管和白宫、五角大楼的往来信息，11 月 30 日前需确认配合并答复相关问题。民主党明年 1 月掌控国会后，计划就俄乌冲突处置等发起系列调查，将马斯克相关事务列为监督重点。此前乌方多次遭遇星链服务中断或限速，严重妨碍乌军行动，各方就限制令的下达主体说法矛盾，民主党质疑 SpaceX 掌控国家安全通信通道的权限，批评相关决策缺乏透明度。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">新浪财经 等 3 家媒体报道</a></div>
+													<div class="time">15分钟前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniyryff0552127.shtml" target="_blank" rel="nofollow" docid="252891662">美国民主党：马斯克应该保存乌克兰星链等记录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://finance.sina.com.cn/stock/usstock/c/2026-11-14/doc-iniyryff0552127.shtml" rel="nofollow" docid="252891662">新浪财经</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3200105" target="_blank" rel="nofollow" docid="252907475">据美国方面当地时间13日消息，美国两名民主党籍联邦参议员已正式致信美国太空探索技术公司（SpaceX）首席执行官马斯克，要求后者保留关于限制乌克兰使用“星链”和“星盾”系统的所有记录。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3200105" rel="nofollow" docid="252907475">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761514" target="_blank" rel="nofollow" docid="252909921">美国民主党参议员要求马斯克保存星链在乌克兰使用相关的文件</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761514" rel="nofollow" docid="252909921">格隆汇</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867256">
+										<div class="box">
+											<div class="word">
+												<h3>海信发布双 11 战报：电视拿下全渠道销量销售额第一</h3>
+												<div class="des">海信视像发布 2026 年双 11 战报，多个品类拿下细分市场第一。海信系电视全渠道销量、销售额均居首位，RGB-Mini LED、百吋大屏、万元 + 高端电视三个细分方向的全渠道销量与销售额也均排第一。分品类来看，海信多款电视产品表现突出，旗舰 UX 2026 款拿下行业 5 万元 + 区间销量与销售额第一，小墨 E5S Pro 是全网单品第一，E7S Pro+ 拿下万元 + 新品销量与销售额首位，影游旗舰 E8S Pro 登顶百吋 3 万元 + 超旗舰段位，其中小墨 E5S Pro 同时斩获京东平板电视金榜 Top 1、天猫电视机热销榜 Top 1 和 88VIP 电视机热销榜 Top 1。此外海信新品类同步铺开，激光电视拿下全渠道超百吋电视销量与销售额第一，显示器拿下京东 Mini LED 销售额第一，闺蜜机位列 5000+ 高端段位销量与销售额第一，投影多款产品也拿下对应价位段榜首。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">雷科技 等 3 家媒体报道</a></div>
+													<div class="time">25分钟前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="http://www.leikeji.com/article/80561" target="_blank" rel="nofollow" docid="252903224">双11战报出炉！海信电视包揽行业销量、销额双第一</a>
+													<div class="doc-meta"><span><a target="_blank" href="http://www.leikeji.com/article/80561" rel="nofollow" docid="252903224">雷科技</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://home.cnmo.com/news/822503.html" target="_blank" rel="nofollow" docid="252909837">全渠道销量、销额双冠！海信双 11 领跑高端显示赛道</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://home.cnmo.com/news/822503.html" rel="nofollow" docid="252909837">手机中国</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://home.cnmo.com/news/822486.html" target="_blank" rel="nofollow" docid="252909838">海信发布双 11 战报：电视拿下全渠道销量销售额第一</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://home.cnmo.com/news/822486.html" rel="nofollow" docid="252909838">手机中国</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867255">
+										<div class="box">
+											<div class="word">
+												<h3>百度李彦宏：人工智能的下一幕是智能组织</h3>
+												<div class="des">百度世界 2026 大会上，李彦宏发表演讲预言人工智能的下一幕是智能组织。他回顾 2016 年曾提出人工智能是新电能，如今这已成为共识，过去十年是 AI 技术形成独立技术栈的十年，AI 时代技术栈形成了以 GPU 为核心的四层架构。他指出智能组织是不同于现有科层制的 AI 原生组织体系，是 AI 时代生产力真正发生的地方，呼吁企业不要仅将 AI 作为个人提效工具，要让数字员工深入各业务环节，并提出组织进化三原则，认为组织智能是企业最深的护城河，未来岗位不会消失但会收敛，主要分为创造新事物的 Builder 和负责人际沟通连接的 Seller 两类。他还分享了百度打造原生 AI 组织的相关实践成果，宣布推出中立可信的大模型交易平台词元所，该平台上线一月供应资源数已超 100 个，日均调用 Token 数突破 7000 亿。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">Pencilnews 等 3 家媒体报道</a></div>
+													<div class="time">20分钟前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.pencilnews.cn/p/47335.html" target="_blank" rel="nofollow" docid="252909834">核心观点 | 李彦宏：人工智能的下一幕是智能组织，将迎来三大机会</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.pencilnews.cn/p/47335.html" rel="nofollow" docid="252909834">Pencilnews</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584160.html" target="_blank" rel="nofollow" docid="252909835">百度李彦宏：人工智能的下一幕是智能组织</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584160.html" rel="nofollow" docid="252909835">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.sohu.com/a/1101263280_115980" target="_blank" rel="nofollow" docid="252909836">数字人能当 CEO 吗？李彦宏再谈 AI 时代的组织变革</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.sohu.com/a/1101263280_115980" rel="nofollow" docid="252909836">搜狐</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867254">
+										<div class="box">
+											<div class="word">
+												<h3>伏欣奇拜单抗（金蓓欣）纳入国家医保目录</h3>
+												<div class="des">国家医疗保障局公布新增纳入国家医保目录、商保创新药目录的药品名单，金赛药业自主研发的 1 类创新生物药伏欣奇拜单抗（金蓓欣）位列其中。该药是目前唯一纳入国家医保的 IL-1β 抑制剂，其医保落地将推动痛风治疗从过去以降尿酸为主，转向靶向抗炎为本、辅以降尿酸的治疗逻辑，同时具备半年一针的长效抗炎机制。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">华尔街见闻 等 3 家媒体报道</a></div>
+													<div class="time">55分钟前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://wallstreetcn.com/livenews/3200090" target="_blank" rel="nofollow" docid="252903156">11月14日，国家医疗保障局公布了纳入国家医保目录、商保创新药目录的新增药品名单，金赛药业自主研发的1类创新生物药伏欣奇拜单抗（金蓓欣®）成功纳入目录。</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://wallstreetcn.com/livenews/3200090" rel="nofollow" docid="252903156">华尔街见闻</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.gelonghui.com/live/2761496" target="_blank" rel="nofollow" docid="252907504">伏欣奇拜单抗（金蓓欣®）纳入国家医保目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.gelonghui.com/live/2761496" rel="nofollow" docid="252907504">格隆汇</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://news.10jqka.com.cn/20261114/c681824956.shtml" target="_blank" rel="nofollow" docid="252908554">伏欣奇拜单抗（金蓓欣）纳入国家医保目录</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://news.10jqka.com.cn/20261114/c681824956.shtml" rel="nofollow" docid="252908554">同花顺财经新闻频道</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>									<li topicid="1867251">
+										<div class="box">
+											<div class="word">
+												<h3>SpaceX 洽购发射场周边约 526.19 万平方米土地，拟将一半永久用于保护</h3>
+												<div class="des">SpaceX 正与美国得克萨斯州公园与野生动物管理局商谈，拟收购环绕其星际基地发射设施的约 1300 英亩土地，博卡奇卡海滩不在拟出售范围内，相关交易目前仍处于商谈阶段。SpaceX 表示拟收购地块主要由泥滩和沿海沙丘构成，休闲用途有限，购置后并不打算开发整片土地，主要用于提升发射场周边的安全与安保水平，方案也不涉及收购海滩或公众海滩通行权。生态保护方面，SpaceX 承诺将通过设立永久保护地役权，让其中约 600 英亩土地永久用于保护，占拟收购面积的一半。得州星基地市相关负责人也证实博卡奇卡海滩不在本次交易范围内。</div>
+												<div class="msg">
+													<div class="tags"><a href="javascript:;">IT之家 等 3 家媒体报道</a></div>
+													<div class="time">2小时前</div>
+												</div>
+											</div>
+											<div class="react-doc-list">
+																								<div class="react-doc-item">
+													<a class="doc-title" href="https://www.ithome.com/1/027/010.htm" target="_blank" rel="nofollow" docid="252891948">SpaceX 洽购发射场周边约 526.19 万平方米土地，拟将一半永久用于保护</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.ithome.com/1/027/010.htm" rel="nofollow" docid="252891948">IT之家</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584230.html" target="_blank" rel="nofollow" docid="252906253">SpaceX 拟购得州星舰基地周边约 1300 英亩土地，承诺半数永久用于生态保护</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584230.html" rel="nofollow" docid="252906253">ITBear科技资讯</a></span></div>
+												</div>												<div class="react-doc-item">
+													<a class="doc-title" href="https://www.itbear.com.cn/html/2026-11/1584170.html" target="_blank" rel="nofollow" docid="252906254">SpaceX 拟购星舰基地周边约 1300 英亩土地，600 英亩将永久留作生态保护</a>
+													<div class="doc-meta"><span><a target="_blank" href="https://www.itbear.com.cn/html/2026-11/1584170.html" rel="nofollow" docid="252906254">ITBear科技资讯</a></span></div>
+												</div>
+												<!--div class="react-doc-topic">
+													<a class="topic-link openlayer" target="_blank">查看话题<span></span></a>
+												</div-->
+											</div>
+										</div>
+									</li>					</ul>
+										<div class="o"></div>
+
+										<!-- 非VIP用户显示广告 -->
+					<div class="adsense-sidebar-container" style="margin:20px auto;max-width:100%;max-height:120px;">
+											</div>
+					
+					<div class="scroller-status">
+						<div class="infinite-scroll-request"><div class="loading"><div></div><div></div><div></div><div></div></div><p>📦 稍等片刻，我们正在为你打包精彩～</p></div>
+						<p class="infinite-scroll-last"><span class="loadmore-line"></span>没有更多了<span class="loadmore-line"></span></p>
+						<p class="infinite-scroll-error"><span class="loadmore-line"></span>加载失败，刷新页面试试<span class="loadmore-line"></span></p>
+					</div>
+					<button class="loadmore-button" style="display: none;">加载更多</button>
+				</div>			
+			</div>
+		</div>
+		
+		<div class="o"></div>
+	</div>
+</div>
+
+
+
+
+
+<a class="pagination__next" href="/topics?p=2"></a>
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script></body>
+</html>

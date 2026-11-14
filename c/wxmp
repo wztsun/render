@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+</head>
+<body class="">
+<div id="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e">
+		
+		<div class="abcdefg"><div class="ax" data-key="top" data-limit="6" data-sponsors-status="1"></div></div>
+						
+		<div class="bc">		
+		
+
+
+		</div>
+    	
+    	<div class="text-center"></div>		
+
+				<!-- 非VIP用户显示广告 -->
+		<div class="adsense-sidebar-container" style="margin:20px auto;max-width:960px;max-height:120px;">
+					</div>
+		
+		<div class="scroller-status" style="display: block;">
+			<p class="infinite-scroll-last" style="display: block;"><span class="loadmore-line"></span>请注意单个公众号不会在首页显示卡片，需要订阅公众号聚合小部件  <a href="/c/widget">订阅</a><span class="loadmore-line"></span></p>
+		</div>
+		
+		
+	</div>
+</div>
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script></body>
+</html>

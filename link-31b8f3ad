@@ -1,0 +1,34 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="always" name="referrer"/>
+</head>
+<body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+
+    function bol(){
+        if (top.location != self.location) {
+            return false;
+        }
+
+
+        var real_jump_address = 'https://s.click.taobao.com/t?e=m%3D2%26s%3D%2FWY%2FV%2Bx5S%2BZw4vFB6t2Z2ueEDrYVVa64yK8Cckff7TVRAdhuF14FMX%2F5PtS56yvyMMgx22UI05aisp7jkesxqoZgkgULdtY0gdip6rompK8RHbWmH%2Bps3cOdxCIPmFmSCGsxm48e9hkfF%2Bxu0N%2BwWtvhs59qzu8S2Kaw6cVtCsuMHuv7RoNv0Q0jFsbsQ7KW0AQXrknPAduNcnJmeH2hAp%2F3fUfHlqrU0wHb%2FcBWa9CLu82%2B0HylOS%2Fl%2BIxa6ioR%2FufIeaShmLtTYvxTM43wKLygIxUc0V0KiTi5CzYEdfkXHUYDeQPldxNK778lAi%2BeCm53uOncZmxxKmPmpIKZsA%3D%3D&amp;union_lens=lensId:TAPI@1794638538@2166c6ac_14ee_1a1d8cae711_dffd@01&amp;ref=https%3A%2F%2Ftophub.today%2F&amp;et=dECUAOAHHpI3OZfZM682KjylWNjv04fH'
+
+        if (!window.attachEvent) {
+            document.write('<input style="display:none" type="button" id="exe" value="" onclick="window.location=\'' + real_jump_address + '\'">');
+            document.getElementById('exe').click();
+        } else {
+            document.write('<a style="display:none" href="' + real_jump_address + '" id="exe"></a>');
+            document.getElementById('exe').click();
+        }
+    }//end of bol()
+    bol();
+
+    /*]]>*/
+</script>
+</body>
+</html>

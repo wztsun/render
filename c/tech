@@ -1,0 +1,2211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery.lazyload/1.8.3/jquery.lazyload.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+</head>
+<body class="">
+<div id="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e">
+		
+		<div class="abcdefg"><div class="ax" data-key="top" data-limit="6" data-sponsors-status="1"></div></div>
+
+		
+				<div class="pb-qb">
+			<div class="pb-qb-b">
+				<div class="grid">
+					<div class='pb-qb-t-t'>热门榜单</div>
+					<div class='pb-qb-t-c'>
+												<a  href="/c/tech?q=36%E6%B0%AA">36氪</a>
+												<a  href="/c/tech?q=%E8%99%8E%E5%97%85">虎嗅</a>
+												<a  href="/c/tech?q=%E5%B0%91%E6%95%B0%E6%B4%BE">少数派</a>
+												<a  href="/c/tech?q=IT%E4%B9%8B%E5%AE%B6">IT之家</a>
+												<a  href="/c/tech?q=Readhub">Readhub</a>
+												<a  href="/c/tech?q=%E6%8A%BD%E5%B1%89">抽屉</a>
+												<a  href="/c/tech?q=%E9%85%B7%E5%AE%89">酷安</a>
+												<a  href="/c/tech?q=TechWeb">TechWeb</a>
+												<a  href="/c/tech?q=%E7%85%8E%E8%9B%8B">煎蛋</a>
+												<a  href="/c/tech?q=%E8%8B%B9%E6%9E%9C">苹果</a>
+												<a  href="/c/tech?q=Google">Google</a>
+												<a  href="/c/tech?q=%E7%A7%91%E6%8A%80">科技</a>
+												<a  href="/c/tech?q=%E6%95%B0%E7%A0%81">数码</a>
+												<a  href="/c/tech?q=%E7%A7%91%E5%AD%A6">科学</a>
+												<a  href="/c/tech?q=%E7%A7%91%E6%99%AE">科普</a>
+												<a  href="/c/tech?q=%E6%B1%BD%E8%BD%A6">汽车</a>
+												<a  href="/c/tech?q=%E5%87%BA%E6%B5%B7">出海</a>
+												<a  href="/c/tech?q=%E8%AF%84%E6%B5%8B">评测</a>
+												<a  href="/c/tech?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD">人工智能</a>
+												<a  href="/c/tech?q=App">App</a>
+												<a  href="/c/tech?q=%E9%99%90%E5%85%8D">限免</a>
+												<a  href="/c/tech?q=AppStore">AppStore</a>
+												<a  href="/c/tech?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%80%E6%8A%A5">人工智能简报</a>
+												<a  href="/c/tech?q=%E5%BF%AB%E8%AE%AF">快讯</a>
+												<a  href="/c/tech?q=%E6%8A%A5%E5%91%8A">报告</a>
+												<a  href="/c/tech?q=%E6%95%99%E8%82%B2">教育</a>
+												<a  href="/c/tech?q=%E7%94%B5%E5%95%86">电商</a>
+											</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+		<div class="bc">
+									<div class="bc-tc">
+				<div class="bc-tc-tb">
+					科技 <small>
+						415个
+					</small>
+				</div>
+								<div class="bc-tc-ob"><a href="?"><span class="bc-tc-ob-i active">热门</span></a>|<a href="?order=ID"><span class="bc-tc-ob-i ">最新</span></a></div>			</div>
+			<div class="bc-cc ">
+								<div class="cc-cd" id="node-11">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/Q1Vd5Ko85R">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/36kr.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										36氪									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										24小时热榜									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://www.36kr.com/p/4068130240697218" target="_blank" rel="nofollow" itemid="252888943">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">iPhone 20 爆料汇总：一整块玻璃，藏着苹果下一个十年</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068070220257154" target="_blank" rel="nofollow" itemid="252864682">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">英伟达，还有比黄仁勋离任更大的麻烦</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067628486267780" target="_blank" rel="nofollow" itemid="252834084">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">炸了！英伟达最大的雷，是没接班人</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068115148068485" target="_blank" rel="nofollow" itemid="252896916">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">瑞幸越来越不像一家咖啡公司了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068120653157256" target="_blank" rel="nofollow" itemid="252870400">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">“这是世代级错误”“不会再买英伟达股票”，黄仁勋走了，硅谷吵翻了，Twitter前CEO预测他3年后王者归来</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067614048966533" target="_blank" rel="nofollow" itemid="252896914">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">黄仁勋辞职，留下六个待解问题</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068100410823560" target="_blank" rel="nofollow" itemid="252896915">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">红果的“持械入宋”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068067240334466" target="_blank" rel="nofollow" itemid="252864683">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">MiniMax，狂卷字节、OpenAI</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="11"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="11" hashid="Q1Vd5Ko85R"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-137">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/Y2KeDGQdNP">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/sspai.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										少数派									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										热门文章									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://sspai.com/post/118861" target="_blank" rel="nofollow" itemid="252613508">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">社区速递 165 | 透明工牌与派友十月购物清单</span>
+													<span class="e">Matrix机器人</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118824" target="_blank" rel="nofollow" itemid="252610586">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">报名人数创下新高，第十一届「移动应用创新赛」圆满落幕</span>
+													<span class="e">waychane</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118833" target="_blank" rel="nofollow" itemid="252541737">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">派评 | 近期值得关注的 App</span>
+													<span class="e">少数派编辑部</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118799" target="_blank" rel="nofollow" itemid="252533335">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">双十一 | 少数派会员、正版软件、付费栏目限时优惠</span>
+													<span class="e">福利派</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118612" target="_blank" rel="nofollow" itemid="252511971">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">双十一好物精选：Sonos Play 85 折送充电套装，CD 机加赠透明面盖</span>
+													<span class="e">水獭Store</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118623" target="_blank" rel="nofollow" itemid="252358999">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">本周看什么 | 最近值得一看的 9 部作品</span>
+													<span class="e">少数派编辑部</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118250" target="_blank" rel="nofollow" itemid="252347359">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">iPhone 变强了，但我没有</span>
+													<span class="e">张奕源Nick</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118570" target="_blank" rel="nofollow" itemid="252333178">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">更高能效比，带来新惊喜：M6 款 MacBook Pro 初探</span>
+													<span class="e">张奕源Nick</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118546" target="_blank" rel="nofollow" itemid="252296988">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">开启 Mac 的下一世代：MacBook Pro (PROLED XDR) 首发体验</span>
+													<span class="e">waychane</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118541" target="_blank" rel="nofollow" itemid="252278034">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">新玩意 255｜少数派的编辑们最近买了啥？</span>
+													<span class="e">少数派编辑部</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118227" target="_blank" rel="nofollow" itemid="252530025">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">一家人的客厅，和一个人的深夜 — Sonos Beam Ultra 与 Ace Ultra 体验</span>
+													<span class="e">一只兔子先生</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/117713" target="_blank" rel="nofollow" itemid="252209003">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">你不知道的客户端开发：AI 时代下的选型、原生与借力</span>
+													<span class="e">Tw93</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118404" target="_blank" rel="nofollow" itemid="252167104">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">国行 Apple 智能上手：这些功能已经准备好</span>
+													<span class="e">宛潼</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118263" target="_blank" rel="nofollow" itemid="252132157">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">一眼的熟悉，满眼的惊喜：新款 iPad mini 首发体验</span>
+													<span class="e">waychane</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118317" target="_blank" rel="nofollow" itemid="252103277">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">社区速递 164 | 1500 元圆梦昔日卡皇与派友们做的 AI 平替</span>
+													<span class="e">Matrix机器人</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118240" target="_blank" rel="nofollow" itemid="252033850">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">派评 | 近期值得关注的 App</span>
+													<span class="e">少数派编辑部</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118211" target="_blank" rel="nofollow" itemid="252084534">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">Disc Image Studio：你想不想在光盘上「画」点什么？</span>
+													<span class="e">Catho168</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118122" target="_blank" rel="nofollow" itemid="252020270">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">TDS REVIEW｜Apple AirPods 5 半入耳降噪真无线耳机体验</span>
+													<span class="e">KingTsui</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118029" target="_blank" rel="nofollow" itemid="252527275">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">天花板上的白色盒子，是怎样保护我们的安全的？</span>
+													<span class="e">时光旅行者</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118114" target="_blank" rel="nofollow" itemid="252455095">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">苹果产品那些不够颠覆，却值得被学习的细节</span>
+													<span class="e">CG艺术实验室</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="137"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="137" hashid="Y2KeDGQdNP"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-32">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/5VaobgvAj1">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/huxiu.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										虎嗅网									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										热文									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://www.huxiu.com/article/4903999.html" target="_blank" rel="nofollow" itemid="252504205">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">黄仁勋的麻烦，不只是出轨</span>
+													<span class="e">71.9万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904329.html" target="_blank" rel="nofollow" itemid="252581226">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">高盛：全球AI只剩两个玩家</span>
+													<span class="e">61.0万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4902771.html" target="_blank" rel="nofollow" itemid="252496332">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">腾讯差点自断一臂</span>
+													<span class="e">58.9万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904308.html" target="_blank" rel="nofollow" itemid="252575198">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">牛肉自由，到头了</span>
+													<span class="e">49.8万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4903940.html" target="_blank" rel="nofollow" itemid="252573454">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">银行的王座，受到挑战？</span>
+													<span class="e">46.1万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904091.html" target="_blank" rel="nofollow" itemid="252627846">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">黄仁勋出轨，英伟达抓鬼</span>
+													<span class="e">44.9万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904580.html" target="_blank" rel="nofollow" itemid="252655685">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">赛博义父终于扛不住了</span>
+													<span class="e">42.4万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904620.html" target="_blank" rel="nofollow" itemid="252663915">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">“零元面馆”终将成闹剧，因为慈善有边界、人性无下限</span>
+													<span class="e">43.0万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904447.html" target="_blank" rel="nofollow" itemid="252801438">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">越来越多的中国人，正在花钱买别人的命</span>
+													<span class="e">39.3万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4902431.html" target="_blank" rel="nofollow" itemid="252734609">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">字节旧部创业，在海外杀疯了</span>
+													<span class="e">39.2万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4903838.html" target="_blank" rel="nofollow" itemid="252679880">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">每天白送3000碗面，零元面馆，逼退隔壁15年老店？</span>
+													<span class="e">31.8万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4903849.html" target="_blank" rel="nofollow" itemid="252610575">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">越南，失控的“改革开放”</span>
+													<span class="e">31.8万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904005.html" target="_blank" rel="nofollow" itemid="252504899">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">消费三姐妹，为什么不香了？</span>
+													<span class="e">31.6万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904268.html" target="_blank" rel="nofollow" itemid="252880866">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">一通电话叫来黄仁勋，黄乐到底是谁？</span>
+													<span class="e">30.3万</span>
+												</div>
+											</a>
+											<a href="https://www.huxiu.com/article/4904673.html" target="_blank" rel="nofollow" itemid="252892745">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">在中国车市无人注意的角落里，日系车快烂完了</span>
+													<span class="e">27.1万</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="32"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="32" hashid="5VaobgvAj1"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-13">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/20MdK2vw1q">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/guokr.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										果壳									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										科学人									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.guokr.com/article/470705/" target="_blank" rel="nofollow" itemid="252907466">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">准备在豪华邮轮上度过余生的老人，在柬埔寨被丢下了船</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470704/" target="_blank" rel="nofollow" itemid="252904730">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">马斯克又要用筷子夹火箭了！这一次，他要从太空抓回一艘飞船</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470703/" target="_blank" rel="nofollow" itemid="252901601">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">未来光锥闭门会纪要丨基模更强之后，AI4M怎么做？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470701/" target="_blank" rel="nofollow" itemid="252862168">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">花直板旗舰的预算，买成熟折叠屏体验？现在可能是最好时机</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470699/" target="_blank" rel="nofollow" itemid="252855127">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">脑部手术后，他在人脸上看到了自家猫的眼睛</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470695/" target="_blank" rel="nofollow" itemid="252841965">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">为什么黄仁勋出轨直接下台，马斯克孩子都生了4个了也没事？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470693/" target="_blank" rel="nofollow" itemid="252825666">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">“处女作”正式退场，这是全体女性的胜利</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470692/" target="_blank" rel="nofollow" itemid="252821239">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">这也能投毒？我每天都在被投毒，却从未见过凶手……</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470691/" target="_blank" rel="nofollow" itemid="252811387">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">从尸体的大脑上切下一块，3 天就能学会弹钢琴，能记17 天！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.guokr.com/article/470690/" target="_blank" rel="nofollow" itemid="252810197">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">红薯，可能是减脂人最信任的碳水叛徒</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="13"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="13" hashid="20MdK2vw1q"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-119">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/74Kvx59dkx">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/ithome.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										IT之家									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										日榜									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://m.ithome.com/html/1026735.htm" target="_blank" rel="nofollow" itemid="252859093">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">英伟达员工发起挽留行动：内部投票超 97% 希望黄仁勋回归</span>
+													<span class="e">319评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026869.htm" target="_blank" rel="nofollow" itemid="252874236">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">今年下半年唯一国产旗舰机：消息称华为 Pura X View 阔直板激活销量破百万</span>
+													<span class="e">407评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026960.htm" target="_blank" rel="nofollow" itemid="252894246">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">DeepSeek 发布全家桶应用 API：开发者将能 1:1 复刻完整 DeepSeek App</span>
+													<span class="e">115评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026898.htm" target="_blank" rel="nofollow" itemid="252889031">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">小米澎湃 OS 4 第三批正式版开启推送，覆盖小米 15 系列手机、Pad 7 系列平板等</span>
+													<span class="e">212评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026993.htm" target="_blank" rel="nofollow" itemid="252898141">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">华为麒麟 9050 系列芯片新一代灵犀 CPU 详细信息公开：9 核 16 线程并行调度，支持内存压缩加速</span>
+													<span class="e">159评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026799.htm" target="_blank" rel="nofollow" itemid="252890952">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">鸿蒙智行问界新 M8 正式上市，37.98 万-46.98 万元</span>
+													<span class="e">306评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026947.htm" target="_blank" rel="nofollow" itemid="252898591">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">2027 款全新领克 03 上市：车宽 1901mm，限时专享价 10.38 万元起</span>
+													<span class="e">76评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026750.htm" target="_blank" rel="nofollow" itemid="252900247">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">余承东、张兴海同台喊口号：华为与赛力斯打造的问界进入新合作阶段，在一起，为用户</span>
+													<span class="e">173评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1027033.htm" target="_blank" rel="nofollow" itemid="252904747">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">马斯克声援黄仁勋：将签署请愿，支持其重返英伟达 CEO 岗位</span>
+													<span class="e">106评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026762.htm" target="_blank" rel="nofollow" itemid="252900246">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">华为何刚惊喜亮相问界新 M8 上市发布会，主讲产品配置</span>
+													<span class="e">148评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026740.htm" target="_blank" rel="nofollow" itemid="252905197">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">华为余承东亮相问界新 M8 上市发布会，再晒鸿蒙智行品牌矩阵</span>
+													<span class="e">115评</span>
+												</div>
+											</a>
+											<a href="https://m.ithome.com/html/1026938.htm" target="_blank" rel="nofollow" itemid="252908557">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">消息称抖音向主播发送发布《GTA6》游戏直播规范：大尺度内容要遮挡</span>
+													<span class="e">67评</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="119"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="119" hashid="74Kvx59dkx"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-219">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/74KvxK7okx">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/ifanr.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										爱范儿									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										每日最新									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.ifanr.com/1689432" target="_blank" rel="nofollow" itemid="252884117">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">余承东公布华为问界新合作模式！新 M8 同步上市，起售价 37.98 万元</span>
+													<span class="e">董车会</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689409" target="_blank" rel="nofollow" itemid="252879459">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">iPhone 20 爆料汇总：一整块玻璃，藏着苹果下一个十年</span>
+													<span class="e">产品</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689379" target="_blank" rel="nofollow" itemid="252859108">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">李飞飞最新世界模型正式开放，我用它一句话造出重庆山城</span>
+													<span class="e">公司</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689360" target="_blank" rel="nofollow" itemid="252851792">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">黄仁勋自嘲是「人渣」，英伟达员工集体喊话求回归</span>
+													<span class="e">产品</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689182" target="_blank" rel="nofollow" itemid="252843194">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">AI 时代，公司的「新厂房」长什么样？</span>
+													<span class="e">公司</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689292" target="_blank" rel="nofollow" itemid="252815965">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">早报｜黄仁勋仍为英伟达最大个人股东/豆包工作接入多款第三方模型/微信「看一看」测试短剧入口</span>
+													<span class="e">早报</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689267" target="_blank" rel="nofollow" itemid="252813728">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">刚刚，Gemini 4 新模型叒来了，终于人人可用</span>
+													<span class="e">产品</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689249" target="_blank" rel="nofollow" itemid="252796500">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">突发！黄仁勋辞任 CEO，英伟达迎来历史性换帅</span>
+													<span class="e">公司</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689232" target="_blank" rel="nofollow" itemid="252792753">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">26.99 万元起！腾势 N8 上市，内饰最美的比亚迪来了</span>
+													<span class="e">董车会</span>
+												</div>
+											</a>
+											<a href="https://www.ifanr.com/1689209" target="_blank" rel="nofollow" itemid="252784842">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">森海塞尔 HDB 630 体验：把 Hi-Fi 音响，装进这副降噪耳机里</span>
+													<span class="e">产品</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">5分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="219"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="219" hashid="74KvxK7okx"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-2580">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/DgeyxkwdZq">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/kepuchina.cn.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										科普中国网									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										热点排行									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://www.kepuchina.cn/more/202109/t20210929_3056404.shtml" target="_blank" rel="nofollow" itemid="54181402">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">为何太阳系所有行星都在同一平面上旋转？</span>
+													<span class="e">新浪科技</span>
+												</div>
+											</a>
+											<a href="https://www.kepuchina.cn/more/202109/t20210929_3056402.shtml" target="_blank" rel="nofollow" itemid="54178426">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">我国学者揭示早期宇宙星际间重元素起源之谜</span>
+													<span class="e">中国科学报</span>
+												</div>
+											</a>
+											<a href="https://www.kepuchina.cn/more/202109/t20210929_3056400.shtml" target="_blank" rel="nofollow" itemid="54178425">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">比“胖五”更能扛！我国新一代载人运载火箭要来了</span>
+													<span class="e">科技日报</span>
+												</div>
+											</a>
+											<a href="https://www.kepuchina.cn/more/202109/t20210928_3054565.shtml" target="_blank" rel="nofollow" itemid="54030903">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">5G演进已开始，6G研究正进行</span>
+													<span class="e">光明日报</span>
+												</div>
+											</a>
+											<a href="https://www.kepuchina.cn/more/202109/t20210928_3054506.shtml" target="_blank" rel="nofollow" itemid="54028635">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">“早期暗能量”或让宇宙年轻10亿岁</span>
+													<span class="e">科技日报</span>
+												</div>
+											</a>
+											<a href="https://www.kepuchina.cn/more/202109/t20210928_3054505.shtml" target="_blank" rel="nofollow" itemid="54028634">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">5G、大数据、人工智能，看看现代交通的创新元素</span>
+													<span class="e">新华网</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">4分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="2580"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="2580" hashid="DgeyxkwdZq"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-138">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/NaEdZZXdrO">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/sspai.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										少数派									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										最新文章									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://sspai.com/post/118999" target="_blank" rel="nofollow" itemid="252856759">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">本周看什么 | 最近值得一看的 10 部作品</span>
+													<span class="e">少数派编辑部</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118153" target="_blank" rel="nofollow" itemid="252844522">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">研究生如何用 AI 辅助完成一篇综述：我的科研写作工具与实践经验</span>
+													<span class="e">胡拉图说</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118512" target="_blank" rel="nofollow" itemid="252832424">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">在快 AI 时代，我是怎么把 Mole 做成一款「慢产品」的？</span>
+													<span class="e">Tw93</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118966" target="_blank" rel="nofollow" itemid="252819666">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">派早报：英伟达 CEO 黄仁勋宣布辞职等</span>
+													<span class="e">少数派编辑部</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118366" target="_blank" rel="nofollow" itemid="252772879">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">城市漫步指南｜夏末大阪，「青黄不接」的时节刚刚好</span>
+													<span class="e">Hermanchannn</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/85735" target="_blank" rel="nofollow" itemid="154825336">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">Mac 选购指南 2026 冬季版</span>
+													<span class="e">Kostya</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118921" target="_blank" rel="nofollow" itemid="252751373">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">让老音箱焕发新生：Home Assistant Connect AUX-2 首发体验</span>
+													<span class="e">南桥北桥不是桥</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118935" target="_blank" rel="nofollow" itemid="252737919">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">派早报：Apple 公布 Swift Student Challenge 安排、微软发布 Auto SR 等</span>
+													<span class="e">少数派编辑部</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118781" target="_blank" rel="nofollow" itemid="252698262">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">城市漫步指南 | 安特卫普，时尚就在生活中</span>
+													<span class="e">程天冲</span>
+												</div>
+											</a>
+											<a href="https://sspai.com/post/118175" target="_blank" rel="nofollow" itemid="252687266">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">从优胜美地到金门大桥：跟着 macOS 游览加州</span>
+													<span class="e">StephenFang</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">5分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="138"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="138" hashid="NaEdZZXdrO"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-274">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/n4qv90roaK">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/feng.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										威锋网									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										今日新信息									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.feng.com/post/13961341" target="_blank" rel="nofollow" itemid="252867859">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">苹果发布了全新的 HomeView 27.2 软件更新修复漏洞</span>
+													<span class="e">622</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13961340" target="_blank" rel="nofollow" itemid="252867858">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">tvOS 27.2.1 将为第二/三代 Apple TV 4K 机型带来 Siri AI</span>
+													<span class="e">624</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13961219" target="_blank" rel="nofollow" itemid="252786864">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">电池续航对比测试：iPhone 18 Pro Max 综合排名第一</span>
+													<span class="e">2314</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13961104" target="_blank" rel="nofollow" itemid="252710281">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">苹果建“个人记忆系统” 帮助 Siri 留存有关用户生活的信息</span>
+													<span class="e">1734</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13961103" target="_blank" rel="nofollow" itemid="252709481">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">标准版的 iPhone 18 和 18e 都将配备 6.3 英寸屏幕</span>
+													<span class="e">2747</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13961004" target="_blank" rel="nofollow" itemid="252638628">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">苹果今日发布 iOS 27.2.1 修复若干错误并修补安全漏洞</span>
+													<span class="e">3165</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13961003" target="_blank" rel="nofollow" itemid="252638627">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">苹果预计将在 2027 年上半年将 iPad Air 过渡到 OLED 屏</span>
+													<span class="e">1968</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960871" target="_blank" rel="nofollow" itemid="252546009">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">苹果已对其 iOS 28 及相关软件更新的开发流程进行调整</span>
+													<span class="e">3177</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960870" target="_blank" rel="nofollow" itemid="252545486">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">苹果最早可能在明年让 Siri 具备更强的“智能体”特征</span>
+													<span class="e">2416</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960761" target="_blank" rel="nofollow" itemid="252471796">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">Apple Music Classical 4.1 发布：全新的黑白应用图标</span>
+													<span class="e">3742</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960760" target="_blank" rel="nofollow" itemid="252471359">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">明年开始 iPhone 上的“操作按钮”或与“相机控制”功能合并</span>
+													<span class="e">1487</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960566" target="_blank" rel="nofollow" itemid="252367292">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">首个 macOS 27.3 开发者测试版包含一项重要的安全修复</span>
+													<span class="e">3634</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960565" target="_blank" rel="nofollow" itemid="252367291">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">带 Apple 芯片的 Mac 机型也能享受新的“实时活动”功能</span>
+													<span class="e">4168</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960458" target="_blank" rel="nofollow" itemid="252297703">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">苹果表示将开始对公开的 iCloud 链接进行违规内容检查</span>
+													<span class="e">4319</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960457" target="_blank" rel="nofollow" itemid="252297702">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">苹果计划在 2027 年让供应商生产 1600 万台 MacBook Neo</span>
+													<span class="e">3889</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960342" target="_blank" rel="nofollow" itemid="252205070">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">iPadOS 27.3 将 Siri 模式扩展至相机应用 方便用户使用“视觉智能”</span>
+													<span class="e">4938</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960340" target="_blank" rel="nofollow" itemid="252205069">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">iOS 27.3 首个 Beta 发布：Apple 智能正式登陆国行设备</span>
+													<span class="e">5559</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960231" target="_blank" rel="nofollow" itemid="252139487">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">特努斯：苹果目前无法满足“iPhone Duo”的市场需求</span>
+													<span class="e">5992</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960226" target="_blank" rel="nofollow" itemid="252139486">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">苹果探索以更低成本制造新 MacBook Pro OLED 技术的方法</span>
+													<span class="e">2637</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960119" target="_blank" rel="nofollow" itemid="252054802">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">苹果在开发一款更大 具备机器人功能的 HomeView 设备</span>
+													<span class="e">4777</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13960118" target="_blank" rel="nofollow" itemid="252054801">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">苹果计划在 2027 年上半年发布新款 iPad Air 和 iPad Pro</span>
+													<span class="e">5196</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959980" target="_blank" rel="nofollow" itemid="251956986">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">Xcode 27.2 披露新 Apple TV 4K 和 iPad mini 的 RAM 容量</span>
+													<span class="e">6401</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959978" target="_blank" rel="nofollow" itemid="251956587">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">iPad mini 8 欧盟能效标签曝光 电池容量为 4900 mAh</span>
+													<span class="e">5494</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959908" target="_blank" rel="nofollow" itemid="251918933">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">苹果宣布：Apple 智能即将登陆中国 随 iOS 27.3 推出</span>
+													<span class="e">7686</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959712" target="_blank" rel="nofollow" itemid="251780372">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">十年了：发光的苹果 logo 终于回归 MacBook Pro</span>
+													<span class="e">5268</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959711" target="_blank" rel="nofollow" itemid="251780371">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">一加 Ace 7 系列正式发布  搭载第五代骁龙8至尊版平台</span>
+													<span class="e">6118</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959701" target="_blank" rel="nofollow" itemid="251766976">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">苹果众高管解释为何 MacBook Pro 终于配备了触摸屏</span>
+													<span class="e">7419</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959661" target="_blank" rel="nofollow" itemid="251734729">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">触控 OLED MacBook Pro 发布：灵动岛登陆 22999 元起</span>
+													<span class="e">7146</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959565" target="_blank" rel="nofollow" itemid="251654936">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">M6 芯片新款 14 英寸 MacBook Pro 发布 15999 元起售</span>
+													<span class="e">7675</span>
+												</div>
+											</a>
+											<a href="https://www.feng.com/post/13959559" target="_blank" rel="nofollow" itemid="251653078">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">苹果发布搭载 M6 芯片的新款 iMac：12499 元起售</span>
+													<span class="e">6652</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">5分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="274"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="274" hashid="n4qv90roaK"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-272">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/NRrvWYDe5z">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/geekpark.net.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										极客公园									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										每日最新									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="http://www.geekpark.net/news/373946" target="_blank" rel="nofollow" itemid="252838025">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">AI 录音硬件卖的是时间差，窗口可能只剩半年</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373937" target="_blank" rel="nofollow" itemid="252833204">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">李彦宏定义 AI 下一个十年，智能组织是「新厂房」</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373907" target="_blank" rel="nofollow" itemid="252816448">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">黄仁勋宣布辞职，特朗普：库克适合接任；微信「看一看」测试短剧入口；《GTA 6》还没发售就狂卖近千万份｜极客早知道</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373906" target="_blank" rel="nofollow" itemid="252800555">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">穿了 33 年皮衣的那个人，离开了英伟达</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373881" target="_blank" rel="nofollow" itemid="252771992">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">接入多款第三方模型，豆包工作也模型自由了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373860" target="_blank" rel="nofollow" itemid="252753283">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">体验「跟拍机器人」Beni：谁不想要一个不会喊累还会拍照的出行搭子</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373839" target="_blank" rel="nofollow" itemid="252739607">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">苹果突然永久关闭官方「支持社区」；字节即将推出个人 AI 助手；华为新品牌星芒 OSTA 曝光 | 极客早知道</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373838" target="_blank" rel="nofollow" itemid="252736892">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">飞行汽车登上 Web Summit 主舞台, 中国科技公司在欧洲讲了一个什么故事?</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373816" target="_blank" rel="nofollow" itemid="252681264">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">当美国无法建设数据中心，会对 AI 产生怎样的冲击</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373796" target="_blank" rel="nofollow" itemid="252660445">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">Anthropic 启动 IPO 路演，创始人将套现 17.5 亿美元；谷歌最强 AI 模型正式开放；任天堂招新：经典游戏保存员</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373765" target="_blank" rel="nofollow" itemid="252600295">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">中国汽车市场，不止一种赢法 | 极客车间</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373760" target="_blank" rel="nofollow" itemid="252597209">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">千问办公押注 Team Agent，企业 AI 的流水线时刻真的来了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373736" target="_blank" rel="nofollow" itemid="252576186">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">ChatGPT 占全球 AI 聊天流量超 81%；iOS 27.3 曝光 Siri「个人记忆系统」；传玛莎拉蒂+尊界合作新车曝光｜极客早知道</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373715" target="_blank" rel="nofollow" itemid="252532640">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">一颗植物工厂草莓，离你的果盘还有多远？多多农研拉近现场</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373644" target="_blank" rel="nofollow" itemid="252516152">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">实测 HY4：腾讯最「夯」大模型，离一线还有多远？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373687" target="_blank" rel="nofollow" itemid="252512026">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">黄仁勋承认「婚外情」，英伟达启动调查；ChatGPT 突现封号风波，200 美元 Pro 用户也遭殃；腾讯姚顺雨谈「AI 公司护城河」：在产品层，而不是模型层</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373683" target="_blank" rel="nofollow" itemid="252508644">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">具身智能，也到了 API 时刻？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373653" target="_blank" rel="nofollow" itemid="252472239">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">为什么「陪伴」，注定是 Personal AI 的核心</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373650" target="_blank" rel="nofollow" itemid="252453421">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">创业者做 Personal Agent，有没有一线生机？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373649" target="_blank" rel="nofollow" itemid="252449783">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">收购 EA 后，银湖资本与沙特基金 250 亿美元报价 Unity；超10万款应用已适配iPhone Duo；美国再发生 NVIDIA AI 设备失窃案</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373647" target="_blank" rel="nofollow" itemid="252436223">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">「全球最速」之后，比亚迪仰望推出了一台「全球最豪」的新车</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373643" target="_blank" rel="nofollow" itemid="252404827">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">博世用豆包工作：让工程师少搬信息，多解问题</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373642" target="_blank" rel="nofollow" itemid="252404826">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">办公提效之后，企业级 Agent 开始对经营结果负责</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373639" target="_blank" rel="nofollow" itemid="252396429">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">马斯克官宣 Cybertruck 停产：销量不足预期一成；李飞飞团队推出世界模型「模拟掌机」；小米汽车成立国际事业部｜极客早知道</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373637" target="_blank" rel="nofollow" itemid="252370170">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">估值 400 亿美元，美国公司，终于做出了中国开源模型的竞对</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373636" target="_blank" rel="nofollow" itemid="252369219">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">AI 时代没有标准答案的问题，我们面对面聊</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373554" target="_blank" rel="nofollow" itemid="252323466">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">中期选举后美国芯片股重挫，纳指单日暴跌 5.52%；民主党宣布推动《禁止人工智能法案》；OpenAI 推出 GPT-6 Cyber</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373553" target="_blank" rel="nofollow" itemid="252294034">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">极客公园创新大会 2027 首批嘉宾揭晓！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373542" target="_blank" rel="nofollow" itemid="252278067">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">世界互联网大会领先科技奖背后，Qoder 凭什么拿下中国 AI 编程市场第一</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://www.geekpark.net/news/373541" target="_blank" rel="nofollow" itemid="252278066">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">一个人用得好 AI，为什么一家公司却用不好？</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">5分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="272"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="272" hashid="NRrvWYDe5z"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-345">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/KqndgapoLl">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/36kr.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										36氪									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										最新									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://36kr.com/newsflashes/3926062342896005?f=rss" target="_blank" rel="nofollow" itemid="245211089">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">周大福周生生老庙金饰集体上涨8-10元左右</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926058785994880?f=rss" target="_blank" rel="nofollow" itemid="245211088">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">马斯克称硬件制造除中国外无对手，将用火箭技术造数据中心</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926051415161218?f=rss" target="_blank" rel="nofollow" itemid="245210158">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">微盟WAI升级为"微盟星元"，开启AI原生经营系统内测</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3926013599086727?f=rss" target="_blank" rel="nofollow" itemid="245209222">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">早期项目 | 从智能喂养切入，一家创业公司想搭建母婴AI生态</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926038167877767?f=rss" target="_blank" rel="nofollow" itemid="245209221">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">宇树科技开启科创板IPO初步询价，市场预估IPO市值或将超400亿元</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926029000013956?f=rss" target="_blank" rel="nofollow" itemid="245208293">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">小米申请注册澎程N70商标</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926018347595906?f=rss" target="_blank" rel="nofollow" itemid="245206868">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">韩国检方调查石化企业涉嫌价格串通，LG化学等7家公司遭搜查</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926009821182086?f=rss" target="_blank" rel="nofollow" itemid="245205831">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">SpaceX拟建地面基础设施与卫星网络互补，向美国电信三巨头发起挑战</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3926003098843272?f=rss" target="_blank" rel="nofollow" itemid="245204828">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">36氪首发 | 大疆前高管押注个人出行机器人，累计融资近亿美元</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926001579980936?f=rss" target="_blank" rel="nofollow" itemid="245204827">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">Qwen-Image-3.0上线千问AI平台</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926000559814784?f=rss" target="_blank" rel="nofollow" itemid="245204826">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">沪深两市成交额突破1万亿元</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3926000181213315?f=rss" target="_blank" rel="nofollow" itemid="245204825">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">韩国三星电子和SK海力士正在评估中国中微半导体的芯片制造设备</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925981757634944?f=rss" target="_blank" rel="nofollow" itemid="245202886">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">中际旭创回应“美国光模块禁令”影响：因并未出台 暂时不予评述</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925977640777857?f=rss" target="_blank" rel="nofollow" itemid="245202885">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">京东：开源实时流式视频编辑模型JoyAI-Video-Edit</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925976152963457?f=rss" target="_blank" rel="nofollow" itemid="245202052">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">A股三大指数全线翻红</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925973914122633?f=rss" target="_blank" rel="nofollow" itemid="245202051">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">中国7月RatingDog服务业PMI 50.4，前值54.1</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925968796514432?f=rss" target="_blank" rel="nofollow" itemid="245202050">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">报道：DeepSeek重启融资，投前估值5000亿元</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925957309659524?f=rss" target="_blank" rel="nofollow" itemid="245200152">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">央行今日开展50亿元7天逆回购操作</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925954399336838?f=rss" target="_blank" rel="nofollow" itemid="245200151">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">A股三大指数集体低开，中际旭创、新易盛跌超10%</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925950678759552?f=rss" target="_blank" rel="nofollow" itemid="245200150">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">恒指开盘涨0.15%，恒生科技指数涨0.33%</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925944318097541?f=rss" target="_blank" rel="nofollow" itemid="245199403">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">人民币对美元中间价调升28个基点</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/newsflashes/3925919120259207?f=rss" target="_blank" rel="nofollow" itemid="245199402">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">中信证券：传统主业稳健+AI收入渐显，美股应用软件迎来估值修复契机</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3925868626360706?f=rss" target="_blank" rel="nofollow" itemid="245193391">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">8点1氪丨马斯克个人财富亏掉2个“黄仁勋”；上海雪花膏母公司破产；日本半导体或面临断供</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3925382191708552?f=rss" target="_blank" rel="nofollow" itemid="245177328">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">“车企牌”电池相继上车，不只是PK宁德时代</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3925067918227591?f=rss" target="_blank" rel="nofollow" itemid="245155218">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">自研高性能分布式解决方案，「芯晓科技」将芯片电源签核周期从几周缩短至几天 | 水下项目</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3925017067862409?f=rss" target="_blank" rel="nofollow" itemid="245150935">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">从追番到下单，国风IP正在重塑硬核数码消费</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3924953058605444?f=rss" target="_blank" rel="nofollow" itemid="245145239">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">一层“布”涨价270%之后，投资机构用数亿元投票玻璃基板，巽霖科技完成近2亿元B轮融资</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3924913931679877?f=rss" target="_blank" rel="nofollow" itemid="245143588">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">东山精密涨停背后：36氪企业全情报捕捉市场机会</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3924826666301831?f=rss" target="_blank" rel="nofollow" itemid="245135032">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">Kimi K3与DeepSeek V4之间，隔着原生多模态的时间差</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://36kr.com/p/3924634192673153?f=rss" target="_blank" rel="nofollow" itemid="245119778">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">36氪首发 | 两位“三清”博士联合创业做空间态势感知服务，完成数千万天使+轮融资</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="hidden">2026-08-05</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="345"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="345" hashid="KqndgapoLl"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-209">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/Y3QeLMPo7k">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/readhub.cn.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										Readhub									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										热门话题									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://readhub.cn/topic/8y2RmyfkeTu" target="_blank" rel="nofollow" itemid="252910214">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">民主党参议员要求马斯克留存乌克兰星链等相关记录</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2Zf1xZTCN" target="_blank" rel="nofollow" itemid="252909850">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">百度李彦宏：人工智能的下一幕是智能组织</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y1qdKWwgS4" target="_blank" rel="nofollow" itemid="252909849">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">海信发布双 11 战报：电视拿下全渠道销量销售额第一</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2jefXOtgJ" target="_blank" rel="nofollow" itemid="252908210">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">伏欣奇拜单抗（金蓓欣）纳入国家医保目录</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2nwiBJ2Zb" target="_blank" rel="nofollow" itemid="252907477">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">高质量数据集和数据标注先行先试现场会在厦门市召开</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2SVcQ6oS6" target="_blank" rel="nofollow" itemid="252906296">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">SpaceX 洽购发射场周边约 526.19 万平方米土地，拟将一半永久用于保护</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2R4kyETE9" target="_blank" rel="nofollow" itemid="252906295">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">问界新 M8 投入 15 亿兑现千条用户建议 携 126 项升级瞄准家庭旗舰 SUV</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2kiztKcPY" target="_blank" rel="nofollow" itemid="252905224">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">我国 10 吨级电动商用飞机有人驾驶首飞成功</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2kj4Ixvnl" target="_blank" rel="nofollow" itemid="252905223">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">吴清：进一步深化人工智能与资本市场双向赋能研究</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2iwby31HM" target="_blank" rel="nofollow" itemid="252905222">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">百利天恒：宜泽康® 成功纳入国家医保目录</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2kN5h00jj" target="_blank" rel="nofollow" itemid="252904751">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">吴清：把握节奏 加强科技企业上市制度适配性等研究</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2kMytTgZs" target="_blank" rel="nofollow" itemid="252904750">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">吴清：进一步深化市场稳定长效机制研究</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2ZfNfbK0M" target="_blank" rel="nofollow" itemid="252904749">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">网页端代码浮现额度管理机制，DeepSeek 订阅制收费或提上日程</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2hWnw8xOb" target="_blank" rel="nofollow" itemid="252903137">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">中证协启动券商财务数智化应用调研</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y1XOxZOb8u" target="_blank" rel="nofollow" itemid="252903136">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">小米澎湃 OS 4 第三批正式版开启推送：覆盖小米 15、REDMI K80 系列等</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2fjIR9IXg" target="_blank" rel="nofollow" itemid="252901609">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">百万级 CAR-T 抗癌药首次纳入基本医保 患者自付降至 10 万元以内</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2eIDnD0BB" target="_blank" rel="nofollow" itemid="252900770">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">新增 12 种药品 2026 年商保创新药品目录共 28 种</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2aNWrF10g" target="_blank" rel="nofollow" itemid="252900249">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">华为首款鸿蒙小折叠电脑 MateBook Fold S 开启预订</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y1nm7f1hRe" target="_blank" rel="nofollow" itemid="252899690">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">苹果推送 tvOS 27.2.1 更新，第二/三代 Apple TV 4K 新增 Siri AI 支持</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://readhub.cn/topic/8y2UeOQ9G6b" target="_blank" rel="nofollow" itemid="252898608">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">llama.cpp 与 ggml 双双迈入 1.0.0，本地大模型推理库迎来稳定新阶段</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">5分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="209"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="209" hashid="Y3QeLMPo7k"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+							</div>
+					</div>
+
+		</div>
+		</div>
+
+		<div class="text-center"><ul class="pagination"><li class="pager active"><a href="javascript:void(0);">1</a></li><li class="pager"><a href="?&p=2">2</a></li><li class="pager"><a href="?&p=3">3</a></li><li class="pager"><a href="?&p=4">4</a></li><li class="pager"><a href="?&p=5">5</a></li><li class="pager"><a href="?&p=6">6</a></li><li class="pager"><a href="?&p=7">7</a></li><li class="pager"><a href="?&p=8">8</a></li><li class="pager disabled"><a class="disabled">...</a></li><li class="pager"><a href="?&p=35">35</a></li><li class="pager"><a href="?&p=2">下一页</a></li></ul><div class="keyboard-tip">
+            <span title="使用键盘左右箭头键快速翻页"><i class="m-n">&#xe778;</i> 提示：可使用键盘 <kbd>←</kbd> <kbd>→</kbd> 快速翻页</span>
+        </div>                <script>
+                $(document).ready(function() {
+                    $(document).keydown(function(e) {
+                        var currentPage = 1;
+                        var totalPages = 35;
+                        var baseUrl = "?&";
+        
+                        if (e.which == 37) { // Left arrow key
+                            if (currentPage > 1) {
+                                window.location.href = baseUrl + 'p=' + (currentPage - 1);
+                            }
+                        } else if (e.which == 39) { // Right arrow key
+                            if (currentPage < totalPages) {
+                                window.location.href = baseUrl + 'p=' + (currentPage + 1);
+                            }
+                        }
+                    });
+                });
+                </script></div>
+
+				<!-- 非VIP用户显示广告 -->
+		<div class="adsense-sidebar-container" style="margin:20px auto;max-width:960px;max-height:120px;">
+					</div>
+		
+<!-- <div class="scroller-status">
+	<div class="infinite-scroll-request"><div class="loading"><div></div><div></div><div></div><div></div></div><p>🌈 彩虹加载中，精彩即将出现～</p></div>
+	<p class="infinite-scroll-last"><span class="loadmore-line"></span>没有更多节点了<span class="loadmore-line"></span></p>
+	<p class="infinite-scroll-error"><span class="loadmore-line"></span>加载失败，刷新页面试试<span class="loadmore-line"></span></p>
+</div> -->
+
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 检查是否存在 keyboard-tip 元素
+	var $keyboardTip = $(".keyboard-tip");
+	if ($keyboardTip.length == 0) {
+		// 如果不存在 keyboard-tip，则创建一个
+		$keyboardTip = $('<div class="keyboard-tip"></div>');
+		$('.text-center').append($keyboardTip);
+	}
+	$keyboardTip.append('<span class="batch-follow-link" title="批量订阅当前页节点"><a href="javascript:void(0);"><i class="m-n">&#xe64c;</i> 批量订阅本页全部节点</a></span>');
+});
+</script>
+</body>
+</html>

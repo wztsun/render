@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>iOS App 排行榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style>
+/* 榜单操作按钮样式 */
+.list-actions {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 14px;
+}
+.list-actions a {
+    display: inline-block;
+    margin-left: 3px;
+    color: #999;
+    transition: all 0.2s ease;
+}
+.list-actions a:hover {
+    color: #1890ff;
+}
+.list-actions a.active {
+    color: #1890ff;
+}
+.list-actions a.active .icon-star-o:before {
+    content: "\e7df";
+}
+.list-actions a.active .icon-bell-o:before {
+    content: "\e7c4";
+}
+</style>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+</head>
+<body class="">
+<div id="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e container">
+		
+		<div style="margin-top:60px;text-align:center;">
+				<img src="https://file.ipadown.com/tophub/assets/images/top-charts.png" width="600"/>
+		</div>
+							
+		
+		<div class="charts-frame">
+	
+			<ul class="nav-hot">
+				<li class="active"><a href="/apple/ios-apps">iOS App</a></li>
+				<li><a href="/apple/macos-apps">Mac App</a></li>
+				<li><a href="/apple/itunes-u">iTunes U</a></li>
+				<li><a href="/apple/podcasts">播客</a></li>
+				<li><a href="/apple/music">音乐</a></li>
+				<li><a href="/apple/books">图书</a></li>
+				<li><a href="/apple/textbooks">教科书</a></li>
+				<li><a href="/apple/movies">电影</a></li>
+				<li><a href="/apple/tv-shows">电视节目</a></li>
+				<li><a href="/apple/audiobooks">有声读物</a></li>
+				<li><a href="/apple/music-videos">音乐视频</a></li>
+			</ul>
+	
+	
+	
+			
+			<div class="charts-fliter">
+			        	
+			<div class="charts-fliter-wrapper">
+	                    	
+
+					<dl>
+                            	<dt>国家：</dt>
+                                <dd>
+                    <a href='?device=&cate=25129&subcate=25180&store=cn' class='selected' >中国</a><a href='?device=&cate=25129&subcate=25180&store=us' class='tag' >美国</a><a href='?device=&cate=25129&subcate=25180&store=hk' class='tag' >中国香港</a><a href='?device=&cate=25129&subcate=25180&store=gb' class='tag' >英国</a><a href='?device=&cate=25129&subcate=25180&store=jp' class='tag' >日本</a><a href='?device=&cate=25129&subcate=25180&store=ae' class='tag' >阿联酋</a><a href='?device=&cate=25129&subcate=25180&store=ag' class='tag' >安提瓜和巴布达</a><a href='?device=&cate=25129&subcate=25180&store=ai' class='tag' >安圭拉岛</a><a href='?device=&cate=25129&subcate=25180&store=al' class='tag' >阿尔巴尼亚</a><a href='?device=&cate=25129&subcate=25180&store=ao' class='tag' >安哥拉</a><a href='?device=&cate=25129&subcate=25180&store=ar' class='tag' >阿根廷</a><a href='?device=&cate=25129&subcate=25180&store=at' class='tag' >奥地利</a><a href='?device=&cate=25129&subcate=25180&store=au' class='tag' >澳大利亚</a><a href='?device=&cate=25129&subcate=25180&store=az' class='tag' >阿塞拜疆</a><a href='?device=&cate=25129&subcate=25180&store=dz' class='tag' >阿尔及利亚</a><a href='?device=&cate=25129&subcate=25180&store=ee' class='tag'  style="display:none;" >爱沙尼亚</a><a href='?device=&cate=25129&subcate=25180&store=eg' class='tag'  style="display:none;" >埃及</a><a href='?device=&cate=25129&subcate=25180&store=ie' class='tag'  style="display:none;" >爱尔兰</a><a href='?device=&cate=25129&subcate=25180&store=mo' class='tag'  style="display:none;" >澳门</a><a href='?device=&cate=25129&subcate=25180&store=om' class='tag'  style="display:none;" >阿曼</a><a href='?device=&cate=25129&subcate=25180&store=bb' class='tag'  style="display:none;" >巴巴多斯</a><a href='?device=&cate=25129&subcate=25180&store=be' class='tag'  style="display:none;" >比利时</a><a href='?device=&cate=25129&subcate=25180&store=bf' class='tag'  style="display:none;" >布基纳法索</a><a href='?device=&cate=25129&subcate=25180&store=bg' class='tag'  style="display:none;" >保加利亚</a><a href='?device=&cate=25129&subcate=25180&store=bh' class='tag'  style="display:none;" >巴林</a><a href='?device=&cate=25129&subcate=25180&store=bj' class='tag'  style="display:none;" >贝宁</a><a href='?device=&cate=25129&subcate=25180&store=bm' class='tag'  style="display:none;" >百慕大</a><a href='?device=&cate=25129&subcate=25180&store=bo' class='tag'  style="display:none;" >玻利维亚</a><a href='?device=&cate=25129&subcate=25180&store=br' class='tag'  style="display:none;" >巴西</a><a href='?device=&cate=25129&subcate=25180&store=bs' class='tag'  style="display:none;" >巴哈马</a><a href='?device=&cate=25129&subcate=25180&store=bt' class='tag'  style="display:none;" >不丹</a><a href='?device=&cate=25129&subcate=25180&store=bw' class='tag'  style="display:none;" >博茨瓦纳</a><a href='?device=&cate=25129&subcate=25180&store=by' class='tag'  style="display:none;" >白俄罗斯</a><a href='?device=&cate=25129&subcate=25180&store=bz' class='tag'  style="display:none;" >伯利兹</a><a href='?device=&cate=25129&subcate=25180&store=is' class='tag'  style="display:none;" >冰岛</a><a href='?device=&cate=25129&subcate=25180&store=pa' class='tag'  style="display:none;" >巴拿马</a><a href='?device=&cate=25129&subcate=25180&store=pg' class='tag'  style="display:none;" >巴布亚新几内亚</a><a href='?device=&cate=25129&subcate=25180&store=pk' class='tag'  style="display:none;" >巴基斯坦</a><a href='?device=&cate=25129&subcate=25180&store=pl' class='tag'  style="display:none;" >波兰</a><a href='?device=&cate=25129&subcate=25180&store=py' class='tag'  style="display:none;" >巴拉圭</a><a href='?device=&cate=25129&subcate=25180&store=de' class='tag'  style="display:none;" >德国</a><a href='?device=&cate=25129&subcate=25180&store=dk' class='tag'  style="display:none;" >丹麦</a><a href='?device=&cate=25129&subcate=25180&store=dm' class='tag'  style="display:none;" >多米尼加</a><a href='?device=&cate=25129&subcate=25180&store=do' class='tag'  style="display:none;" >多米尼加共和国</a><a href='?device=&cate=25129&subcate=25180&store=ec' class='tag'  style="display:none;" >厄瓜多尔</a><a href='?device=&cate=25129&subcate=25180&store=ru' class='tag'  style="display:none;" >俄罗斯</a><a href='?device=&cate=25129&subcate=25180&store=cv' class='tag'  style="display:none;" >佛得角</a><a href='?device=&cate=25129&subcate=25180&store=fi' class='tag'  style="display:none;" >芬兰</a><a href='?device=&cate=25129&subcate=25180&store=fr' class='tag'  style="display:none;" >法国</a><a href='?device=&cate=25129&subcate=25180&store=ph' class='tag'  style="display:none;" >菲律宾</a><a href='?device=&cate=25129&subcate=25180&store=cg' class='tag'  style="display:none;" >刚果共和国</a><a href='?device=&cate=25129&subcate=25180&store=co' class='tag'  style="display:none;" >哥伦比亚</a><a href='?device=&cate=25129&subcate=25180&store=cr' class='tag'  style="display:none;" >哥斯达黎加</a><a href='?device=&cate=25129&subcate=25180&store=gd' class='tag'  style="display:none;" >格林纳达</a><a href='?device=&cate=25129&subcate=25180&store=gm' class='tag'  style="display:none;" >冈比亚</a><a href='?device=&cate=25129&subcate=25180&store=gy' class='tag'  style="display:none;" >圭亚那</a><a href='?device=&cate=25129&subcate=25180&store=hn' class='tag'  style="display:none;" >洪都拉斯</a><a href='?device=&cate=25129&subcate=25180&store=kr' class='tag'  style="display:none;" >韩国</a><a href='?device=&cate=25129&subcate=25180&store=kz' class='tag'  style="display:none;" >哈萨克斯坦</a><a href='?device=&cate=25129&subcate=25180&store=nl' class='tag'  style="display:none;" >荷兰</a><a href='?device=&cate=25129&subcate=25180&store=ca' class='tag'  style="display:none;" >加拿大</a><a href='?device=&cate=25129&subcate=25180&store=cz' class='tag'  style="display:none;" >捷克共和国</a><a href='?device=&cate=25129&subcate=25180&store=gh' class='tag'  style="display:none;" >加纳</a><a href='?device=&cate=25129&subcate=25180&store=gw' class='tag'  style="display:none;" >几内亚比绍</a><a href='?device=&cate=25129&subcate=25180&store=kg' class='tag'  style="display:none;" >吉尔吉兹斯坦</a><a href='?device=&cate=25129&subcate=25180&store=kh' class='tag'  style="display:none;" >柬埔寨</a><a href='?device=&cate=25129&subcate=25180&store=zw' class='tag'  style="display:none;" >津巴布韦</a><a href='?device=&cate=25129&subcate=25180&store=hr' class='tag'  style="display:none;" >克罗地亚</a><a href='?device=&cate=25129&subcate=25180&store=ke' class='tag'  style="display:none;" >肯尼亚</a><a href='?device=&cate=25129&subcate=25180&store=kw' class='tag'  style="display:none;" >科威特</a><a href='?device=&cate=25129&subcate=25180&store=ky' class='tag'  style="display:none;" >开曼群岛</a><a href='?device=&cate=25129&subcate=25180&store=qa' class='tag'  style="display:none;" >卡塔尔</a><a href='?device=&cate=25129&subcate=25180&store=la' class='tag'  style="display:none;" >老挝</a><a href='?device=&cate=25129&subcate=25180&store=lb' class='tag'  style="display:none;" >黎巴嫩</a><a href='?device=&cate=25129&subcate=25180&store=lr' class='tag'  style="display:none;" >利比里亚</a><a href='?device=&cate=25129&subcate=25180&store=lt' class='tag'  style="display:none;" >立陶宛</a><a href='?device=&cate=25129&subcate=25180&store=lu' class='tag'  style="display:none;" >卢森堡</a><a href='?device=&cate=25129&subcate=25180&store=lv' class='tag'  style="display:none;" >拉脱维亚</a><a href='?device=&cate=25129&subcate=25180&store=ro' class='tag'  style="display:none;" >罗马尼亚</a><a href='?device=&cate=25129&subcate=25180&store=fm' class='tag'  style="display:none;" >密克罗尼西亚联邦</a><a href='?device=&cate=25129&subcate=25180&store=md' class='tag'  style="display:none;" >摩尔多瓦</a><a href='?device=&cate=25129&subcate=25180&store=mg' class='tag'  style="display:none;" >马达加斯加</a><a href='?device=&cate=25129&subcate=25180&store=mk' class='tag'  style="display:none;" >马其顿</a><a href='?device=&cate=25129&subcate=25180&store=ml' class='tag'  style="display:none;" >马里</a><a href='?device=&cate=25129&subcate=25180&store=mn' class='tag'  style="display:none;" >蒙古</a><a href='?device=&cate=25129&subcate=25180&store=mr' class='tag'  style="display:none;" >毛里塔尼亚</a><a href='?device=&cate=25129&subcate=25180&store=ms' class='tag'  style="display:none;" >蒙特塞拉特</a><a href='?device=&cate=25129&subcate=25180&store=mt' class='tag'  style="display:none;" >马耳他</a><a href='?device=&cate=25129&subcate=25180&store=mu' class='tag'  style="display:none;" >毛里求斯</a><a href='?device=&cate=25129&subcate=25180&store=mw' class='tag'  style="display:none;" >马拉维</a><a href='?device=&cate=25129&subcate=25180&store=mx' class='tag'  style="display:none;" >墨西哥</a><a href='?device=&cate=25129&subcate=25180&store=my' class='tag'  style="display:none;" >马来西亚</a><a href='?device=&cate=25129&subcate=25180&store=mz' class='tag'  style="display:none;" >莫桑比克</a><a href='?device=&cate=25129&subcate=25180&store=pe' class='tag'  style="display:none;" >秘鲁</a><a href='?device=&cate=25129&subcate=25180&store=na' class='tag'  style="display:none;" >纳米比亚</a><a href='?device=&cate=25129&subcate=25180&store=ne' class='tag'  style="display:none;" >尼日尔</a><a href='?device=&cate=25129&subcate=25180&store=ng' class='tag'  style="display:none;" >尼日利亚</a><a href='?device=&cate=25129&subcate=25180&store=ni' class='tag'  style="display:none;" >尼加拉瓜</a><a href='?device=&cate=25129&subcate=25180&store=no' class='tag'  style="display:none;" >挪威</a><a href='?device=&cate=25129&subcate=25180&store=np' class='tag'  style="display:none;" >尼泊尔</a><a href='?device=&cate=25129&subcate=25180&store=za' class='tag'  style="display:none;" >南非</a><a href='?device=&cate=25129&subcate=25180&store=pt' class='tag'  style="display:none;" >葡萄牙</a><a href='?device=&cate=25129&subcate=25180&store=pw' class='tag'  style="display:none;" >帕劳</a><a href='?device=&cate=25129&subcate=25180&store=ch' class='tag'  style="display:none;" >瑞士</a><a href='?device=&cate=25129&subcate=25180&store=se' class='tag'  style="display:none;" >瑞典</a><a href='?device=&cate=25129&subcate=25180&store=cy' class='tag'  style="display:none;" >塞浦路斯</a><a href='?device=&cate=25129&subcate=25180&store=kn' class='tag'  style="display:none;" >圣基茨和尼维斯</a><a href='?device=&cate=25129&subcate=25180&store=lc' class='tag'  style="display:none;" >圣卢西亚</a><a href='?device=&cate=25129&subcate=25180&store=lk' class='tag'  style="display:none;" >斯里兰卡</a><a href='?device=&cate=25129&subcate=25180&store=sa' class='tag'  style="display:none;" >沙特阿拉伯</a><a href='?device=&cate=25129&subcate=25180&store=sb' class='tag'  style="display:none;" >所罗门群岛</a><a href='?device=&cate=25129&subcate=25180&store=sc' class='tag'  style="display:none;" >塞舌尔</a><a href='?device=&cate=25129&subcate=25180&store=si' class='tag'  style="display:none;" >斯洛文尼亚</a><a href='?device=&cate=25129&subcate=25180&store=sk' class='tag'  style="display:none;" >斯洛伐克</a><a href='?device=&cate=25129&subcate=25180&store=sl' class='tag'  style="display:none;" >塞拉利昂</a><a href='?device=&cate=25129&subcate=25180&store=sn' class='tag'  style="display:none;" >塞内加尔</a><a href='?device=&cate=25129&subcate=25180&store=sr' class='tag'  style="display:none;" >苏里南</a><a href='?device=&cate=25129&subcate=25180&store=st' class='tag'  style="display:none;" >圣多美和普林西比</a><a href='?device=&cate=25129&subcate=25180&store=sv' class='tag'  style="display:none;" >萨尔瓦多</a><a href='?device=&cate=25129&subcate=25180&store=sz' class='tag'  style="display:none;" >斯威士兰</a><a href='?device=&cate=25129&subcate=25180&store=vc' class='tag'  style="display:none;" >圣文森特和格林纳丁斯</a><a href='?device=&cate=25129&subcate=25180&store=tc' class='tag'  style="display:none;" >特克斯和凯科斯群岛</a><a href='?device=&cate=25129&subcate=25180&store=th' class='tag'  style="display:none;" >泰国</a><a href='?device=&cate=25129&subcate=25180&store=tj' class='tag'  style="display:none;" >塔吉克斯坦</a><a href='?device=&cate=25129&subcate=25180&store=tm' class='tag'  style="display:none;" >土库曼斯坦</a><a href='?device=&cate=25129&subcate=25180&store=tn' class='tag'  style="display:none;" >突尼斯</a><a href='?device=&cate=25129&subcate=25180&store=tr' class='tag'  style="display:none;" >土耳其</a><a href='?device=&cate=25129&subcate=25180&store=tt' class='tag'  style="display:none;" >特立尼达和多巴哥</a><a href='?device=&cate=25129&subcate=25180&store=tw' class='tag'  style="display:none;" >中国台湾</a><a href='?device=&cate=25129&subcate=25180&store=tz' class='tag'  style="display:none;" >坦桑尼亚</a><a href='?device=&cate=25129&subcate=25180&store=bn' class='tag'  style="display:none;" >文莱</a><a href='?device=&cate=25129&subcate=25180&store=gt' class='tag'  style="display:none;" >危地马拉</a><a href='?device=&cate=25129&subcate=25180&store=ua' class='tag'  style="display:none;" >乌克兰</a><a href='?device=&cate=25129&subcate=25180&store=ug' class='tag'  style="display:none;" >乌干达</a><a href='?device=&cate=25129&subcate=25180&store=uy' class='tag'  style="display:none;" >乌拉圭</a><a href='?device=&cate=25129&subcate=25180&store=uz' class='tag'  style="display:none;" >乌兹别克斯坦</a><a href='?device=&cate=25129&subcate=25180&store=ve' class='tag'  style="display:none;" >委内瑞拉</a><a href='?device=&cate=25129&subcate=25180&store=es' class='tag'  style="display:none;" >西班牙</a><a href='?device=&cate=25129&subcate=25180&store=gr' class='tag'  style="display:none;" >希腊</a><a href='?device=&cate=25129&subcate=25180&store=hu' class='tag'  style="display:none;" >匈牙利</a><a href='?device=&cate=25129&subcate=25180&store=nz' class='tag'  style="display:none;" >新西兰</a><a href='?device=&cate=25129&subcate=25180&store=sg' class='tag'  style="display:none;" >新加坡</a><a href='?device=&cate=25129&subcate=25180&store=am' class='tag'  style="display:none;" >亚美尼亚</a><a href='?device=&cate=25129&subcate=25180&store=id' class='tag'  style="display:none;" >印度尼西亚</a><a href='?device=&cate=25129&subcate=25180&store=il' class='tag'  style="display:none;" >以色列</a><a href='?device=&cate=25129&subcate=25180&store=in' class='tag'  style="display:none;" >印度</a><a href='?device=&cate=25129&subcate=25180&store=it' class='tag'  style="display:none;" >意大利</a><a href='?device=&cate=25129&subcate=25180&store=jm' class='tag'  style="display:none;" >牙买加</a><a href='?device=&cate=25129&subcate=25180&store=jo' class='tag'  style="display:none;" >约旦</a><a href='?device=&cate=25129&subcate=25180&store=vg' class='tag'  style="display:none;" >英属维尔京群岛</a><a href='?device=&cate=25129&subcate=25180&store=vn' class='tag'  style="display:none;" >越南</a><a href='?device=&cate=25129&subcate=25180&store=ye' class='tag'  style="display:none;" >也门</a><a href='?device=&cate=25129&subcate=25180&store=cl' class='tag'  style="display:none;" >智利</a><a href='?device=&cate=25129&subcate=25180&store=td' class='tag'  style="display:none;" >乍得</a><a href='?device=&cate=25129&subcate=25180&store=fj' class='tag'  style="display:none;" >斐济</a>	
+                                		<a href="javascript:void(0);" class="tag more" fold="1">更多国家</a>
+                                </dd>
+                            </dl>
+							<dl>
+                            	<dt>分类：</dt>
+                                <dd>
+					<a href='?device=&store=cn&cate=25129' class='selected'>全部</a><a href='?device=&store=cn&cate=6014' class='tag'>游戏</a><a href='?device=&store=cn&cate=6018' class='tag'>图书</a><a href='?device=&store=cn&cate=6000' class='tag'>商务</a><a href='?device=&store=cn&cate=6022' class='tag'>商品指南</a><a href='?device=&store=cn&cate=6017' class='tag'>教育</a><a href='?device=&store=cn&cate=6016' class='tag'>娱乐</a><a href='?device=&store=cn&cate=6015' class='tag'>财务</a><a href='?device=&store=cn&cate=6023' class='tag'>美食佳饮</a><a href='?device=&store=cn&cate=6013' class='tag'>健康健美</a><a href='?device=&store=cn&cate=6012' class='tag'>生活</a><a href='?device=&store=cn&cate=6021' class='tag'>报刊杂志</a><a href='?device=&store=cn&cate=6020' class='tag'>医疗</a><a href='?device=&store=cn&cate=6011' class='tag'>音乐</a><a href='?device=&store=cn&cate=6010' class='tag'>导航</a><a href='?device=&store=cn&cate=6009' class='tag'>新闻</a><a href='?device=&store=cn&cate=6008' class='tag'>摄影与录像</a><a href='?device=&store=cn&cate=6007' class='tag'>效率</a><a href='?device=&store=cn&cate=6006' class='tag'>参考</a><a href='?device=&store=cn&cate=6024' class='tag'>购物</a><a href='?device=&store=cn&cate=6005' class='tag'>社交</a><a href='?device=&store=cn&cate=6004' class='tag'>体育</a><a href='?device=&store=cn&cate=6003' class='tag'>旅游</a><a href='?device=&store=cn&cate=6002' class='tag'>工具</a><a href='?device=&store=cn&cate=6001' class='tag'>天气</a> 
+		                    		
+	                            </dd>
+	                            
+                            </dl>
+                            
+                            <dl style="display:none;">
+                            	<dt>游戏：</dt>
+                                <dd>
+	        <a href='?device=&store=cn&cate=25129&subcate=25180' class='selected'>全部游戏</a><a href='?device=&store=cn&cate=25129&subcate=7001' class='tag'>动作游戏</a><a href='?device=&store=cn&cate=25129&subcate=7002' class='tag'>冒险游戏</a><a href='?device=&store=cn&cate=25129&subcate=7003' class='tag'>街机游戏</a><a href='?device=&store=cn&cate=25129&subcate=7004' class='tag'>桌面游戏</a><a href='?device=&store=cn&cate=25129&subcate=7005' class='tag'>卡牌游戏</a><a href='?device=&store=cn&cate=25129&subcate=7006' class='tag'>娱乐场游戏</a><a href='?device=&store=cn&cate=25129&subcate=7007' class='tag'>骰子游戏</a><a href='?device=&store=cn&cate=25129&subcate=7008' class='tag'>教育类游戏</a><a href='?device=&store=cn&cate=25129&subcate=7009' class='tag'>聚会游戏</a><a href='?device=&store=cn&cate=25129&subcate=7010' class='tag'>儿童游戏</a><a href='?device=&store=cn&cate=25129&subcate=7011' class='tag'>音乐</a><a href='?device=&store=cn&cate=25129&subcate=7012' class='tag'>益智解谜</a><a href='?device=&store=cn&cate=25129&subcate=7013' class='tag'>竞速游戏</a><a href='?device=&store=cn&cate=25129&subcate=7014' class='tag'>角色扮演游戏</a><a href='?device=&store=cn&cate=25129&subcate=7015' class='tag'>模拟游戏</a><a href='?device=&store=cn&cate=25129&subcate=7016' class='tag'>体育</a><a href='?device=&store=cn&cate=25129&subcate=7017' class='tag'>策略游戏</a><a href='?device=&store=cn&cate=25129&subcate=7018' class='tag'>问答游戏</a><a href='?device=&store=cn&cate=25129&subcate=7019' class='tag'>文字游戏</a>
+                                </dd>
+                            </dl>
+                            
+							<dl>
+                            	<dt>设备：</dt>
+                                <dd>
+				<a href='?cate=25129&store=cn&subcate=25180&device=iPhone' class='selected'>iPhone</a><a href='?cate=25129&store=cn&subcate=25180&device=iPad' class='tag'>iPad</a> 			
+				
+                                </dd>
+                            </dl>
+                                                        	
+											
+							                            
+							
+	                            
+						</div>        	
+	        			</div>  	
+	        			
+	        			
+	        			
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tbody>
+			<tr>
+				<th class="numb">#</th>
+				<th class="paid">付费榜单 <span class="list-actions"><a href="javascript:void(0)" class="subscribe-btn" data-list="paid" title="订阅榜单"><i class="iconfont icon-star-o"></i>订阅榜单</a> <a href="javascript:void(0)" class="notify-btn" data-list="paid" title="新app上榜通知"><i class="iconfont icon-bell-o"></i>新上榜通知</a></span></th>
+				<th class="free">免费榜单 <span class="list-actions"><a href="javascript:void(0)" class="subscribe-btn" data-list="free" title="订阅榜单"><i class="iconfont icon-star-o"></i>订阅榜单</a> <a href="javascript:void(0)" class="notify-btn" data-list="free" title="新app上榜通知"><i class="iconfont icon-bell-o"></i>新上榜通知</a></span></th>
+				<th class="grossing">赚钱榜单 <span class="list-actions"><a href="javascript:void(0)" class="subscribe-btn" data-list="grossing" title="订阅榜单"><i class="iconfont icon-star-o"></i>订阅榜单</a> <a href="javascript:void(0)" class="notify-btn" data-list="grossing" title="新app上榜通知"><i class="iconfont icon-bell-o"></i>新上榜通知</a></span></th>
+			</tr>
+				
+			
+				<tr style="display:none;">
+					<th class="numb">1</th>
+					<td class="paid" id="paid_0"></td>
+					<td class="free" id="free_0"></td>
+					<td class="grossing" id="grossing_0"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">2</th>
+					<td class="paid" id="paid_1"></td>
+					<td class="free" id="free_1"></td>
+					<td class="grossing" id="grossing_1"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">3</th>
+					<td class="paid" id="paid_2"></td>
+					<td class="free" id="free_2"></td>
+					<td class="grossing" id="grossing_2"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">4</th>
+					<td class="paid" id="paid_3"></td>
+					<td class="free" id="free_3"></td>
+					<td class="grossing" id="grossing_3"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">5</th>
+					<td class="paid" id="paid_4"></td>
+					<td class="free" id="free_4"></td>
+					<td class="grossing" id="grossing_4"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">6</th>
+					<td class="paid" id="paid_5"></td>
+					<td class="free" id="free_5"></td>
+					<td class="grossing" id="grossing_5"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">7</th>
+					<td class="paid" id="paid_6"></td>
+					<td class="free" id="free_6"></td>
+					<td class="grossing" id="grossing_6"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">8</th>
+					<td class="paid" id="paid_7"></td>
+					<td class="free" id="free_7"></td>
+					<td class="grossing" id="grossing_7"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">9</th>
+					<td class="paid" id="paid_8"></td>
+					<td class="free" id="free_8"></td>
+					<td class="grossing" id="grossing_8"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">10</th>
+					<td class="paid" id="paid_9"></td>
+					<td class="free" id="free_9"></td>
+					<td class="grossing" id="grossing_9"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">11</th>
+					<td class="paid" id="paid_10"></td>
+					<td class="free" id="free_10"></td>
+					<td class="grossing" id="grossing_10"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">12</th>
+					<td class="paid" id="paid_11"></td>
+					<td class="free" id="free_11"></td>
+					<td class="grossing" id="grossing_11"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">13</th>
+					<td class="paid" id="paid_12"></td>
+					<td class="free" id="free_12"></td>
+					<td class="grossing" id="grossing_12"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">14</th>
+					<td class="paid" id="paid_13"></td>
+					<td class="free" id="free_13"></td>
+					<td class="grossing" id="grossing_13"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">15</th>
+					<td class="paid" id="paid_14"></td>
+					<td class="free" id="free_14"></td>
+					<td class="grossing" id="grossing_14"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">16</th>
+					<td class="paid" id="paid_15"></td>
+					<td class="free" id="free_15"></td>
+					<td class="grossing" id="grossing_15"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">17</th>
+					<td class="paid" id="paid_16"></td>
+					<td class="free" id="free_16"></td>
+					<td class="grossing" id="grossing_16"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">18</th>
+					<td class="paid" id="paid_17"></td>
+					<td class="free" id="free_17"></td>
+					<td class="grossing" id="grossing_17"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">19</th>
+					<td class="paid" id="paid_18"></td>
+					<td class="free" id="free_18"></td>
+					<td class="grossing" id="grossing_18"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">20</th>
+					<td class="paid" id="paid_19"></td>
+					<td class="free" id="free_19"></td>
+					<td class="grossing" id="grossing_19"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">21</th>
+					<td class="paid" id="paid_20"></td>
+					<td class="free" id="free_20"></td>
+					<td class="grossing" id="grossing_20"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">22</th>
+					<td class="paid" id="paid_21"></td>
+					<td class="free" id="free_21"></td>
+					<td class="grossing" id="grossing_21"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">23</th>
+					<td class="paid" id="paid_22"></td>
+					<td class="free" id="free_22"></td>
+					<td class="grossing" id="grossing_22"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">24</th>
+					<td class="paid" id="paid_23"></td>
+					<td class="free" id="free_23"></td>
+					<td class="grossing" id="grossing_23"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">25</th>
+					<td class="paid" id="paid_24"></td>
+					<td class="free" id="free_24"></td>
+					<td class="grossing" id="grossing_24"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">26</th>
+					<td class="paid" id="paid_25"></td>
+					<td class="free" id="free_25"></td>
+					<td class="grossing" id="grossing_25"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">27</th>
+					<td class="paid" id="paid_26"></td>
+					<td class="free" id="free_26"></td>
+					<td class="grossing" id="grossing_26"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">28</th>
+					<td class="paid" id="paid_27"></td>
+					<td class="free" id="free_27"></td>
+					<td class="grossing" id="grossing_27"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">29</th>
+					<td class="paid" id="paid_28"></td>
+					<td class="free" id="free_28"></td>
+					<td class="grossing" id="grossing_28"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">30</th>
+					<td class="paid" id="paid_29"></td>
+					<td class="free" id="free_29"></td>
+					<td class="grossing" id="grossing_29"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">31</th>
+					<td class="paid" id="paid_30"></td>
+					<td class="free" id="free_30"></td>
+					<td class="grossing" id="grossing_30"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">32</th>
+					<td class="paid" id="paid_31"></td>
+					<td class="free" id="free_31"></td>
+					<td class="grossing" id="grossing_31"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">33</th>
+					<td class="paid" id="paid_32"></td>
+					<td class="free" id="free_32"></td>
+					<td class="grossing" id="grossing_32"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">34</th>
+					<td class="paid" id="paid_33"></td>
+					<td class="free" id="free_33"></td>
+					<td class="grossing" id="grossing_33"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">35</th>
+					<td class="paid" id="paid_34"></td>
+					<td class="free" id="free_34"></td>
+					<td class="grossing" id="grossing_34"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">36</th>
+					<td class="paid" id="paid_35"></td>
+					<td class="free" id="free_35"></td>
+					<td class="grossing" id="grossing_35"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">37</th>
+					<td class="paid" id="paid_36"></td>
+					<td class="free" id="free_36"></td>
+					<td class="grossing" id="grossing_36"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">38</th>
+					<td class="paid" id="paid_37"></td>
+					<td class="free" id="free_37"></td>
+					<td class="grossing" id="grossing_37"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">39</th>
+					<td class="paid" id="paid_38"></td>
+					<td class="free" id="free_38"></td>
+					<td class="grossing" id="grossing_38"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">40</th>
+					<td class="paid" id="paid_39"></td>
+					<td class="free" id="free_39"></td>
+					<td class="grossing" id="grossing_39"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">41</th>
+					<td class="paid" id="paid_40"></td>
+					<td class="free" id="free_40"></td>
+					<td class="grossing" id="grossing_40"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">42</th>
+					<td class="paid" id="paid_41"></td>
+					<td class="free" id="free_41"></td>
+					<td class="grossing" id="grossing_41"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">43</th>
+					<td class="paid" id="paid_42"></td>
+					<td class="free" id="free_42"></td>
+					<td class="grossing" id="grossing_42"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">44</th>
+					<td class="paid" id="paid_43"></td>
+					<td class="free" id="free_43"></td>
+					<td class="grossing" id="grossing_43"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">45</th>
+					<td class="paid" id="paid_44"></td>
+					<td class="free" id="free_44"></td>
+					<td class="grossing" id="grossing_44"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">46</th>
+					<td class="paid" id="paid_45"></td>
+					<td class="free" id="free_45"></td>
+					<td class="grossing" id="grossing_45"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">47</th>
+					<td class="paid" id="paid_46"></td>
+					<td class="free" id="free_46"></td>
+					<td class="grossing" id="grossing_46"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">48</th>
+					<td class="paid" id="paid_47"></td>
+					<td class="free" id="free_47"></td>
+					<td class="grossing" id="grossing_47"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">49</th>
+					<td class="paid" id="paid_48"></td>
+					<td class="free" id="free_48"></td>
+					<td class="grossing" id="grossing_48"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">50</th>
+					<td class="paid" id="paid_49"></td>
+					<td class="free" id="free_49"></td>
+					<td class="grossing" id="grossing_49"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">51</th>
+					<td class="paid" id="paid_50"></td>
+					<td class="free" id="free_50"></td>
+					<td class="grossing" id="grossing_50"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">52</th>
+					<td class="paid" id="paid_51"></td>
+					<td class="free" id="free_51"></td>
+					<td class="grossing" id="grossing_51"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">53</th>
+					<td class="paid" id="paid_52"></td>
+					<td class="free" id="free_52"></td>
+					<td class="grossing" id="grossing_52"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">54</th>
+					<td class="paid" id="paid_53"></td>
+					<td class="free" id="free_53"></td>
+					<td class="grossing" id="grossing_53"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">55</th>
+					<td class="paid" id="paid_54"></td>
+					<td class="free" id="free_54"></td>
+					<td class="grossing" id="grossing_54"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">56</th>
+					<td class="paid" id="paid_55"></td>
+					<td class="free" id="free_55"></td>
+					<td class="grossing" id="grossing_55"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">57</th>
+					<td class="paid" id="paid_56"></td>
+					<td class="free" id="free_56"></td>
+					<td class="grossing" id="grossing_56"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">58</th>
+					<td class="paid" id="paid_57"></td>
+					<td class="free" id="free_57"></td>
+					<td class="grossing" id="grossing_57"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">59</th>
+					<td class="paid" id="paid_58"></td>
+					<td class="free" id="free_58"></td>
+					<td class="grossing" id="grossing_58"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">60</th>
+					<td class="paid" id="paid_59"></td>
+					<td class="free" id="free_59"></td>
+					<td class="grossing" id="grossing_59"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">61</th>
+					<td class="paid" id="paid_60"></td>
+					<td class="free" id="free_60"></td>
+					<td class="grossing" id="grossing_60"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">62</th>
+					<td class="paid" id="paid_61"></td>
+					<td class="free" id="free_61"></td>
+					<td class="grossing" id="grossing_61"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">63</th>
+					<td class="paid" id="paid_62"></td>
+					<td class="free" id="free_62"></td>
+					<td class="grossing" id="grossing_62"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">64</th>
+					<td class="paid" id="paid_63"></td>
+					<td class="free" id="free_63"></td>
+					<td class="grossing" id="grossing_63"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">65</th>
+					<td class="paid" id="paid_64"></td>
+					<td class="free" id="free_64"></td>
+					<td class="grossing" id="grossing_64"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">66</th>
+					<td class="paid" id="paid_65"></td>
+					<td class="free" id="free_65"></td>
+					<td class="grossing" id="grossing_65"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">67</th>
+					<td class="paid" id="paid_66"></td>
+					<td class="free" id="free_66"></td>
+					<td class="grossing" id="grossing_66"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">68</th>
+					<td class="paid" id="paid_67"></td>
+					<td class="free" id="free_67"></td>
+					<td class="grossing" id="grossing_67"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">69</th>
+					<td class="paid" id="paid_68"></td>
+					<td class="free" id="free_68"></td>
+					<td class="grossing" id="grossing_68"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">70</th>
+					<td class="paid" id="paid_69"></td>
+					<td class="free" id="free_69"></td>
+					<td class="grossing" id="grossing_69"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">71</th>
+					<td class="paid" id="paid_70"></td>
+					<td class="free" id="free_70"></td>
+					<td class="grossing" id="grossing_70"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">72</th>
+					<td class="paid" id="paid_71"></td>
+					<td class="free" id="free_71"></td>
+					<td class="grossing" id="grossing_71"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">73</th>
+					<td class="paid" id="paid_72"></td>
+					<td class="free" id="free_72"></td>
+					<td class="grossing" id="grossing_72"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">74</th>
+					<td class="paid" id="paid_73"></td>
+					<td class="free" id="free_73"></td>
+					<td class="grossing" id="grossing_73"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">75</th>
+					<td class="paid" id="paid_74"></td>
+					<td class="free" id="free_74"></td>
+					<td class="grossing" id="grossing_74"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">76</th>
+					<td class="paid" id="paid_75"></td>
+					<td class="free" id="free_75"></td>
+					<td class="grossing" id="grossing_75"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">77</th>
+					<td class="paid" id="paid_76"></td>
+					<td class="free" id="free_76"></td>
+					<td class="grossing" id="grossing_76"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">78</th>
+					<td class="paid" id="paid_77"></td>
+					<td class="free" id="free_77"></td>
+					<td class="grossing" id="grossing_77"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">79</th>
+					<td class="paid" id="paid_78"></td>
+					<td class="free" id="free_78"></td>
+					<td class="grossing" id="grossing_78"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">80</th>
+					<td class="paid" id="paid_79"></td>
+					<td class="free" id="free_79"></td>
+					<td class="grossing" id="grossing_79"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">81</th>
+					<td class="paid" id="paid_80"></td>
+					<td class="free" id="free_80"></td>
+					<td class="grossing" id="grossing_80"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">82</th>
+					<td class="paid" id="paid_81"></td>
+					<td class="free" id="free_81"></td>
+					<td class="grossing" id="grossing_81"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">83</th>
+					<td class="paid" id="paid_82"></td>
+					<td class="free" id="free_82"></td>
+					<td class="grossing" id="grossing_82"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">84</th>
+					<td class="paid" id="paid_83"></td>
+					<td class="free" id="free_83"></td>
+					<td class="grossing" id="grossing_83"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">85</th>
+					<td class="paid" id="paid_84"></td>
+					<td class="free" id="free_84"></td>
+					<td class="grossing" id="grossing_84"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">86</th>
+					<td class="paid" id="paid_85"></td>
+					<td class="free" id="free_85"></td>
+					<td class="grossing" id="grossing_85"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">87</th>
+					<td class="paid" id="paid_86"></td>
+					<td class="free" id="free_86"></td>
+					<td class="grossing" id="grossing_86"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">88</th>
+					<td class="paid" id="paid_87"></td>
+					<td class="free" id="free_87"></td>
+					<td class="grossing" id="grossing_87"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">89</th>
+					<td class="paid" id="paid_88"></td>
+					<td class="free" id="free_88"></td>
+					<td class="grossing" id="grossing_88"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">90</th>
+					<td class="paid" id="paid_89"></td>
+					<td class="free" id="free_89"></td>
+					<td class="grossing" id="grossing_89"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">91</th>
+					<td class="paid" id="paid_90"></td>
+					<td class="free" id="free_90"></td>
+					<td class="grossing" id="grossing_90"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">92</th>
+					<td class="paid" id="paid_91"></td>
+					<td class="free" id="free_91"></td>
+					<td class="grossing" id="grossing_91"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">93</th>
+					<td class="paid" id="paid_92"></td>
+					<td class="free" id="free_92"></td>
+					<td class="grossing" id="grossing_92"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">94</th>
+					<td class="paid" id="paid_93"></td>
+					<td class="free" id="free_93"></td>
+					<td class="grossing" id="grossing_93"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">95</th>
+					<td class="paid" id="paid_94"></td>
+					<td class="free" id="free_94"></td>
+					<td class="grossing" id="grossing_94"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">96</th>
+					<td class="paid" id="paid_95"></td>
+					<td class="free" id="free_95"></td>
+					<td class="grossing" id="grossing_95"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">97</th>
+					<td class="paid" id="paid_96"></td>
+					<td class="free" id="free_96"></td>
+					<td class="grossing" id="grossing_96"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">98</th>
+					<td class="paid" id="paid_97"></td>
+					<td class="free" id="free_97"></td>
+					<td class="grossing" id="grossing_97"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">99</th>
+					<td class="paid" id="paid_98"></td>
+					<td class="free" id="free_98"></td>
+					<td class="grossing" id="grossing_98"></td>
+				</tr>
+			
+				<tr style="display:none;">
+					<th class="numb">100</th>
+					<td class="paid" id="paid_99"></td>
+					<td class="free" id="free_99"></td>
+					<td class="grossing" id="grossing_99"></td>
+				</tr>
+	
+				
+	
+						
+			</tbody>
+		</table>
+
+				<!-- 非VIP用户显示广告 -->
+		<div class="adsense-sidebar-container" style="margin:20px auto;max-width:960px;max-height:120px;">
+					</div>
+			        			
+	        			
+				<section class="section chart-grid">
+					<div class="section-content">
+				 		<ul>
+						 	<div class="loading-box"><div class="loading"><div></div><div></div><div></div><div></div></div><p>🔄 热点跑得快，我们加载也要快一点！</p></div>
+				 		</ul>
+				 	</div>
+				</section>        	
+			
+		</div>
+
+		
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$.getData = function(t) {
+	
+			$.ajax({
+		        url: 'https://itunes.apple.com/cn/rss/top'+t+'applications/limit=100/genre=25129/json',
+		        type: 'GET',
+		        dataType: 'json',
+		        success: function(data) {
+		            if((data.feed.hasOwnProperty('entry'))){
+			            $.each(data.feed.entry,function(i,v){
+				             $("#"+t+"_"+i).html('<div class="app-block"><a href="'+v['id'].label+'" target="_blank"><div class="app-icon"><img class="lazy" src="https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png" data-original="'+v['im:image'][2].label+'"></div></a><div class="app-info"><h4><a href="'+v['id'].label+'" target="_blank">'+v['im:name'].label+'</a></h4><p>'+v['im:artist'].label+'</p><p class="app-price">'+v['category'].attributes.label+' · '+(v['im:price'].label.match('获取|Get|入手|取得')?"免费":v['im:price'].label)+'</p></div></div>');
+						});
+						$("tr").show();
+						$(".chart-grid").hide();
+		            }
+		            else{
+						//加载失败
+		            }
+		            $(".lazy").lazyload();
+		        }
+		    });
+	
+	};
+	
+	$.getData("free");
+	$.getData("paid");
+	$.getData("grossing");
+	
+	// 处理订阅榜单和新app上榜通知按钮点击事件
+	$('.subscribe-btn').click(function(e) {
+		e.preventDefault();
+		var listType = $(this).data('list');
+		$(this).toggleClass('active');
+		
+		// 获取当前的参数
+		var device = '';
+		var store = 'cn';
+		var cate = '25129';
+		var subcate = '25180';
+		
+		// 这里可以添加订阅榜单的逻辑
+		if ($(this).hasClass('active')) {
+			// 订阅榜单
+			alert('已订阅' + listType + '榜单，有新变化时将通知您');
+			// 这里可以添加AJAX请求，将订阅信息发送到服务器
+			// $.post('/api/subscribe', {list_type: listType, device: device, store: store, cate: cate, subcate: subcate});
+		} else {
+			// 取消订阅
+			alert('已取消订阅' + listType + '榜单');
+			// 这里可以添加AJAX请求，将取消订阅信息发送到服务器
+			// $.post('/api/unsubscribe', {list_type: listType, device: device, store: store, cate: cate, subcate: subcate});
+		}
+	});
+	
+	$('.notify-btn').click(function(e) {
+		e.preventDefault();
+		var listType = $(this).data('list');
+		$(this).toggleClass('active');
+		
+		// 获取当前的参数
+		var device = '';
+		var store = 'cn';
+		var cate = '25129';
+		var subcate = '25180';
+		
+		// 这里可以添加新app上榜通知的逻辑
+		if ($(this).hasClass('active')) {
+			// 开启新app上榜通知
+			alert('已开启' + listType + '榜单新app上榜通知');
+			// 这里可以添加AJAX请求，将通知设置发送到服务器
+			// $.post('/api/notify', {list_type: listType, device: device, store: store, cate: cate, subcate: subcate});
+		} else {
+			// 关闭新app上榜通知
+			alert('已关闭' + listType + '榜单新app上榜通知');
+			// 这里可以添加AJAX请求，将取消通知设置发送到服务器
+			// $.post('/api/unnotify', {list_type: listType, device: device, store: store, cate: cate, subcate: subcate});
+		}
+	});
+    
+    
+    $('.charts-fliter-wrapper a.more').click(function(e){
+		var isFold = parseInt($(this).attr("fold"));
+		$(this).attr("fold",isFold==0?1:0);
+		if(isFold==1){
+			$(this).parent().find("a").show();
+			$(this).text("折叠收起");
+		}
+		else{
+			$(this).parent().find("a").each(function(i,e){
+				if(i<15 || $(e).hasClass("selected") || $(e).hasClass("more")) $(e).show();
+				else $(e).hide();
+			});
+			$(this).text("更多国家");
+		}
+		
+	});
+
+});
+
+
+</script>
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script></body>
+</html>

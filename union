@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>今日热榜联盟 - 共创价值，共享收益</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+</head>
+<body class="">
+<style>
+.about-hero,.advantage-card,.faq-item,.feature-box,.join-section,.step-card,.testimonial,.union-banner,.union-modal-content{transition:all .3s ease}
+.about-hero,.advantage-card,.faq-item,.feature-box,.join-section,.step-card,.testimonial,.union-banner,.union-modal-content{border-radius:16px;overflow:hidden;position:relative;z-index:1}
+.about-hero{display:flex;align-items:center;justify-content:space-between;padding:100px 80px;background:linear-gradient(135deg,#f1f7fe,#e2ecfd);margin-top:64px;position:relative}
+.about-hero:before{content:"";position:absolute;width:100%;height:100%;top:0;left:0;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18a7 7 0 100-14 7 7 0 000 14zm48 25a7 7 0 100-14 7 7 0 000 14zm-43-7a3 3 0 100-6 3 3 0 000 6zm63 31a3 3 0 100-6 3 3 0 000 6zM34 90a3 3 0 100-6 3 3 0 000 6zm56-76a3 3 0 100-6 3 3 0 000 6zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21a2 2 0 10.001-3.999A2 2 0 0080 29zM60 91a2 2 0 10.001-3.999A2 2 0 0060 91zM35 41a2 2 0 10.001-3.999A2 2 0 0035 41zM12 60a2 2 0 10.001-3.999A2 2 0 0012 60z' fill='%233a86ff' fill-opacity='.05' fill-rule='evenodd'/%3E%3C/svg%3E");opacity:.5}
+.about-hero-content{flex:1;max-width:600px;position:relative;z-index:1}
+.about-hero-content h1{font-size:48px;font-weight:700;margin-bottom:20px;color:#1a1a2e;line-height:1.2}
+.about-hero-content p{font-size:20px;line-height:1.6;margin-bottom:30px;color:#4a4a68}
+.about-hero-buttons{display:flex;flex-wrap:wrap;gap:15px}
+.about-hero-image{flex:0 0 300px;display:flex;justify-content:center;align-items:center;position:relative;z-index:1}
+.btn-primary,.union-btn-primary{display:inline-block;padding:12px 30px;background:linear-gradient(135deg,#3a86ff,#5e9eff);color:#fff;border-radius:50px;font-weight:600;text-decoration:none;transition:all .3s ease;border:none;box-shadow:0 5px 15px rgba(58,134,255,.3)}
+.btn-primary:hover,.union-btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(58,134,255,.4)}
+.btn-secondary,.union-btn-secondary{display:inline-block;padding:12px 30px;background:rgba(58,134,255,.1);color:#3a86ff;border-radius:50px;font-weight:600;text-decoration:none;transition:all .3s ease;border:1px solid rgba(58,134,255,.3)}
+.btn-secondary:hover,.union-btn-secondary:hover{background:rgba(58,134,255,.2);transform:translateY(-3px)}
+.dark .about-hero{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.advantages-cards{display:flex;justify-content:space-between;gap:30px;margin-bottom:50px}
+.advantage-card{flex:1}
+.advantage-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(0,0,0,.1)}
+.advantage-card .card-header{background:#3a86ff;padding:15px 20px;font-size:18px;position:relative}
+.advantage-card .card-header:after{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:linear-gradient(90deg,#3a86ff,#5e60ce);border-radius:3px}
+.advantage-card .card-body{padding:20px}
+.advantage-card ul{list-style-type:none;padding:0;margin:0}
+.advantage-card ul li{position:relative;padding:10px 0 10px 25px;border-bottom:1px solid rgba(0,0,0,.05);color:#555}
+.advantage-card ul li:last-child{border-bottom:none}
+.advantage-card ul li:before{content:"✓";position:absolute;left:0;color:#3a86ff;font-weight:700}
+.join-cta-section{background:linear-gradient(135deg,#3a86ff,#4361ee);padding:80px 0;position:relative;overflow:hidden;color:#fff}
+.join-cta-container{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
+.join-cta-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.join-cta-text{flex:1;max-width:600px;margin-right:40px}
+.join-cta-text h2{font-size:36px;font-weight:700;margin-bottom:20px;color:#fff}
+.join-cta-text p{font-size:18px;line-height:1.6;opacity:.9;margin-bottom:0}
+.join-cta-buttons{display:flex;gap:15px;margin-top:30px}
+.join-now-btn{background:#fff;color:#3a86ff;border:none;padding:12px 30px;border-radius:30px;font-weight:600;font-size:16px;cursor:pointer;transition:all .3s ease;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+.join-now-btn:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,.15)}
+.learn-more-btn{background:0 0;color:#fff;border:2px solid #fff;padding:12px 30px;border-radius:30px;font-weight:600;font-size:16px;cursor:pointer;transition:all .3s ease}
+.learn-more-btn:hover{background:hsla(0,0%,100%,.1);transform:translateY(-3px)}
+.join-cta-decoration{position:absolute;top:0;right:0;bottom:0;left:0}
+.decoration-circle{position:absolute;border-radius:50%;background:hsla(0,0%,100%,.1)}
+.circle-1{width:300px;height:300px;top:-100px;right:-50px}
+.circle-2{width:200px;height:200px;bottom:-50px;left:10%}
+.circle-3{width:150px;height:150px;top:30%;left:20%;background:hsla(0,0%,100%,.05)}
+.dark .about-hero-content h1{color:#e0e0e0}
+.dark .about-hero-content p{color:#b0b0c0}
+.dark .btn-secondary,.dark .union-btn-secondary{background:rgba(94,158,255,.15);color:#5e9eff;border:1px solid rgba(94,158,255,.3)}
+.dark .btn-secondary:hover,.dark .union-btn-secondary:hover{background:rgba(94,158,255,.25)}
+.union-nav{display:flex;justify-content:center;padding:15px 0;margin-top:64px;background-color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05);position:sticky;top:0;z-index:100}
+.union-nav-links{display:flex;gap:30px}
+.union-nav-links a{color:#333;text-decoration:none;font-weight:500;transition:all .3s ease;padding:5px 0;position:relative}
+.union-nav-links a:hover{color:#3a86ff}
+.union-nav-links a:after{content:"";position:absolute;width:0;height:2px;bottom:0;left:0;background-color:#3a86ff;transition:width .3s ease}
+.union-nav-links a:hover:after{width:100%}
+.dark .union-nav{background-color:#1a1a2e;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.dark .union-nav-links a{color:#e1e1e1}
+.dark .union-nav-links a:hover{color:#3a86ff}
+.union-container{max-width:1200px;margin:50px auto;padding:0 20px}
+.union-text-center{text-align:center}
+.union-text-muted{color:#4a4a68;font-size:17px;line-height:1.7;font-weight:400;max-width:800px;margin:0 auto 50px}
+.union-text-primary{color:#3a86ff}
+h2{font-size:36px;font-weight:700;text-align:center;margin-bottom:20px;color:#1a1a2e;position:relative;padding-bottom:15px}
+h2:after{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60px;height:3px;background:linear-gradient(90deg,#3a86ff,#5e60ce);border-radius:3px}
+.union-mb-3{margin-bottom:1rem}
+.union-mb-4{margin-bottom:1.5rem}
+.union-mb-5{margin-bottom:3rem}
+.union-mt-3{margin-top:1rem}
+.union-mt-4{margin-top:1.5rem}
+.union-mt-5,.union-my-5{margin-top:3rem}
+.union-my-5{margin-bottom:3rem}
+.union-banner{background:linear-gradient(135deg,#f1f7fe,#e2ecfd);padding:100px 80px;color:#1a1a2e;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;border-bottom:1px solid rgba(0,0,0,.05);margin-top:64px;box-shadow:0 5px 20px rgba(0,0,0,.03);text-align:center}
+.banner-buttons{margin-top:30px;display:flex;gap:15px;justify-content:center}
+.union-banner:before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:url(https://file.ibmwclub.com/tophub/assets/images/pattern.png);opacity:.05;z-index:1}
+.union-banner h1{font-size:52px;font-weight:800;margin-bottom:25px;color:#1a1a2e;line-height:1.2;background:linear-gradient(90deg,#3a86ff,#5e60ce);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.union-banner p{font-size:20px;line-height:1.7;margin-bottom:35px;color:#4a4a68}
+.union-row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}
+.union-col-md-4,.union-col-md-6{box-sizing:border-box;width:100%;padding-left:15px;padding-right:25px;}
+
+/* 表单样式 */
+.union-text-muted {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: var(--text-muted-color);
+}
+
+.union-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.union-form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    background-color: var(--bg-input-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.union-form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--focus-ring-color);
+}
+
+.union-form-label.union-required::after {
+    content: '*';
+    color: var(--error-color);
+    margin-left: 4px;
+}
+
+/* 暗黑模式变量 */
+:root {
+    --text-muted-color: #64748b;
+    --text-color: #1e293b;
+    --bg-input-color: #fff;
+    --border-color: #e2e8f0;
+    --primary-color: #3a86ff;
+    --focus-ring-color: rgba(59, 130, 246, 0.2);
+    --error-color: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-muted-color: #94a3b8;
+        --text-color: #f1f5f9;
+        --bg-input-color: #1e293b;
+        --border-color: #475569;
+        --primary-color: #60a5fa;
+        --focus-ring-color: rgba(96, 165, 250, 0.2);
+        --error-color: #ef4444;
+    }
+    
+    .union-modal-content {
+        background: #0f172a;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    .union-modal-content h2 {
+        color: #f1f5f9;
+    }
+}
+@media (min-width:768px){.union-col-md-4{width:33.333333%}
+.union-col-md-6{width:50%}
+}
+.union-btn{display:inline-block;padding:14px 32px;border-radius:30px;font-weight:600;text-decoration:none;transition:all .3s ease;cursor:pointer}
+.union-btn-primary{background:linear-gradient(90deg,#3a86ff,#5e60ce);color:#fff;box-shadow:0 5px 15px rgba(58,134,255,.3);position:relative;overflow:hidden;z-index:1}
+.union-btn-primary:before{content:"";position:absolute;top:0;left:0;width:0;height:100%;background:linear-gradient(90deg,#5e60ce,#3a86ff);transition:all .5s ease;z-index:-1}
+.union-btn-primary:hover:before{width:100%}
+.union-btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(58,134,255,.4)}
+.union-btn-secondary{background:hsla(0,0%,100%,.8);color:#3a86ff;border:1px solid rgba(58,134,255,.3);box-shadow:0 5px 15px rgba(0,0,0,.05)}
+.union-btn-secondary:hover{background:hsla(0,0%,100%,.95);transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.08);color:#5e60ce}
+.feature-box{background-color:#fff;border-radius:16px;padding:40px 30px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.04);transition:all .4s ease;border:1px solid rgba(58,134,255,.08);position:relative;overflow:hidden;z-index:1;margin-bottom:30px}
+.feature-box:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:0;background:linear-gradient(180deg,rgba(58,134,255,.03),rgba(94,96,206,.08));transition:all .4s ease;z-index:-1}
+.feature-box:hover{transform:translateY(-10px);box-shadow:0 15px 35px rgba(58,134,255,.12);border-color:rgba(58,134,255,.2)}
+.feature-box:hover:after{height:100%}
+.feature-box .feature-icon,.feature-box i{font-size:48px;color:#3a86ff;margin-bottom:25px;opacity:.9;position:relative;display:inline-block;transition:transform .5s ease}
+.feature-box:hover .feature-icon,.feature-box:hover i{transform:scale(1.1) rotate(5deg)}
+.feature-box .feature-icon:after,.feature-box i:after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;background:radial-gradient(circle,rgba(58,134,255,.1) 0,hsla(0,0%,100%,0) 70%);border-radius:50%;z-index:-1;transition:all .5s ease}
+.feature-box:hover .feature-icon:after,.feature-box:hover i:after{width:90px;height:90px;background:radial-gradient(circle,rgba(58,134,255,.15) 0,hsla(0,0%,100%,0) 70%)}
+.feature-box h3{font-size:22px;font-weight:700;color:#1a1a2e}
+.feature-box p{font-size:16px;line-height:1.7;color:#4a4a68;font-weight:400}
+.advantage-card{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.05);transition:all .4s ease;border:1px solid rgba(58,134,255,.08);position:relative;margin-bottom:25px;height:100%}
+.card-header{background:linear-gradient(135deg,#f1f7fe,#e2ecfd);padding:20px;font-size:20px;font-weight:700;color:#1a1a2e;text-align:center;border-bottom:1px solid rgba(0,0,0,.05);position:relative}
+.card-header:after{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:3px;background:linear-gradient(90deg,#3a86ff,#5e60ce);border-radius:3px}
+.card-body{padding:25px}
+.card-body ul{padding-left:20px;margin:0}
+.card-body li{margin-bottom:12px;color:#4a4a68;position:relative;list-style-type:none;padding-left:25px}
+.card-body li:before{content:"✓";position:absolute;left:0;color:#3a86ff;font-weight:700}
+.advantage-card:before{content:"";position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(180deg,#3a86ff,#5e60ce);transition:all .4s ease}
+.advantage-card:hover{transform:translateY(-8px);box-shadow:0 15px 35px rgba(58,134,255,.12);border-color:rgba(58,134,255,.2)}
+.advantage-card:hover:before{height:100%}
+.advantage-card i{font-size:30px;color:#3a86ff;margin-right:20px;min-width:35px;opacity:.9;position:relative}
+.advantage-card i:after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:45px;height:45px;background:radial-gradient(circle,rgba(58,134,255,.1) 0,hsla(0,0%,100%,0) 70%);border-radius:50%;z-index:-1}
+.advantage-card h3{font-size:19px;font-weight:700;margin-bottom:10px;color:#1a1a2e}
+.advantage-card p{font-size:15px;line-height:1.7;color:#4a4a68;font-weight:400}
+.join-section{padding:100px 0;background:linear-gradient(135deg,#f8faff,#f1f7fe);border-bottom:1px solid rgba(0,0,0,.03);position:relative;margin:80px 0}
+.join-section:before{content:"";position:absolute;top:0;right:0;width:100%;height:100%;background:radial-gradient(circle at 90% 10%,rgba(94,96,206,.05) 0,hsla(0,0%,100%,0) 70%);z-index:0}
+.step-card{background-color:#fff;border-radius:16px;padding:40px 30px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.04);transition:all .4s ease;border:1px solid rgba(58,134,255,.08);position:relative;overflow:hidden;z-index:1;margin-bottom:30px}
+.step-card:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:0;background:linear-gradient(180deg,rgba(58,134,255,.03),rgba(94,96,206,.08));transition:all .4s ease;z-index:-1}
+.step-card:hover{transform:translateY(-10px);box-shadow:0 15px 35px rgba(58,134,255,.12);border-color:rgba(58,134,255,.2)}
+.step-card:hover:after{height:100%}
+.step-number{display:inline-block;width:50px;height:50px;line-height:50px;background:linear-gradient(90deg,#3a86ff,#5e60ce);color:#fff;border-radius:50%;font-size:24px;font-weight:700;margin-bottom:20px}
+.testimonial{background-color:#fff;border-radius:16px;padding:30px;box-shadow:0 10px 30px rgba(0,0,0,.04);transition:all .4s ease;border:1px solid rgba(58,134,255,.08);overflow:hidden}
+.testimonial:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:0;background:linear-gradient(180deg,rgba(58,134,255,.02),rgba(94,96,206,.05));transition:all .4s ease;z-index:-1}
+.testimonial:hover{transform:translateY(-8px);box-shadow:0 15px 35px rgba(58,134,255,.12);border-color:rgba(58,134,255,.2)}
+.testimonial:hover:after{height:100%}
+.testimonial-content{font-size:16px;line-height:1.7;color:#4a4a68;margin-bottom:20px}
+.testimonial-content:before{content:"\201C";font-size:60px;line-height:1;color:rgba(58,134,255,.1);position:absolute;top:-20px;left:-10px}
+.testimonial-author-avatar{width:50px;height:50px;border-radius:50%;overflow:hidden;margin-right:15px;border:2px solid rgba(58,134,255,.1)}
+.testimonial-author-avatar img{width:100%;height:100%;object-fit:cover}
+.testimonial-author-info h4{font-size:18px;font-weight:600;margin:0 0 5px;color:#1a1a2e}
+.testimonial-author-info p{font-size:14px;color:#4a4a68;margin:0}
+.faq-item{background-color:#fff;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.03);border:1px solid rgba(58,134,255,.08);overflow:hidden;transition:all .3s ease}
+.faq-item:hover{box-shadow:0 10px 25px rgba(58,134,255,.1);border-color:rgba(58,134,255,.15)}
+.faq-question{padding:20px 25px;font-size:17px;color:#1a1a2e;display:flex;justify-content:space-between;align-items:center}
+.faq-question:after{content:"+";font-size:20px;color:#3a86ff}
+.faq-item.active .faq-question:after{content:"-"}
+.faq-answer{padding:0 25px;max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.active .faq-answer{padding:0 25px 20px;max-height:1000px}
+.faq-answer p{margin:0;font-size:16px;line-height:1.7;color:#4a4a68}
+.union-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1000;overflow-y:auto;padding:50px 0}
+.union-modal.union-fade{opacity:0;transition:opacity .3s ease}
+.union-modal.show{display:block;opacity:1}
+.union-modal-dialog{max-width:500px;margin:0 auto;position:relative}
+.union-modal-dialog-centered{display:flex;align-items:center;min-height:calc(100% - 100px)}
+.union-modal-content{position:relative;border-radius:16px;box-shadow:0 15px 35px rgba(0,0,0,.1);border:1px solid rgba(58,134,255,.1);transition:all .3s ease}
+.union-modal-header{padding:20px 25px;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#f1f7fe,#e2ecfd)}
+.union-modal-title{margin:0;font-size:22px;font-weight:700;color:#1a1a2e}
+.union-btn-close{background:0 0;border:none;font-size:1.5rem;font-weight:700;line-height:1;color:#1a1a2e;opacity:.7;cursor:pointer;padding:0;margin:-1rem -1rem -1rem auto;transition:all .3s ease}
+.union-btn-close:hover{opacity:1;transform:scale(1.1)}
+.union-modal-body{padding:30px}
+.union-modal-footer{padding:20px 30px;border-top:1px solid rgba(0,0,0,.05);text-align:right;background:rgba(58,134,255,.03)}
+.union-form-group{margin-bottom:25px}
+.union-form-control,.union-form-label{color:#1a1a2e;font-size:16px}
+.union-form-control{display:block;width:100%;padding:14px 18px;line-height:1.5;background-color:#fff;border:1px solid rgba(58,134,255,.2);border-radius:12px;transition:all .3s ease;box-shadow:0 3px 10px rgba(0,0,0,.03)}
+.union-form-control:focus{border-color:#3a86ff;outline:0;box-shadow:0 5px 15px rgba(58,134,255,.15)}
+.union-form-text{font-size:14px;color:#4a4a68;margin-top:8px}
+.dark .union-container,.dark h2{color:#e0e0e0}
+.dark h2:after{background:linear-gradient(90deg,#5e9eff,#7e80ee)}
+.dark .union-text-muted{color:#b0e0c0}
+.dark .union-banner{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#e0e0e0;border-bottom:1px solid hsla(0,0%,100%,.05);box-shadow:0 5px 20px rgba(0,0,0,.2)}
+.dark .union-banner:before{opacity:.1}
+.dark .union-banner h1{color:#e0e0e0;background:linear-gradient(90deg,#5e9eff,#7e80ee);-webkit-background-clip:text;background-clip:text}
+.dark .union-banner p{color:#b0b0c0}
+.dark .union-btn-primary{background:linear-gradient(90deg,#5e9eff,#7e80ee);box-shadow:0 5px 15px rgba(94,158,255,.3)}
+.dark .union-btn-primary:before{background:linear-gradient(90deg,#7e80ee,#5e9eff)}
+.dark .union-btn-primary:hover{box-shadow:0 8px 20px rgba(94,158,255,.4)}
+.dark .union-btn-secondary{background:rgba(40,40,50,.8);color:#5e9eff;border:1px solid rgba(94,158,255,.3);box-shadow:0 5px 15px rgba(0,0,0,.15)}
+.dark .union-btn-secondary:hover{background:rgba(50,50,60,.95);color:#7e80ee;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.dark .feature-box{background-color:#1e1e24;box-shadow:0 10px 30px rgba(0,0,0,.2);border:1px solid rgba(94,158,255,.15)}
+.dark .feature-box:after{background:linear-gradient(180deg,rgba(94,158,255,.03),rgba(126,128,238,.08))}
+.dark .feature-box:hover{box-shadow:0 15px 35px rgba(94,158,255,.12);border-color:rgba(94,158,255,.2)}
+.dark .feature-box i{color:#5e9eff}
+.dark .feature-box i:after{background:radial-gradient(circle,rgba(94,158,255,.1) 0,rgba(18,18,18,0) 70%)}
+.dark .feature-box h3{color:#e0e0e0}
+.dark .feature-box p{color:#b0b0c0}
+.dark .advantage-card{box-shadow:0 5px 15px rgba(0,0,0,.2)}
+.dark .advantage-card .card-header{background:#3a86ff}
+.dark .advantage-card ul li{border-bottom:1px solid hsla(0,0%,100%,.05);color:#b0b0c0}
+.dark .advantage-card ul li:last-child{border-bottom:none}
+.dark .advantage-card{background:#1e1e24;box-shadow:0 10px 30px rgba(0,0,0,.2);border:1px solid rgba(94,158,255,.15)}
+.dark .advantage-card:before{background:linear-gradient(180deg,#5e9eff,#7e80ee)}
+.dark .advantage-card:hover{box-shadow:0 15px 35px rgba(94,158,255,.12);border-color:rgba(94,158,255,.2)}
+.dark .advantage-card i{color:#5e9eff}
+.dark .advantage-card i:after{background:radial-gradient(circle,rgba(94,158,255,.1) 0,rgba(18,18,18,0) 70%)}
+.dark .advantage-card h3{color:#e0e0e0}
+.dark .advantage-card p{color:#b0b0c0}
+.dark .join-section{background:linear-gradient(135deg,#151520,#1a1a2e);border-bottom:1px solid hsla(0,0%,100%,.03)}
+.dark .join-section:before{background:radial-gradient(circle at 90% 10%,rgba(94,158,255,.05) 0,rgba(18,18,18,0) 70%)}
+.dark .step-card{background-color:#1e1e24;box-shadow:0 10px 30px rgba(0,0,0,.2);border:1px solid rgba(94,158,255,.15)}
+.dark .step-card:after{background:linear-gradient(180deg,rgba(94,158,255,.03),rgba(126,128,238,.08))}
+.dark .step-card:hover{box-shadow:0 15px 35px rgba(94,158,255,.12);border-color:rgba(94,158,255,.2)}
+.dark .step-number{background:linear-gradient(90deg,#5e9eff,#7e80ee)}
+.dark .testimonial{background-color:#1e1e24;box-shadow:0 10px 30px rgba(0,0,0,.2);border:1px solid rgba(94,158,255,.15)}
+.dark .testimonial:after{background:linear-gradient(180deg,rgba(94,158,255,.02),rgba(126,128,238,.05))}
+.dark .testimonial:hover{box-shadow:0 15px 35px rgba(94,158,255,.12);border-color:rgba(94,158,255,.2)}
+.dark .testimonial-content{color:#b0b0c0}
+.dark .testimonial-author-info h4{color:#e0e0e0}
+.dark .testimonial-author-info p{color:#b0b0c0}
+.dark .faq-item{background-color:#1e1e24;box-shadow:0 5px 15px rgba(0,0,0,.2);border:1px solid rgba(94,158,255,.15)}
+.dark .faq-item:hover{box-shadow:0 10px 25px rgba(94,158,255,.1);border-color:rgba(94,158,255,.15)}
+.dark .faq-question{color:#e0e0e0}
+.dark .faq-question:after{color:#5e9eff}
+.dark .faq-answer p{color:#b0b0c0}
+.dark .union-modal-content{background-color:#1e1e24;border:1px solid rgba(94,158,255,.15);box-shadow:0 15px 35px rgba(0,0,0,.3)}
+.dark .union-modal-header{background:linear-gradient(135deg,#1a1a2e,#16213e);border-bottom:1px solid hsla(0,0%,100%,.05)}
+.dark .union-btn-close,.dark .union-modal-title{color:#e0e0e0}
+.dark .union-modal-footer{background:rgba(58,134,255,.05);border-top:1px solid hsla(0,0%,100%,.05)}
+.dark .union-form-label{color:#e0e0e0}
+.dark .union-form-control{color:#e0e0e0;background-color:#2a2a35;border:1px solid rgba(94,158,255,.2)}
+.dark .union-form-control:focus{border-color:#5e9eff;box-shadow:0 5px 15px rgba(94,158,255,.15)}
+.dark .union-form-text{color:#b0b0c0}
+@keyframes fadeInUp{0%{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+@media (max-width:768px){.union-banner{flex-direction:column;text-align:center;padding:60px 20px}
+.union-banner h1{font-size:36px}
+.union-banner p{font-size:18px}
+h2{font-size:28px}
+.dark .faq-item:hover{box-shadow:0 10px 25px rgba(94,158,255,.1);border-color:rgba(94,158,255,.15)}
+.dark .faq-question{color:#e0e0e0}
+.dark .faq-question:after{color:#5e9eff}
+.dark .faq-answer p{color:#b0b0c0}
+.dark .union-modal-content{background-color:#1e1e24;border:1px solid rgba(94,158,255,.15);box-shadow:0 15px 35px rgba(0,0,0,.3)}
+.dark .union-modal-header{background:linear-gradient(135deg,#1a1a2e,#16213e);border-bottom:1px solid hsla(0,0%,100%,.05)}
+.dark .union-btn-close,.dark .union-modal-title{color:#e0e0e0}
+.dark .union-modal-footer{background:rgba(58,134,255,.05);border-top:1px solid hsla(0,0%,100%,.05)}
+.dark .union-form-label{color:#e0e0e0}
+.dark .union-form-control{color:#e0e0e0;background-color:#2a2a35;border:1px solid rgba(94,158,255,.2)}
+.dark .union-form-control:focus{border-color:#5e9eff;box-shadow:0 5px 15px rgba(94,158,255,.15)}
+.dark .union-form-text{color:#b0b0c0}
+to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeInLeft{0%{opacity:0;transform:translateX(-20px)}
+to{opacity:1;transform:translateX(0)}
+}
+@keyframes fadeInRight{0%{opacity:0;transform:translateX(20px)}
+to{opacity:1;transform:translateX(0)}
+}
+.fade-in-up{animation:fadeInUp .8s ease forwards}
+.fade-in-left{animation:fadeInLeft .8s ease forwards}
+.fade-in-right{animation:fadeInRight .8s ease forwards}
+.delay-1{animation-delay:.1s}
+.delay-2{animation-delay:.2s}
+.delay-3{animation-delay:.3s}
+.delay-4{animation-delay:.4s}
+.delay-5{animation-delay:.5s}
+@media (max-width:1024px){.union-banner{padding:80px 40px}
+.union-banner h1{font-size:44px}
+h2{font-size:32px}
+.join-section{padding:80px 0}
+}
+@media (max-width:768px){.union-banner{flex-direction:column;text-align:center;padding:60px 20px}
+.union-banner h1{font-size:36px}
+.union-banner p{font-size:18px}
+h2{font-size:28px}
+.join-section{padding:60px 0}
+}
+@media (max-width:480px){.union-banner{padding:50px 15px}
+.union-banner h1{font-size:32px}
+h2{font-size:26px}
+.union-text-muted{font-size:16px}
+.advantage-card,.feature-box,.step-card,.testimonial{padding:25px 20px}
+.join-section{padding:50px 0}
+}
+@media (max-width:768px){.union-nav{padding:10px 0;overflow-x:auto;justify-content:flex-start}
+.union-nav-links{gap:15px;padding:0 15px;min-width:max-content}
+.about-hero{flex-direction:column;padding:60px 20px;text-align:center}
+.about-hero-content{max-width:100%;margin-bottom:40px}
+.about-hero-content h1{font-size:36px}
+.about-hero-content p{font-size:18px}
+.about-hero-buttons{justify-content:center}
+.advantages-cards{flex-direction:column}
+.join-cta-section{padding:50px 0}
+.join-cta-content{flex-direction:column;text-align:center}
+.join-cta-text{margin-right:0;margin-bottom:30px}
+.join-cta-text h2{font-size:28px}
+.join-cta-text p{font-size:16px}
+.join-cta-buttons{flex-direction:column;width:100%;gap:10px}
+.join-now-btn,.learn-more-btn{width:100%}
+.union-banner{padding:60px 20px;text-align:center}
+.union-banner h1{font-size:28px}
+.union-banner p{font-size:16px}
+.banner-buttons{flex-direction:column;align-items:center}
+.banner-buttons .union-btn{width:100%;max-width:250px;margin-bottom:10px}
+h2{font-size:26px}
+.advantage-card,.step-card,.testimonial,.union-text-muted{margin-bottom:30px}
+.union-text-muted{font-size:15px}
+.faq-question{font-size:16px;padding:15px}
+.faq-answer{padding:15px;font-size:14px}
+}
+.join-section{padding:50px 0}
+.feature-box>.feature-icon{padding-top:30px;margin-bottom:20px}
+.join-btn{background:#4a90e2;padding:12px 30px;border-radius:30px;font-size:1.1rem;transition:all .3s ease}
+.join-btn:hover{background:#3a7bc8;transform:translateY(-2px);box-shadow:0 5px 15px rgba(74,144,226,.3)}
+.faq-item{margin-bottom:20px}
+.testimonial{transition:all .3s ease}
+.testimonial:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.1)}
+.testimonial:before{content:"“"}
+.feature-box>h3{margin-bottom:20px}
+.feature-box>p:last-child{padding-bottom:30px;margin-bottom:0}
+.feature-box:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.1)}
+.feature-box h3{color:#4a90e2;margin-bottom:15px;font-weight:600}
+.feature-box p{color:#666;line-height:1.6}
+.feature-icon{font-size:2.5rem;color:#4a90e2;margin-bottom:20px}
+.join-section{background:#f8f9fa;padding:60px 0;margin:50px 0;border-radius:15px}
+.join-btn{background:linear-gradient(90deg,#4a90e2,#357ae8);color:#fff;padding:14px 36px;border-radius:32px;font-size:1.15rem;font-weight:600;border:none;box-shadow:0 2px 12px rgba(74,144,226,.15);transition:all .3s cubic-bezier(.4,2,.3,1);cursor:pointer;outline:0;position:relative;z-index:1;letter-spacing:.5px;user-select:none}
+.join-btn:hover{background:linear-gradient(90deg,#357ae8,#4a90e2);box-shadow:0 6px 24px rgba(74,144,226,.22);transform:translateY(-2px) scale(1.03)}
+.join-btn:active{background:linear-gradient(90deg,#357ae8,#2b5fb8);box-shadow:0 2px 8px rgba(74,144,226,.1);transform:translateY(1px) scale(.97)}
+.join-btn:disabled,.join-btn[disabled]{background:#cfd8dc;color:#b0bec5;cursor:not-allowed;box-shadow:none;opacity:.7}
+.faq-question{font-weight:600;color:#333;cursor:pointer}
+.faq-answer{color:#666;line-height:1.6;padding-left:20px;border-left:3px solid #4a90e2}
+.union-modal-content{border-radius:15px;overflow:hidden;background-color:#fff;box-shadow:0 5px 15px rgba(0,0,0,.3)}
+.union-modal-header{background:#4a90e2;color:#fff;border-bottom:none}
+.union-modal-body{padding:30px 0}
+.union-modal-body h4{margin-top:10px;margin-bottom:25px}
+.union-modal-body>*{padding:0 30px;margin-bottom:20px}
+.union-modal-body>:last-child{margin-bottom:0}
+.union-modal-body>form>*{width:100%;}
+.union-modal-body>form>:last-child{margin-bottom:0}
+.union-form-control{border-radius:8px;padding:12px 15px;margin-bottom:20px}
+.union-form-label{font-weight:600;color:#555;display:block;margin-bottom:10px}
+.union-required:after{content:" *";color:#dc3545}
+.union-form-text{font-size:.875rem;color:#6c757d;margin-bottom: 25px;}
+.advantage-card{border-radius:10px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.05);margin-bottom:30px;transition:all .3s ease}
+.advantage-card:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.1)}
+.advantage-card .card-header{background:#4a90e2;color:#fff;padding:20px;text-align:center;font-weight:600;font-size:1.2rem}
+.advantage-card .card-body{padding:25px 0;margin-top:10px}
+.advantage-card .card-body>*{padding:0 35px;margin-bottom:20px}
+.advantage-card .card-body>:last-child{margin-bottom:0}
+.advantage-card ul{padding-left:30px;margin-bottom:20px}
+.advantage-card ul:last-child{margin-bottom:0}
+.advantage-card li{margin-bottom:15px;color:#555}
+.advantage-card li:last-child{margin-bottom:0}
+.testimonial{background:#fff;border-radius:10px;padding:35px;box-shadow:0 5px 15px rgba(0,0,0,.05);margin-bottom:30px;position:relative}
+.testimonial:before{content:"";position:absolute;top:10px;left:15px;font-size:60px;color:#f0f0f0;font-family:serif;z-index:0}
+.testimonial-content{position:relative;z-index:1}
+.testimonial-author{display:flex;align-items:center;margin-top:20px}
+.testimonial-avatar{width:50px;height:50px;border-radius:50%;overflow:hidden;margin-right:15px}
+.testimonial-avatar img{width:100%;height:100%;object-fit:cover}
+.testimonial-name{font-weight:600;color:#333;margin-bottom:5px}
+.testimonial-role{font-size:.9rem;color:#777}
+.back-to-top{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background-color:#3a86ff;color:#fff;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;opacity:0;visibility:hidden;transition:all .3s ease;z-index:999;box-shadow:0 5px 15px rgba(58,134,255,.3)}
+.back-to-top.show{opacity:1;visibility:visible}
+.back-to-top:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(58,134,255,.4)}
+.back-to-top i{font-size:24px}
+.dark .back-to-top{background-color:#5e9eff;box-shadow:0 5px 15px rgba(94,158,255,.3)}
+</style>
+<div id="page">
+    <div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+            <div class="I-J">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                        <input type="hidden" name="e" value="item">
+                    </form>
+                </div>
+            </div>
+            
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+                        
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+        
+        <div class="H-B">
+            <div class="H-B-T">
+              <h3>更多作品推荐</h3>
+            </div>
+            <div class="H-I-C">
+              <div class="H-I">
+                  <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                        <span class="H-I-I-T">今日简报 AI</span>
+                        <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                    </a>
+                    <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                          <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                          <span class="H-I-I-T">即时写作 AI</span>
+                          <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                      </a>
+                <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                    <span class="H-I-I-T">今日历</span>
+                    <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+                </a>
+                <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                      <span class="H-I-I-T">今日解忧</span>
+                      <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+                 </a>
+                 <a href="https://remai.today/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                         <span class="H-I-I-T">今日热卖</span>
+                         <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                    </a>
+                <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                        <span class="H-I-I-T">百晓生 AI</span>
+                        <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                   </a>
+                   <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                           <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                           <span class="H-I-I-T">榜眼数据</span>
+                           <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                      </a>
+              </div>
+            </div>
+        </div>
+
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>        
+    </div>
+</div>        
+    <div class="union-container-fluid union-px-0">
+        <!-- 横幅区域 -->
+        <div class="about-hero">
+            <div class="about-hero-content">
+                <h1 data-aos="fade-up" data-aos-delay="100" class="fade-in-up">今日热榜联盟计划</h1>
+                <p data-aos="fade-up" data-aos-delay="200" class="fade-in-up delay-1">超低门槛加入联盟计划，从您的每次推荐中赚取 30% 的佣金收益</p>
+                <div class="about-hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                    <a href="javascript:void(0)" class="btn-primary" data-union-toggle="modal" data-union-target="#joinModal">立即申请</a>
+                    <a href="/union/dashboard" class="btn-secondary">已经是伙伴</a>
+                </div>
+            </div>
+            <div class="about-hero-image" data-aos="fade-left" data-aos-delay="400">
+                <img src="https://file.ipadown.com/tophub/assets/images/logo.png" alt="今日热榜" style="width: 200px; height: auto;">
+            </div>
+        </div>
+
+        <!-- 特色介绍 -->
+        <div class="union-container">
+            <div class="union-text-center union-mb-5">
+                <h2 class="fade-in-up">为什么选择今日热榜联盟？</h2>
+                <p class="union-text-muted fade-in-up delay-1">专业的推广平台，丰厚的佣金回报，助您实现被动收入</p>
+            </div>
+
+            <div class="union-row">
+                <div class="union-col-md-4 union-mb-4">
+                    <div class="feature-box fade-in-up delay-1">
+                        <div class="feature-icon">💰</div>
+                        <h3>高额佣金</h3>
+                        <p>提供业内具有竞争力的佣金比例，最高可达订单金额的30%，收入稳定可持续。</p>
+                    </div>
+                </div>
+                <div class="union-col-md-4 union-mb-4">
+                    <div class="feature-box fade-in-up delay-2">
+                        <div class="feature-icon">📊</div>
+                        <h3>实时数据</h3>
+                        <p>提供详细的推广数据，包括点击量、转化率、收入等，帮助您优化推广策略。</p>
+                    </div>
+                </div>
+                <div class="union-col-md-4 union-mb-4">
+                    <div class="feature-box fade-in-up delay-3">
+                        <div class="feature-icon">🔗</div>
+                        <h3>长期收益</h3>
+                        <p>通过链接进行的每一次首次购买、续订和升级，您都可以获得佣金。</p>
+                    </div>
+                </div>
+                <div class="union-col-md-4 union-mb-4">
+                    <div class="feature-box fade-in-up delay-4">
+                        <div class="feature-icon">💸</div>
+                        <h3>快速结算</h3>
+                        <p>佣金结算周期灵活，支持多种提现方式，资金安全有保障。</p>
+                    </div>
+                </div>
+                <div class="union-col-md-4 union-mb-4">
+                    <div class="feature-box fade-in-up delay-5">
+                        <div class="feature-icon">🛠️</div>
+                        <h3>专业支持</h3>
+                        <p>提供专业的技术支持和营销建议，帮助您更好地开展推广活动。</p>
+                    </div>
+                </div>
+                <div class="union-col-md-4 union-mb-4">
+                    <div class="feature-box fade-in-up delay-5">
+                        <div class="feature-icon">🚀</div>
+                        <h3>成长机会</h3>
+                        <p>随着推广业绩的提升，您将获得更高的佣金比例和更多的合作机会。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联盟优势 -->
+        <div id="advantages" class="union-container union-my-5">
+            <div class="union-text-center union-mb-5">
+                <h2 class="fade-in-up">联盟合作优势</h2>
+                <p class="union-text-muted fade-in-up delay-1">为什么选择与今日热榜合作？</p>
+            </div>
+            
+            <div class="advantages-cards">
+                <div class="advantage-card fade-in-up delay-1">
+                    <div class="card-header">
+                        产品优势
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>今日热榜是国内领先的热点聚合平台</li>
+                            <li>拥有数百万活跃用户，用户粘性高</li>
+                            <li>产品功能丰富，满足多样化需求</li>
+                            <li>VIP会员价值高，转化率高</li>
+                            <li>用户口碑良好，推广阻力小</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="advantage-card fade-in-up delay-2">
+                    <div class="card-header">
+                        推广优势
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>提供多种推广素材和工具</li>
+                            <li>专属推广链接，准确跟踪效果</li>
+                            <li>灵活的推广方式，适合各类平台</li>
+                            <li>详细的数据报表，实时掌握效果</li>
+                            <li>专业的推广建议，提高转化率</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="advantage-card fade-in-up delay-3">
+                    <div class="card-header">
+                        合作优势
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>简单透明的佣金计算方式</li>
+                            <li>稳定可靠的结算机制</li>
+                            <li>提供 45 天 Cookie 有效期</li>
+                            <li>充足的时间和更大的灵活性来赚取佣金</li>
+                            <li>成长空间大，收益持续增长</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 加入流程 -->
+        <div id="join" class="join-section">
+            <div class="union-container">
+                <div class="union-text-center union-mb-5">
+                    <h2 class="fade-in-up">如何加入联盟计划？</h2>
+                    <p class="union-text-muted fade-in-up delay-1">简单三步，开启您的推广之旅</p>
+                </div>
+
+                <div class="union-row">
+                    <div class="union-col-md-4 union-mb-4 union-mb-md-0">
+                        <div class="step-card fade-in-up delay-1">
+                            <div class="step-number">1</div>
+                            <h3>了解联盟</h3>
+                            <p>了解今日热榜联盟计划的优势、佣金比例和合作方式</p>
+                        </div>
+                    </div>
+                    <div class="union-col-md-4 union-mb-4 union-mb-md-0">
+                        <div class="step-card fade-in-up delay-2">
+                            <div class="step-number">2</div>
+                            <h3>提交申请</h3>
+                            <p>填写联盟申请表，提交您的网站或平台信息，我们将在1-3个工作日内审核</p>
+                        </div>
+                    </div>
+                    <div class="union-col-md-4">
+                        <div class="step-card fade-in-up delay-3">
+                            <div class="step-number">3</div>
+                            <h3>开始推广</h3>
+                            <p>审核通过后，获取推广链接和素材，开始您的推广之旅，坐等收益入账</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="union-text-center union-mt-5">
+                    <button class="union-btn union-btn-primary" data-union-toggle="modal" data-union-target="#joinModal">立即加入联盟</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 合作伙伴感言 -->
+        <div id="testimonials" class="union-container union-my-5">
+            <div class="union-text-center union-mb-5">
+                <h2 class="fade-in-up">合作伙伴感言</h2>
+                <p class="union-text-muted fade-in-up delay-1">听听他们怎么说</p>
+            </div>
+
+            <div class="union-row">
+                <div class="union-col-md-4">
+                    <div class="testimonial fade-in-up delay-1">
+                        <div class="testimonial-content">
+                            <p>加入今日热榜联盟是我做过的最明智的决定之一。产品本身就很优质，用户转化率高，佣金结算也很及时。最重要的是，他们的团队非常专业，给了我很多有价值的建议。</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-avatar">
+                                <img src="https://file.ipadown.com/tophub/assets/images/media/bowuzhi.fm.png" alt="">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>张先生</h4>
+                                <p>科技博客站长</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="union-col-md-4">
+                    <div class="testimonial fade-in-up delay-2">
+                        <div class="testimonial-content">
+                            <p>作为一个自媒体运营者，我一直在寻找优质的合作伙伴。今日热榜联盟不仅提供了丰厚的佣金，还为我的粉丝带来了实用的工具。合作一年多来，已经成为我稳定的收入来源。</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-avatar">
+                                <img src="https://file.ipadown.com/tophub/assets/images/media/appmiu.com.png" alt="">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>李女士</h4>
+                                <p>自媒体创作者</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="union-col-md-4">
+                    <div class="testimonial fade-in-up delay-3">
+                        <div class="testimonial-content">
+                            <p>我是一名独立开发者，开发了一个简单的导航网站，加入今日热榜联盟后，效果非常好。他们的用户群体与我的目标用户高度重合，推广转化率远超其他平台。而且佣金比例合理，结算也很及时。</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-author-avatar">
+                                <img src="https://file.ipadown.com/tophub/assets/images/media/guozaoke.com.png" alt="">
+                            </div>
+                            <div class="testimonial-author-info">
+                                <h4>王先生</h4>
+                                <p>独立开发者</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 常见问题 -->
+        <div id="faq" class="union-container union-mb-5">
+            <div class="union-text-center union-mb-5">
+                <h2 class="fade-in-up">常见问题</h2>
+                <p class="union-text-muted fade-in-up delay-1">关于联盟计划，您可能想了解的问题</p>
+            </div>
+
+            <div class="union-row">
+                <div class="union-col-md-6">
+                    <div class="faq-item fade-in-up delay-1">
+                        <div class="faq-question">什么是今日热榜联盟计划？</div>
+                        <div class="faq-answer">今日热榜联盟计划是一个面向网站、自媒体、内容创作者等的推广合作计划。通过推广今日热榜VIP会员，您可以获得订单金额的一定比例作为佣金。</div>
+                    </div>
+                    <div class="faq-item fade-in-up delay-2">
+                        <div class="faq-question">如何获得佣金？</div>
+                        <div class="faq-answer">当用户通过您的专属链接注册并购买今日热榜VIP会员时，系统会自动记录订单并计算佣金。佣金将根据您的推广效果和合作级别，按照约定的比例进行结算。</div>
+                    </div>
+                    <div class="faq-item fade-in-up delay-3">
+                        <div class="faq-question">佣金结算周期是多久？</div>
+                        <div class="faq-answer">佣金结算需要满足 100 元的最低结算金额，周期为每月一次，我们会在次月初（1-5日）统计上月的推广业绩，并在10个工作日内完成佣金结算。</div>
+                    </div>
+                </div>
+                <div class="union-col-md-6">
+                    <div class="faq-item fade-in-up delay-1">
+                        <div class="faq-question">申请联盟有什么要求？</div>
+                        <div class="faq-answer">您需要拥有自己的网站、公众号、小程序或其他内容平台，内容健康合法，有一定的用户基础和流量。我们会对申请进行审核，以确保合作的质量和效果。</div>
+                    </div>
+                    <div class="faq-item fade-in-up delay-2">
+                        <div class="faq-question">如何提高推广效果？</div>
+                        <div class="faq-answer">您可以通过深入了解今日热榜的产品特点和用户需求，制作有针对性的推广内容，选择合适的推广渠道和时机，提高转化率。我们也会提供相关的推广素材和建议，帮助您提升推广效果。</div>
+                    </div>
+                    <div class="faq-item fade-in-up delay-3">
+                        <div class="faq-question">联盟合作是长期的吗？</div>
+                        <div class="faq-answer">是的，我们希望与合作伙伴建立长期稳定的合作关系。只要您遵守联盟规则，持续进行有效推广，我们将一直保持合作，并根据您的推广业绩提供更多支持和更高的佣金比例。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="union-text-center union-mt-5">
+                <p>还有其他问题？请联系我们的联盟专员：ieliwb@gmail.com</p>
+                <button class="join-btn union-mt-3" data-union-toggle="modal" data-union-target="#joinModal">立即加入联盟</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部行动号召 -->
+    <div class="join-cta-section">
+        <div class="join-cta-container">
+            <div class="join-cta-decoration">
+                <div class="decoration-circle circle-1"></div>
+                <div class="decoration-circle circle-2"></div>
+                <div class="decoration-circle circle-3"></div>
+            </div>
+            <div class="join-cta-content">
+                <div class="join-cta-text">
+                    <h2 class="fade-in-up">准备好加入我们了吗？</h2>
+                    <p class="fade-in-up delay-1">立即申请成为今日热榜联盟合作伙伴，开启您的被动收入之旅。我们将提供全方位的支持，帮助您实现收益最大化。</p>
+                </div>
+                <div class="join-cta-buttons fade-in-up delay-2">
+                    <button class="join-now-btn" data-union-toggle="modal" data-union-target="#joinModal">立即申请</button>
+                    <button class="learn-more-btn" onclick="window.location.href='/union/dashboard'">已经是伙伴</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加入联盟模态框 -->
+    <div class="union-modal union-fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
+        <div class="union-modal-dialog union-modal-dialog-centered">
+            <div class="union-modal-content">
+                <div class="union-modal-header">
+                    <h5 class="union-modal-title" id="joinModalLabel">加入今日热榜联盟</h5>
+                    <button type="button" class="union-btn-close union-btn-close-white" data-union-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="union-modal-body">
+                    <p class="union-text-muted">填写以下信息，提交您的联盟申请</p>
+                    <form id="unionForm" action="/union/activation" method="post">
+                        <div class="union-row">
+                            <div class="union-col-md-6">
+                                <label for="contact_phone" class="union-form-label">联系电话</label>
+                                <input type="tel" class="union-form-control" id="contact_phone" name="contact_phone" placeholder="请输入您的联系电话">
+                            </div>
+                            <div class="union-col-md-6">
+                                <label for="contact_qq" class="union-form-label">QQ</label>
+                                <input type="text" class="union-form-control" id="contact_qq" name="contact_qq" placeholder="请输入您的QQ号码">
+                            </div>
+                        </div>
+                        <div class="union-row">
+                            <div class="union-col-md-6">
+                                <label for="contact_wechat" class="union-form-label">微信</label>
+                                <input type="text" class="union-form-control" id="contact_wechat" name="contact_wechat" placeholder="请输入您的微信号">
+                            </div>
+                            <div class="union-col-md-6">
+                                <label for="contact_email" class="union-form-label union-required">邮箱</label>
+                                <input type="email" class="union-form-control" id="contact_email" name="contact_email" placeholder="请输入您的邮箱地址" required>
+                            </div>
+                        </div>
+                        <div class="union-row">
+                            <div class="union-col-md-6">
+                                <label for="project_name" class="union-form-label union-required">项目名称</label>
+                                <input type="text" class="union-form-control" id="project_name" name="project_name" placeholder="请输入您的网站/公众号/平台名称" required>
+                            </div>
+                            <div class="union-col-md-6">
+                                <label for="project_website" class="union-form-label">项目网址</label>
+                                <input type="url" class="union-form-control" id="project_website" name="project_website" placeholder="https://example.com">
+                            </div>
+                        </div>
+                        <div class="union-form-text">
+                            <ul class="text-list">
+                                <li class="text-item">请至少填写一种联系方式（电话、QQ或微信）</li>
+                                <li class="text-item">邮箱和项目名称为必填项</li>
+                                <li class="text-item">提交后，我们会在1-3个工作日内完成审核</li>
+                            </ul>
+                        </div>
+                        <div class="union-d-grid">
+                            <button type="submit" class="join-btn" style="width: 100%;">提交申请</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- 引入页脚 -->
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script>    <script>
+        $(function() {
+            
+            // FAQ点击展开/收起功能
+            $('.faq-question').on('click', function() {
+                let parent = $(this).parent('.faq-item');
+                if(parent.hasClass('active')) {
+                    parent.removeClass('active');
+                } else {
+                    // 可选：关闭其他已打开的FAQ项
+                    // $('.faq-item').removeClass('active');
+                    parent.addClass('active');
+                }
+            });
+            
+            // 自定义模态框处理
+            $('[data-union-toggle="modal"]').on('click', function() {
+                var target = $(this).attr('data-union-target');
+                $(target).addClass('show');
+                $('body').addClass('union-modal-open');
+            });
+            
+            $('[data-union-dismiss="modal"]').on('click', function() {
+                $(this).closest('.union-modal').removeClass('show');
+                $('body').removeClass('union-modal-open');
+            });
+            
+            // 点击模态框背景关闭模态框
+            $('.union-modal').on('click', function(e) {
+                if ($(e.target).hasClass('union-modal')) {
+                    $(this).removeClass('show');
+                    $('body').removeClass('union-modal-open');
+                }
+            });
+            
+            // 表单提交处理
+            $('#unionForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // 验证表单
+                let contactPhone = $('#contact_phone').val();
+                let contactQQ = $('#contact_qq').val();
+                let contactWechat = $('#contact_wechat').val();
+                let contactEmail = $('#contact_email').val();
+                let projectName = $('#project_name').val();
+                
+                if (!contactPhone && !contactQQ && !contactWechat) {
+                    alert('请至少填写一种联系方式（电话、QQ或微信）');
+                    return false;
+                }
+                
+                // 提交表单
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(response) {
+                        if (!response.error) {
+                            alert(response.data.msg);
+                            $('#joinModal').removeClass('show');
+                            $('body').removeClass('union-modal-open');
+                            if (response.data.status == 1) {
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1500);
+                            }
+                        } else {
+                            alert(response.msg);
+                        }
+                    },
+                    error: function() {
+                        alert('提交失败，请稍后重试');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<title>今日热榜 - 尊享会员特权 | 限时特惠</title>
+<meta name="renderer" content="webkit">
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/3.5.1/layer.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/pricing.2025.css?202505150004">
+</head>
+<body class="">
+<div id="page" class="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+            <div class="I-J">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                        <input type="hidden" name="e" value="item">
+                    </form>
+                </div>
+            </div>
+            
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+                        
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+        
+        <div class="H-B">
+            <div class="H-B-T">
+              <h3>更多作品推荐</h3>
+            </div>
+            <div class="H-I-C">
+              <div class="H-I">
+                  <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                        <span class="H-I-I-T">今日简报 AI</span>
+                        <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                    </a>
+                    <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                          <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                          <span class="H-I-I-T">即时写作 AI</span>
+                          <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                      </a>
+                <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                    <span class="H-I-I-T">今日历</span>
+                    <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+                </a>
+                <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                      <span class="H-I-I-T">今日解忧</span>
+                      <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+                 </a>
+                 <a href="https://remai.today/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                         <span class="H-I-I-T">今日热卖</span>
+                         <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                    </a>
+                <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                        <span class="H-I-I-T">百晓生 AI</span>
+                        <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                   </a>
+                   <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                           <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                           <span class="H-I-I-T">榜眼数据</span>
+                           <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                      </a>
+              </div>
+            </div>
+        </div>
+
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>        
+    </div>
+</div>	
+	
+<section id="body-root"><section id="root">
+<div class="content">
+	<div class="bg-top-pricing">
+		<img src="https://file.ipadown.com/tophub/assets/images/pay/bg-top-green-837f99b539.png">
+		<div class="seat green-model">
+		</div>
+	</div>
+	<div class="first-content">
+		<img src="https://file.ipadown.com/tophub/assets/images/pay/background-top-ball2-0795458215.png">
+		<div id="first-box">
+						<!-- 原有的购买内容 -->
+			<div id="tophub-logo">
+				<div>
+					<h1>今日热榜 6 周年「限时特惠 · 稀缺名额」</h1>
+				</div>
+			</div>
+			<div id="pricing-head-box">
+				<section>
+				<div id="huodong">
+					<div>
+						<div id="h2" class="green-font">
+							<p>
+							🔥 特惠超值时段即将结束，立即成为会员，享受限时特惠折扣
+						</p>
+						</div>
+						<div class="countdown-timer">
+							<div class="countdown-item">
+								<div class="countdown-number" id="countdown-hours">23</div>
+								<div class="countdown-label">小时</div>
+							</div>
+							<div class="countdown-item">
+								<div class="countdown-number" id="countdown-minutes">59</div>
+								<div class="countdown-label">分钟</div>
+							</div>
+							<div class="countdown-item">
+								<div class="countdown-number" id="countdown-seconds">59</div>
+								<div class="countdown-label">秒</div>
+							</div>
+						</div>
+						<div class="h3 green-font">
+							<p id="h3-1">剩余：</p>
+							<div id="h3-2"><p>9</p></div>
+							<p id="h3-3">份</p>
+						</div>
+					</div>
+				</div>
+				<div class="tophub-pricing green-shadow">
+					<p class="tophub-pricing-title">
+						今日热榜会员专属优惠 <span style="color:#ff7600;">省钱特权</span>
+					</p>
+					<div class="tophub-pricing-box">
+												<div class="pricing-item " data-item-index="0">
+																					<p>
+							月卡会员<del style="font-size:12px;padding-left:10px;">原价¥18<del>
+						</p>
+						<p class="pricing-money">
+							<span>9.9</span>元 
+							<span style="font-size:14px;color:#ff7600;">省8.1元</span>
+						</p>
+						<p style="font-size:12px;color:#666;">每月仅需9.9元</p>
+												</div>
+												<div class="pricing-item " data-item-index="1">
+														<div class="count-down mpa-hide">
+								<span></span><span>后恢复原价</span>
+							</div>
+																					<p>
+							季卡会员<del style="font-size:12px;padding-left:10px;">原价¥54<del>
+						</p>
+						<p class="pricing-money">
+							<span>29.9</span>元 
+							<span style="font-size:14px;color:#ff7600;">省24.1元</span>
+						</p>
+						<p style="font-size:12px;color:#666;">一杯星巴克畅享3个月👍</p>
+												<p class="pricing-money mpa-hide">
+							<span></span>元 <s>29.9元</s>
+						</p>
+												</div>
+												<div class="pricing-item " data-item-index="2">
+																					<p>
+							年卡会员<del style="font-size:12px;padding-left:10px;">原价¥216<del>
+						</p>
+						<p class="pricing-money">
+							<span>99.9</span>元 
+							<span style="font-size:14px;color:#ff7600;">省116.1元</span>
+						</p>
+						<p style="font-size:12px;color:#666;">每月仅需8.3元 🔥最受欢迎</p>
+												</div>
+												<div class="pricing-item last-item" data-item-index="3">
+																					<span class="">一次付费 终身享用</span>
+														<p>
+							终身会员<del style="font-size:12px;padding-left:10px;">原价¥1080<del>
+						</p>
+						<p class="pricing-money">
+							<span>399.9</span>元 
+							<span style="font-size:14px;color:#ff7600;">省680.1元</span>
+						</p>
+						<p style="font-size:12px;color:#666;">💯买断最划算！⭐ 强烈推荐</p>
+												</div>
+											</div>
+				</div>
+				</section>
+			</div>
+			<div class="vip-update">
+				<button view-ref="paybtn1" class="green-model-btn">
+										🚀 立即升级 VIP
+									</button>
+				<br/><br/>
+								<a href="/invite" target="_blank" style="color:#fff;text-decoration:underline;display:none;">邀请 1 个好友互得 1 个月会员</a>
+								
+				<div class="trust-badges">
+					<div class="trust-badge"><i class="m-n">&#xe66a;</i> 安全支付保障</div>
+					<div class="trust-badge"><i class="m-n">&#xe62b;</i> 10000+ 会员选择</div>
+				</div>
+			</div>
+					</div>
+	</div>
+	<div class="scenod-content">
+		<div id="second-box">
+			<h1>🔍 会员专属特权 - 解锁全部功能</h1>
+			<div class="member-function">
+				<table class="pricing-table">
+					<thead class="head-table">
+					  <tr>
+						<th class="thead-1">功能特权</th>
+						<th class="thead-2">普通用户</th>
+						<th class="thead-3">尊贵会员</th>
+					  </tr>
+					</thead>
+					<tbody class="content-table">
+						<tr class="row row-1">
+							<td class="td-1">查看榜单</td>
+							<td class="td-3">无限制</td>
+							<td class="td-5">无限制</td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">订阅榜单数量</td>
+							<td class="td-3">最多200个</td>
+							<td class="td-5">无限制</td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">Tophub Alerts 追踪机器人</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">Tophub 过滤机器人</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">榜中榜</td>
+							<td class="td-3">当日</td>
+							<td class="td-5">全部历史</td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">日报聚合</td>
+							<td class="td-3">当日</td>
+							<td class="td-5">全部历史</td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">话题聚合</td>
+							<td class="td-3">当日</td>
+							<td class="td-5">全部历史</td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">历史上榜数据</td>
+							<td class="td-3">当日</td>
+							<td class="td-5">全部历史</td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">榜单快照</td>
+							<td class="td-3">当日</td>
+							<td class="td-5">全部快照</td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">私人定制节点</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">热点日历</td>
+							<td class="td-3">本月</td>
+							<td class="td-5">所有日期</td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">日历订阅</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">热文库</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">数据导出</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">赞助商广告</td>
+							<td class="td-3">显示</td>
+							<td class="td-5">自定义</td>
+						</tr>
+						<tr class="row row-2">
+							<td class="td-1">通知机器人</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-1">
+							<td class="td-1">专线访问</td>
+							<td class="td-3"><span class="icon-no">✕</span></td>
+							<td class="td-5"><span class="icon-yes">✓</span></td>
+						</tr>
+						<tr class="row row-2" align="center">
+							<td colspan="3">
+								<center style="line-height: 50px">
+									除了上面会员功能，更多会员功能可以向我们提供定制，欢迎沟通！
+								</center>
+							</td>
+						</tr>
+					</tbody>
+				  </table>				  
+			</div>
+			<div class="member-update">
+								<button view-ref="payBtn2" class="green-model-btn">
+										🚀 立即升级 VIP
+									</button>
+							</div>
+			
+			<div class="user-reviews">
+				<h3>会员评价 <span style="color:#ffb400;">★★★★★</span> <span style="font-size:14px;color:#666;">(平均 4.9/5 分，来自 1,253 位用户)</span></h3>
+				<div class="reviews-container">
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">熊</div>
+							<div class="review-info">
+								<p class="review-name">小熊猫咪</p>
+								<p class="review-date">2025-04-10</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							作为一名自媒体人，热榜会员帮我节省了大量时间。过滤器功能太棒了，实时追踪热点话题，内容创作效率提高了一倍。
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">天</div>
+							<div class="review-info">
+								<p class="review-name">天空之城</p>
+								<p class="review-date">2025-04-05</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							一开始还在犹豫是否值得升级，现在只能说太值了！特别是私人定制节点功能，可以完全根据自己的需求打造专属信息流。强烈推荐终身会员！
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">豆</div>
+							<div class="review-info">
+								<p class="review-name">吃货豆豆</p>
+								<p class="review-date">2025-03-28</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							作为产品经理，每天都需要关注各行各业的动向。热榜会员的Alerts追踪器帮我监控关键词，第一时间捕捉市场变化。一年会员费用相当于每天一朵花钱，绝对值得！
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">遥</div>
+							<div class="review-info">
+								<p class="review-name">一步之遥</p>
+								<p class="review-date">2025-03-22</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							作为高校教师，我需要紧跟学术前沿和社会热点。热榜的高级数据分析功能让我能够深入挖掘话题趋势，为我的研究和教学提供了宝贵资源。终身会员是我今年做的最明智的投资！
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">果</div>
+							<div class="review-info">
+								<p class="review-name">开心果果</p>
+								<p class="review-date">2025-03-15</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							身为投资顾问，热榜会员的实时数据和趋势分析功能帮我抢先一步把握市场脉搏。特别是金融类节点的深度内容，让我能够快速获取高质量信息，为客户提供更精准的建议。绝对超值！
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">猫</div>
+							<div class="review-info">
+								<p class="review-name">黑客猫</p>
+								<p class="review-date">2025-03-08</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							我是一名程序员，热榜会员的技术类节点聚合和无广告体验让我的信息获取效率提升了200%。特别是自定义过滤功能，帮我筛选出最有价值的技术文章，省去了大量筛选垃圾内容的时间。
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">山</div>
+							<div class="review-info">
+								<p class="review-name">山河无晴</p>
+								<p class="review-date">2025-03-01</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							作为一名营销总监，热榜会员帮我实时把握全网热点，让我们的营销活动总能踩准时机。数据导出和分析功能也非常实用，帮助我向团队和领导展示市场趋势。升级会员后，我们部门的反应速度提高了50%！
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">茶</div>
+							<div class="review-info">
+								<p class="review-name">午后茶来</p>
+								<p class="review-date">2025-02-23</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							退休后想保持对社会的了解，但普通网站信息太杂乱。热榜会员的个性化推荐和分类功能让我能够轻松获取感兴趣的内容，不再被无关信息干扰。界面简洁清晰，对我这样的老年人非常友好，值得推荐！
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+					
+					<div class="review-card">
+						<div class="review-header">
+							<div class="review-avatar">星</div>
+							<div class="review-info">
+								<p class="review-name">快乐星球</p>
+								<p class="review-date">2025-02-15</p>
+							</div>
+							<div class="review-stars">★★★★★</div>
+						</div>
+						<div class="review-content">
+							身为一名创业者，我需要全方位了解市场动向。热榜会员的多维度数据聚合和趋势分析帮我发现了多个商业机会。特别是跨平台同步功能，让我在手机、平板和电脑上都能无缝使用。绝对是创业者的必备工具！
+						</div>
+						<div class="review-tag">已验证购买</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- FAQ部分 -->
+			<div class="faq-section">
+				<h2>🤔 常见问题解答 (FAQ)</h2>
+				<div class="faq-container">
+					<div class="faq-item">
+						<div class="faq-question">
+							会员费用包括哪些服务？<i class="m-n">&#xe9c0;</i>
+						</div>
+						<div class="faq-answer">
+							会员费用包括今日热榜全部高级功能的使用权限，包括但不限于：Tophub过滤器、Alerts追踪器、私人定制节点、无限历史数据查看、无限订阅节点数等特权。一次付费，全平台通用，无需额外付费。
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							如何选择适合我的会员方案？<i class="m-n">&#xe9c0;</i>
+						</div>
+						<div class="faq-answer">
+							我们提供四种会员方案：月度会员适合短期体验；季度会员适合想要初步体验会员功能的用户；年度会员是最受欢迎的选择，性价比高；终身会员则是一次付费永久使用，长期来看最为划算，特别推荐给热榜重度用户。
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							支付后多久可以使用会员功能？<i class="m-n">&#xe9c0;</i>
+						</div>
+						<div class="faq-answer">
+							无论您选择哪种会员类型（月度、季度、年度或终身会员），支付成功后系统会自动激活您的会员权限，通常在30分钟内即可生效。如遇特殊情况未及时开通，可联系客服微信（ieliwb2）处理，我们将为您优先解决。
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							会员可以在多台设备上同时使用吗？<i class="m-n">&#xe9c0;</i>
+						</div>
+						<div class="faq-answer">
+							是的，无论您选择的是月度、季度、年度还是终身会员，都全平台通用，支持在网页端、iOS端、Android端等多个平台同时登录使用，不限制设备数量。
+						</div>
+					</div>
+										
+					<div class="faq-item">
+						<div class="faq-question">
+							会员到期后我的数据会怎样？<i class="m-n">&#xe9c0;</i>
+						</div>
+						<div class="faq-answer">
+							会员到期后，您的所有数据（如自定义节点、过滤器设置等）将会保留，但您将无法使用会员专属功能。您可以随时选择月度、季度、年度或终身会员进行续费，续费后可立即恢复所有会员权限，无需重新设置。
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							如何联系客服解决使用问题？<i class="m-n">&#xe9c0;</i>
+						</div>
+						<div class="faq-answer">
+							会员用户可以通过添加专属客服微信（ieliwb2）获得优先支持服务。请在添加时备注您的用户ID，以便我们更快地解决您的问题。会员问题将获得优先处理。
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bg-bottom">
+		<div class="footnotes">
+		<h4></h4>		
+			
+		</div>		
+	</div>
+	
+
+
+
+<section id="pay-dialog">
+<div class="pay-dialog dialog mpa-hide">
+	<div class="inner">
+		<img src="https://file.ipadown.com/tophub/assets/images/pay/close-dialog-cfb0b14316.png" view-ref="close" class="close">
+		<div class="introduce">
+			<p class="title">🎁 加入热榜会员，尊享特权！</p>
+			<p class="subtitle">解锁全部高级功能，畅享极致体验</p>
+		</div>
+		<div class="buy-win ">
+			<p>
+				<b>选择您的专属会员方案：</b>
+			</p>
+			<ul class="select-box">
+								<li class="" view-ref="product_13" price="9.9" org_price="18" pid="13" vip_days="30" tip="每月仅需9.9元">
+					月卡会员 
+									</li>
+								<li class="active" view-ref="product_14" price="29.9" org_price="54" pid="14" vip_days="90" tip="一杯星巴克畅享3个月👍">
+					季卡会员 
+									</li>
+								<li class="" view-ref="product_15" price="99.9" org_price="216" pid="15" vip_days="365" tip="每月仅需8.3元 🔥最受欢迎">
+					年卡会员 
+									</li>
+								<li class="" view-ref="product_16" price="399.9" org_price="1080" pid="16" vip_days="3650" tip="💯买断最划算！⭐ 强烈推荐">
+					终身会员 
+										<span class=""><b>一次付费</b></span>
+									</li>
+							</ul>
+			<p>
+				<b>选择便捷支付方式：</b>
+			</p>
+			<div class="pay-type">
+								<div class="type active" type="wechat_native" tname="微信支付" channel_id="4">
+										<img class="wx-icon" src="https://file.ipadown.com/tophub/assets/images/pay/pay-wx-ef99175411.svg">
+									</div>
+								<div class="type " type="" tname="支付宝" channel_id="1">
+										<img src="https://file.ipadown.com/tophub/assets/images/pay/pay-alipay-afd20115f0.svg" style="max-width: 80px; max-height: 30px;">
+									</div>
+							</div>
+			<p>
+				<b>您的专属优惠价格：</b>
+			</p>
+			<div class="money2">
+				<div>
+					<span style="font-size:16px;font-weight:bold;">限时特惠</span> <b style="color:red;font-size:24px;" id="selected-price">29.9</b> <span class="monetary">元</span> <s>原价 <span id="selected-org-price">54</span> 元</s> 
+					<br/> <span style="color:#ff7600;font-size:14px;">🔥 折扣即将结束，抓紧时间抢购！</span>
+					<br/> <span style="color:#1fc05c;font-size:12px;" id="daily-price">平均每天仅需 0.33 元，比一杯奶茶还便宜</span>
+				</div>
+			</div>
+
+			<div class="btn-pay animate-pulse">立即开通会员特权</div>
+
+		</div>
+		<div class="mpa-hide buy-win qr-win">
+			<div class="">
+				<p class="title">🎉 即将完成购买</p>
+				<p>请使用<span class="ptype"></span>「扫一扫」完成支付</p>
+				<p style="color:#ff7600;font-size:12px;">扫码后立即激活您的会员特权！</p>
+				<div class="qrcode"><img src="" width="150" height="150"/></div>
+				<p class="pricing ">限时特惠价 <span id="qrcode-price">29.9</span> 元</p>
+				<p style="font-size:12px;color:#1fc05c;">支付成功后自动开通会员权限</p>
+				<div class="qr-buttons" style="margin-top:15px;display:flex;justify-content:center;gap:10px;">
+					<button class="pay-success-btn" style="padding:8px 15px;background:#20bf5c;color:#fff;border:none;border-radius:4px;cursor:pointer;">支付成功</button>
+					<button class="pay-cancel-btn" style="padding:8px 15px;background:#f5f5f5;color:#666;border:1px solid #ddd;border-radius:4px;cursor:pointer;">取消支付</button>
+				</div>
+				<p style="margin-top:15px;">如有任何问题，请联系专属VIP客服微信：ieliwb2</p>
+				<p style="font-size:12px;color:#666;">我们将为您提供优先处理和解决</p>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+</div>
+
+
+</div>
+</section>
+</section>
+
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	// 动态设置价格卡片宽度
+	var itemCount = $('.tophub-pricing-box .pricing-item').length;
+	if (itemCount > 0) {
+		// 根据商品数量调整容器宽度
+		if (itemCount > 3) {
+			$('.tophub-pricing').css('width', Math.min(90, itemCount * 20) + '%');
+		}
+		
+		// 设置每个卡片的宽度
+		var itemWidth = 100 / itemCount;
+		$('.tophub-pricing-box .pricing-item').css({
+			'width': itemWidth + '%',
+			'min-width': Math.min(150, 600 / itemCount) + 'px'
+		});
+		
+		// 调整支付对话框中的会员方案选项宽度
+		var selectBoxWidth = $('.pay-dialog .inner .buy-win .select-box').width();
+		// 计算每个选项的最小和最大宽度
+		var minWidth = Math.max(80, (selectBoxWidth - (itemCount * 8)) / (itemCount + 1));
+		var maxWidth = Math.min(120, (selectBoxWidth - (itemCount * 8)) / itemCount);
+		$('.pay-dialog .inner .buy-win .select-box li').css({
+			'min-width': minWidth + 'px',
+			'max-width': maxWidth + 'px'
+		});
+	}
+	
+	// 处理商品选择
+	$('.select-box li').click(function() {
+		$('.select-box li').removeClass('active');
+		$(this).addClass('active');
+		
+		// 更新价格显示
+		var price = $(this).attr('price');
+		var org_price = $(this).attr('org_price');
+		var pid = $(this).attr('pid');
+		var tip = $(this).attr('tip');
+		
+		// 更新显示价格
+		$('#selected-price').text(price);
+		$('#selected-org-price').text(org_price);
+		$('#qrcode-price').text(price);
+		
+		// 计算每日价格（如果是终身会员则不显示）
+		var isLifetime = $(this).attr('vip_days') > 2000;
+		if(isLifetime) {
+			$('#daily-price').text('一次付费，终身享用，最具性价比');
+		} else {
+			var days = $(this).attr('vip_days');
+			var dailyPrice = (price / days).toFixed(2);
+			$('#daily-price').text(tip + '，平均每天仅需 ' + dailyPrice + ' 元');
+		}
+	});
+	// 倒计时功能 - 基于3天周期的倒计时
+	// 获取或设置结束时间
+	function getOrSetEndTime() {
+		// 尝试从 cookie 中获取结束时间
+		var savedEndTime = Cookies.get('promotion_end_time');
+		
+		// 如果 cookie 中有结束时间，则使用它
+		if (savedEndTime) {
+			return new Date(parseInt(savedEndTime));
+		}
+		
+		// 如果没有，则创建一个新的结束时间（当前时间 + 1天）
+		var now = new Date();
+		var newEndTime = new Date(now);
+		newEndTime.setDate(newEndTime.getDate() + 1); // 设置为1天后
+		
+		// 将结束时间保存到 cookie，过期时间设置为2天
+		Cookies.set('promotion_end_time', newEndTime.getTime(), { expires: 2 });
+		
+		return newEndTime;
+	}
+	
+	// 检查倒计时是否已经结束，如果结束则重新开始一个新的周期
+	function checkAndResetCountdown() {
+		var savedEndTime = Cookies.get('promotion_end_time');
+		if (savedEndTime) {
+			var endTimeDate = new Date(parseInt(savedEndTime));
+			var now = new Date();
+			
+			// 如果当前时间已经超过结束时间，则重新设置一个新的结束时间
+			if (now >= endTimeDate) {
+				// 删除旧的 cookie
+				Cookies.remove('promotion_end_time');
+				// 重新获取新的结束时间
+				return getOrSetEndTime();
+			}
+		}
+		return null; // 不需要重置
+	}
+	
+	// 获取倒计时的结束时间
+	var endTime = getOrSetEndTime();
+	
+	// 定时检查是否需要重置倒计时
+	setInterval(function() {
+		var newEndTime = checkAndResetCountdown();
+		if (newEndTime) {
+			endTime = newEndTime;
+		}
+	}, 60000); // 每分钟检查一次
+	
+	function updateCountdown() {
+		try {
+			// 获取当前时间
+			var now = new Date();
+			
+			// 计算剩余时间（毫秒）
+			var timeLeft = endTime - now;
+			
+			// 如果倒计时结束，显示全部为0
+			if (timeLeft <= 0) {
+				timeLeft = 0;
+				// 检查是否需要重置倒计时
+				var newEndTime = checkAndResetCountdown();
+				if (newEndTime) {
+					endTime = newEndTime;
+					timeLeft = endTime - now;
+				}
+			}
+			
+			// 计算天、小时、分钟和秒数
+			var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+			
+			// 将天数加到小时中
+			hours = hours + (days * 24);
+			
+			// 更新显示
+			var hoursElement = document.getElementById('countdown-hours');
+			var minutesElement = document.getElementById('countdown-minutes');
+			var secondsElement = document.getElementById('countdown-seconds');
+			
+			if (hoursElement && minutesElement && secondsElement) {
+				hoursElement.textContent = hours < 10 ? '0' + hours : hours;
+				minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
+				secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
+			}
+		} catch (error) {
+			console.error('倒计时出错：', error);
+		}
+	}
+	
+	// 初始化倒计时
+	updateCountdown();
+	// 每秒更新一次
+	setInterval(updateCountdown, 1000);
+	
+	// FAQ交互功能
+	$('.faq-question').on('click', function() {
+		var $answer = $(this).next('.faq-answer');
+		var $icon = $(this).find('i');
+		
+		// 切换当前问题的展开/收起状态
+		if ($answer.hasClass('show')) {
+			$answer.removeClass('show');
+			$(this).removeClass('active');
+		} else {
+			$answer.addClass('show');
+			$(this).addClass('active');
+		}
+	});
+
+	$('body').on('click', ".green-model-btn", function (e){
+		$("#pay-dialog .pay-dialog").removeClass("mpa-hide");
+
+	});
+	
+	$('body').on('click', ".close", function (e){
+		$("#pay-dialog .pay-dialog").addClass("mpa-hide");
+		$(".qr-win").addClass("mpa-hide");
+		$(".buy-win").not(".qr-win").removeClass("mpa-hide");
+		$(".introduce").removeClass("mpa-hide");
+	});
+	
+	$('body').on('click', '.select-box li', function (){
+		
+		var tabs = $(this).parent().find("li");
+		var index = $.inArray(this,tabs); 
+		tabs.removeClass("active").eq(index).addClass("active");
+		
+		$(".money2").find("b").text($(this).attr("price"));
+		$(".money2").find("s").text('原价 ' + $(this).attr("org_price") + ' 元');
+	
+	});
+	
+	$('body').on('click', '.retry-btn', function (){
+		$(".qrcode .error-msg, .qrcode .retry-btn").remove();
+		$('.btn-pay').click();
+	});
+	
+	// 取消支付按钮点击事件
+	$('body').on('click', '.pay-cancel-btn', function (){
+		$(".qr-win").addClass("mpa-hide");
+		$(".buy-win").not(".qr-win").removeClass("mpa-hide");
+		$(".introduce").removeClass("mpa-hide");
+	});
+	
+	// 支付成功按钮点击事件
+	$('body').on('click', '.pay-success-btn', function (){
+		var tradeSn = $(".qr-win").attr("data-trade-sn");
+		if (!tradeSn) {
+			alert("订单信息不存在，请重新发起支付");
+			return;
+		}
+		
+		// 显示查询中提示
+		$(this).text("查询中...").prop("disabled", true).css("opacity", "0.7");
+		
+		// 调用查询订单 API
+		$.ajax({
+		  url: '/pay/query',
+		  type: 'GET',
+		  data: {
+			"trade_sn" : tradeSn
+		  },
+		  success: function() {
+			// 显示支付成功提示
+			alert("支付成功，即将刷新页面");
+			window.location.reload();
+		  },
+		  error: function() {
+			alert("查询订单失败，请稍后再试或联系客服");
+			$('.pay-success-btn').text("支付成功").prop("disabled", false).css("opacity", "1");
+		  }
+		});
+	});
+	
+	$('body').on('click', '.btn-pay', function (){
+		var $select = $(".select-box li.active");
+		var $ptype = $(".pay-type .type.active");
+		
+		// 设置支付类型和价格
+		$(".ptype").text($ptype.attr("tname"));
+		$("#qrcode-price").text($select.attr("price"));
+		
+		// 显示加载提示
+		$(".qrcode img").hide();
+		$(".qrcode").append('<div class="loading-tip" style="text-align:center;padding:20px;"><p>正在生成支付二维码，请稍候...</p></div>');
+		
+		// 显示二维码区域，隐藏购买区域
+		$(".qr-win").removeClass("mpa-hide");
+		$(".buy-win").not(".qr-win").addClass("mpa-hide");
+		$(".introduce").addClass("mpa-hide");
+		
+		// 调用支付 API 获取支付链接
+		$.ajax({
+		  url: '/pay/prepare',
+		  type: 'GET',
+		  data: {
+			  pid : $select.attr("pid"),
+			  channel_id : $ptype.attr("channel_id")
+		  },
+		  success: function(data) {
+			if(!data.error){
+			  // 更新二维码图片
+			  $(".qrcode .loading-tip").remove();
+			  $(".qrcode img").attr('src', 'https://xorpay.com/qr?data='+data.data.pay_link).show();
+			  
+			  // 存储订单号，用于后续查询
+			  $(".qr-win").attr("data-trade-sn", data.data.trade_sn);
+			}
+			else {
+			  // 显示错误信息
+			  $(".qrcode img").hide();
+			  $(".qrcode .loading-tip").remove();
+			  $(".qrcode").append('<p class="error-msg" style="color:red;">获取支付二维码失败：' + data.msg + '</p>');
+			  
+			  // 添加重试按钮
+			  $(".qrcode").append('<button class="retry-btn" style="margin-top:10px;padding:5px 15px;background:#20bf5c;color:#fff;border:none;border-radius:4px;cursor:pointer;">重试</button>');
+			}
+		  },
+		  error: function(e){
+			  $(".qrcode img").hide();
+			  $(".qrcode .loading-tip").remove();
+			  $(".qrcode").append('<p class="error-msg" style="color:red;">服务器响应错误，请加客服处理，谢谢！微信：ieliwb2</p>');
+			  
+			  // 添加重试按钮
+			  $(".qrcode").append('<button class="retry-btn" style="margin-top:10px;padding:5px 15px;background:#20bf5c;color:#fff;border:none;border-radius:4px;cursor:pointer;">重试</button>');
+		  }
+		});
+	});
+		
+	$('body').on('click', '.pay-type .type', function (){
+		
+		var tabs = $(this).parent().find(".type");
+		var index = $.inArray(this,tabs); 
+		tabs.removeClass("active").eq(index).addClass("active");
+		
+	});
+	
+
+	
+});	
+</script>
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script></body>
+</html>

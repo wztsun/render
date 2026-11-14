@@ -1,0 +1,2379 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="哔哩哔哩全站日榜 - 今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="哔哩哔哩全站日榜 - 今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>哔哩哔哩全站日榜 - 今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/filter.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script type="text/javascript" src="https://file.ipadown.com/tophub/assets/js/jquery.range.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/sshare.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/export.popover.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/notify.popover.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+<style>
+.time-machine-header{display:flex;justify-content:space-between;align-items:center;margin:15px 0;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.time-machine-tabs .tabs-container{display:flex;background-color:#fff;border-radius:8px;padding:3px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.time-machine-tabs .tab-sort-item{display:flex;align-items:center;padding:6px 10px;border-radius:8px;color:#666;font-size:13px;transition:all .2s ease;margin:5px}
+.time-machine-tabs .tab-sort-item.active{background-color:#f5f5f5;color:#333;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.time-machine-tabs .tab-sort-item i.m-n{font-size:14px;margin-right:6px;color:#ccc;font-weight:600}
+.time-machine-tabs .vip-badge{display:inline-flex;align-items:center;margin-left:4px;padding:1px 4px;border-radius:3px;background:linear-gradient(135deg,#f5c518,#e6a700);color:#fff;font-size:10px;font-weight:700}
+.vip-badge{display:inline-block;background-color:#ff9800;color:#fff;font-size:12px;padding:1px 4px;border-radius:3px;margin-left:5px;vertical-align:middle}
+.snapshot-selector{display:flex;}
+.snapshot-time-list{width:100%}
+.snapshot-time-header{margin-bottom:15px}
+.snapshot-time-header h3{font-size:16px;margin:10px;font-weight:600}
+.snapshot-time-header p{margin:0;color:#666;font-size:14px}
+.snapshot-time-container{position:relative;min-height:100px}
+.snapshot-loading , .snapshot-content-loading{text-align:center;padding:20px 0}
+.snapshot-loading p, .snapshot-content-loading p{color:#c9c9c9;font-size:14px;}
+.snapshot-empty{text-align:center;padding:20px 0;color:#999}
+.snapshot-hours{display:flex;flex-wrap:wrap}
+.snapshot-hour-block{width:25%;padding:0 10px 15px 0;box-sizing:border-box}
+.snapshot-hour-header{font-weight:600;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #eee}
+.snapshot-time-item{display:inline-block;padding:3px 8px;margin:0 5px 5px 0;background-color:#f5f5f5;border-radius:3px;cursor:pointer;transition:all .2s}
+.snapshot-time-item:hover{background-color:#e9e9e9}
+.snapshot-time-item.active{background-color:#4e6ef2;color:#fff}
+.snapshot-info{margin-bottom:15px;background-color:#f9f9f9}
+.snapshot-time{padding:12px 15px;background:#f9f9f9;border-left:3px solid #4e6ef2;font-size:14px;color:#333;font-weight:500}
+.snapshot-hour{margin:20px 0 12px;padding:0 0 5px 12px;border-left:3px solid #4e6ef2;position:relative}
+.snapshot-hour h4{margin:0;font-size:16px;color:#333;font-weight:600}
+.snapshot-hour-items{display:flex;flex-wrap:wrap;gap:12px;padding:10px 0 10px 24px;margin-bottom:15px}
+.snapshot-item{cursor:pointer;transition:all .25s ease;position:relative}
+.snapshot-item:after{content:'';position:absolute;left:-12px;top:50%;width:6px;height:6px;background:#ddd;border-radius:50%;transform:translateY(-50%);transition:all .25s ease}
+.snapshot-item:hover:after{background:#4e6ef2}
+.snapshot-item.active:after{background:#4e6ef2;width:8px;height:8px}
+.snapshot-item .time-badge{background:#f5f5f5;padding:6px 12px;border-radius:30px;color:#333;font-size:14px;display:inline-block;transition:all .25s ease;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.snapshot-item:hover .time-badge{background:#eef2fd;color:#4e6ef2;transform:translateY(-1px);box-shadow:0 2px 6px rgba(78,110,242,.15)}
+.snapshot-item.active .time-badge{background:#4e6ef2;color:#fff;transform:translateY(-1px);box-shadow:0 2px 8px rgba(78,110,242,.25)}
+.text-center{text-align:center}
+.snapshot-time-wrapper{background:#f9f9f9;position:relative}
+.snapshot-timeline{position:relative;padding:10px 0}
+.time-group-header{display:flex;align-items:center;color:#333;font-weight:600;padding:10px 0;border-bottom:1px solid #eee}
+.time-group-header .m-n{font-size:18px;margin-right:8px;color:#4e6ef2}
+.time-group{padding:5px 0}
+.hour-group{display:flex;margin:15px 0;align-items:flex-start}
+.hour-label{width:50px;text-align:right;padding-right:15px;font-weight:600;color:#555;font-size:13px}
+.time-points{display:flex;flex-wrap:wrap;gap:12px;position:relative;padding-left:15px;border-left:1px dashed #ddd;flex:1;min-height:30px}
+.snapshot-item{position:relative;margin-bottom:5px}
+.snapshot-item:before{content:'';position:absolute;top:50%;left:-19px;width:8px;height:8px;border-radius:50%;background:#ddd;transform:translateY(-50%);transition:all .2s ease}
+.snapshot-item:hover:before{background:#4e6ef2;box-shadow:0 0 0 2px rgba(78,110,242,.2)}
+.snapshot-item.active:before{background:#4e6ef2;box-shadow:0 0 0 3px rgba(78,110,242,.3)}
+.time-badge{background:#f5f5f5;padding:5px 10px;border-radius:30px;font-size:13px;color:#333;display:inline-block;transition:all .2s ease}
+.snapshot-item:hover .time-badge{background:#eef2fd;color:#4e6ef2;transform:translateY(-1px);box-shadow:0 2px 6px rgba(78,110,242,.15)}
+.snapshot-item.active .time-badge{background:#4e6ef2;color:#fff;transform:translateY(-1px);box-shadow:0 2px 8px rgba(78,110,242,.25)}
+.snapshot-time-container{position:relative;padding-left:12px;}
+@media (max-width:768px){.snapshot-hour-block{width:50%}
+}
+@media (max-width:480px){.snapshot-hour-block{width:100%}
+}
+.snapshot-back-btn{position:absolute;right:15px;top:12px;display:flex;align-items:center;color:#4e6ef2;font-size:13px;transition:all .2s ease}
+.snapshot-back-btn .m-n{margin-right:4px;font-size:14px}
+.snapshot-back-btn:hover{color:#2d4cd7;text-decoration:none}
+
+.dark .snapshot-time{background:#252729;color:#ddd;border-left-color:#177ddc}
+.dark .snapshot-time-item{background-color:#252729;color:#ddd}
+.dark .snapshot-time-item:hover{background-color:#2d3032}
+.dark .snapshot-time-item.active{background-color:#177ddc}
+.dark .snapshot-info{background-color:#191a1b}
+.dark .snapshot-hour-header{border-bottom-color:#2d2e2f;color:#ddd}
+.dark .snapshot-item .time-badge{background:#252729;color:#ddd}
+.dark .time-machine-header{border-bottom-color:#2d2e2f}
+.dark .time-machine-tabs .tabs-container{background-color:#191a1b;border-color:#2d2e2f;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.dark .time-machine-tabs .tab-sort-item{color:#aaa}
+.dark .time-machine-tabs .tab-sort-item i.m-n{color:#666}
+.dark .time-machine-tabs .tab-sort-item.active{background-color:#252729;color:#ddd;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.dark .snapshot-time-header h3{color:#ddd}
+.dark .snapshot-time-header p{color:#888}
+.dark .snapshot-empty{color:#888}
+.dark .time-group-header{color:#ddd;border-bottom-color:#2d2e2f}
+.dark .time-group-header .m-n{color:#177ddc}
+.dark .hour-label{color:#888}
+.dark .time-points{border-left-color:#3e3e3e}
+.dark .snapshot-item:before{background:#3e3e3e}
+.dark .snapshot-item:hover:before{background:#177ddc;box-shadow:0 0 0 2px rgba(23,125,220,.2)}
+.dark .snapshot-item.active:before{background:#177ddc;box-shadow:0 0 0 3px rgba(23,125,220,.3)}
+.dark .time-badge{background:#252729;color:#ddd}
+.dark .snapshot-item:hover .time-badge{background:#2d3032;color:#177ddc;box-shadow:0 2px 6px rgba(23,125,220,.15)}
+.dark .snapshot-item.active .time-badge{background:#177ddc;color:#fff;box-shadow:0 2px 8px rgba(23,125,220,.25)}
+.dark .snapshot-back-btn{color:#177ddc}
+.dark .snapshot-back-btn:hover{color:#3390dc}
+.dark .snapshot-hour{border-left-color:#177ddc}
+.dark .snapshot-hour h4{color:#ddd}
+.dark .snapshot-time-wrapper{background:#191a1b}
+</style>
+</head>
+<body class="">
+<div id="page" class="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e">
+		<div class="p-c p-c-f">
+			<div class="p-c-l">
+
+								<div class="cb sd">
+					<div class="st">哔哩哔哩</div>
+					<ul>
+																		<li><a href="/n/74KvxwokxM" title="哔哩哔哩 ‧ 全站日榜">哔哩哔哩 ‧ 全站日榜</a></li>
+																		<li><a href="/n/b0vmbRXdB1" title="哔哩哔哩 ‧ 每周必看">哔哩哔哩 ‧ 每周必看</a></li>
+																		<li><a href="/n/VaobLKGdAj" title="哔哩哔哩 ‧ 综合热门">哔哩哔哩 ‧ 综合热门</a></li>
+																		<li><a href="/n/BwdG2ajvPx" title="哔哩哔哩 ‧ 入站必刷">哔哩哔哩 ‧ 入站必刷</a></li>
+																		<li><a href="/n/aqeEk03v9R" title="哔哩哔哩 ‧ 热搜">哔哩哔哩 ‧ 热搜</a></li>
+																		<li><a href="/n/12ow56jdNV" title="哔哩哔哩 ‧ 会员购 ‧ 今日上新">哔哩哔哩 ‧ 会员购 ‧ 今日上新</a></li>
+																		<li><a href="/n/Ywv47GzoPa" title="哔哩哔哩 ‧ 知识榜">哔哩哔哩 ‧ 知识榜</a></li>
+																		<li><a href="/n/RrvW1nge5z" title="哔哩哔哩 ‧ 科技数码榜">哔哩哔哩 ‧ 科技数码榜</a></li>
+																		<li><a href="/n/ENeYpn3dY4" title="哔哩哔哩 ‧ 游戏榜">哔哩哔哩 ‧ 游戏榜</a></li>
+																		<li><a href="/n/MZd77ypdrO" title="哔哩哔哩 ‧ 影视榜">哔哩哔哩 ‧ 影视榜</a></li>
+																		<li><a href="/n/YKd67qneaP" title="哔哩哔哩 ‧ 娱乐榜">哔哩哔哩 ‧ 娱乐榜</a></li>
+																		<li><a href="/n/7GdaPmOvQy" title="哔哩哔哩 ‧ 音乐榜">哔哩哔哩 ‧ 音乐榜</a></li>
+																		<li><a href="/n/Jndk1BQo3V" title="哔哩哔哩 ‧ 美食榜">哔哩哔哩 ‧ 美食榜</a></li>
+																		<li><a href="/n/4qv97nneaK" title="哔哩哔哩 ‧ 汽车榜">哔哩哔哩 ‧ 汽车榜</a></li>
+																		<li><a href="/n/pQvNOnJdNE" title="哔哩哔哩 ‧ 动画榜">哔哩哔哩 ‧ 动画榜</a></li>
+																		<li><a href="/n/4MdA7nboxD" title="哔哩哔哩 ‧ 时尚美妆榜">哔哩哔哩 ‧ 时尚美妆榜</a></li>
+																		<li><a href="/n/yjvQXnBobg" title="哔哩哔哩 ‧ 鬼畜榜">哔哩哔哩 ‧ 鬼畜榜</a></li>
+																		<li><a href="/n/BwdGEnJoPx" title="哔哩哔哩 ‧ 动物榜">哔哩哔哩 ‧ 动物榜</a></li>
+																		<li><a href="/n/KGoR582el6" title="哔哩哔哩 ‧ 舞蹈榜">哔哩哔哩 ‧ 舞蹈榜</a></li>
+																		<li><a href="/n/VaobOjqvAj" title="哔哩哔哩 ‧ 体育运动榜">哔哩哔哩 ‧ 体育运动榜</a></li>
+											</ul>
+				</div>
+								
+								<div style="clear: both; padding: 5px;"></div>
+				<div class="cb sd">
+					<div class="st">猜你喜欢</div>
+					<ul>
+																		<li><a href="/n/b0vmbRXdB1" title="哔哩哔哩 ‧ 每周必看">哔哩哔哩 ‧ 每周必看</a></li>
+																		<li><a href="/n/VaobblBoAj" title="哔哩哔哩专栏 ‧ 月榜">哔哩哔哩专栏 ‧ 月榜</a></li>
+																		<li><a href="/n/4MdAaXNdxD" title="哔哩哔哩专栏 ‧ 周榜">哔哩哔哩专栏 ‧ 周榜</a></li>
+																		<li><a href="/n/VaobLKGdAj" title="哔哩哔哩 ‧ 综合热门">哔哩哔哩 ‧ 综合热门</a></li>
+																		<li><a href="/n/JndkE9Vo3V" title="哔哩哔哩专栏 ‧ 昨天排行榜">哔哩哔哩专栏 ‧ 昨天排行榜</a></li>
+																		<li><a href="/n/BwdG2ajvPx" title="哔哩哔哩 ‧ 入站必刷">哔哩哔哩 ‧ 入站必刷</a></li>
+																		<li><a href="/n/4qv9bmqdaK" title="哔哩哔哩专栏 ‧ 前天排行榜">哔哩哔哩专栏 ‧ 前天排行榜</a></li>
+																		<li><a href="/n/12ow56jdNV" title="哔哩哔哩 ‧ 会员购 ‧ 今日上新">哔哩哔哩 ‧ 会员购 ‧ 今日上新</a></li>
+																		<li><a href="/n/3QeLG9Wd7k" title="TED|TED君学演讲">TED|TED君学演讲</a></li>
+																		<li><a href="/n/x9ozB9DoXb" title="读书|suelence">读书|suelence</a></li>
+																		<li><a href="/n/nBe0zD5v37" title="学习|小恐龙也是大学霸">学习|小恐龙也是大学霸</a></li>
+																		<li><a href="/n/proPEymvq6" title="学习|工具不要肉肉肉肉的">学习|工具不要肉肉肉肉的</a></li>
+																		<li><a href="/n/nBe0znzv37" title="学习|智能观">学习|智能观</a></li>
+																		<li><a href="/n/JndkpJZe3V" title="极客湾Geekerwan 的 bilibili 空间">极客湾Geekerwan 的 bilibili 空间</a></li>
+																		<li><a href="/n/WmoOWPko4E" title="罗翔说刑法 的 bilibili 动态">罗翔说刑法 的 bilibili 动态</a></li>
+																		<li><a href="/n/YqoXQ9nvOD" title="学习自律|吴悠Viewy">学习自律|吴悠Viewy</a></li>
+																		<li><a href="/n/YKd6GWmeaP" title="马督工 的 bilibili 空间">马督工 的 bilibili 空间</a></li>
+																		<li><a href="/n/aEdZq3BvrO" title="靠谱电竞 的 bilibili 空间">靠谱电竞 的 bilibili 空间</a></li>
+																		<li><a href="/n/WmoO59Ed4E" title="折纸|折纸的白叔">折纸|折纸的白叔</a></li>
+																		<li><a href="/n/3moBPkydN5" title="电影最TOP 的 bilibili 空间">电影最TOP 的 bilibili 空间</a></li>
+																		<li><a href="/n/4qv92OXdaK" title="卢克文工作室 的 bilibili 空间">卢克文工作室 的 bilibili 空间</a></li>
+																		<li><a href="/n/3adq0amvng" title="蒸気火鸡 的 bilibili 动态">蒸気火鸡 的 bilibili 动态</a></li>
+																		<li><a href="/n/anop02BolZ" title="doyoudo 的 bilibili 空间">doyoudo 的 bilibili 空间</a></li>
+																		<li><a href="/n/WmoOGMOo4E" title="DIYgod 的 bilibili 空间">DIYgod 的 bilibili 空间</a></li>
+																		<li><a href="/n/KGoRRjNol6" title="开车大神 的 bilibili 空间">开车大神 的 bilibili 空间</a></li>
+																		<li><a href="/n/KGoRZDZol6" title="张尔达 的 bilibili 空间">张尔达 的 bilibili 空间</a></li>
+																		<li><a href="/n/12owWYloNV" title="VWV 的 bilibili 空间">VWV 的 bilibili 空间</a></li>
+																		<li><a href="/n/Q0orrZ5o8B" title="不搞博士Dcy 的 bilibili 空间">不搞博士Dcy 的 bilibili 空间</a></li>
+																		<li><a href="/n/Dgey9wReZq" title="长歌与小见见 的 bilibili 空间">长歌与小见见 的 bilibili 空间</a></li>
+																		<li><a href="/n/3QeLwjGd7k" title="涼子同学 的 bilibili 动态">涼子同学 的 bilibili 动态</a></li>
+																		<li><a href="/n/x9oz3LKvXb" title="楚钧艾克 的 bilibili 动态">楚钧艾克 的 bilibili 动态</a></li>
+																		<li><a href="/n/WmoOWpko4E" title="暴躁的仙人JUMP 的 bilibili 动态">暴躁的仙人JUMP 的 bilibili 动态</a></li>
+																		<li><a href="/n/1Vd52y8e85" title="她整夜在写信 的 bilibili 动态">她整夜在写信 的 bilibili 动态</a></li>
+																		<li><a href="/n/m4ejJNVexE" title="PoorPlayers穷玩组 的 bilibili 空间">PoorPlayers穷玩组 的 bilibili 空间</a></li>
+																		<li><a href="/n/4MdA0NZvxD" title="卦者那啥子靈風 的 bilibili 动态">卦者那啥子靈風 的 bilibili 动态</a></li>
+																		<li><a href="/n/3adqQOadng" title="抽风的飞机 的 bilibili 空间">抽风的飞机 的 bilibili 空间</a></li>
+																		<li><a href="/n/proPWZleq6" title="兔叭咯 的 bilibili 动态">兔叭咯 的 bilibili 动态</a></li>
+																		<li><a href="/n/nBe0yjbo37" title="不知爱竞赛 的 bilibili 空间">不知爱竞赛 的 bilibili 空间</a></li>
+											</ul>
+				</div>
+												
+				<div style="clear: both;padding:5px;"></div>
+				<div class="cb s-t-l">
+					<div class="hh">追踪机器人</div>
+					<div class="section">
+						<div class="tt hidden">兴趣追踪</div>
+						<div class="dd">自定义追踪你感兴趣的信息。</div>
+						<a href="/alerts">创建追踪器</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="p-c-m">
+
+				<div class="p-c-m-r" data-key="sidebar" data-limit="4" data-sponsors-status="1">                    
+    <div class="m-b-mo">
+        <a href="/sponsors">成为赞助商</a>
+    </div>
+
+        <!-- 非VIP用户显示广告 -->
+    <div class="adsense-sidebar-container" style="max-height:300px;margin-top:10px;overflow:hidden;">
+            </div>
+    </div>
+
+
+
+
+				<div class="p-c-m-l">
+
+					<div class="c-m-l">
+						<div class="c-m">
+							<div class="c-i">
+								<div class="c-i-b" style="background-image: url(&quot;https://file.ipadown.com/tophub/assets/images/bb.png&quot;);"></div>
+								<div class="c-i-c">
+									<div class="ii"><img src="https://file.ipadown.com/tophub/assets/images/media/bilibili.com.png_160x160.png"/></div>
+									<div class="tt">
+										<h3>哔哩哔哩 ‧ 全站日榜</h3>
+										<p>订阅数：25万+ </p>
+									</div>
+									<div class="at">
+										<a class="btn btn-node Ib-T Ib-T-yc" href="javascript:;" nodeid="19" is_follow="">
+											<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i>订阅</div>
+											<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i>取消订阅</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="c-m-tab">
+								<div class="tab-classify">
+									<button type="button" class="action-search" id="search-in-node"><i class="m-n">&#xe616;</i></button>
+									<button type="button" class="action-export has-popover" export-title="导出榜单内容" export-desc="将当前榜单内容导出为文件，方便离线浏览或数据分析" export-params='{"module":"node","nodeid":19,"type":"rank"}'><i class="m-n">&#xe617;</i></button>
+									<button type="button" class="action-notify has-popover" notify-channel="1" notify-channel-id="19" notify-title="订阅 哔哩哔哩全站日榜 更新通知" notify-desc="订阅后可通过多种方式接收 哔哩哔哩全站日榜 的最新更新通知"><i class="m-n">&#xe683;</i></button>
+									<button type="button" class="action-share"><i class="m-n">&#xe7f9;</i></button>
+								</div>
+								<div class="tab-sort">
+									<a href="javascript:;" class="tab-sort-item active" id="latest">最新全站日榜<span>4分钟前更新</span></a>
+									<a href="javascript:;" class="tab-sort-item" id="time-machine">历史快照<span>时光机</span></a>
+								</div>
+
+							</div>
+						</div>
+						
+					</div>	
+
+										<div class="f-t-l">
+						<div class="jc rank-all-item">
+							<div class="jc-c">
+								<table class="table" width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tbody>
+																			<tr>
+											<td align="center">1.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/088e084c6ddda75faeadf62af0c976f31434dab1.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117602311476853/" target="_blank" rel="nofollow" itemid="252777576">为什么是最后一期？影视飓风1800万粉丝Q&A！</a></div>
+												<div class="item-desc">450.4万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117602311476853/" title="查看详细" target="_blank" rel="nofollow" itemid="252777576"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">2.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/e7d552e4696e8d295df5f2a799384474c9595bc9.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597379168115/" target="_blank" rel="nofollow" itemid="252788599">他真的太优雅了！灰太狼&红太狼【非凡之爱】【AI MV大赛】</a></div>
+												<div class="item-desc">991.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597379168115/" title="查看详细" target="_blank" rel="nofollow" itemid="252788599"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">3.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/e846ede98eb27b98a77c8746591e4be4b2a9b993.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591389702977/" target="_blank" rel="nofollow" itemid="252761274">《崩坏：星穹铁道》EP：「无中生有」</a></div>
+												<div class="item-desc">203.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591389702977/" title="查看详细" target="_blank" rel="nofollow" itemid="252761274"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">4.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/344a6170be49a368b465583ba9c130c3067e9fa7.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596691106334/" target="_blank" rel="nofollow" itemid="252780456">【烂奇迹】三毛：我的一生颠沛流离，活到现在算是个奇迹</a></div>
+												<div class="item-desc">126.4万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596691106334/" title="查看详细" target="_blank" rel="nofollow" itemid="252780456"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">5.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/a6f594f35267dec85561469d8e9e0b7c974b73b9.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596607224672/" target="_blank" rel="nofollow" itemid="252708156">把旧发条装新身体上会发生什么？</a></div>
+												<div class="item-desc">202.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596607224672/" title="查看详细" target="_blank" rel="nofollow" itemid="252708156"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">6.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/295005a9337300b9b63e1871d7dd5aefe20bf098.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591976774105/" target="_blank" rel="nofollow" itemid="252680037">辽阔的土地生不出狭隘的爱</a></div>
+												<div class="item-desc">387.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591976774105/" title="查看详细" target="_blank" rel="nofollow" itemid="252680037"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">7.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/a54099d8519c96d6e506cfabe34c7773549ab0db.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597295090196/" target="_blank" rel="nofollow" itemid="252760208">《原神》过场动画-「岩与契约」</a></div>
+												<div class="item-desc">130.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597295090196/" title="查看详细" target="_blank" rel="nofollow" itemid="252760208"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">8.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/64e586c6b8a1785007702c0e82457dcde879fccf.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117598989584193/" target="_blank" rel="nofollow" itemid="252762713">《反方向の忠》</a></div>
+												<div class="item-desc">273.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117598989584193/" title="查看详细" target="_blank" rel="nofollow" itemid="252762713"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">9.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/307cf2c8253410ed08169aa98238f46c80419859.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117602949076857/" target="_blank" rel="nofollow" itemid="252794921">臣妾要线上告发熹贵妃 2.0</a></div>
+												<div class="item-desc">229.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117602949076857/" title="查看详细" target="_blank" rel="nofollow" itemid="252794921"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">10.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/51434f4ad4a78256bb20602dc165b0273dc7812f.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596640841051/" target="_blank" rel="nofollow" itemid="252735035">《我的傲娇星神不可能这么可爱》</a></div>
+												<div class="item-desc">193.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596640841051/" title="查看详细" target="_blank" rel="nofollow" itemid="252735035"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">11.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/98504d65570761a190b97ce0b346230bec28be60.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117601187399459/" target="_blank" rel="nofollow" itemid="252757250">“这是解锁了什么吗？！”</a></div>
+												<div class="item-desc">86.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117601187399459/" title="查看详细" target="_blank" rel="nofollow" itemid="252757250"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">12.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/62130bb79630e6ba70430fad5d186f8446782428.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117601808161772/" target="_blank" rel="nofollow" itemid="252810247">MJ宇宙校园之末日降临第一集</a></div>
+												<div class="item-desc">146.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117601808161772/" title="查看详细" target="_blank" rel="nofollow" itemid="252810247"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">13.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/6f761ec2ce173c8d89c9e30cd96e0aa03fe6429d.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117608837881830/" target="_blank" rel="nofollow" itemid="252868448">在这里，万亿吨水被强行灌进火山……【地理志】</a></div>
+												<div class="item-desc">141.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117608837881830/" title="查看详细" target="_blank" rel="nofollow" itemid="252868448"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">14.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/4a56552c21d7e495fc427abb835de4a830fcfb04.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117595852247451/" target="_blank" rel="nofollow" itemid="252717724">谁点名要看我cos德穆兰的？英语总监莅临还不快来迎接！</a></div>
+												<div class="item-desc">205.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117595852247451/" title="查看详细" target="_blank" rel="nofollow" itemid="252717724"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">15.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/9af278c891e394dc0c3106c762ff028da99d4e14.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117586658334437/" target="_blank" rel="nofollow" itemid="252870662">极致的走线！</a></div>
+												<div class="item-desc">267.3万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117586658334437/" title="查看详细" target="_blank" rel="nofollow" itemid="252870662"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">16.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/236a5ca1a9f07402caf533857f7d9b84091d5f7a.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597546746207/" target="_blank" rel="nofollow" itemid="252720803">疑似《崩坏：星穹铁道》星神★阿哈★真人角色PV流出</a></div>
+												<div class="item-desc">118.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597546746207/" title="查看详细" target="_blank" rel="nofollow" itemid="252720803"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">17.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/2165253eea685137d65635e4c778bbf363d82f65.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117595701249808/" target="_blank" rel="nofollow" itemid="252689277">这都能还原！！？【MC阿哈篇】</a></div>
+												<div class="item-desc">233.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117595701249808/" title="查看详细" target="_blank" rel="nofollow" itemid="252689277"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">18.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/f7c0e81845476f7b40a24d544fff3f44000f9184.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117575434374104/" target="_blank" rel="nofollow" itemid="252706934">文明重启：耗时3年，我终于做出了我的第一件铁器</a></div>
+												<div class="item-desc">260.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117575434374104/" title="查看详细" target="_blank" rel="nofollow" itemid="252706934"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">19.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/b443e607275d2d76804bd6abccb26e3592d97d50.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117595583875870/" target="_blank" rel="nofollow" itemid="252698341">大肥鱼适合做女朋友吗？（3）</a></div>
+												<div class="item-desc">240.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117595583875870/" title="查看详细" target="_blank" rel="nofollow" itemid="252698341"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">20.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/47f66f0c9e25f8515b354b40453d61a37e2e2b7c.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117608250612246/" target="_blank" rel="nofollow" itemid="252868446">假⚡️面⚡️难⚡️藏⚡️泪</a></div>
+												<div class="item-desc">91.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117608250612246/" title="查看详细" target="_blank" rel="nofollow" itemid="252868446"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">21.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/ee3e5ea85a6ab42cb050c5ac765ba96a62594a50.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117603284555130/" target="_blank" rel="nofollow" itemid="252821526">无烟酒吧倒闭、张美玉抑郁、大学生无偿代跑拒绝供出同学【抽象周刊】</a></div>
+												<div class="item-desc">265.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117603284555130/" title="查看详细" target="_blank" rel="nofollow" itemid="252821526"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">22.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/e24142bec677ab69557079d36d79bd40116dd604.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117601808223240/" target="_blank" rel="nofollow" itemid="252808720">我是Tim，同事让我变装</a></div>
+												<div class="item-desc">136.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117601808223240/" title="查看详细" target="_blank" rel="nofollow" itemid="252808720"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">23.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/fb4fcbd641b391957ccde0f1cabc3b0f53de9d0d.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117590198390095/" target="_blank" rel="nofollow" itemid="252663360">不要小瞧身边的任何一个唐人，系统的奖励丰厚的超乎你的想象</a></div>
+												<div class="item-desc">163.2万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117590198390095/" title="查看详细" target="_blank" rel="nofollow" itemid="252663360"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">24.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/47445378251c96a1875113e98a595d483b49e898.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117592933009198/" target="_blank" rel="nofollow" itemid="252678188">千 万 别 开 911 去 川 西 ！</a></div>
+												<div class="item-desc">103.4万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117592933009198/" title="查看详细" target="_blank" rel="nofollow" itemid="252678188"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">25.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/1bff147dae82795601b344bb81f813d458ba4170.png" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117586876435463/" target="_blank" rel="nofollow" itemid="252672913">12岁虚报17岁当红军，91年后他是最后一位开国将军｜王扶之（1923—2026）</a></div>
+												<div class="item-desc">118.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117586876435463/" title="查看详细" target="_blank" rel="nofollow" itemid="252672913"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">26.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/96fc5801cc1c650d0e1b01cdf96c7c49e6f60014.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597446085189/" target="_blank" rel="nofollow" itemid="252780971">冬日宿舍之写检讨</a></div>
+												<div class="item-desc">128.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597446085189/" title="查看详细" target="_blank" rel="nofollow" itemid="252780971"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">27.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/842bf0054c038790d00c1cde7deee67a71738eb4.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596389116660/" target="_blank" rel="nofollow" itemid="252704589">《崩坏：星穹铁道》星旅一瞬：「皆大欢喜！」</a></div>
+												<div class="item-desc">106.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596389116660/" title="查看详细" target="_blank" rel="nofollow" itemid="252704589"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">28.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/dcdb608b2742fe4be04c7a00721999a7596046c1.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117601371950210/" target="_blank" rel="nofollow" itemid="252802316">拿中老年病痛玩梗，还被44万人点赞，这是最近最让我恶心的烂梗！</a></div>
+												<div class="item-desc">215.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117601371950210/" title="查看详细" target="_blank" rel="nofollow" itemid="252802316"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">29.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/c772acae857aeb5de1b866c5ee4b9a1c60925989.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597043497057/" target="_blank" rel="nofollow" itemid="252725909">【带着AI穿越2018】#6 蓝色大肥鱼单刀赴会阿美莉卡</a></div>
+												<div class="item-desc">259.2万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597043497057/" title="查看详细" target="_blank" rel="nofollow" itemid="252725909"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">30.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/3ecc3ebe2c149a75b1b5dd30df07afdfc78fed51.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117592966634301/" target="_blank" rel="nofollow" itemid="252742871">主包从小就喜欢长发</a></div>
+												<div class="item-desc">103.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117592966634301/" title="查看详细" target="_blank" rel="nofollow" itemid="252742871"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">31.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/f97b4ae3929d154d6fba009ed7964025e4b797aa.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117603351796274/" target="_blank" rel="nofollow" itemid="252839163">我修改了Minecraft的冰：</a></div>
+												<div class="item-desc">170.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117603351796274/" title="查看详细" target="_blank" rel="nofollow" itemid="252839163"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">32.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/95ade3eb9c15d5e1ed8f69a9cae46e1ba96e3175.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117603855048487/" target="_blank" rel="nofollow" itemid="252802317">英伟达公司宣布：黄仁勋辞职</a></div>
+												<div class="item-desc">282.2万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117603855048487/" title="查看详细" target="_blank" rel="nofollow" itemid="252802317"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">33.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/11738ea031a4c15609efa0c4372440fbee145469.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597530036188/" target="_blank" rel="nofollow" itemid="252834760">你们外卖还有陪聊服务吗？</a></div>
+												<div class="item-desc">145.4万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597530036188/" title="查看详细" target="_blank" rel="nofollow" itemid="252834760"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">34.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/0b63992f993916129a13b33647ef752cbbee7b3b.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117592765306583/" target="_blank" rel="nofollow" itemid="252762714">《你跟他废什么话》</a></div>
+												<div class="item-desc">403.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117592765306583/" title="查看详细" target="_blank" rel="nofollow" itemid="252762714"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">35.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/b938fdb17b8807043210e43afb3f134d0af681d1.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596674332313/" target="_blank" rel="nofollow" itemid="252788158">也只有阿基维利能骗到阿哈了</a></div>
+												<div class="item-desc">95.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596674332313/" title="查看详细" target="_blank" rel="nofollow" itemid="252788158"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">36.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/6b6975ae6ffc1492f685f94b085587876182044a.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591842488525/" target="_blank" rel="nofollow" itemid="252629202">地牢酒馆-33《日常招待与地下湖》</a></div>
+												<div class="item-desc">302.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591842488525/" title="查看详细" target="_blank" rel="nofollow" itemid="252629202"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">37.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/1db4d6194b925a575f6bb3909ff9ab40ac42646f.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117607864730417/" target="_blank" rel="nofollow" itemid="252881469">全看过的这辈子有了</a></div>
+												<div class="item-desc">99.3万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117607864730417/" title="查看详细" target="_blank" rel="nofollow" itemid="252881469"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">38.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/b9be6955c3385ab98243c80cd84e9b5dbbf09077.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117580702418485/" target="_blank" rel="nofollow" itemid="252804607">提辖老妈《暴躁老妈》雷霆丧病配音1~8大合集</a></div>
+												<div class="item-desc">180.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117580702418485/" title="查看详细" target="_blank" rel="nofollow" itemid="252804607"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">39.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/5be9667473e2c9ade65e7b20f77bcf8ae6ee1cc3.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597697937709/" target="_blank" rel="nofollow" itemid="252767132">《草木皆兵》EP04 新来的寒冰射手为啥这么高冷</a></div>
+												<div class="item-desc">108.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597697937709/" title="查看详细" target="_blank" rel="nofollow" itemid="252767132"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">40.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/21e5f35e1aae8d1355774940ef26473da3e1e37b.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117598570220077/" target="_blank" rel="nofollow" itemid="252726550">《再 试 一 次！》</a></div>
+												<div class="item-desc">136.2万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117598570220077/" title="查看详细" target="_blank" rel="nofollow" itemid="252726550"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">41.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/bf66a0c96f388d755996f8e149bdb5aebae304f2.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117599291579338/" target="_blank" rel="nofollow" itemid="252795585">翻山覆海，以我之名｜2026全球总决赛冠亚军决赛宣传片</a></div>
+												<div class="item-desc">100.3万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117599291579338/" title="查看详细" target="_blank" rel="nofollow" itemid="252795585"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">42.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/f30aa5aa7b3acb8e739d30e652cc19f404c21a6d.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596389116566/" target="_blank" rel="nofollow" itemid="252725420">🍎可以花30秒看看我10年动画历程吗？</a></div>
+												<div class="item-desc">115.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596389116566/" title="查看详细" target="_blank" rel="nofollow" itemid="252725420"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">43.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/4bc84ead092b7a40d2f48451ce9b7dfb5d4f695c.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597110606552/" target="_blank" rel="nofollow" itemid="252738024">某些软件为了盈利能干出多没下限的事</a></div>
+												<div class="item-desc">66.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597110606552/" title="查看详细" target="_blank" rel="nofollow" itemid="252738024"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">44.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/c8114a2ad53ee73c282006a36d094c1d0f5433b4.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117595617430556/" target="_blank" rel="nofollow" itemid="252698343">【货币战争攻略】大洗牌后游戏节奏完全不同的货币战争S2究竟应该怎么玩？全网最详细最细节的货币战争S2运营教程与角色解析！看完直接领先同龄人一个大段</a></div>
+												<div class="item-desc">96.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117595617430556/" title="查看详细" target="_blank" rel="nofollow" itemid="252698343"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">45.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/34b7b6effab7e43354b33099d661ff608ef2a2f2.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597496478575/" target="_blank" rel="nofollow" itemid="252714463">听说新西兰卖1000一只的黑金鲍泛滥了！我临时起意…</a></div>
+												<div class="item-desc">171.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597496478575/" title="查看详细" target="_blank" rel="nofollow" itemid="252714463"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">46.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/b53eb04873e57ff87ae7ec53b6e460ce82bd9b0d.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117606975537943/" target="_blank" rel="nofollow" itemid="252878279">有用版新僵尸：慈祥二爷</a></div>
+												<div class="item-desc">125.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117606975537943/" title="查看详细" target="_blank" rel="nofollow" itemid="252878279"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">47.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/da222a33d8360a8ce63edd26bd9240c4b156e61d.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117608418385737/" target="_blank" rel="nofollow" itemid="252870661">耗资上万！我把匠魂做进了网页版mc... 【B站AI创造公开赛】</a></div>
+												<div class="item-desc">30.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117608418385737/" title="查看详细" target="_blank" rel="nofollow" itemid="252870661"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">48.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/e87cb787f8e269a99e5831c04c1b91d1f2350e36.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117601271352444/" target="_blank" rel="nofollow" itemid="252755547">三年之期已到，恭迎世一上归位！【第17集】</a></div>
+												<div class="item-desc">91.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117601271352444/" title="查看详细" target="_blank" rel="nofollow" itemid="252755547"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">49.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/a0f6db0546f40786301d3783789e146b33fa333c.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117606489001116/" target="_blank" rel="nofollow" itemid="252878281">把苏德拼好给你｜6分钟看完二战苏德战场</a></div>
+												<div class="item-desc">68.3万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117606489001116/" title="查看详细" target="_blank" rel="nofollow" itemid="252878281"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">50.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/430ae5707727510632b423ba6dbc88ade1877601.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117601707494550/" target="_blank" rel="nofollow" itemid="252826763">竹子从来都不欺人，只要你顺着它的脾气，会给你惊喜！</a></div>
+												<div class="item-desc">209.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117601707494550/" title="查看详细" target="_blank" rel="nofollow" itemid="252826763"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">51.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/bd90cb9ed888f4b9bd4e8ca127d2d35a000742ba.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117593151114275/" target="_blank" rel="nofollow" itemid="252746473">老 兵 电 竞 2.0</a></div>
+												<div class="item-desc">141.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117593151114275/" title="查看详细" target="_blank" rel="nofollow" itemid="252746473"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">52.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/4e2d3c9d6cd82a6090a99bcfee81c12f1106040b.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117607143380795/" target="_blank" rel="nofollow" itemid="252867367">你发图，我变美少女</a></div>
+												<div class="item-desc">124.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117607143380795/" title="查看详细" target="_blank" rel="nofollow" itemid="252867367"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">53.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/cc41ba46ab05e019e169fb0a76ff5a43b6797bbd.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596691174733/" target="_blank" rel="nofollow" itemid="252882799">请停留3秒，向孙中山先生献花，今天是孙中山先生诞辰160周年，“天下为公”是他毕生的追求， 毛泽东称赞：鞠躬尽瘁，死而后已！（编辑：卓光）#媒体原创</a></div>
+												<div class="item-desc">44.4万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596691174733/" title="查看详细" target="_blank" rel="nofollow" itemid="252882799"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">54.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/61c9ab209c2ef47799a04fbfc99418a679bf6e44.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117607462080931/" target="_blank" rel="nofollow" itemid="252868445">当家里的大肥鱼被饿了好几个小时以后</a></div>
+												<div class="item-desc">128.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117607462080931/" title="查看详细" target="_blank" rel="nofollow" itemid="252868445"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">55.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/238d86380f6b5c4c74918892bea636d2c4b2d119.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591355954491/" target="_blank" rel="nofollow" itemid="252681199">热烈欢迎谢苗！听听新一代“功夫巨星”对自己的生活和工作什么评价？（有一说一，苗哥的夫人何彦霓女士做面包真的太好吃了！太好吃啦！！！</a></div>
+												<div class="item-desc">105.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591355954491/" title="查看详细" target="_blank" rel="nofollow" itemid="252681199"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">56.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/5c780ecbddfda6b865a7b11acb3abf4035a67a7c.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117590919743168/" target="_blank" rel="nofollow" itemid="252725908">这才是《灭霸全家福》原版MV，灭霸的爸爸是灭建国【AIMV大赛】</a></div>
+												<div class="item-desc">863.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117590919743168/" title="查看详细" target="_blank" rel="nofollow" itemid="252725908"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">57.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/942ef3bfe8e7ec17900c6178f85c947b853af8fe.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117608720500044/" target="_blank" rel="nofollow" itemid="252868447">不是所有的IP都叫CPOPwave  《鸣潮》用同一个频率引发世界的回响</a></div>
+												<div class="item-desc">67.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117608720500044/" title="查看详细" target="_blank" rel="nofollow" itemid="252868447"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">58.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/dd06728bb765c1097dca7f332b6bf5b3c00d504d.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117586138305801/" target="_blank" rel="nofollow" itemid="252676465">「沉浸式第一人称」假如你是孙悟空的生死兄弟，远渡重洋拜菩提，从花果山一路打上天庭！【AI全民制作人】</a></div>
+												<div class="item-desc">219.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117586138305801/" title="查看详细" target="_blank" rel="nofollow" itemid="252676465"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">59.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/7cd4b2560fadb1e1e6f38b4ba0374050c289d792.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117598217833019/" target="_blank" rel="nofollow" itemid="252724896">泡面风波</a></div>
+												<div class="item-desc">156.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117598217833019/" title="查看详细" target="_blank" rel="nofollow" itemid="252724896"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">60.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/43343988263fb621290fbf22ca2036ae7e7e3b0c.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117594661066612/" target="_blank" rel="nofollow" itemid="252738022">间谍过家家·福杰夫妇：非凡之爱</a></div>
+												<div class="item-desc">482.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117594661066612/" title="查看详细" target="_blank" rel="nofollow" itemid="252738022"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">61.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/6cfc918f23442fc10f050491d563b5c03f3fca73.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117472925584053/" target="_blank" rel="nofollow" itemid="252861515">我真的服了！到底是谁发明的这种家务邪修清洁大法，低成本简单省钱还好用！</a></div>
+												<div class="item-desc">309.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117472925584053/" title="查看详细" target="_blank" rel="nofollow" itemid="252861515"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">62.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/9ff38e186d2219d006a38c749076ab34cdb3a957.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117602697348058/" target="_blank" rel="nofollow" itemid="252780972">我将负责嘎嘎乱吃！</a></div>
+												<div class="item-desc">139.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117602697348058/" title="查看详细" target="_blank" rel="nofollow" itemid="252780972"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">63.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/8bc9389642f4fe5a335d0c603cbdd8ed7581d472.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117602294765403/" target="_blank" rel="nofollow" itemid="252788217">厨师长下班偷偷吃点客人剩的边角料当晚餐</a></div>
+												<div class="item-desc">87.2万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117602294765403/" title="查看详细" target="_blank" rel="nofollow" itemid="252788217"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">64.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/86e1119c850d29f08b6c58db6aa12e70c37daa2f.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591959931159/" target="_blank" rel="nofollow" itemid="252644884">传奇历史人物志——麦克斯韦</a></div>
+												<div class="item-desc">208.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591959931159/" title="查看详细" target="_blank" rel="nofollow" itemid="252644884"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">65.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/c7e01b2253f637fc0ad3695ccff4eb20216a007d.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117592379365235/" target="_blank" rel="nofollow" itemid="252794929">追逐水星</a></div>
+												<div class="item-desc">64.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117592379365235/" title="查看详细" target="_blank" rel="nofollow" itemid="252794929"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">66.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/8bd6074da63cb50667b3eac73f585d29a36dc038.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117586389962896/" target="_blank" rel="nofollow" itemid="252735033">不存在的13层电梯？关上电梯门就回血的怪物怎么处置</a></div>
+												<div class="item-desc">56.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117586389962896/" title="查看详细" target="_blank" rel="nofollow" itemid="252735033"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">67.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/7ebe5fbba237c74ab9a853c4232247b74cb5882f.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597076986645/" target="_blank" rel="nofollow" itemid="252780451">“由我来为这场大戏，写下开场的笑声！”</a></div>
+												<div class="item-desc">34.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597076986645/" title="查看详细" target="_blank" rel="nofollow" itemid="252780451"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">68.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/aaede9c60364091a1276bfdd20371aa0b4bd754f.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591020475894/" target="_blank" rel="nofollow" itemid="252798764">什么是不幸者猛攻原则？</a></div>
+												<div class="item-desc">101.4万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591020475894/" title="查看详细" target="_blank" rel="nofollow" itemid="252798764"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">69.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/255d67082d2b45c38d12c97b39f8caeab8595ee2.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117606472223848/" target="_blank" rel="nofollow" itemid="252905861">从火海中走来 用凡人之躯比肩神明</a></div>
+												<div class="item-desc">66.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117606472223848/" title="查看详细" target="_blank" rel="nofollow" itemid="252905861"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">70.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/dd3277484e67ba8a45f12565e5acf5ae72e719e4.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117607025874272/" target="_blank" rel="nofollow" itemid="252893553">75年后，他终于带上牺牲的战友去北京看天安门了</a></div>
+												<div class="item-desc">31.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117607025874272/" title="查看详细" target="_blank" rel="nofollow" itemid="252893553"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">71.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/aed32d1364cc2b9911a4bbcc21256807343607b4.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117586691954409/" target="_blank" rel="nofollow" itemid="252767133">新人第二条视频</a></div>
+												<div class="item-desc">122.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117586691954409/" title="查看详细" target="_blank" rel="nofollow" itemid="252767133"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">72.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/15d60940c98ee5cb17a64d3e3f2514132cc38ef0.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596288453018/" target="_blank" rel="nofollow" itemid="252689278">BLG 赛事语音 | 击败心魔，我们去决赛吧！</a></div>
+												<div class="item-desc">74.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596288453018/" title="查看详细" target="_blank" rel="nofollow" itemid="252689278"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">73.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/4f3fdb47e46674e71f79d3467ef7b0013b01a126.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117595718156483/" target="_blank" rel="nofollow" itemid="252713477">聪明人绝对做不到的小挑战！</a></div>
+												<div class="item-desc">136.3万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117595718156483/" title="查看详细" target="_blank" rel="nofollow" itemid="252713477"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">74.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/4209abdf94bfd5762be2ff558ff4fa2197c1df6f.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117587379755645/" target="_blank" rel="nofollow" itemid="252639438">灭霸宿舍卫生不合格，被叫回去重新值日</a></div>
+												<div class="item-desc">225.3万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117587379755645/" title="查看详细" target="_blank" rel="nofollow" itemid="252639438"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">75.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/d5cbd7823dedf8db202aa03b96402ccad348ef34.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117603737601212/" target="_blank" rel="nofollow" itemid="252836101">《蓝色星原：旅谣》公测预告PV</a></div>
+												<div class="item-desc">232.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117603737601212/" title="查看详细" target="_blank" rel="nofollow" itemid="252836101"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">76.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/420f2caa7da269843c3114c2f52f9b03a6e20e71.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591372798146/" target="_blank" rel="nofollow" itemid="252688183">【中文填词】因为太喜欢双11，所以轮回了</a></div>
+												<div class="item-desc">100.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591372798146/" title="查看详细" target="_blank" rel="nofollow" itemid="252688183"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">77.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/2ca9748fc37cfae2e77c92cb677fa3922ca74458.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117601523007558/" target="_blank" rel="nofollow" itemid="252871077">从清末讲武堂到开国大典｜朱德波澜壮阔的一生</a></div>
+												<div class="item-desc">44.8万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117601523007558/" title="查看详细" target="_blank" rel="nofollow" itemid="252871077"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">78.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/72d0cc77df541186210c3059f3f62e9893987415.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117599291575051/" target="_blank" rel="nofollow" itemid="252860604">高一班主任六节课的一天。千辛万苦找到的万苦千辛的工作</a></div>
+												<div class="item-desc">80.4万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117599291575051/" title="查看详细" target="_blank" rel="nofollow" itemid="252860604"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">79.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/10eb20b0d640ab3c2a3b965a3feb2fac0e088247.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117595600590682/" target="_blank" rel="nofollow" itemid="252731361">【货币科研】堪比bug的神秘代码让刃直接开桂？s2货币最逆天轮椅震撼发布！看完视频想上多少分自己填！</a></div>
+												<div class="item-desc">70.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117595600590682/" title="查看详细" target="_blank" rel="nofollow" itemid="252731361"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">80.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/d2e804662bee5c0e1b6d4da5f14dbccf64fe433b.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117600818365954/" target="_blank" rel="nofollow" itemid="252794945">上古真神表情包到底来自哪里？黑八展开调查，结局却令人寒心！【互联网大冒险】</a></div>
+												<div class="item-desc">83.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117600818365954/" title="查看详细" target="_blank" rel="nofollow" itemid="252794945"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">81.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/f0b83e714868ee07db8d75eb575a439e237d34e7.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117589829353670/" target="_blank" rel="nofollow" itemid="252705787">小可爱龙X傲娇魔法师【AI全民制作人】</a></div>
+												<div class="item-desc">69.2万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117589829353670/" title="查看详细" target="_blank" rel="nofollow" itemid="252705787"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">82.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/8ae76decf21ec16ce9a10638a8d0f574a07dafb2.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117598217900528/" target="_blank" rel="nofollow" itemid="252751862">同是东亚内卷，日韩打工人，生活差距有多大？</a></div>
+												<div class="item-desc">109.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117598217900528/" title="查看详细" target="_blank" rel="nofollow" itemid="252751862"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">83.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/bf7b1572067f2b0f312a642e9e5fa5883f409c86.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117603586609410/" target="_blank" rel="nofollow" itemid="252839166">永夜扉间PV及技能初探丨此身为烛</a></div>
+												<div class="item-desc">154.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117603586609410/" title="查看详细" target="_blank" rel="nofollow" itemid="252839166"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">84.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/7ccfd3d39f43c943a312c3a06ca79e07db190fe0.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117607378196362/" target="_blank" rel="nofollow" itemid="252883118">臭肥鱼害我把情书交给辅导员了！【人和肥鱼03】</a></div>
+												<div class="item-desc">96.7万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117607378196362/" title="查看详细" target="_blank" rel="nofollow" itemid="252883118"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">85.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/c710cb52dba41e759805ea931ac65c7e75298125.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591808940632/" target="_blank" rel="nofollow" itemid="252702966">🥶“这个鲁鲁不太冷”🥶</a></div>
+												<div class="item-desc">67.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591808940632/" title="查看详细" target="_blank" rel="nofollow" itemid="252702966"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">86.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/53cdc4496527fa4565230217e268d6d336a2ed32.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591808936602/" target="_blank" rel="nofollow" itemid="252673224">寰宇频道特别栏目 | 远行</a></div>
+												<div class="item-desc">91.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591808936602/" title="查看详细" target="_blank" rel="nofollow" itemid="252673224"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">87.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/c74f82293d59e275717e718f9ed316420b3e7fe7.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597345483187/" target="_blank" rel="nofollow" itemid="252723856">‘各 地 人 刻 板 印 象’</a></div>
+												<div class="item-desc">134.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597345483187/" title="查看详细" target="_blank" rel="nofollow" itemid="252723856"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">88.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/d830b056f311d7987703120536b07abea16ae59a.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117598133946854/" target="_blank" rel="nofollow" itemid="252762716">《白银之城》角色PV - 馨西亚二世：到月下的城邦去</a></div>
+												<div class="item-desc">326.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117598133946854/" title="查看详细" target="_blank" rel="nofollow" itemid="252762716"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">89.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/92ee452d19f3c72a421f0adac8b320fe7d2a682b.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597613853059/" target="_blank" rel="nofollow" itemid="252716212">大家好，我是Smoggy！我入驻B站啦！</a></div>
+												<div class="item-desc">156.3万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597613853059/" title="查看详细" target="_blank" rel="nofollow" itemid="252716212"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">90.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/ae8a68c7a8a60dde2c193b0fb847b9c52d2ee8bb.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117608217057891/" target="_blank" rel="nofollow" itemid="252860602">巨型生物袭击村庄，而你却孤身一人！面对你的只有绝望！</a></div>
+												<div class="item-desc">70.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117608217057891/" title="查看详细" target="_blank" rel="nofollow" itemid="252860602"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">91.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/30b67984e5413c5fdeb3d71be71c3cae77a30eef.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117599274867684/" target="_blank" rel="nofollow" itemid="252796130">第七集｜🐧 为了拯救巴克什，而被迫出道的博士？！🐧</a></div>
+												<div class="item-desc">44.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117599274867684/" title="查看详细" target="_blank" rel="nofollow" itemid="252796130"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">92.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/50ff6763541e5c1ff322508fbbbe1dfa52bff4f1.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596875724080/" target="_blank" rel="nofollow" itemid="252805453">阿哈已死！所以阿基维利！接受我纳努克的爱吧！</a></div>
+												<div class="item-desc">54.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596875724080/" title="查看详细" target="_blank" rel="nofollow" itemid="252805453"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">93.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/ebb4af0873cd4ee73e56275adf9baa758ed559b6.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117597311865241/" target="_blank" rel="nofollow" itemid="252850400">工业曲线</a></div>
+												<div class="item-desc">136.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117597311865241/" title="查看详细" target="_blank" rel="nofollow" itemid="252850400"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">94.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/839347f84e9978528cd1de7a6619efcc96274ec1.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117593402776519/" target="_blank" rel="nofollow" itemid="252841867">潮汐监狱  电梯井战神 天霸大仙666</a></div>
+												<div class="item-desc">106.0万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117593402776519/" title="查看详细" target="_blank" rel="nofollow" itemid="252841867"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">95.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/cf798ea59cae875bc238a395155fee5165a719e0.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117596959545435/" target="_blank" rel="nofollow" itemid="252702968">【科学修仙】不是燃烧精血也要逃出去吗？怎么不逃啦？！~~~【up动画】</a></div>
+												<div class="item-desc">86.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117596959545435/" title="查看详细" target="_blank" rel="nofollow" itemid="252702968"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">96.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/a192b169288eae47062de6ab524caedcdffb56da.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117585718804562/" target="_blank" rel="nofollow" itemid="252798759">没有骑士的王，是没有故乡的人（合集）【AI全民制作人】</a></div>
+												<div class="item-desc">115.6万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117585718804562/" title="查看详细" target="_blank" rel="nofollow" itemid="252798759"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">97.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/0fc042613437ca37bb7737ec136a0e98b9a7a819.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117591590833656/" target="_blank" rel="nofollow" itemid="252842408">离谱答案大合集4</a></div>
+												<div class="item-desc">253.5万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117591590833656/" title="查看详细" target="_blank" rel="nofollow" itemid="252842408"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">98.</td>
+											<td class="al" align="center"><img src="http://i0.hdslb.com/bfs/archive/22593d92f8b42a969d2e5010ecf60b832d32d63c.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117590735196197/" target="_blank" rel="nofollow" itemid="252868449">THANK YOU nobody</a></div>
+												<div class="item-desc">73.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117590735196197/" title="查看详细" target="_blank" rel="nofollow" itemid="252868449"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">99.</td>
+											<td class="al" align="center"><img src="http://i1.hdslb.com/bfs/archive/d9b4f9ebd935c3e3aecdd76058b59ebcbd53ed5e.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117602361808594/" target="_blank" rel="nofollow" itemid="252788597">蹲后续的兄弟们，花了一周时间终于把水抽干，把华哥也喊到南通来包鱼塘，这次应该稳了吧</a></div>
+												<div class="item-desc">98.9万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117602361808594/" title="查看详细" target="_blank" rel="nofollow" itemid="252788597"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+																				<tr>
+											<td align="center">100.</td>
+											<td class="al" align="center"><img src="http://i2.hdslb.com/bfs/archive/f56ace2c3925a7e9f7fe28c2d3c56b41f6ca73cb.jpg" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png'" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>
+											<td class="al">
+												<div><a href="https://www.bilibili.com/video/av117593050450890/" target="_blank" rel="nofollow" itemid="252725418">为了这个视频出了三套cos！给拉普兰德过生日的第三年，每年的保留节目它又又来了！</a></div>
+												<div class="item-desc">51.1万</div>
+											</td>
+											<td align="right"><a href="https://www.bilibili.com/video/av117593050450890/" title="查看详细" target="_blank" rel="nofollow" itemid="252725418"><i class="m-n">&#xe652;</i></a></td>
+										</tr>
+										
+																		<!-- 非VIP用户显示广告 -->
+																											</tbody>
+								</table>
+								
+							</div>
+							<div class="o"></div>
+						</div>
+					</div>
+					
+					<div class="f-t-l cc-dc">
+					
+						<div class="cc-dc-ec">
+							<h2 class="cc-dc-Cb">时光机<small>历史上榜快讯，全部快讯按上榜时间归类筛选</small></h2>
+							
+							<!-- 日期选择器（公共部分） -->
+							<div class="filter clearfix time-machine-filter">
+								<div class="btn-group year_group fl">
+									<button data-toggle="dropdown" class="btn dropdown-toggle" type="button"><span id="year">2026年</span><i
+											class="caret"></i></button>
+									<ul class="dropdown-menu">
+										<li><a>2026年</a></li><li><a>2025年</a></li><li><a>2024年</a></li><li><a>2023年</a></li><li><a>2022年</a></li><li><a>2021年</a></li><li><a>2020年</a></li><li><a>2019年</a></li>									</ul>
+								</div>
+								<div class="btn-group mon_group fl">
+									<button data-toggle="dropdown" class="btn dropdown-toggle" type="button"><span id="month">
+											11月
+										</span><i class="caret"></i></button>
+									<ul class="dropdown-menu">
+										<li><a>01月</a></li>
+										<li><a>02月</a></li>
+										<li><a>03月</a></li>
+										<li><a>04月</a></li>
+										<li><a>05月</a></li>
+										<li><a>06月</a></li>
+										<li><a>07月</a></li>
+										<li><a>08月</a></li>
+										<li><a>09月</a></li>
+										<li><a>10月</a></li>
+										<li><a>11月</a></li>
+										<li><a>12月</a></li>
+									</ul>
+								</div>
+								<div class="slider fl">
+									<input type="hidden" value="14" class="single-slider none">
+								</div>
+							</div>
+							
+							<!-- 内容切换标签 -->
+							<div class="time-machine-header">
+							<div class="tab-sort time-machine-tabs">
+								<div class="tabs-container">
+									<a href="javascript:;" class="tab-sort-item active" id="history-tab">
+										<i class="m-n">&#xe66d;</i>
+										<span>历史记录</span>
+									</a>
+																		<a href="javascript:;" class="tab-sort-item" id="snapshot-tab">
+										<i class="m-n">&#xe62e;</i>
+										<span>榜单快照</span>
+																				<span class="vip-badge">VIP</span>
+																			</a>
+																	</div>
+							</div>
+								
+								<!-- 导出按钮 -->
+								<div class="time-machine-actions export-popup">
+									<button type="button" class="action-export has-popover btn-export-styled history-export" export-title="导出历史榜单数据" export-desc="将当日上榜数据导出为文件，方便离线浏览或数据分析" export-params='{"module":"node","nodeid":19,"type":"history","date":"2026-11-14"}' id="export-date-btn">
+										<i class="m-n">&#xe617;</i>
+										<span id="export-date-text">导出当日上榜数据</span>
+									</button>
+									<button type="button" class="action-export has-popover btn-export-styled snapshot-export hidden" export-title="导出榜单快照数据" export-desc="将当前快照数据导出为文件，方便离线浏览或数据分析" export-params='{"module":"node","nodeid":19,"type":"snapshot","snapshot_id":"0"}' id="export-snapshot-btn">
+										<i class="m-n">&#xe617;</i>
+										<span>导出快照数据</span>
+									</button>
+								</div>
+							</div>
+
+						</div>
+					
+					
+					
+					
+						<div class="jc rank-all-item history-content">
+							<div class="jc-c">
+				
+								<table class="table" width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tbody class="filter-data"></tbody>
+								</table>
+				
+							</div>
+							<div class="o"></div>
+						</div>
+
+						<!-- 榜单快照内容区域 -->
+						<div class="jc rank-all-item snapshot-content hidden">
+							<div class="snapshot-selector">
+								<div class="snapshot-time-list">
+									<div class="snapshot-time-header">
+										<h3>快照时间点</h3>
+										<p class="snapshot-date-display"></p>
+									</div>
+									<div class="snapshot-time-container">
+										<!-- 快照时间点列表将通过AJAX加载 -->
+										<div class="snapshot-loading"><div class="loading"><div></div><div></div><div></div><div></div></div><p>加载快照列表...</p></div>
+										<div class="snapshot-empty hidden">该日期暂无快照</div>
+										<div class="snapshot-hours"></div>
+									</div>
+								</div>
+							</div>
+							<div class="jc-c">
+								<div class="snapshot-info hidden">
+									<div class="snapshot-time-wrapper">
+										<div class="snapshot-time"></div>
+										<a href="javascript:;" class="snapshot-back-btn"><i class="m-n">&#xe61a;</i> 返回快照时间点选择</a>
+									</div>
+								</div>
+								<div class="snapshot-content-loading hidden"><div class="loading"><div></div><div></div><div></div><div></div></div><p>加载快照数据...</p></div>
+								<table class="table" width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tbody class="snapshot-data"></tbody>
+								</table>
+							</div>
+							<div class="o"></div>
+						</div>
+
+						<div id="no-data" class="p-s hidden">
+							<div class="p-i"><div class="m-n">&#xe69e;</div></div>
+							<div class="p-t">该时间段暂无数据</div>
+							<div class="p-d">请尝试选择其他日期查看历史数据</div>
+							<a href="javascript:;" class="p-b" id="back-to-latest">
+								<span>返回最新</span>
+								<div class="m-n">&#xe61a;</div>
+							</a>
+						</div>
+
+						<div id="no-snapshot" class="p-s hidden">
+							<div class="p-i"><div class="m-n">&#xe69e;</div></div>
+							<div class="p-t">暂无榜单快照</div>
+							<div class="p-d">该节点暂无榜单快照数据，请稍后再试</div>
+							<a href="javascript:;" class="p-b" id="back-to-latest-snapshot">
+								<span>返回最新</span>
+								<div class="m-n">&#xe61a;</div>
+							</a>
+						</div>
+
+						<div id="to-pay" class="p-s hidden">
+							<div class="p-i"><div class="m-n">&#xe69e;</div></div>
+							<div class="p-t">开通会员，体验完整服务</div>
+							<div class="p-d">解锁全部高级功能，探索信息无限可能</div>
+							<a href="/pay" class="p-b">
+								<span>立即开通</span>
+								<div class="m-n">&#xe61a;</div>
+							</a>
+						</div>
+										
+						<div class="scroller-status" style="display:block;">
+							<div class="infinite-scroll-request"><div class="loading"><div></div><div></div><div></div><div></div></div><p>🌿 稍等一下，阳光正在洒满页面～</p></div>
+							<p class="infinite-scroll-last"><span class="loadmore-line"></span>没有更多了<span class="loadmore-line"></span></p>
+							<p class="infinite-scroll-error"><span class="loadmore-line"></span>加载失败，刷新页面试试<span
+									class="loadmore-line"></span></p>
+							<p class="infinite-scroll-loadmore"><span id="loadmore">点击加载更多</span></p>
+						</div>
+						
+												<!-- 非VIP用户显示广告 -->
+						<div class="adsense-sidebar-container" style="margin:20px auto;max-width:100%;max-height:120px;">
+													</div>
+											
+					</div>
+					
+				</div>			
+			</div>
+		</div>
+	</div>	
+</div>
+
+<div class="daily-menu">
+	<div class="title">目录导航</div>
+	<ul>
+		<li>最新全站日榜</li>
+		<li>历史快照</li>
+	</ul>
+	<div class="close">×</div>
+</div>
+
+<script type="text/javascript">
+	window.nodeId = "19";
+	window.nodeHashId = "74KvxwokxM";
+	window.isVip = false;
+	window.nodeUpdateType = "1";
+	window.nodeTemplate = "1";
+</script>
+<script type="text/javascript">
+
+// 获取当前筛选日期
+function getCurrentFilterDate() {
+	// 获取年份
+	var year = $('#year').text().replace(/[^0-9]/ig,"");
+	
+	// 获取月份并确保两位数格式
+	var month = $('#month').text().replace(/[^0-9]/ig,"");
+	month = month.padStart(2, '0'); // 确保月份是两位数
+	
+	// 获取日期并确保两位数格式
+	var day = $('.single-slider').val().replace(/[^0-9]/ig,"");
+	day = day.padStart(2, '0'); // 确保日期是两位数
+	
+	// 获取当前日期
+	var today = new Date().getFullYear() + "-" + (new Date().getMonth() + 1).toString().padStart(2, '0') + "-" + new Date().getDate().toString().padStart(2, '0');
+	
+	// 构建选中的日期
+	var selectedDate = year + "-" + month + "-" + day;
+	
+	// 返回日期信息对象
+	return {
+		year: year,
+		month: month,
+		day: day,
+		selectedDate: selectedDate,
+		today: today,
+		isToday: (selectedDate === today)
+	};
+}
+
+$(document).ready(function(){
+	
+	var p = 1;
+	var isloading = 0;
+	var isend = 0;
+
+	loadDataByDate();
+
+	// 更新导出按钮的函数
+	function updateExportDate() {
+		// 获取当前选中的年月日
+		var year = $('#year').text().replace(/[^0-9]/ig,"");
+		var month = $('#month').text().replace(/[^0-9]/ig,"").padStart(2, '0');
+		var day = $('.single-slider').val().replace(/[^0-9]/ig,"").padStart(2, '0');
+		var dateStr = year + '-' + month + '-' + day;
+		
+		// 更新导出按钮属性
+		var $exportBtn = $('#export-date-btn');
+		if ($exportBtn.length > 0) {
+			$exportBtn.attr({
+				'export-desc': '将 ' + dateStr + ' 当日上榜数据导出为文件，方便离线浏览或数据分析',
+				'export-params': JSON.stringify({module: 'node', nodeid: window.nodeId, type: 'history', date: dateStr})
+			});
+			
+			// 更新按钮文本
+			$('#export-date-text').text('导出 ' + dateStr + ' 上榜数据');
+		}
+	}
+
+	
+	$('.dropdown-toggle').click(function(){
+		$(this).parent().toggleClass("open");
+	});
+	
+	// 点击页面空白区域关闭dropdown
+	$(document).click(function(e){
+		if(!$(e.target).closest('.dropdown-menu').length && !$(e.target).hasClass('dropdown-toggle') && !$(e.target).parent().hasClass('dropdown-toggle')){
+			$('.dropdown-menu').parent().removeClass("open");
+		}
+	});
+	
+	$('#loadmore').click(function(){
+		loadDataByDate();
+	});
+	
+	changeY();
+	$('.dropdown-menu li').click(function(){
+		var name=$('a',this).text();
+		$(this).parents('.btn-group').toggleClass("open");
+		$(this).parents('.btn-group').find('.dropdown-toggle span').text(name);
+		changeY();
+		updateExportDate(); // 更新导出按钮文本
+	});
+
+	function changeY(){
+		var year=$('#year').text().replace(/[^0-9]/ig,"")
+		var month=$('#month').text().replace(/[^0-9]/ig,"")
+		var d = new Date(year, month, 0);
+		var days=d.getDate();
+		var dayArr=[];
+		for(var i=1;i<=days;i++)
+		{
+			dayArr.push(i+'');
+		}
+		var last=parseInt(dayArr[dayArr.length-1]);
+		//$('.slider-container').remove();	
+		if($('.slider-container').length > 0 ){
+			$('.slider').children().remove();
+			$('.slider').html('<input type="hidden" value="" class="single-slider none">');
+		}
+		
+		p = 1;//第一页
+		isloading = 0;
+		isend = 0;
+
+		$('.single-slider').jRange({
+		    from:1,
+		    to:last,
+		    step: 1,
+		    scale: dayArr,
+		    format: '%s',
+		    width:$('.slider').outerWidth()-20,
+		    showLabels: true,
+		    snap: true,
+		    onstatechange:function () {
+				p = 1;
+				isloading = 0;
+				isend = 0;
+				$(".filter-data").empty();
+				$('.snapshot-hours').empty();
+				$('.snapshot-back-btn').click();
+				
+				// 获取当前筛选日期
+				var dateInfo = getCurrentFilterDate();
+				
+				// 更新导出按钮
+				updateExportDate();
+				
+				// 非会员用户只能查看当天数据
+				if (!window.isVip && !dateInfo.isToday) {
+					showVipTip();
+					return;
+				}
+					
+				// 根据当前激活的标签加载相应内容
+				if ($('#history-tab').hasClass('active')) {
+					loadDataByDate();
+				} else {
+					loadSnapshotList();
+				}
+            }
+		});
+	}
+
+	// 显示会员提醒
+	function showVipTip(){
+		// 隐藏所有内容区域
+		$(".p-s").addClass("hidden");
+		$('.history-content').addClass("hidden");
+		$('.snapshot-content').addClass("hidden");
+		// 显示会员提示
+		$("#to-pay").removeClass("hidden");
+	}
+	
+	function loadDataByDate(){
+		// 获取当前筛选日期
+		var dateInfo = getCurrentFilterDate();
+		
+		// 非会员用户只能查看当天数据
+		if(!window.isVip && !dateInfo.isToday) {
+			showVipTip();
+			return;
+		}
+		
+		if(isloading || isend){
+			return ;
+		}
+
+		$.ajax({
+			method: "POST",
+		    url: "/node-items-by-date",
+		    data: {
+		      p: p,
+		      date : dateInfo.selectedDate,
+		      nodeid : window.nodeId
+		    },
+		    dataType: 'json',
+		    beforeSend: function () {
+				isloading = 1;
+				$(".infinite-scroll-request").removeClass('hidden');
+				$(".infinite-scroll-last").addClass('hidden');
+				$(".infinite-scroll-error").addClass('hidden');
+				$(".infinite-scroll-loadmore").addClass('hidden');
+
+				if(p == 1){
+					$(".p-s").addClass("hidden");
+					$(".history-content").addClass("hidden");
+				}
+		    },
+		    success: function ( data ) {
+				$(".infinite-scroll-request").addClass('hidden');
+				
+				if(!data.error){
+					// 检查数据是否为空
+					if(data.data.items.length === 0) {
+						if(p == 1){
+							// 向上查找最近的 rank-all-item 并添加 hidden 类
+							$(".history-content").addClass("hidden");
+							// 显示提示信息区域
+							$("#no-data").removeClass("hidden");
+							// 添加返回最新榜单的点击事件
+							$(document).on('click', '#back-to-latest', function() {
+								$('.stt').click();
+							});
+						}
+					} else {
+						// 有内容时正常显示数据
+						// 隐藏提示信息区域
+						$(".p-s").addClass("hidden");
+						// 确保表格显示
+						$(".history-content").removeClass("hidden");
+						var s = '';
+						$.each(data.data.items, function(i, v) {
+							var index = i + 1;
+							s += '<tr><td align="center" width="80px">' + v.time + '</td>';
+														s += '<td><a href="' + v.url + '" target="_blank" rel="nofollow" itemid="' + v.ID + '">' + v.title + '</a></td><td class="ws">' + v.extra + '</td><td align="right"><a href="' + v.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + v.ID + '"><i class="m-n">&#xe652;</i></a></td></tr>';
+						});
+						$(".filter-data").append(s);						
+					}
+					
+					if( data.data.items.length <= 1 ) {
+						$(".infinite-scroll-last").removeClass('hidden');
+						isend = 1;
+					}
+					else {
+						$(".infinite-scroll-loadmore").removeClass('hidden');
+					}
+					p++;
+				}
+				else {
+					if(data.msg.match("会员")) {
+						$("#to-pay").removeClass("hidden");
+					}
+					else {
+						layer.msg(data.msg);
+					}
+				}
+				isloading = 0;
+			},
+			error: function () {
+				isloading = 0;
+				layer.msg('加载失败，请重试');
+			}
+		});		
+	}
+	
+	// 初始化时更新导出按钮
+	updateExportDate();
+
+	
+	// 初始化节点内搜索弹窗
+	$('#search-in-node').webuiPopover({
+		trigger: 'click',
+		title: false,
+		content: `
+			<div class="search-popover-content" style="padding: 20px; width: 300px;">
+				<h4 style="margin-top: 0; margin-bottom: 10px; font-size: 16px; font-weight: 600;">节点内搜索</h4>
+				<div class="search-input-container" style="margin-bottom: 15px;">
+					<input type="text" id="node-search-input" class="form-control" placeholder="输入搜索关键词" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+				</div>
+				<div class="search-btn-container" style="text-align: right;">
+					<button id="cancel-search" class="btn btn-default" style="padding: 6px 12px; margin-right: 10px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;">取消</button>
+					<button id="submit-search" class="btn btn-primary" style="padding: 6px 12px; background: #4e6ef2; color: #fff; border: none; border-radius: 4px;">搜索</button>
+				</div>
+			</div>
+		`,
+		width: '340px',
+		multi: false,
+		closeable: false,
+		style: (Cookies.get('darkmode') ? 'inverse' : ''),
+		padding: false,
+		backdrop: false,
+		arrow: true,
+		animation: 'pop',
+		onShow: function($element) {
+			// 弹窗显示后自动聚焦到输入框
+			setTimeout(function() {
+				$('#node-search-input').focus();
+			}, 100);
+			
+			// 绑定取消按钮事件
+			$('#cancel-search').off('click').on('click', function() {
+				$('#search-in-node').webuiPopover('hide');
+			});
+			
+			// 绑定搜索按钮事件
+			$('#submit-search').off('click').on('click', function() {
+				var searchQuery = $('#node-search-input').val().trim();
+				if (searchQuery) {
+					window.location.href = "/search?e=item&q=" + encodeURIComponent(searchQuery) + "&nodeid=" + window.nodeHashId;
+				}
+			});
+			
+			// 绑定回车键事件
+			$('#node-search-input').off('keypress').on('keypress', function(e) {
+				if (e.which === 13) { // 回车键的keyCode是13
+					var searchQuery = $(this).val().trim();
+					if (searchQuery) {
+						window.location.href = "/search?e=item&q=" + encodeURIComponent(searchQuery) + "&nodeid=" + window.nodeHashId;
+					}
+				}
+			});
+		}
+	});
+	
+	$('body').on('click', '#time-machine', function (){
+		// 获取时光机部分的位置
+        var targetElement = $('.cc-dc-ec h2:contains("时光机")');
+        if (targetElement.length > 0) {
+            // 计算目标位置（减去一些偏移量，使滚动更加合适）
+            var targetPosition = targetElement.offset().top - 80;
+            // 平滑滚动到目标位置
+            $('html, body').animate({
+                scrollTop: targetPosition
+            }, 500);            
+        }
+		
+		// 默认显示历史记录标签
+		$('#history-tab').click();
+	});
+	
+	// 切换历史记录和榜单快照标签
+	$('.time-machine-tabs .tab-sort-item').on('click', function() {
+		var $this = $(this);
+		if ($this.hasClass('active')) return;
+		
+		// 切换标签激活状态
+		$('.time-machine-tabs .tab-sort-item').removeClass('active');
+		$this.addClass('active');
+		
+		// 切换导出按钮
+		if ($this.attr('id') === 'history-tab') {
+			$('.history-export').removeClass('hidden');
+			$('.snapshot-export').addClass('hidden');
+		} else {
+			$('.history-export').addClass('hidden');
+			$('.snapshot-export').removeClass('hidden');
+		}
+		
+		// 获取当前筛选日期
+		var dateInfo = getCurrentFilterDate();
+		
+		// 非会员用户只能查看当天数据
+		if (!window.isVip && !dateInfo.isToday) {
+			showVipTip();
+			return;
+		}
+		
+		// 隐藏提示
+		$(".p-s").addClass("hidden");
+		
+		// 根据标签ID显示对应内容
+		if ($this.attr('id') === 'history-tab') {
+			// 切换到历史记录标签
+			$('.history-content').removeClass('hidden');
+			$('.snapshot-content').addClass('hidden');
+			$('.scroller-status').removeClass('hidden');
+			
+			// 如果有历史数据，显示历史数据
+			if ($('.filter-data').children().length > 0) {
+				return ;
+			}
+			
+			// 加载历史数据
+			p = 1; // 重置页码
+			$(".filter-data").empty(); // 清空现有数据
+			loadDataByDate();
+		} else {
+			// 切换到榜单快照标签
+			$('.history-content').addClass('hidden');
+			$('.snapshot-content').removeClass('hidden');
+			$('.scroller-status').addClass('hidden');
+			
+			// 如果有数据直接显示
+			if ($('.snapshot-hours').children().length > 0) {
+				return ;
+			}
+
+			// 加载快照列表
+			loadSnapshotList();
+		}
+	});
+	
+	// 加载快照列表
+	function loadSnapshotList(){
+		// 获取当前筛选日期
+		var dateInfo = getCurrentFilterDate();
+		
+		// 非会员用户只能查看当天数据
+		if (!window.isVip && !dateInfo.isToday) {
+			showVipTip();
+			return;
+		}
+		
+		// 更新导出按钮参数
+		var exportParams = {
+			module: "node",
+			nodeid: window.nodeId,
+			type: "snapshot",
+			date: dateInfo.selectedDate
+		};
+		$('.snapshot-export').attr('export-params', JSON.stringify(exportParams));
+		
+		// 显示加载中
+		$('.snapshot-loading').removeClass('hidden');
+		$('.snapshot-hours').empty();
+		$('.snapshot-empty').addClass('hidden');
+		$('.snapshot-hours').removeClass('hidden');
+		
+		// 发送请求获取快照列表
+		$.ajax({
+			url: '/node-snapshot-list',
+			type: 'POST',
+			data: {
+				nodeid: window.nodeId,
+				date: dateInfo.selectedDate
+			},
+			dataType: 'json',
+			success: function(res) {
+				$('.snapshot-loading').addClass('hidden');
+				
+				if (res.error) {
+				// 显示错误信息
+				$('.snapshot-empty').removeClass('hidden');
+				$('.snapshot-hours').addClass('hidden');
+				$('.snapshot-loading').addClass('hidden');
+				return;
+			}
+			
+			// 现在我们知道 res.data.snapshots 是一个对象，其中键是小时，值是数组
+			var data = res.data.snapshots || {};
+			if (!data || Object.keys(data).length === 0) {
+				// 没有快照数据
+				$('.snapshot-empty').removeClass('hidden');
+				$('.snapshot-hours').addClass('hidden');
+				return;
+			}
+			
+			// 数据已经是按小时分组的，直接使用
+			var snapshotsByHour = data;
+				// 渲染快照列表
+				var hours = Object.keys(snapshotsByHour).sort(function(a, b) {
+					return a - b;
+				});
+				
+				// 按时间段分组
+				var timeGroups = {
+					'morning': { label: '凌晨', hours: [], icon: '&#xe604;' },
+					'noon': { label: '上午', hours: [], icon: '&#xe7f2;' },
+					'afternoon': { label: '下午', hours: [], icon: '&#xe7f3;' },
+					'evening': { label: '晚上', hours: [], icon: '&#xe731;' }
+				};
+				
+				// 将小时分到各个时间段
+				hours.forEach(function(hour) {
+					var hourInt = parseInt(hour);
+					if (hourInt >= 0 && hourInt < 6) {
+						timeGroups.morning.hours.push(hour);
+					} else if (hourInt >= 6 && hourInt < 12) {
+						timeGroups.noon.hours.push(hour);
+					} else if (hourInt >= 12 && hourInt < 18) {
+						timeGroups.afternoon.hours.push(hour);
+					} else {
+						timeGroups.evening.hours.push(hour);
+					}
+				});
+				
+				// 生成时间点HTML
+				// 添加标题
+			var timelineHtml = '<div class="snapshot-timeline">';
+				
+				// 遍历时间段
+				for (var group in timeGroups) {
+					var groupData = timeGroups[group];
+					if (groupData.hours.length > 0) {
+						// 添加时间段标题
+						timelineHtml += '<div class="time-group-header"><i class="m-n">' + groupData.icon + '</i><span>' + groupData.label + '</span></div>';
+						timelineHtml += '<div class="time-group">';
+						
+						// 按小时分组
+						groupData.hours.sort(function(a, b) { return parseInt(a) - parseInt(b); }).forEach(function(hour) {							
+							// 添加小时分组
+							timelineHtml += '<div class="hour-group">';
+							timelineHtml += '<div class="hour-label"><span>' + hour + ':00</span></div>';
+							timelineHtml += '<div class="time-points">';
+							
+							// 添加快照时间点
+							if (Array.isArray(snapshotsByHour[hour])) {
+								snapshotsByHour[hour].forEach(function(snapshot) {
+									var snapshotUniqueId = 'snapshot-' + hour + '-' + snapshot.time.replace(':', '');
+									timelineHtml += '<div id="' + snapshotUniqueId + '" class="snapshot-item" data-id="' + snapshot.id + '" data-timestamp="' + snapshot.timestamp + '">';
+									timelineHtml += '<span class="time-badge">' + snapshot.time + '</span>';
+									timelineHtml += '</div>';
+								});
+							}
+							
+							timelineHtml += '</div>'; // time-points
+							timelineHtml += '</div>'; // hour-group
+						});
+						
+						timelineHtml += '</div>'; // time-group
+					}
+				}
+				
+				timelineHtml += '</div>'; // snapshot-timeline
+				
+				// 渲染到页面
+				$('.snapshot-hours').html(timelineHtml);
+				
+				// 显示提示信息
+				$('.snapshot-info').addClass('hidden');
+			},
+			error: function() {
+				$('.snapshot-loading').addClass('hidden');
+				$('.snapshot-empty').removeClass('hidden');
+				$('.snapshot-hours').addClass('hidden');
+				layer.msg('加载快照列表失败，请重试');
+			}
+		});
+		
+	}
+	
+	// 初始化时绑定快照点击事件，在外部只绑定一次
+	$('body').on('click', '.snapshot-item', function() {
+		var $this = $(this);
+		var snapshotId = $this.data('id');
+		
+		// 显示加载中状态
+		$('.snapshot-content-loading').removeClass('hidden');
+		
+		// 选中状态
+		$('.snapshot-item').removeClass('active');
+		$this.addClass('active');
+		
+		// 更新快照时间显示
+		var snapshotTime = $this.find('.time-badge').text();
+		var hourLabel = $this.closest('.hour-group').find('.hour-label span').text().split(':')[0];
+		var dateText = $('.snapshot-date-display').text();
+		
+		// 隐藏日期选择器，显示快照信息
+		$('.snapshot-selector').addClass('hidden');
+		$('.snapshot-info').removeClass('hidden');
+		
+		// 加载快照内容
+		loadSnapshotItems(snapshotId);
+		
+		// 更新导出按钮参数，加入快照ID
+		var exportParams = JSON.parse($('.snapshot-export').attr('export-params'));
+		exportParams.snapshot_id = snapshotId;
+		$('.snapshot-export').attr('export-params', JSON.stringify(exportParams));
+	});
+	
+	// 绑定返回按钮点击事件
+	$('body').on('click', '.snapshot-back-btn', function(e) {
+		e.preventDefault();
+		// 隐藏快照信息，显示日期选择器
+		$('.snapshot-info').addClass('hidden');
+		$('.snapshot-data').empty(); // 清空快照数据
+		$('.snapshot-selector').removeClass('hidden');
+		// 清除选中状态
+		$('.snapshot-item').removeClass('active');
+	});
+	
+	// 加载快照内容
+	// 渲染快照内容
+	function loadSnapshotItems(snapshotId) {
+		if (!snapshotId) {
+			$('.snapshot-data').html('<tr><td colspan="2" class="no-items">无效的快照ID</td></tr>');
+			return;
+		}
+		
+		// 显示加载中
+		$('.snapshot-content-loading').removeClass('hidden');
+		$('.snapshot-data').empty();
+		
+		// 发送请求获取快照内容
+		$.ajax({
+			url: '/node-snapshot-items',
+			type: 'POST',
+			data: {
+				snapshot_id: snapshotId
+			},
+			dataType: 'json',
+			success: function(res) {
+				$('.snapshot-content-loading').addClass('hidden');
+				
+				// 检查错误情况
+				if (res.error) {
+					$('.snapshot-data').html('<tr><td colspan="2" class="no-items">加载失败</td></tr>');
+					return;
+				}
+
+				$('.snapshot-time').text('快照时间: ' + res.data.snapshot_time);
+				
+				// 检查数据是否存在
+				if (!res.data) {
+					$('.snapshot-data').html('<tr><td colspan="2" class="no-items">暂无快照数据</td></tr>');
+					return;
+				}
+				
+				// 先检查items属性
+				var items = [];
+				if (res.data.items && Array.isArray(res.data.items)) {
+					items = res.data.items;
+				} else if (Array.isArray(res.data)) {
+					// 如果数据直接就是数组
+					items = res.data;
+				}
+				
+				if (items.length === 0) {
+					$('.snapshot-data').html('<tr><td colspan="2" class="no-items">暂无快照数据</td></tr>');
+					return;
+				}
+				
+				// 渲染榜单快照内容
+				var tableHtml = '';
+				
+				// 复用与最新榜单相同的模板逻辑
+				items.forEach(function(item, index) {
+					var rank = index + 1;
+					var extra = item.extra || '';
+					
+					// 辅助函数，用于检查值是否为空
+					function empty(val) {
+						return val === undefined || val === null || val === '';
+					}
+					
+					// 确保item.extra存在
+					if (!item.extra) item.extra = '';
+					
+					// 使用与最新榜单相同的模板类型
+					switch(window.nodeTemplate) {
+						case '0': // 默认排版（左边title，右边显示extra）
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></td>' +
+								'<td class="ws">' + extra + '</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+							break;
+						
+						case '1': // 4:3 标准长方形 文章缩略图
+							var desc1 = !empty(item.extra) ? item.extra : item.description;
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td class="al" align="center"><img src="' + (item.thumbnail || '') + '" onerror="this.onerror=null;this.src="https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png"" width="100" height="64" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>' +
+								'<td class="al">' +
+									'<div><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></div>' +
+									'<div class="item-desc">' + desc1 + '</div>' +
+								'</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+							break;
+						
+						case '2': // 1:1 标准正方形 文章缩略图
+							var desc2 = !empty(item.description) ? item.description : item.extra;
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td class="al" align="center"><img src="' + (item.thumbnail || '') + '" onerror="this.onerror=null;this.src=\"https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png\"" width="80" height="80" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>' +
+								'<td class="al">' +
+									'<div><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></div>' +
+									'<div class="item-desc">' + desc2 + '</div>' +
+								'</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+							break;
+						
+						case '3': // 1:1 圆角正方形 app图标
+							var desc3 = !empty(item.description) ? item.description : item.extra;
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td class="al" align="center"><img src="' + (item.thumbnail || '') + '" onerror="this.onerror=null;this.src=\"https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png\"" width="80" height="80" style="border-radius: 15px; object-fit: cover;" referrerPolicy="no-referrer" /></td>' +
+								'<td class="al">' +
+									'<div><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></div>' +
+									'<div class="item-desc">' + desc3 + '</div>' +
+								'</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+							break;
+						
+						case '4': // 160:220 影视海报,小说封面,短视频
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td class="al" align="center"><img src="' + (item.thumbnail || '') + '" onerror="this.onerror=null;this.src=\"https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png\"" width="80" height="110" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>' +
+								'<td class="al">' +
+									'<div><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></div>' +
+									'<div class="item-desc">' + (item.description || '') + '</div>' +
+									'<div class="item-extra">' + (item.extra || '') + '</div>' +
+								'</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+							break;
+						
+						case '5': // 1:1 购物大图
+							var desc5 = !empty(item.description) ? item.description : item.extra;
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td class="al" align="center"><img src="' + (item.thumbnail || '') + '" onerror="this.onerror=null;this.src=\"https://file.ipadown.com/tophub/assets/images/placeholder-lazyload.png\"" width="100" height="100" style="object-fit: cover;" referrerPolicy="no-referrer" /></td>' +
+								'<td class="al">' +
+									'<div><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></div>' +
+									'<div class="item-desc">' + desc5 + '</div>' +
+								'</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+							break;
+						
+						case '6': // 无图一行 关键词类
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></td>' +
+								'<td class="ws">' + (item.extra || '') + '</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+							break;
+						
+						default: // 默认排版
+							tableHtml += '<tr>' +
+								'<td align="center">' + rank + '.</td>' +
+								'<td><a href="' + item.url + '" target="_blank" rel="nofollow" itemid="' + item.ID + '">' + item.title + '</a></td>' +
+								'<td class="ws">' + (item.extra || '') + '</td>' +
+								'<td align="right"><a href="' + item.url + '" title="查看详细" target="_blank" rel="nofollow" itemid="' + item.ID + '"><i class="m-n">&#xe652;</i></a></td>' +
+							'</tr>';
+					}
+				});
+				
+				// 表格已经存在，不需要再创建
+				$('.snapshot-data').html(tableHtml);
+				// 显示快照信息区域
+				$('.snapshot-info').removeClass('hidden');
+			},
+			error: function() {
+				$('.snapshot-content-loading').addClass('hidden');
+				$('.snapshot-data').html('<tr><td colspan="2" class="no-items">加载失败，请重试</td></tr>');
+			}
+		});
+		
+	}
+	
+	// 返回最新榜单（快照版）
+	$(document).on('click', '#back-to-latest-snapshot', function() {
+		$('.stt').click();
+	});
+});
+
+/**
+ * 初始化导航菜单
+ */
+function initNavigationMenu() {
+    // 获取菜单容器
+    var $menuContainer = $('.daily-menu');
+    
+    // 清空现有菜单项（保留第一个"最新"和第二个"历史快照"）
+    var $menuList = $menuContainer.find('ul');
+    var $firstItems = $menuList.find('li').slice(0, 2).clone();
+    $menuList.empty().append($firstItems);
+    
+    // 第一个菜单项点击事件（最新）
+    $menuList.find('li').eq(0).click(function() {
+        $('html, body').animate({
+            scrollTop: $('.tab-sort-item#latest').offset().top - 84
+        }, 500);
+        $menuContainer.hide();
+    });
+    
+    // 第二个菜单项点击事件（历史快照）
+    $menuList.find('li').eq(1).click(function() {
+        $('html, body').animate({
+            scrollTop: $('.cc-dc-ec h2:contains("时光机")').offset().top - 84
+        }, 500);
+        $menuContainer.hide();
+    });
+    
+    // 获取所有标题元素并添加到菜单
+    $('.header span span.before').each(function(index) {
+        var $header = $(this).parent();
+        var headerText = $header.text().replace('【', '').replace('】', '');
+        
+        // 创建菜单项
+        var $menuItem = $('<li></li>').text(headerText);
+        
+        // 点击菜单项时滚动到对应标题，考虑64px的固定导航高度
+        $menuItem.click(function() {
+            $('html, body').animate({
+                scrollTop: $header.parent().offset().top - 84 // 64px导航高度 + 20px额外偏移
+            }, 500);
+            $menuContainer.hide(); // 点击后隐藏菜单
+        });
+        
+        $menuList.append($menuItem);
+    });
+    
+    // 添加关闭按钮事件
+    $menuContainer.find('.close').click(function() {
+        $menuContainer.hide();
+    });
+    
+    // 监听滚动事件，控制菜单显示和隐藏
+    var windowHeight = $(window).height();
+    var showMenuThreshold = windowHeight; // 滚动一屏后显示
+    
+    $(window).scroll(function() {
+        var scrollTop = $(window).scrollTop();
+        
+        // 滚动超过一屏显示菜单，回到顶部隐藏菜单
+        if (scrollTop > showMenuThreshold) {
+            $menuContainer.fadeIn(300);
+        } else {
+            $menuContainer.fadeOut(300);
+        }
+    });
+}
+
+// 页面加载完成后初始化导航菜单
+$(document).ready(function() {
+    initNavigationMenu();
+});
+</script>
+
+
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>热文库 - 今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/sshare.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/auto.refresh.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/export.popover.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/pagination.js?202505150004"></script>
+</head>
+<body class="">
+<div id="page" class="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e">
+
+		<div class="p-c p-c-f">
+			<div class="p-c-l">
+				<div class="cb sd">
+    <div class="st">兴趣</div>
+    <ul>
+        <li><a href="/daily">日报</a></li>
+        <li><a href="/dashboard">动态</a></li>
+        <li><a href="/alerts">追踪</a></li>
+    </ul>
+</div>
+
+<div style="clear: both; padding: 5px;"></div>
+<div class="cb sd">
+    <div class="st">热点</div>
+    <ul>
+        <li><a href="/hot">榜中榜</a></li>
+        <li><a href="/trending">热文库</a></li>
+        <li><a href="/topics">话题聚合</a></li>
+        <!-- <li><a href="/wiki">刷屏热词</a></li> -->
+    </ul>
+</div>
+
+<div style="clear: both; padding: 5px;"></div>
+<div class="cb sd">
+    <div class="st">事件</div>
+    <ul>
+        <li><a href="/calendar">热点日历</a></li>
+    </ul>
+</div>
+                            
+<div style="clear: both;padding:5px;"></div>
+<div class="cb s-t-l">
+    <div class="hh">追踪机器人</div>
+    <div class="section">
+        <div class="tt hidden">兴趣追踪</div>
+        <div class="dd">自定义追踪你感兴趣的信息。</div>
+        <a href="/alerts?x=explore">创建追踪器</a>
+    </div>
+</div>			</div>
+			
+			<div class="p-c-m">
+				<div class="p-c-m-r" data-key="sidebar" data-limit="4" data-sponsors-status="1">                    
+    <div class="m-b-mo">
+        <a href="/sponsors">成为赞助商</a>
+    </div>
+
+        <!-- 非VIP用户显示广告 -->
+    <div class="adsense-sidebar-container" style="max-height:300px;margin-top:10px;overflow:hidden;">
+            </div>
+    </div>
+
+
+
+				<div class="p-c-m-l">
+
+					<div class="c-m-l">
+						<div class="c-m">
+							<div class="c-i">
+								<div class="c-i-b" style="background-image: url(&quot;https://file.ipadown.com/tophub/assets/images/bb.png&quot;);"></div>
+								<div class="c-i-c">
+									<div class="ii"><img src="https://file.ipadown.com/tophub/assets/images/icon/icon-trending.png"/></div>
+									<div class="tt"><h3>热文库</h3><p>微信公众号、视频号、抖音、哔哩哔哩等热门内容平台热文素材库。</p></div>
+								</div>
+							</div>
+							<div class="c-m-tab">
+								<div class="tab-classify">
+									<button type="button" class="action-export has-popover" export-title="导出热文库内容" export-desc="将当前页显示的所有热文库内容导出为文件，方便离线浏览或数据分析" export-params='{"module": "trending", "c": "wxmp", "t": "全部", "p": "1"}'><i class="m-n">&#xe617;</i></button>
+									<button type="button" class="action-share"><i class="m-n">&#xe7f9;</i></button>
+								</div>
+								<div class="tab-sort">
+									<a href="/trending?c=wxmp" class="tab-sort-item active" data-target="wxmp">公众号<span></span></a>
+									<a href="/trending?c=wxsph" class="tab-sort-item " data-target="wxsph">视频号<span></span></a>
+									<a href="/trending?c=douyin" class="tab-sort-item " data-target="douyin">抖音<span></span></a>
+									<a href="/trending?c=bilibili" class="tab-sort-item " data-target="bilibili">哔哩哔哩<span></span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+                                        <div class="f-t-l bc-tc" style="padding: 16px 0;">
+						<div class="bc-tc-tb">
+							<div class="channel-selector">
+																										<a href="/trending?c=wxmp&t=全部" class="channel-item active">全部</a>
+																										<a href="/trending?c=wxmp&t=社会" class="channel-item ">社会</a>
+																										<a href="/trending?c=wxmp&t=情感" class="channel-item ">情感</a>
+																										<a href="/trending?c=wxmp&t=职场" class="channel-item ">职场</a>
+																										<a href="/trending?c=wxmp&t=军事" class="channel-item ">军事</a>
+																										<a href="/trending?c=wxmp&t=财经" class="channel-item ">财经</a>
+																										<a href="/trending?c=wxmp&t=汽车" class="channel-item ">汽车</a>
+																										<a href="/trending?c=wxmp&t=娱乐" class="channel-item ">娱乐</a>
+																										<a href="/trending?c=wxmp&t=科技" class="channel-item ">科技</a>
+																										<a href="/trending?c=wxmp&t=健康" class="channel-item ">健康</a>
+																										<a href="/trending?c=wxmp&t=育儿" class="channel-item ">育儿</a>
+																										<a href="/trending?c=wxmp&t=美食" class="channel-item ">美食</a>
+																										<a href="/trending?c=wxmp&t=历史" class="channel-item ">历史</a>
+																										<a href="/trending?c=wxmp&t=游戏" class="channel-item ">游戏</a>
+																										<a href="/trending?c=wxmp&t=文化" class="channel-item ">文化</a>
+																										<a href="/trending?c=wxmp&t=体育" class="channel-item ">体育</a>
+																										<a href="/trending?c=wxmp&t=房产" class="channel-item ">房产</a>
+																										<a href="/trending?c=wxmp&t=时尚" class="channel-item ">时尚</a>
+																										<a href="/trending?c=wxmp&t=动漫" class="channel-item ">动漫</a>
+																										<a href="/trending?c=wxmp&t=教育" class="channel-item ">教育</a>
+																										<a href="/trending?c=wxmp&t=文学" class="channel-item ">文学</a>
+																										<a href="/trending?c=wxmp&t=旅行" class="channel-item ">旅行</a>
+																										<a href="/trending?c=wxmp&t=农业" class="channel-item ">农业</a>
+																										<a href="/trending?c=wxmp&t=影视" class="channel-item ">影视</a>
+																										<a href="/trending?c=wxmp&t=摄影" class="channel-item ">摄影</a>
+																										<a href="/trending?c=wxmp&t=宠物" class="channel-item ">宠物</a>
+																										<a href="/trending?c=wxmp&t=星座" class="channel-item ">星座</a>
+																										<a href="/trending?c=wxmp&t=生活" class="channel-item ">生活</a>
+																										<a href="/trending?c=wxmp&t=搞笑" class="channel-item ">搞笑</a>
+															</div>
+						</div>
+					</div>
+                    
+					
+					
+										<div class="c-d c-d-e">
+						<div class="p-s">
+							<div class="p-i"><div class="m-n">&#xe69e;</div></div>
+														<div class="p-t">您还未登录</div>
+							<div class="p-d">登录后可以获取微信公众号、视频号、抖音、哔哩哔哩等热门内容平台的热文素材库</div>
+							<a href="/login?redirect=%2F%2Ftophub.today%2Ftrending" class="p-b">
+								<span>立即登录</span>
+								<div class="m-n">&#xe61a;</div>
+							</a>
+													</div>
+					</div>
+										
+				</div>			
+			</div>
+		</div>
+
+		<div class="o"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	window.isVip = false;
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	    // 从 DOM 数据属性获取参数
+	    var $trendingResults = $('#trending-results');
+	    var category = $trendingResults.data('category');
+	    var tag = $trendingResults.data('tag');
+	    var currentPage = $trendingResults.data('page');
+	    var trendingUrl = $trendingResults.data('url');
+	    
+	    // 加载热文库结果
+	    loadTrendingResults(trendingUrl);
+	    
+	    // JSONP 请求热文库结果
+	    function loadTrendingResults(url) {
+	        $('#trending-results').html('<div class="trending-result-loading"><div class="loading"><div></div><div></div><div></div><div></div></div><p>🚀 正在召唤小宇宙，请稍等~</p></div>');
+	        
+	        $.ajax({
+	            url: url,
+	            dataType: 'jsonp',
+	            jsonpCallback: 'trendingCallback',
+	            success: function(data) {
+	                handleTrendingResults(data);
+	            },
+	            error: function() {
+	                $('#trending-results').html('<div class="c-d c-d-e"><div class="p-s"><div class="p-i"><div class="m-n">&#xe69e;</div></div><div class="p-t">加载失败</div><div class="p-d">加载热文库结果失败，请刷新页面重试。</div></div></div>');
+	            }
+	        });
+	    }
+	    
+	    // 处理热文库结果
+	    function handleTrendingResults(data) {
+	        // 清空结果容器
+	        $('#trending-results').empty();
+	        
+	        // 如果没有结果
+	        if (!data.items || data.items.length === 0) {
+	            $('#trending-results').html('<div class="c-d c-d-e"><div class="p-s"><div class="p-i"><div class="m-n">&#xe69e;</div></div><div class="p-t">暂无数据</div><div class="p-d">没有找到相关结果。</div></div></div>');
+	            return;
+	        }
+	        
+	        // 渲染热文库结果
+	        var resultHtml = '<div class="f-t-l"><div class="jc item">';
+	        
+	        $.each(data.items, function(index, item) {
+	            // 根据不同平台可能需要不同的展示方式
+	            if (category === 'wxmp' || category === 'bilibili') {
+	                // 微信公众号文章样式
+	                resultHtml += `
+	                <div class="jc-a">
+	                    <a href="${item.url}" target="_blank" rel="nofollow">
+	                        ${item.cover ? `<div class="jc-a-img"><img src="${item.cover}" alt="${item.title}" referrerPolicy="no-referrer"></div>` : ''}
+	                        <div class="jc-a-content">
+	                            <div class="jc-a-t">${item.title}</div>
+	                            <div class="jc-a-m">
+	                                <div class="jc-a-mp-info">
+	                                    ${item.mp_icon ? `<img src="${item.mp_icon}" class="jc-a-mp-icon" alt="${item.mp_name}" referrerPolicy="no-referrer">` : ''}
+	                                    <span class="jc-a-m-n">${item.mp_name}</span>
+	                                </div>
+	                                <div class="jc-a-stats">
+	                                    <span class="jc-a-m-t">${new Date(item.created_at * 1000).toLocaleDateString()}</span>
+	                                    <span class="jc-a-m-read"><i class="m-n">&#xe6b4;</i>${item.read_count > 100000 ? '10万+' : item.read_count}</span>
+	                                    <span class="jc-a-m-like"><i class="m-n">&#xe64a;</i>${item.like_count}</span>
+	                                    ${item.read_count > 10000 ? '<span class="jc-a-tag hot">热</span>' : ''}
+	                                    ${item.is_hits ? '<span class="jc-a-tag hits">爆</span>' : ''}
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>`;
+	            } else if (category === 'douyin' || category === 'wxsph') {
+	                // 抖音视频样式
+	                resultHtml += `
+	                <div class="jc-a jc-douyin">
+	                    <a href="${item.url}" target="_blank" rel="nofollow">
+	                        <div class="jc-douyin-img"><img src="${item.cover || item.thumbnail}" alt="${item.title}" referrerPolicy="no-referrer"></div>
+	                        <div class="jc-douyin-content">
+	                            <div class="jc-a-t">${item.title}</div>
+	                            <div class="jc-a-m">
+	                                <div class="jc-a-mp-info">
+	                                    ${item.mp_icon1 ? `<img src="${item.mp_icon}" class="jc-a-mp-icon" alt="${item.mp_name}" referrerPolicy="no-referrer">` : ''}
+	                                    <span class="jc-a-m-n">${item.mp_name || item.author}</span>
+	                                </div>
+	                                <div class="jc-a-stats">
+	                                    <span class="jc-a-m-t">${item.created_at ? new Date(item.created_at * 1000).toLocaleDateString() : item.time}</span>
+	                                    <span class="jc-a-m-read"><i class="m-n">&#xe6b4;</i>${item.read_count || item.views}</span>
+	                                    ${item.like_count ? `<span class="jc-a-m-like"><i class="m-n">&#xe64a;</i>${item.like_count}</span>` : ''}
+	                                    ${item.read_count > 10000 || (item.views > 10000) ? '<span class="jc-a-tag hot">热</span>' : ''}
+	                                    ${item.is_hits ? '<span class="jc-a-tag hits">爆</span>' : ''}
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </a>
+	                </div>`;
+	            }
+	        });
+	        
+	        resultHtml += '</div><div class="o"></div></div>';
+	        
+	        $('#trending-results').html(resultHtml);
+	        
+	        // 使用分页类生成分页
+	        var currentUrl = window.location.href;
+	        var baseUrl = currentUrl.replace(/[&?]p=\d+/, ''); // 移除 p 参数
+	        var pagination = new Pagination({
+	            container: '#pagination-container',
+	            baseUrl: baseUrl,
+	            currentPage: data.p,
+	            totalSize: data.totalsize,
+	            pageSize: data.pagesize,
+	            listSize: 8,
+	            useUrlNavigation: true
+	        });
+	        
+	        pagination.generate();
+	    }
+	});
+	
+	// 定义全局 JSONP 回调函数
+	window.trendingCallback = function(data) {
+	    return data;
+	};
+</script>
+
+<style>
+.trending-result-loading{text-align:center;padding:80px!important;font-size:14px}
+.jc-a{position:relative;padding:15px 0;border-bottom:1px solid rgba(0,0,0,.05);transition:all .25s ease}
+.jc-a:last-child{border-bottom:none}
+.jc-a a{display:flex;text-decoration:none;position:relative}
+.jc-a-img{width:120px;height:80px;margin-right:18px;flex-shrink:0;overflow:hidden;border-radius:6px;background-color:#f5f5f5;box-shadow:0 2px 4px rgba(0,0,0,.08)}
+.jc-a-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.jc-a:hover .jc-a-img img{transform:scale(1.03)}
+.jc-a-content{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
+.jc-a-t{font-size:16px;font-weight:500;line-height:1.5;color:#2c3e50;margin-bottom:10px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;max-height:48px}
+.jc-a:hover .jc-a-t{color:#1e88e5}
+.jc-a:visited .jc-a-t{color:#999}
+.jc-a-m{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#666}
+.jc-a-mp-info{display:flex;align-items:center}
+.jc-a-mp-icon{width:18px;height:18px;border-radius:50%;margin-right:8px;box-shadow:0 1px 2px rgba(0,0,0,.1);background-color:#f0f0f0;object-fit:cover}
+.jc-a-m-n{color:#333;font-weight:500}
+.jc-a-stats{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.jc-a-m-t{color:#909399;display:flex;align-items:center;position:relative;padding-right:12px}
+.jc-a-m-t:after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:3px;height:3px;border-radius:50%;background-color:#ddd}
+.jc-a-m-like,.jc-a-m-read{color:#909399;display:flex;align-items:center}
+.jc-a-m-like i,.jc-a-m-read i{margin-right:4px;font-size:14px;color:#a0a0a0}
+.jc-a-tag{padding:2px 4px;border-radius:6px;font-size:10px;font-weight:500;margin-left:2px}
+.jc-a-tag.hot{background-color:#ff4d4f;color:#fff;box-shadow:0 1px 2px rgba(255,77,79,.2)}
+.jc-a-tag.hits{background-color:#faad14;color:#fff;box-shadow:0 1px 2px rgba(250,173,20,.2)}
+.pagination{display:flex;justify-content:center;list-style:none;padding:0;margin:20px 0}
+.pagination .page-item{display:inline-block;margin:0 3px;padding:5px 10px;border:1px solid #ddd;border-radius:3px;color:#333;text-decoration:none;font-size:14px}
+.pagination .page-item.current{background-color:#007bff;color:#fff;border-color:#007bff}
+.pagination .page-item.disabled{color:#aaa;cursor:not-allowed}
+.pagination .page-item.ellipsis{border:none;padding:5px 5px}
+.pagination .page-item:hover:not(.current):not(.disabled):not(.ellipsis){background-color:#f5f5f5}
+@media (max-width:768px){.jc-a a{flex-direction:column}
+.jc-a-img{width:100%;height:160px;margin-right:0;margin-bottom:10px}
+.jc-a-m{flex-direction:column;align-items:flex-start}
+.jc-a-stats{margin-top:5px}
+}
+
+.dark .jc-a{border-bottom-color:#2D2E2F}
+.dark .jc-a-t{color:#ccc;}
+.dark .jc-a:hover .jc-a-t{color:#4da3ff}
+.dark .jc-a:visited .jc-a-t{color:#666}
+.dark .jc-a-m{color:#888}
+.dark .jc-a-m-n{color:#aaa;}
+.dark .jc-a-img{background-color:#252729;box-shadow:0 2px 4px rgba(0,0,0,.2)}
+.dark .jc-a-mp-icon{background-color:#333;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.dark .jc-a-m-t{color:#777}
+.dark .jc-a-m-t:after{background-color:#444}
+.dark .jc-a-m-like,.dark .jc-a-m-read{color:#777}
+.dark .jc-a-m-like i,.dark .jc-a-m-read i{color:#666}
+.dark .jc-a-tag.hot{background-color:#ff6b7c;box-shadow:0 1px 2px rgba(255,107,124,.3)}
+.dark .jc-a-tag.hits{background-color:#ff9800;box-shadow:0 1px 2px rgba(255,152,0,.3)}
+.dark .pagination .page-item{border-color:#3e3e3e;color:#ccc;background-color:#252729}
+.dark .pagination .page-item.current{background-color:#15395b;color:#fff;border-color:#15395b}
+.dark .pagination .page-item.disabled{color:#666}
+.dark .pagination .page-item:hover:not(.current):not(.disabled):not(.ellipsis){background-color:#333}
+.dark .trending-result-loading{color:#999}
+
+/* 抖音视频样式 */
+.jc-douyin{padding:15px 0}
+.jc-douyin a{display:flex;flex-direction:row;align-items:flex-start;gap:18px}
+.jc-douyin-img{width:120px;height:160px;flex-shrink:0;overflow:hidden;border-radius:8px;background-color:#f5f5f5;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.jc-douyin-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.jc-douyin:hover .jc-douyin-img img{transform:scale(1.03)}
+.jc-douyin-content{flex:1;display:flex;flex-direction:column;justify-content:space-between;height:160px}
+
+/* 暗黑模式适配 */
+.dark .jc-douyin-img{background-color:#252729;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+
+/* 移动端适配 */
+@media (max-width:768px){
+  .jc-douyin a{flex-direction:column}
+  .jc-douyin-img{width:100%;height:auto;aspect-ratio:3/4;margin-bottom:15px}
+  .jc-douyin-content{height:auto}
+}
+</style>
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script></body>
+</html>

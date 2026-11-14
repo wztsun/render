@@ -1,0 +1,2342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/jquery.lazyload/1.8.3/jquery.lazyload.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+</head>
+<body class="">
+<div id="page">
+	<div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>	<div class="eb-fb"></div>
+	<div class="c-d c-d-e">
+		
+		<div class="abcdefg"><div class="ax" data-key="top" data-limit="6" data-sponsors-status="1"></div></div>
+
+		
+		
+
+		<div class="bc">
+									<div class="bc-tc">
+				<div class="bc-tc-tb">
+					人工智能 <small>
+						215个
+					</small>
+				</div>
+								<div class="bc-tc-ob"><a href="?q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="bc-tc-ob-i active">热门</span></a>|<a href="?order=ID&q=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="bc-tc-ob-i ">最新</span></a></div>			</div>
+			<div class="bc-cc ">
+								<div class="cc-cd" id="node-98">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/rYqoXz8dOD">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/juejin.cn.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										掘金									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										人工智能本周最热									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://juejin.cn/post/7706826190912880680" target="_blank" rel="nofollow" itemid="252763346">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">Qwen4 被嘲笑了！国模被啥锁死了？</span>
+													<span class="e">2769</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705961716425490447" target="_blank" rel="nofollow" itemid="252588859">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">AI 正在蚕食我们的编码能力</span>
+													<span class="e">3141</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705911807923322943" target="_blank" rel="nofollow" itemid="252605407">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">workbuddy接管我的浏览器，帮我干活了</span>
+													<span class="e">2449</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705134065616207882" target="_blank" rel="nofollow" itemid="252512956">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">从 Coze 居然要下线了说起</span>
+													<span class="e">1758</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706394247621443599" target="_blank" rel="nofollow" itemid="252777460">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">别再连线了：Coze、n8n、Dify 退潮，AI 正式终结工作流时代</span>
+													<span class="e">981</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705988547135717386" target="_blank" rel="nofollow" itemid="252677611">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">Hy4正式发布一手实测，腾讯这波起飞了。</span>
+													<span class="e">922</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706124316778266667" target="_blank" rel="nofollow" itemid="252705437">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">我宣布！Magpie就是版本答案！</span>
+													<span class="e">845</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706090261218558015" target="_blank" rel="nofollow" itemid="252715295">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">程序员转型抉择：转 Agent 开发还是转全栈？一份基于招聘市场的冷静分析</span>
+													<span class="e">922</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707194766860025907" target="_blank" rel="nofollow" itemid="252845632">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">黄仁勋辞去英伟达 CEO，结束 33 年掌舵生涯</span>
+													<span class="e">903</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706384412187164710" target="_blank" rel="nofollow" itemid="252706671">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">Fable5.2 画手柄很牛，小测3个例子！</span>
+													<span class="e">542</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707227810214150178" target="_blank" rel="nofollow" itemid="252884258">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">GPT6.2Astra也很强啊，国模...！</span>
+													<span class="e">574</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705330413946093583" target="_blank" rel="nofollow" itemid="252618974">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">Lomo Agent：面向创作型、持续协作 Agent 的架构设计与工程实践</span>
+													<span class="e">524</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7706833656825004058" target="_blank" rel="nofollow" itemid="252822267">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">4 个 3D 游戏，总体积 3.82MB：拆解 Claude 的 one-shot 工程链路</span>
+													<span class="e">580</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705412224672366627" target="_blank" rel="nofollow" itemid="252688227">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">DeepSeek-V4.1-Flash-1017 官方许愿案例太吸睛，我也复刻了一个</span>
+													<span class="e">646</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707231949409026058" target="_blank" rel="nofollow" itemid="252865058">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">官方点名，DeepSeek Harness 的 4 个神级插件。</span>
+													<span class="e">627</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707593859757539366" target="_blank" rel="nofollow" itemid="252905481">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">黄仁勋被裁第一天，就收到了橄榄枝</span>
+													<span class="e">400</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7707106224123166755" target="_blank" rel="nofollow" itemid="252776211">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">DeepSeek Harness 完全指南，打造你的专属工作台</span>
+													<span class="e">496</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705716341147631631" target="_blank" rel="nofollow" itemid="252690395">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">AI 日报（2026年11月9日）</span>
+													<span class="e">549</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705232032440172570" target="_blank" rel="nofollow" itemid="252706104">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">WorkBuddy 自动化工作流实测：从分镜脚本到 MP4 成片的 18 步复盘</span>
+													<span class="e">531</span>
+												</div>
+											</a>
+											<a href="https://juejin.cn/post/7705071459534438454" target="_blank" rel="nofollow" itemid="252693359">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">把五个网页版 AI 拉进同一个群聊：不用 API key 的多 Agent 编排</span>
+													<span class="e">528</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">11分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="98"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="98" hashid="rYqoXz8dOD"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-29669">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/MZd7azPorO">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/qbitai.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										量子位									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										每日最新									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.qbitai.com/2026/11/509995.html" target="_blank" rel="nofollow" itemid="252870566">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">黄仁勋辞职，英伟达33年首换帅，市值蒸发超3万亿</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509827.html" target="_blank" rel="nofollow" itemid="252870565">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">MEET2027含金量再加码：AI4S/量子计算/AI Infra…第二批嘉宾强势来袭！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509796.html" target="_blank" rel="nofollow" itemid="252870564">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">中国AI突破复杂肺癌诊疗！中美医疗圈集体坐不住了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509730.html" target="_blank" rel="nofollow" itemid="252870563">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">比亚迪第1900万辆新能源汽车下线，科技新奢旗舰SUV方程豹钛9开启预订</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509716.html" target="_blank" rel="nofollow" itemid="252870562">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">从仰望极速新纪录和鼎曜全球发布 看比亚迪的国际化与高端化之路</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509710.html" target="_blank" rel="nofollow" itemid="252870561">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">比亚迪与神州租车首批闪充车及闪充站投放仪式顺利举行，战略合作落地兑现，闪充中国再次提速</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509663.html" target="_blank" rel="nofollow" itemid="252870560">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">高难盲测超越GPT-6-Astra与Opus-5！无界前沿开源Fx-Bio-1031，把RSI带进生命科学</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509653.html" target="_blank" rel="nofollow" itemid="252870559">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">openJiuwen发布RSI原生AgentOS，让Agent自由变身，持续迭代！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509613.html" target="_blank" rel="nofollow" itemid="252845114">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">特斯拉和SpaceX最快下月合并</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.qbitai.com/2026/11/509614.html" target="_blank" rel="nofollow" itemid="252870558">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">中国机器人学会隔墙“递眼色”！成功率从0飙到100%，组队干活不烧心</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="29669"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="29669" hashid="MZd7azPorO"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-37064">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/ENeYylkeY4">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/aibase.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										AIbase									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										AI日报									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.aibase.com/zh/daily/32319" target="_blank" rel="nofollow" itemid="252854169">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">AI日报：黄仁勋卸任英伟达总裁职位；星火语音大模型SparkAudio 1.0正式上线API服务；Google推出Gemini4Hydrogen</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32282" target="_blank" rel="nofollow" itemid="252770908">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">AI日报：百度ERNIE 5.5 Flash Preview亮相；阿里官宣千问大模型Qwen4；火山引擎推出Seedance2.5flash</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32252" target="_blank" rel="nofollow" itemid="252696935">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">AI日报：MiniMax开源H3-Image；腾讯元宝搜索上线独立网页版；百度发布文心5.5Flash Preview</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32213" target="_blank" rel="nofollow" itemid="252611356">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">AI日报：腾讯AI游戏陪伴Agent鹅次元内测；Anthropic发布Claude Fable5.2；美团开源LongCat-2.5</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32183" target="_blank" rel="nofollow" itemid="252536977">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">AI日报：ChatGPT用户遭大规模集中停用；腾讯元器平台今日正式停止服务；DeepSeek 开源智能体应用Harness日活突破154万</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32153" target="_blank" rel="nofollow" itemid="252351667">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">AI日报：Kimi Hosted Agents发布；谷歌发布 Omni 1.2 Flash；淘宝MNN 团队开源 MNN-Pocket-0.3B</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32121" target="_blank" rel="nofollow" itemid="252275452">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">AI日报：iOS 27.3 beta正式接入千问；豆包工作首次接入第三方模型；雷军晒小米机器人做家务视频</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32090" target="_blank" rel="nofollow" itemid="252195779">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">AI日报：百度发布物理AI世界模型Apollo World；腾讯 Hy4 正式版亮相；阿里云发布AI投研工作台Qovest</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32056" target="_blank" rel="nofollow" itemid="252110872">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">AI日报：腾讯混元发布Hyra 2.0；商汤发布日日新SenseNova 6.8 Flash；AI 虚拟恋人正式被苹果关进成人区</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aibase.com/zh/daily/32022" target="_blank" rel="nofollow" itemid="252025373">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">AI日报：双十一Token上架电商平台；DeepSeek开源Super-agent架构；美团龙猫发布 LongCat-2.5</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="37064"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="37064" hashid="ENeYylkeY4"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-3085">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/DOvnyGpoEB">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/easyai.tech.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										产品经理的人工智能学习库									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+																			</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://easyai.tech/aiinsights/dont_teach_ai/" target="_blank" rel="nofollow" itemid="226302504">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">感悟：不要教AI做事！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/aiinsights/4weapons/" target="_blank" rel="nofollow" itemid="226130715">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">AI时代赋予我们的4种武器：大模型，Claude skill，workflow，AI编程</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/aipaper/mindlab_3pages/" target="_blank" rel="nofollow" itemid="225986672">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">【长文】“持续进化模型”能否成为AI大模型的技术拐点？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/aipaper/aipaper_2025_w49/" target="_blank" rel="nofollow" itemid="225692058">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">AI前沿论文投资洞察周报（2025W49）三大顶会技术突破，解锁长视频、多模态、虚拟人新机遇</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/blog/llms/" target="_blank" rel="nofollow" itemid="218894555">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">一文讲清楚LLM：大型语言模型核心解析与应用前瞻</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/blog/ad-treemind/" target="_blank" rel="nofollow" itemid="134007191">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">友情推广：TreeMind树图思维导图￼</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/blog/will-ai-change-content-marketing-forever/" target="_blank" rel="nofollow" itemid="61665660">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">AI会永远改变内容营销吗？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/blog/the-only-3-ml-tools-you-need/" target="_blank" rel="nofollow" itemid="61665659">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">使用机器学习，你只需要3个工具</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/blog/on-device-ai-what-i-know-so-far/" target="_blank" rel="nofollow" itemid="61665658">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">终端设备上的AI —到目前为止我所知道的</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://easyai.tech/blog/ai-executive-guides-data-science-lifecycle/" target="_blank" rel="nofollow" itemid="61665657">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">数据科学生命周期的7个步骤–在业务中应用AI</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="hidden">2026-02-27</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="3085"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="3085" hashid="DOvnyGpoEB"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-37417">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/8Rv2NjnvLw">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/ai-bot.cn.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										AI工具集									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										AI文章资讯中心									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://ai-bot.cn/vipcheap-banner-0210/" target="_blank" rel="nofollow" itemid="231038728">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">ChatGPT Plus 和 Pro 5X/20X 会员代充值 &#8211; 支持支付宝</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/chatgpt-images-26-gif-sticker-tutorial/" target="_blank" rel="nofollow" itemid="252909233">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">ChatGPT Images 2.6  一键生成 GIF 表情包完整教程（附提示词）</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/tabletop/" target="_blank" rel="nofollow" itemid="252909232">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">Tabletop &#8211; Google Labs 推出的AI协作工具</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/hy-realtime/" target="_blank" rel="nofollow" itemid="252873334">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">Hy Realtime &#8211; 腾讯混元推出的实时语音模型</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/physis-v1-0-preview/" target="_blank" rel="nofollow" itemid="252847879">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">Physis-v1.0-preview &#8211; 逆矩阵推出的通用物理智能基座模型</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/dots-tts-edit-v1-1/" target="_blank" rel="nofollow" itemid="252847878">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">dots.tts.edit V1.1 &#8211; 小红书开源的端到端语音编辑模型</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/loom/" target="_blank" rel="nofollow" itemid="252847877">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">Loom &#8211; Looki 推出的多模态模型系列</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/gemini-4-hydrogen/" target="_blank" rel="nofollow" itemid="252826122">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">Gemini 4 Hydrogen &#8211; 谷歌推出的 Gemini 4 系列高效率模型</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/zhihu-ai-product-promotion-tutorial/" target="_blank" rel="nofollow" itemid="252826121">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">知乎发文推广AI产品，月入2000+完整实操教程，实测收益截图可查</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://ai-bot.cn/gemini-decision-1/" target="_blank" rel="nofollow" itemid="252772380">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">Gemini Decision 1 &#8211; 谷歌推出的首个决策模型</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="37417"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="37417" hashid="8Rv2NjnvLw"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-4423">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/7GdabqLeQy">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/technologyreview.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										MIT Technology Review									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										Top Stories									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://www.technologyreview.com/2026/11/13/1148551/the-download-silicon-valley-midterms-nvidia-chip-tracking/" target="_blank" rel="nofollow" itemid="252871507">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">The Download: Silicon Valley’s blind spot and Nvidia’s chip-tracking plan</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/13/1148498/silicon-valley-claims-to-know-the-future-so-why-did-it-get-the-midterms-so-wrong/" target="_blank" rel="nofollow" itemid="252859527">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">Silicon Valley claims to know the future. So why did it get the midterms so wrong?</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/13/1148474/more-autonomy-fewer-ndas-volunteers-have-new-requests-for-brain-implant-trials/" target="_blank" rel="nofollow" itemid="252859526">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">More autonomy, fewer NDAs: Volunteers have new requests for brain implant trials</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/12/1148483/nvidia-chip-tracking/" target="_blank" rel="nofollow" itemid="252808830">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/12/1148444/the-download-cop31-climate-talks-cognitive-immortality/" target="_blank" rel="nofollow" itemid="252792496">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">The Download: COP31’s climate challenge and the quest for immortality</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/11/1148308/un-climate-talks/" target="_blank" rel="nofollow" itemid="252725633">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">What to know about this year’s UN climate talks</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/11/1148424/the-download-preserving-minds-open-ai-risks/" target="_blank" rel="nofollow" itemid="252714219">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">The Download: preserving minds and weighing open AI risks</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/10/1148150/the-download-pelosi-successor-ai-regulation-data-center-backlash/" target="_blank" rel="nofollow" itemid="252632559">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">The Download: Pelosi’s successor targets AI and data centers face power woes</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/10/1147726/evolving-metal-extraction-processes/" target="_blank" rel="nofollow" itemid="252632558">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">Evolving metal extraction processes</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/09/1148194/the-backlash-about-data-centers-might-really-just-be-about-electricity/" target="_blank" rel="nofollow" itemid="252567472">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">The backlash about data centers might really just be about electricity</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">4分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="4423"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="4423" hashid="7GdabqLeQy"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-37296">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/x9oz2O1oXb">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/36kr.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										36氪									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										AI频道									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.36kr.com/p/4069178330764161" target="_blank" rel="nofollow" itemid="252909925">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">Claude破译哥德尔天书，80年笔记震撼数学界</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068879572653193" target="_blank" rel="nofollow" itemid="252902301">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">英伟达换帅，汽车圈为什么没慌？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4069009439871873" target="_blank" rel="nofollow" itemid="252902300">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">“让黄仁勋回归”，马斯克带头，超2万人请愿</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068120653157256" target="_blank" rel="nofollow" itemid="252870400">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">“这是世代级错误”“不会再买英伟达股票”，黄仁勋走了，硅谷吵翻了，Twitter前CEO预测他3年后王者归来</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068135542199175" target="_blank" rel="nofollow" itemid="252870399">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">华尔街：算力生态下一轮融资将更难、更贵……</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068082247701634" target="_blank" rel="nofollow" itemid="252867445">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">AI录音设备，正在争夺“最懂你”的位置</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068057502831493" target="_blank" rel="nofollow" itemid="252867444">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">97%支持率，最怕黄仁勋离开的，为何是员工？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068060515997320" target="_blank" rel="nofollow" itemid="252864684">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">便宜档跑分反超旗舰：谷歌Gemini 4 Hydrogen全量开放，搜索AI Mode连夜换引擎</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068067240334466" target="_blank" rel="nofollow" itemid="252864683">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">MiniMax，狂卷字节、OpenAI</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068070220257154" target="_blank" rel="nofollow" itemid="252864682">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">英伟达，还有比黄仁勋离任更大的麻烦</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067917275731076" target="_blank" rel="nofollow" itemid="252864681">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">Anthropic：如果顺利，我们会在十年内搞定癌症</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067903659808642" target="_blank" rel="nofollow" itemid="252863412">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">姚顺雨之后，该刘大一恒交作业了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068005894050945" target="_blank" rel="nofollow" itemid="252863411">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">被围剿的黄仁勋，暴露了AI投资的最大风险</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068029513864068" target="_blank" rel="nofollow" itemid="252862460">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">“泡沫论”再起，机器人一夜入冬</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4068029698102144" target="_blank" rel="nofollow" itemid="252862459">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">为什么全世界都在为数据中心吵架？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067946938274949" target="_blank" rel="nofollow" itemid="252862458">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">这个双11，商家和AI商量着做生意</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067967004562304" target="_blank" rel="nofollow" itemid="252858162">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">Claude新旗舰刚发，95万字绝密提示词被扒光了</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067968471618441" target="_blank" rel="nofollow" itemid="252858161">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">“第一性原理”的失灵：当AI创业陷入物理学崇拜的误区</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067858312468100" target="_blank" rel="nofollow" itemid="252855668">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">宇树最大对手，12天股价翻倍</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067773830845318" target="_blank" rel="nofollow" itemid="252855667">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">牛津大学费豪：物理AI的另一半「认知共生体」，能为普通人解决哪些问题？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067917144201095" target="_blank" rel="nofollow" itemid="252855557">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">苹果憋了近10年的人形机器人，最后用上了宇树</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4066737404942210" target="_blank" rel="nofollow" itemid="252855556">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">宇树重返3000亿，王兴兴熬过至暗时刻</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067947535979649" target="_blank" rel="nofollow" itemid="252855241">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">黄仁勋辞职，“果链三女王”还能站稳“达链”吗？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067909182477440" target="_blank" rel="nofollow" itemid="252852047">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">Anthropic上市前收紧风控，Claude最严封号措施生效</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067679007413377" target="_blank" rel="nofollow" itemid="252848486">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">新云“靓仔”Nebius：光鲜外面下也满是“虱子”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067766623573640" target="_blank" rel="nofollow" itemid="252848077">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">AI 作弊不稀奇，它还懂“抗拒从严，回家过年”</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067629942707072" target="_blank" rel="nofollow" itemid="252834085">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">数学界震动，Claude一口气写下19万行源码，揪出13年前证明错误</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067628486267780" target="_blank" rel="nofollow" itemid="252834084">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">炸了！英伟达最大的雷，是没接班人</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4067612329382787" target="_blank" rel="nofollow" itemid="252831020">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">“AI央行”大地震，冲击会沿融资链传多远？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.36kr.com/p/4066961452209283" target="_blank" rel="nofollow" itemid="252831019">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">黄仁勋辞任英伟达CEO，国产算力迎来窗口期？</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="37296"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="37296" hashid="x9oz2O1oXb"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-37550">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/proPKWkeq6">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/aicpb.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										AI产品榜									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										每日AI早报									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：OpenAI首款AI硬件产品或为智能笔，富士康代工，功能待市场检验。" target="_blank" rel="nofollow" itemid="227823379">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">OpenAI首款AI硬件产品或为智能笔，富士康代工，功能待市场检验。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：马斯克xAI为Grok推图像编辑功能引争议，官方修复防护疏漏。" target="_blank" rel="nofollow" itemid="227823378">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">马斯克xAI为Grok推图像编辑功能引争议，官方修复防护疏漏。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：DeepSeek元旦发布mHC架构论文，解决大模型训练超连接稳定性问题。" target="_blank" rel="nofollow" itemid="227823377">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">DeepSeek元旦发布mHC架构论文，解决大模型训练超连接稳定性问题。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：智能眼镜被纳入2026国家补贴，预计2025中国市场销量将达137万副。" target="_blank" rel="nofollow" itemid="227823376">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">智能眼镜被纳入2026国家补贴，预计2025中国市场销量将达137万副。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：通义千问开源图像生成模型Qwen-Image-2512，满足专业设计多样化需求。" target="_blank" rel="nofollow" itemid="227823375">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">通义千问开源图像生成模型Qwen-Image-2512，满足专业设计多样化需求。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：OpenAI员工人均股票薪酬150万美元，创科技初创企业纪录。" target="_blank" rel="nofollow" itemid="227823374">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">OpenAI员工人均股票薪酬150万美元，创科技初创企业纪录。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：腾讯云携手多家金融机构，将AI大模型落地超百个金融业务场景。" target="_blank" rel="nofollow" itemid="227823373">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">腾讯云携手多家金融机构，将AI大模型落地超百个金融业务场景。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：夸克AI眼镜OTA升级，增强AI能力并新增录音纪要与图文备忘录等五项功能。" target="_blank" rel="nofollow" itemid="227823372">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">夸克AI眼镜OTA升级，增强AI能力并新增录音纪要与图文备忘录等五项功能。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：xAI计划扩建孟菲斯“巨人”数据中心，在南海文市建毗邻配套设施。" target="_blank" rel="nofollow" itemid="227823371">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">xAI计划扩建孟菲斯“巨人”数据中心，在南海文市建毗邻配套设施。</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.aicpb.com/news/iframe?world=根据以下信息搜集全网最新资料，并解读。信息：AI初创公司Resemble AI发布开源语音模型Chatterbox Turbo，5秒可克隆人声。" target="_blank" rel="nofollow" itemid="227823370">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">AI初创公司Resemble AI发布开源语音模型Chatterbox Turbo，5秒可克隆人声。</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">6分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="37550"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="37550" hashid="proPKWkeq6"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-6099">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/1Vd58gWv85">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/ai.googleblog.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										Google AI Blog									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+																			</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="http://blog.research.google/2024/03/generative-ai-to-quantify-uncertainty.html" target="_blank" rel="nofollow" itemid="163653931">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">Generative AI to quantify uncertainty in weather forecasting</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/autobnn-probabilistic-time-series.html" target="_blank" rel="nofollow" itemid="163547766">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">AutoBNN: Probabilistic time series forecasting with compositional bayesian neural networks</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/computer-aided-diagnosis-for-lung.html" target="_blank" rel="nofollow" itemid="162735923">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">Computer-aided diagnosis for lung cancer screening</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/using-ai-to-expand-global-access-to.html" target="_blank" rel="nofollow" itemid="162720545">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">Using AI to expand global access to reliable flood forecasts</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/screenai-visual-language-model-for-ui.html" target="_blank" rel="nofollow" itemid="162623803">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">ScreenAI: A visual language model for UI and visually-situated language understanding</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/scin-new-resource-for-representative.html" target="_blank" rel="nofollow" itemid="162610260">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">SCIN: A new resource for representative dermatology images</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/melon-reconstructing-3d-objects-from.html" target="_blank" rel="nofollow" itemid="162508939">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">MELON: Reconstructing 3D objects from images with unknown poses</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/heal-framework-for-health-equity.html" target="_blank" rel="nofollow" itemid="162243674">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">HEAL: A framework for health equity assessment of machine learning performance</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/cappy-outperforming-and-boosting-large.html" target="_blank" rel="nofollow" itemid="162131138">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">Cappy: Outperforming and boosting large multi-task language models with a small scorer</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/talk-like-graph-encoding-graphs-for.html" target="_blank" rel="nofollow" itemid="161872783">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">Talk like a graph: Encoding graphs for large language models</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/chain-of-table-evolving-tables-in.html" target="_blank" rel="nofollow" itemid="161734444">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">Chain-of-table: Evolving tables in the reasoning chain for table understanding</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/health-specific-embedding-tools-for.html" target="_blank" rel="nofollow" itemid="161424640">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">Health-specific embedding tools for dermatology and pathology</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/social-learning-collaborative-learning.html" target="_blank" rel="nofollow" itemid="161306632">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">Social learning: Collaborative learning with large language models</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/croissant-metadata-format-for-ml-ready.html" target="_blank" rel="nofollow" itemid="161172475">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">Croissant: a metadata format for ML-ready datasets</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/03/google-at-aps-2024.html" target="_blank" rel="nofollow" itemid="160893032">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">Google at APS 2024</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/02/videoprism-foundational-visual-encoder.html" target="_blank" rel="nofollow" itemid="159636047">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">VideoPrism: A foundational visual encoder for video understanding</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/02/advances-in-private-training-for.html" target="_blank" rel="nofollow" itemid="159511564">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">Advances in private training for production on-device language models</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/02/learning-importance-of-training-data.html" target="_blank" rel="nofollow" itemid="158746295">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">Learning the importance of training data under concept drift</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/02/dp-auditorium-flexible-library-for.html" target="_blank" rel="nofollow" itemid="158668560">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">DP-Auditorium: A flexible library for auditing differential privacy</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/02/graph-neural-networks-in-tensorflow.html" target="_blank" rel="nofollow" itemid="157999155">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">Graph neural networks in TensorFlow</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/02/a-decoder-only-foundation-model-for.html" target="_blank" rel="nofollow" itemid="157569986">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">A decoder-only foundation model for time-series forecasting</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/02/intervening-on-early-readouts-for.html" target="_blank" rel="nofollow" itemid="157549945">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">Intervening on early readouts for mitigating spurious features and simplicity bias</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/01/mobilediffusion-rapid-text-to-image.html" target="_blank" rel="nofollow" itemid="157304184">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">MobileDiffusion: Rapid text-to-image generation on-device</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/01/mixed-input-matrix-multiplication.html" target="_blank" rel="nofollow" itemid="156975956">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">Mixed-input matrix multiplication performance optimizations</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="http://blog.research.google/2024/01/exphormer-scaling-transformers-for.html" target="_blank" rel="nofollow" itemid="156975955">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">Exphormer: Scaling transformers for graph-structured data</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">27分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="6099"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="6099" hashid="1Vd58gWv85"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-29186">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/47o8bRLdMm">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/blog.csdn.net.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										CSDN博客									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										人工智能热榜									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content ">
+								
+											<a href="https://blog.csdn.net/wangshuqian1314/article/details/168963617" target="_blank" rel="nofollow" itemid="252847592">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">【深度学习项目实战·30】PM2.5短期预测：用LSTM构造没有未来信息的滑动窗口</span>
+													<span class="e">3.9万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_69017389/article/details/170500680" target="_blank" rel="nofollow" itemid="252725901">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">开车导航变自动驾驶？通俗讲透大语言模型与AI Agent的进阶之路</span>
+													<span class="e">3.4万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_51988539/article/details/170516506" target="_blank" rel="nofollow" itemid="252887486">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">混合方法文献矩阵：先拆字段，再确定分类</span>
+													<span class="e">3.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/aszhangwendi/article/details/170711686" target="_blank" rel="nofollow" itemid="252910074">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">选AI大模型进行数据分析盯紧这5点</span>
+													<span class="e">3.0万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2501_91731683/article/details/170243218" target="_blank" rel="nofollow" itemid="252471789">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">【AI】用 AI 做自己的个人网站（上）：选模板、写提示词，做出第一版</span>
+													<span class="e">3.0万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/zhangcongyi420/article/details/168957064" target="_blank" rel="nofollow" itemid="252476551">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">【AI智能体】Codex 实现OpenClaw 开源项目二次开发实战详解</span>
+													<span class="e">2.9万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/qq_36085846/article/details/170458318" target="_blank" rel="nofollow" itemid="252910073">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">【第83期】特征选择中的验证泄漏排查的实验与排查</span>
+													<span class="e">2.9万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/yuanziok/article/details/170743524" target="_blank" rel="nofollow" itemid="252905082">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">通用 AI 的「幻觉」与 FineBI Cloud 的「溯源」：企业如何选择可信的 AI 数据分析产品</span>
+													<span class="e">2.9万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/m0_50747450/article/details/170742022" target="_blank" rel="nofollow" itemid="252885100">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">AI 办公提示词模板实战：5 个可复制的 Prompt（会议纪要 / 周报 / 邮件 / 合同 / 数据分析）</span>
+													<span class="e">2.8万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2603_96994125/article/details/170742302" target="_blank" rel="nofollow" itemid="252884495">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">适合做数据分析的AI工具？从Trae到办公小浣熊，6款工具实测横评</span>
+													<span class="e">2.8万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/qq_2529413168/article/details/170741191" target="_blank" rel="nofollow" itemid="252902467">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">深度学习 目标检测 海上搜救 无人机巡检 海事安防 YOLO格式 数据集发布9036期</span>
+													<span class="e">2.8万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/LeDi_XinXi/article/details/170732781" target="_blank" rel="nofollow" itemid="252892210">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">从人工瞭望到AI分类：港口船舶类型识别怎么实现</span>
+													<span class="e">2.8万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/Oflycomm/article/details/170727096" target="_blank" rel="nofollow" itemid="252885098">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">AI边缘计算如何重塑工业计算机？Wi-Fi 7模组带来哪些连接升级？</span>
+													<span class="e">2.8万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/scaryFann/article/details/170713275" target="_blank" rel="nofollow" itemid="252892209">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">企业AI 的效果怎么度量：任务完成率、人工介入率与灰度回归的工程做法</span>
+													<span class="e">2.7万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_63734305/article/details/170199018" target="_blank" rel="nofollow" itemid="252847591">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">KNN 算法详解：从距离度量到 K 值选择，理解分类、回归与代码实战</span>
+													<span class="e">2.7万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2608_96881912/article/details/170653375" target="_blank" rel="nofollow" itemid="252821956">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">适合做数据分析的 AI 工具怎么选：按任务类型与工程要求定位到具体方案</span>
+													<span class="e">2.7万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/smallym1/article/details/170716337" target="_blank" rel="nofollow" itemid="252885097">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">微调数据怎么切、评测集怎么冻结，才不白调一轮</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_48502062/article/details/170295206" target="_blank" rel="nofollow" itemid="252495502">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">OpenCV 5.1.0正式发布：核心矩阵、图像处理、DNN推理全面升级，性能与稳定性大幅增强</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/aifannihao/article/details/170666369" target="_blank" rel="nofollow" itemid="252884494">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">AI 学习第 14 课：CNN 训 6 轮卡在 0.5352，数据没打乱</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/wdf8088/article/details/170422183" target="_blank" rel="nofollow" itemid="252868422">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">从 FNO 到工作站选型：神经算子求解 PDE 的计算特征与 UltraLAB 配置实践</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/JYF2007ABC/article/details/170744183" target="_blank" rel="nofollow" itemid="252885096">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">神经网络是如何学习的？（关于损失函数，梯度下降，反向传播，梯度消失详解）</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2603_96731254/article/details/170655925" target="_blank" rel="nofollow" itemid="252847590">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">数据分析 AI 怎么选：按任务类型对号入座的选型框架与场景清单</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2603_96554520/article/details/170653607" target="_blank" rel="nofollow" itemid="252815494">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">AI 做数据分析能力怎么排：先别急着争第一，先看排名用什么标准</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2603_96881810/article/details/170653675" target="_blank" rel="nofollow" itemid="252806326">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">适合做数据分析的AI工具怎么选：按任务类型拆解五类方案与选型维度</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2609_97183984/article/details/170653277" target="_blank" rel="nofollow" itemid="252842391">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">AI 做数据分析能力排行：别只看单轮答题，能跑通全流程的才算真本事</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2600_97230596/article/details/170653334" target="_blank" rel="nofollow" itemid="252831612">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">做数据分析的好用 AI 怎么选：从任务类型到工程交付的选型思路</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2603_97182803/article/details/170653077" target="_blank" rel="nofollow" itemid="252821955">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">数据分析AI软件推荐：按任务与交付要求选工具的实用指南</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2600_97097391/article/details/170653237" target="_blank" rel="nofollow" itemid="252807197">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">做数据分析的好用 AI 怎么选？先分清五类任务再下手</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2603_96806404/article/details/170653057" target="_blank" rel="nofollow" itemid="252809979">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">适合做数据分析的 AI 工具怎么选：五类任务对应五类工具</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2609_96881654/article/details/170652712" target="_blank" rel="nofollow" itemid="252813045">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">数据分析 AI 软件怎么选：按任务类型与工程要求选对工具</span>
+													<span class="e">2.6万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/princemilo/article/details/170632506" target="_blank" rel="nofollow" itemid="252847589">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">31</span>
+													<span class="t">26. AI-Agent 知识库：本体、本体建模、知识图谱、语义层、知识管理</span>
+													<span class="e">2.5万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_44369324/article/details/170744576" target="_blank" rel="nofollow" itemid="252887484">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">32</span>
+													<span class="t">语言模型快要陷入重复时，警报能早多少？PREWARN 的三模型对照</span>
+													<span class="e">2.5万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/Winzheng_Index/article/details/170600378" target="_blank" rel="nofollow" itemid="252806324">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">33</span>
+													<span class="t">Plurai借自动驾驶思路，让AI智能体更靠谱</span>
+													<span class="e">2.5万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/qq_40999403/article/details/170548888" target="_blank" rel="nofollow" itemid="252757107">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">34</span>
+													<span class="t">【轻AI越影视觉开发板】local_voice_process 语音功能模块教程——从音频采集到本地语音识别、多模态视觉交互与 ESP32-S31 硬核对比</span>
+													<span class="e">2.4万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/golden_tea/article/details/170727523" target="_blank" rel="nofollow" itemid="252896279">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">35</span>
+													<span class="t">中医推拿与针灸的技能分类及执业边界说明</span>
+													<span class="e">2.3万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/m0_71567443/article/details/170354275" target="_blank" rel="nofollow" itemid="252693794">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">36</span>
+													<span class="t">自适应分类·合规审查·成本低：知源-AI数据分类分级系统在医疗行业的落地实践</span>
+													<span class="e">2.3万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/derekjiang/article/details/170527778" target="_blank" rel="nofollow" itemid="252725900">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">37</span>
+													<span class="t">团队AI编程落地第15篇｜AI 编程能力边界实战：从 LoLBench / LoopsBench 到四个工程动作（含文件树、规则与回归门禁配置）</span>
+													<span class="e">2.3万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/qq_42431428/article/details/170733446" target="_blank" rel="nofollow" itemid="252902466">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">38</span>
+													<span class="t">噪声和丢样会怎样影响滑动窗口分类</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/cgl316myh/article/details/170184137" target="_blank" rel="nofollow" itemid="252383957">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">39</span>
+													<span class="t">遥感影像 AI 解译怎么落地？从一张影像到一张地物分类图的完整链路</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2508_94602842/article/details/170723453" target="_blank" rel="nofollow" itemid="252884492">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">40</span>
+													<span class="t">石化企业数字化转型需要什么样的业务数据分析人才？ ——从 CDA 一级课纲拆解数字化应用人才能力模型</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_53637133/article/details/170689309" target="_blank" rel="nofollow" itemid="252885095">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">41</span>
+													<span class="t">关于Atera数据分析的几点问题探讨</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2302_80153299/article/details/170557020" target="_blank" rel="nofollow" itemid="252731496">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">42</span>
+													<span class="t">YOLO 中的置信度、IoU 和 NMS</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_49122920/article/details/170368312" target="_blank" rel="nofollow" itemid="252594869">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">43</span>
+													<span class="t">扩散语言模型的量化难题：当校准数据成了累赘</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2502_93282244/article/details/170293736" target="_blank" rel="nofollow" itemid="252489611">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">44</span>
+													<span class="t">小白也能懂的大模型介绍（1）：AI、机器学习、深度学习、生成式AI与大语言模型到底是什么关系</span>
+													<span class="e">2.2万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2401_88601046/article/details/170744018" target="_blank" rel="nofollow" itemid="252887472">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">45</span>
+													<span class="t">AI Agent 08</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/PLANTTHESON/article/details/170623980" target="_blank" rel="nofollow" itemid="252815493">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">46</span>
+													<span class="t">什么是本体（Ontology）：从哲学存在论到知识图谱的语义契约</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/B2Bqifuzhenxuan/article/details/170458347" target="_blank" rel="nofollow" itemid="252729011">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">47</span>
+													<span class="t">2026智能数据分析平台推荐：AI驱动型工具横向评测与选型指南</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/u010615629/article/details/170457419" target="_blank" rel="nofollow" itemid="252693793">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">48</span>
+													<span class="t">python rnn onehot word2vec wordEmbedding</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/2503_93308840/article/details/170456859" target="_blank" rel="nofollow" itemid="252664593">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">49</span>
+													<span class="t">基于CNN的opencv魔方求解器</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>
+											<a href="https://blog.csdn.net/weixin_40192882/article/details/167225027" target="_blank" rel="nofollow" itemid="252648189">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">50</span>
+													<span class="t">经典机器学习实战08：集成学习：Bagging 与 Boosting</span>
+													<span class="e">2.1万</span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">8分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="29186"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="29186" hashid="47o8bRLdMm"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-4422">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/yjvQDK6obg">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/technologyreview.com.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										MIT Technology Review									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										All Stories									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://www.technologyreview.com/2026/11/13/1148551/the-download-silicon-valley-midterms-nvidia-chip-tracking/" target="_blank" rel="nofollow" itemid="252871507">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">The Download: Silicon Valley’s blind spot and Nvidia’s chip-tracking plan</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/13/1148498/silicon-valley-claims-to-know-the-future-so-why-did-it-get-the-midterms-so-wrong/" target="_blank" rel="nofollow" itemid="252859527">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">Silicon Valley claims to know the future. So why did it get the midterms so wrong?</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/13/1148474/more-autonomy-fewer-ndas-volunteers-have-new-requests-for-brain-implant-trials/" target="_blank" rel="nofollow" itemid="252859526">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">More autonomy, fewer NDAs: Volunteers have new requests for brain implant trials</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/12/1148483/nvidia-chip-tracking/" target="_blank" rel="nofollow" itemid="252808830">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">Nvidia privately confirmed it could track chips to fight smuggling, even as industry publicly questioned feasibility</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/12/1148444/the-download-cop31-climate-talks-cognitive-immortality/" target="_blank" rel="nofollow" itemid="252792496">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">The Download: COP31’s climate challenge and the quest for immortality</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/11/1148308/un-climate-talks/" target="_blank" rel="nofollow" itemid="252725633">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">What to know about this year’s UN climate talks</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/11/1148424/the-download-preserving-minds-open-ai-risks/" target="_blank" rel="nofollow" itemid="252714219">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">The Download: preserving minds and weighing open AI risks</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/10/1148150/the-download-pelosi-successor-ai-regulation-data-center-backlash/" target="_blank" rel="nofollow" itemid="252632559">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">The Download: Pelosi’s successor targets AI and data centers face power woes</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/10/1147726/evolving-metal-extraction-processes/" target="_blank" rel="nofollow" itemid="252632558">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">Evolving metal extraction processes</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://www.technologyreview.com/2026/11/09/1148194/the-backlash-about-data-centers-might-really-just-be-about-electricity/" target="_blank" rel="nofollow" itemid="252567472">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">The backlash about data centers might really just be about electricity</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="">4分钟前</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="4422"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="4422" hashid="yjvQDK6obg"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+								<div class="cc-cd" id="node-3275">
+					<div>
+						<div class="cc-cd-ih">
+							<div class="cc-cd-is">
+								<a href="/n/4MdA863vxD">
+									<div class="cc-cd-lb"><img src="https://file.ipadown.com/tophub/assets/images/media/hyper.ai.png_160x160.png"
+											onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+										超神经									</div>
+								</a>
+							</div>
+							<div class="cc-cd-sb">
+								<div class="cc-cd-sb-ss cc-cd-sb-ss-ia">
+									<span class="cc-cd-sb-st">
+										最新资讯									</span>
+								</div>
+							</div>
+						</div>
+						<div class="cc-cd-cb nano">
+							<div class="cc-cd-cb-l nano-content dot">
+								
+											<a href="https://orion.hyper.ai/news/48679" target="_blank" rel="nofollow" itemid="228750732">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">1</span>
+													<span class="t">最高可得 $200！HyperAI 内测招募正式开启！</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48667" target="_blank" rel="nofollow" itemid="228746946">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">2</span>
+													<span class="t">揭秘 AI 推理：OpenAI 稀疏模型让神经网络首次透明化；Calories Burnt Prediction：为健身模型注入精准能量数据</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48636" target="_blank" rel="nofollow" itemid="228624694">
+												<div class="cc-cd-cb-ll">
+													<span class="s h">3</span>
+													<span class="t">ChatGPT 坐拥亿级用户但付费率不足 10%，AI 如何转化持久利润？</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48608" target="_blank" rel="nofollow" itemid="228527499">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">4</span>
+													<span class="t">实现高选择性底物设计，MIT 联手哈佛用生成式 AI 发现全新蛋白酶切割模式</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48589" target="_blank" rel="nofollow" itemid="228340749">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">5</span>
+													<span class="t">在线教程｜ 腾讯混元开源端侧翻译工具 HY-MT1.5，1.8B 模型仅需 1G 内存</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48573" target="_blank" rel="nofollow" itemid="228339924">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">6</span>
+													<span class="t">完整回放｜上海创智/TileAI/华为/先进编译实验室/AI9Stars 深度拆解 AI 编译器技术实践</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48527" target="_blank" rel="nofollow" itemid="228102330">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">7</span>
+													<span class="t">贝佐斯/比尔盖茨/英伟达/英特尔等押注，NASA 工程师带队打造通用机器人大脑，公司估值达 20 亿美元</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48506" target="_blank" rel="nofollow" itemid="228047070">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">8</span>
+													<span class="t">本周编辑精选：腾讯混元世界模型 WorldPlay；蛋白质设计模型 RFdiffusion3；高真实感情感语音生成服务 Maya1</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48495" target="_blank" rel="nofollow" itemid="228046153">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">9</span>
+													<span class="t">黄仁勋最新演讲：5 项创新加持，Rubin 性能数据首曝；多样化开源，覆盖 Agent/机器人/自动驾驶/AI4S</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48471" target="_blank" rel="nofollow" itemid="227930176">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">10</span>
+													<span class="t">生成 1.8 万年气候数据，英伟达等提出长距离蒸馏，仅需单步计算实现长期天气预报</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48458" target="_blank" rel="nofollow" itemid="227857919">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">11</span>
+													<span class="t">从算力到电力，谷歌/微软/Meta 布局清洁能源，中国企业背靠国家电网优势</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48453" target="_blank" rel="nofollow" itemid="227857324">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">12</span>
+													<span class="t">仅需 5 秒一步实现克隆！Chatterbox-Turbo 实现高采样率无损音质的语音生成</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48412" target="_blank" rel="nofollow" itemid="227588315">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">13</span>
+													<span class="t">在线教程丨 David Baker 团队开源 RFdiffusion3，实现全原子蛋白质设计的生成式突破</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48396" target="_blank" rel="nofollow" itemid="227494342">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">14</span>
+													<span class="t">「地质约束显式+数据驱动模型」的新路径，浙江大学团队实现跨区域矿产远景预测性能和可解释性提升</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48251" target="_blank" rel="nofollow" itemid="227394960">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">15</span>
+													<span class="t">2026 年将成中美 AI 竞赛拐点？美国监管逻辑转向背后，各巨头算力豪赌未止</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48209" target="_blank" rel="nofollow" itemid="227197056">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">16</span>
+													<span class="t">明日开讲！上海创智/TileAI/华为/先进编译实验室/AI9Stars 齐聚上海，纯干货的 AI 编译器实战经验分享</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48183" target="_blank" rel="nofollow" itemid="227197055">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">17</span>
+													<span class="t">在线教程｜精准图像分层，Qwen-Image-Layered 突破目标图层编辑痛点，兼顾高保真与一致性</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48069" target="_blank" rel="nofollow" itemid="227005748">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">18</span>
+													<span class="t">计算成本减半，化学反应发现工具 ChemOntology 将人类直觉「编码」到系统中，加速反应路径搜索</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48044" target="_blank" rel="nofollow" itemid="226909073">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">19</span>
+													<span class="t">入选 NeurIPS 2025，智源/北京大学/北京邮电大学提出多流控制视频生成框架，基于音频解混实现精确音画同步</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48001" target="_blank" rel="nofollow" itemid="226908322">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">20</span>
+													<span class="t">三维视觉新突破：字节 Seed 推出 DA3，实现任意视角重建视觉空间；7w+真实工业环境数据！CHIP 填补 6D 姿态估计工业数据空白</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/48021" target="_blank" rel="nofollow" itemid="226906738">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">21</span>
+													<span class="t">在线教程丨基于 AI 手势识别，仅用 CPU 即可定制形态多变的 3D 圣诞树</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47950" target="_blank" rel="nofollow" itemid="226604034">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">22</span>
+													<span class="t">预测精度可提升 60%，创新神经符号回归方法可自动推导高精度网络动力学公式</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47958" target="_blank" rel="nofollow" itemid="226588897">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">23</span>
+													<span class="t">AI 论文周报丨英伟达开源模型/OpenAI 基准测试/Agent 系统/长上下文推理……AI 动态一文速递</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47756" target="_blank" rel="nofollow" itemid="226496092">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">24</span>
+													<span class="t">GPT-5 全面领先，OpenAI 发布 FrontierScience，「推理+科研」双轨检验大模型能力</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47737" target="_blank" rel="nofollow" itemid="226493403">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">25</span>
+													<span class="t">坚持提前监管，离开 OpenAI 后，Dario Amodei 将 AI 安全写入公司使命</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47726" target="_blank" rel="nofollow" itemid="226413585">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">26</span>
+													<span class="t">技术沙龙｜上海创智/TileAI/华为/先进编译实验室/AI9Stars 齐聚上海，深度拆解算子优化的全链路实践</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47715" target="_blank" rel="nofollow" itemid="226400817">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">27</span>
+													<span class="t">CUDA 初始团队成员锐评 cuTile「专打」Triton，Tile 范式能否重塑 GPU 编程生态竞争格局</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47679" target="_blank" rel="nofollow" itemid="226283216">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">28</span>
+													<span class="t">在线教程丨微软开源 VibeVoice，可实现 90 分钟 4 角色自然对话</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47651" target="_blank" rel="nofollow" itemid="226198148">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">29</span>
+													<span class="t">低门槛试用 Open-AutoGLM：屏幕理解+自动执行的智能体体验；Spatial-SSRL-81k 构建空间感知的自监督提升路径</span>
+													<span class="e"></span>
+												</div>
+											</a>
+											<a href="https://orion.hyper.ai/news/47637" target="_blank" rel="nofollow" itemid="226190896">
+												<div class="cc-cd-cb-ll">
+													<span class="s ">30</span>
+													<span class="t">以不足 10 万结构数据训练，瑞士洛桑联邦理工学院提出 PET-MAD，原子模拟精度媲美专业模型</span>
+													<span class="e"></span>
+												</div>
+											</a>							</div>
+						</div>
+						<div class="cc-cd-if">
+							<div class="i-h">
+								<span class="hidden">2026-01-15</span>
+															</div>
+
+							<div class="Ib-T Ib-T-yc" nodeid="3275"
+								is_follow="">
+								<div class="Ib-T-n n-yc"><i class="m-n">&#xe64c;</i></div>
+								<div class="Ib-T-n n-xc"><i class="m-n">&#xe64b;</i></div>
+							</div>
+
+							<div class="i-o" nodeid="3275" hashid="4MdA863vxD"
+								is_follow="">
+								<div class="m-n">&#xe674;</div>
+							</div>
+						</div>
+					</div>
+				</div>
+							</div>
+					</div>
+
+		</div>
+		</div>
+
+		<div class="text-center"><ul class="pagination"><li class="pager active"><a href="javascript:void(0);">1</a></li><li class="pager"><a href="?&p=2">2</a></li><li class="pager"><a href="?&p=3">3</a></li><li class="pager"><a href="?&p=4">4</a></li><li class="pager"><a href="?&p=5">5</a></li><li class="pager"><a href="?&p=6">6</a></li><li class="pager"><a href="?&p=7">7</a></li><li class="pager"><a href="?&p=8">8</a></li><li class="pager disabled"><a class="disabled">...</a></li><li class="pager"><a href="?&p=18">18</a></li><li class="pager"><a href="?&p=2">下一页</a></li></ul><div class="keyboard-tip">
+            <span title="使用键盘左右箭头键快速翻页"><i class="m-n">&#xe778;</i> 提示：可使用键盘 <kbd>←</kbd> <kbd>→</kbd> 快速翻页</span>
+        </div>                <script>
+                $(document).ready(function() {
+                    $(document).keydown(function(e) {
+                        var currentPage = 1;
+                        var totalPages = 18;
+                        var baseUrl = "?&";
+        
+                        if (e.which == 37) { // Left arrow key
+                            if (currentPage > 1) {
+                                window.location.href = baseUrl + 'p=' + (currentPage - 1);
+                            }
+                        } else if (e.which == 39) { // Right arrow key
+                            if (currentPage < totalPages) {
+                                window.location.href = baseUrl + 'p=' + (currentPage + 1);
+                            }
+                        }
+                    });
+                });
+                </script></div>
+
+				<!-- 非VIP用户显示广告 -->
+		<div class="adsense-sidebar-container" style="margin:20px auto;max-width:960px;max-height:120px;">
+					</div>
+		
+<!-- <div class="scroller-status">
+	<div class="infinite-scroll-request"><div class="loading"><div></div><div></div><div></div><div></div></div><p>📦 稍等片刻，我们正在为你打包精彩～</p></div>
+	<p class="infinite-scroll-last"><span class="loadmore-line"></span>没有更多节点了<span class="loadmore-line"></span></p>
+	<p class="infinite-scroll-error"><span class="loadmore-line"></span>加载失败，刷新页面试试<span class="loadmore-line"></span></p>
+</div> -->
+
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 检查是否存在 keyboard-tip 元素
+	var $keyboardTip = $(".keyboard-tip");
+	if ($keyboardTip.length == 0) {
+		// 如果不存在 keyboard-tip，则创建一个
+		$keyboardTip = $('<div class="keyboard-tip"></div>');
+		$('.text-center').append($keyboardTip);
+	}
+	$keyboardTip.append('<span class="batch-follow-link" title="批量订阅当前页节点"><a href="javascript:void(0);"><i class="m-n">&#xe64c;</i> 批量订阅本页全部节点</a></span>');
+});
+</script>
+</body>
+</html>

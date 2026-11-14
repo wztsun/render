@@ -1,0 +1,1889 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<link rel="preconnect" href="https://file.ipadown.com/tophub">
+<link rel="preconnect" href="https://s4.zstatic.net/ajax/libs">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="title" content="今日热榜">
+<meta name="keywords" content="今日热榜,Tophub,热门新闻,今日头条,热搜,热词,新闻聚合">
+<meta name="description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="今日热榜">
+<meta property="og:description" content="今日热榜提供各站热榜聚合：微信、今日头条、百度、知乎、V2EX、微博、贴吧、豆瓣、天涯、虎扑、Github、抖音...追踪全网热点、简单高效阅读。">
+<meta property="og:url" content="https://tophub.today">
+<title>每日早晚报 ‧ 今日热榜</title>
+<link rel="stylesheet" href="https://file.ipadown.com/tophub/assets/css/app.2025.css?202505150004">
+<script src="https://s4.zstatic.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/layer/2.3/layer.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
+<script src="https://s4.zstatic.net/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<link href="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.css" rel="stylesheet">
+<script src="https://s4.zstatic.net/ajax/libs/webui-popover/1.2.18/jquery.webui-popover.min.js"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/sshare.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/vip.popover.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/app.2025.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/daily.js?202505150004"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/export.popover.js?202505150004"></script>
+<style type="text/css">
+.ai-summary-empty,.ai-summary-error,.ai-summary-loading{padding:15px 0;text-align:center;color:#666}
+.ai-summary-tabs{display:flex;gap:10px;margin-bottom:10px}
+.ai-summary-tab{display:inline-block;padding:4px 10px;cursor:pointer;font-size:14px;color:#666;background-color:#f5f5f5;border-radius:8px;transition:all .3s ease}
+.ai-summary-tab.active{color:#fff;background-color:#000}
+.ai-summary-tab-content{position:relative}
+.ai-summary-panel{display:none}
+.ai-summary-panel.active{display:block}
+.ai-summary-panel ol,.ai-summary-wrapper ol{padding:0;margin-left:20px}
+.ai-summary-panel ol li,.ai-summary-wrapper ol li{padding:12px 0;line-height:1.8}
+.ai-summary-panel ol li strong,.ai-summary-wrapper ol li strong{font-weight:700;margin-right:5px;border-bottom:1px dashed #ccc;padding-bottom:5px;}
+/* 下拉菜单样式 */
+.ai-dropdown-menu{position:absolute;background-color:#e6e7e8;color:#333;border:1px solid #ccc;font-size:12px;box-shadow:0 2px 10px rgba(0,0,0,.2);border-radius:4px;padding:5px;z-index:50}
+.ai-dropdown-menu.hidden{display:none}
+.ai-dropdown-menu ul{list-style:none;padding:0;margin:0}
+.ai-dropdown-menu li{padding:0}
+.ai-dropdown-menu li a{display:block;padding:5px 10px;border-radius:3px;color:#333;text-decoration:none}
+.ai-dropdown-menu li a:hover{background-color:#1890ff;color:#fff}
+.ai-dropdown-menu li.divider{height:1px;margin:5px 10px;background-color:#ccc}
+
+.dark .ai-summary-empty,.dark .ai-summary-error,.dark .ai-summary-loading{color:#888}
+.dark .ai-summary-tab{color:#ddd;background-color:#252729}
+.dark .ai-summary-tab.active{color:#fff;background-color:#3390dc}
+.dark .ai-summary-panel ol,.dark .ai-summary-wrapper ol{color:#fff;}
+.dark .ai-summary-panel ol li strong,.dark .ai-summary-wrapper ol li strong{border-bottom:1px dashed #444}
+.dark .ai-dropdown-menu{background-color:#191a1b;color:#ddd;border-color:#2d2e2f;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+.dark .ai-dropdown-menu li a{color:#ddd}
+.dark .ai-dropdown-menu li a:hover{background-color:#252729;color:#3390dc}
+.dark .ai-dropdown-menu li.divider{background-color:#2d2e2f}
+</style>
+</head>
+<body class="">
+<div id="page" class="page">
+    <div id="appbar" class="O">
+    <div class="O-c b b-xc">
+        <div class="O-status-vd"></div>
+        <div class="O-c-Q">
+            <a class="O-j b-L" href="/"><div class="O-j-R"><img src="https://file.ipadown.com/tophub/assets/images/logo.png"/></div>今日热榜</a>
+
+            <div id="tabbar" class="eb b-xc ">
+                <div class="kb-lb-ib">
+                    <div class="kb-lb-ib-hb">
+                        <div class="kb-lb-ib-c">
+                            <a class="F-gb" href="/"><div class="gb-c">首页</div></a>
+                            <a class="F-gb" href="/daily"><div class="gb-c">日报</div></a>
+                            <a class="F-gb" href="/dashboard"><div class="gb-c">动态</div></a>
+                            <a class="F-gb" href="/alerts"><div class="gb-c">追踪</div></a>
+                            <a class="F-gb" href="/hot"><div class="gb-c">榜中榜</div></a>
+                            <a class="F-gb" href="/trending"><div class="gb-c">热文库</div></a>
+                            <a class="F-gb" href="/topics"><div class="gb-c">话题</div></a>
+                            <a class="F-gb" href="/calendar"><div class="gb-c">日历</div></a>
+                            
+                            <div style="width: 1px; height: 16px; background-color: #ccc; margin: 16px 8px; display: inline-block; vertical-align: middle; position: relative; float: left;"></div>
+
+                            <a class="F-gb" href="/c/news"><div class="gb-c">综合</div></a>
+                            <a class="F-gb" href="/c/tech"><div class="gb-c">科技</div></a>
+                            <a class="F-gb" href="/c/ent"><div class="gb-c">娱乐</div></a>
+                            <a class="F-gb" href="/c/community"><div class="gb-c">社区</div></a>
+                            <a class="F-gb" href="/c/shopping"><div class="gb-c">购物</div></a>
+                            <a class="F-gb" href="/c/finance"><div class="gb-c">财经</div></a>
+                            <a class="F-gb" href="/c/developer"><div class="gb-c">开发</div></a>
+                            <a class="F-gb" href="/c/brief"><div class="gb-c">简报</div></a>
+                            <a class="F-gb" href="/c/ai"><div class="gb-c">AI</div></a>
+                            <a class="F-gb" href="javascript:void(0)" id="more-button"><div class="gb-c">更多<i class="m-n">&#xe9c0;</i></div></a>
+
+                            <div class="kb-lb-ib-pb-qb"></div>
+                        </div>
+                    </div>
+                    <div class="kb-lb-ib-k">
+                        <div class="m-n">&#xE408;</div>
+                    </div>
+                    <div class="kb-lb-ib-l">
+                        <div class="m-n">&#xE409;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="I-J" style="display: none;">
+                <div class="I">
+                    <form class="I-form" action="/search" method="get">
+                        <div class="I-n"><i class="m-n">&#xe616;</i></div>
+                        <div class="I-K"><input class="I-K-L b-L" placeholder="聚合搜索热点内容、节点、隐藏优惠券、内部线报等" autocomplete="off" value="" name="q"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="bb-T b-L" style="display:flex;gap:30px;">
+                <div id="search-button" title="搜索">
+                    <i class="m-n">&#xe608;</i>
+                </div>
+                <a id="vip-button" title="充值成为会员" href="/pay">
+                    <i class="m-n">&#xe611;</i>
+                </a>
+                <div id="products-button" title="更多作品推荐">
+                    <i class="m-n">&#xe600;</i>
+                </div>
+            </div>
+            
+            <div id="accounts-button" class="S-T b-L" title="更多">
+                <img src="https://file.ipadown.com/tophub/assets/images/noavatar.png" class="account-i" onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/noavatar.png'" />
+            </div>
+            
+        </div>
+        
+
+<style>
+.tag-group{padding:5px 0;margin-bottom:5px;text-align:left}
+.tag-group .F-gb{padding:2px 5px;margin:2px;overflow:hidden;color:#4a4a4a;opacity:.8;height:auto;line-height:20px;text-align:center;font-size:13px;display:inline-block!important;position:relative;border-radius:8px;background-color:#f5f5f5;transition:all .2s ease;float:none;font-weight:500}
+.tag-group .F-gb:hover{opacity:1;background-color:#e8e8e8;color:#333}
+.tag-group .F-gb-jb{background-color:#1e88e5;color:#fff;opacity:1;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tag-hr{height:1px;background-color:#f4f4f4;margin:2px 0}
+.kb-more-dropdown{left:40%}
+/* 深色模式样式 */
+.dark .tag-group .F-gb{color:#e0e0e0;background-color:#333;opacity:.9}
+.dark .tag-group .F-gb:hover{background-color:#444;color:#fff}
+.dark .tag-group .F-gb-jb{background-color:#0d47a1;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.dark .tag-hr{background-color:#444}
+</style>
+
+        <div class="kb-more-dropdown" id="more-dropdown">
+            <div class="tag-group">
+                <a class="F-gb" href="/c/epaper">报刊</a>
+                <a class="F-gb" href="/c/design">设计</a>
+                <a class="F-gb" href="/c/university">校务</a>
+                <a class="F-gb" href="/c/organization">政务</a>
+                <a class="F-gb" href="/c/blog">专栏</a>
+                <a class="F-gb" href="/apple">苹果</a>
+                <a class="F-gb" href="/c/wxmp">公众号</a>
+                <a class="F-gb" href="/c/widget">小部件</a>
+                <a class="F-gb" href="/manage">自定义分组</a>
+            </div>
+                                </div>
+        
+        <div class="H-B">
+          <div class="H-B-T">
+            <h3>更多作品推荐</h3>
+          </div>
+          <div class="H-I-C">
+            <div class="H-I">
+                <a href="https://idaily.today/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-idailytoday.svg" /></div>
+                      <span class="H-I-I-T">今日简报 AI</span>
+                      <span class="H-I-I-D">总结全网10000+热榜，让阅读更高效！</span>
+                  </a>
+                  <a href="https://www.jishixiezuo.com/" target="_blank" class="H-I-I">
+                        <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-jishixiezuo.png" /></div>
+                        <span class="H-I-I-T">即时写作 AI</span>
+                        <span class="H-I-I-D">人工智能让每个人都可以自信地写作！</span>
+                    </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E5%8E%86/id1622990821?mt=8" target="_blank" class="H-I-I">
+                  <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/9b/f8/b2/9bf8b27d-0992-9816-545a-46170865aed1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                  <span class="H-I-I-T">今日历</span>
+                  <span class="H-I-I-D">全球最全的日历，日历届的航空母舰！</span>
+              </a>
+              <a href="https://apps.apple.com/cn/app/%E4%BB%8A%E6%97%A5%E8%A7%A3%E5%BF%A7/id6471419586?mt=8" target="_blank" class="H-I-I">
+                    <div class="H-I-I-I"><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5d/2c/f7/5d2cf78e-1bee-dcb4-7598-298c403e804b/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/492x0w.png" /></div>
+                    <span class="H-I-I-T">今日解忧</span>
+                    <span class="H-I-I-D">赛博修行，舒缓静心，21世纪解压神器！</span>
+               </a>
+               <a href="https://remai.today/" target="_blank" class="H-I-I">
+                       <div class="H-I-I-I"><img src="https://file.ibmwclub.com/remai/assets/images/favicon/android-icon-192x192.png" /></div>
+                       <span class="H-I-I-T">今日热卖</span>
+                       <span class="H-I-I-D">淘宝京东拼多多等热卖热榜线报聚合</span>
+                  </a>
+              <a href="https://www.iambxs.com/" target="_blank" class="H-I-I">
+                      <div class="H-I-I-I"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple116/v4/59/c0/0f/59c00f2b-e526-617d-712e-fba710c2e8c3/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg" /></div>
+                      <span class="H-I-I-T">百晓生 AI</span>
+                      <span class="H-I-I-D">人工智能聊天兼全能创作助手</span>
+                 </a>
+                 <a href="https://www.tophubdata.com/" target="_blank" class="H-I-I">
+                         <div class="H-I-I-I"><img src="https://file.ipadown.com/tophub/assets/images/logo-tophubdata.svg" /></div>
+                         <span class="H-I-I-T">榜眼数据</span>
+                         <span class="H-I-I-D">今日热榜官方数据 API 开放平台</span>
+                    </a>
+            </div>
+          </div>
+        </div>
+        
+        <ul class="item-list">
+            <!-- <li class="item section"><div class="title">用户中心</div></li> -->
+                        <li class="item"><i class="m-n">&#xe6bd;</i><a href="javascript:void(0)" onclick="redirectToLogin()" rel="nofollow" class="title">登录</a></li>
+                        <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">设置选项</div></li> -->
+            <li class="item darkmode"><div class="title"><i class="m-n">&#xe6d4;</i>夜间模式</div><div class="switch "></div></li>
+            <li class="item divider"></li>
+            <!-- <li class="item section"><div class="title">关于我们</div></li> -->
+            <li class="item"><i class="m-n">&#xe605;</i><a href="/about" class="title">关于我们</a></li>
+            <li class="item"><i class="m-n">&#xe643;</i><a href="/app" class="title">App 下载</a></li>
+            <li class="item"><i class="m-n">&#xe69e;</i><a href="/help" class="title">使用指南</a></li>
+            <li class="item divider"></li>
+            <li class="item"><i class="m-n">&#xe64a;</i><a href="/sponsors" class="title">赞助商广告</a></li>
+            <li class="item"><i class="m-n">&#xe63d;</i><a href="https://www.tophubdata.com/" target="_blank"  class="title">API 开放平台</a></li>
+            <!-- <li class="item"><i class="m-n">&#xe60e;</i><a href="/union" class="title">联盟计划</a></li> -->
+                    </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 点击搜索按钮时
+    $("#search-button").click(function() {
+        // 隐藏导航栏
+        $(".kb-lb-ib-c").hide();
+        // 显示搜索框
+        $(".I-J").show();
+        
+        // 聚焦到搜索输入框
+        $(".I-K-L").focus();
+    });
+    
+    // 点击搜索框以外的区域或按ESC键时取消搜索
+    $(document).click(function(event) {
+        if (!$(event.target).closest('#search-button, .I-J').length) {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") {
+            $(".kb-lb-ib-c").show();
+            $(".I-J").hide();
+        }
+    });
+    
+    // 阻止点击搜索框时触发document的click事件
+    $(".I-J").click(function(event) {
+        event.stopPropagation();
+    });
+});
+</script>    <div class="eb-fb"></div>
+    <div class="c-d c-d-e">
+        <div class="p-c p-c-f">
+            <div class="p-c-l">
+                <div class="cb sd">
+    <div class="st">兴趣</div>
+    <ul>
+        <li><a href="/daily">日报</a></li>
+        <li><a href="/dashboard">动态</a></li>
+        <li><a href="/alerts">追踪</a></li>
+    </ul>
+</div>
+
+<div style="clear: both; padding: 5px;"></div>
+<div class="cb sd">
+    <div class="st">热点</div>
+    <ul>
+        <li><a href="/hot">榜中榜</a></li>
+        <li><a href="/trending">热文库</a></li>
+        <li><a href="/topics">话题聚合</a></li>
+        <!-- <li><a href="/wiki">刷屏热词</a></li> -->
+    </ul>
+</div>
+
+<div style="clear: both; padding: 5px;"></div>
+<div class="cb sd">
+    <div class="st">事件</div>
+    <ul>
+        <li><a href="/calendar">热点日历</a></li>
+    </ul>
+</div>
+                            
+<div style="clear: both;padding:5px;"></div>
+<div class="cb s-t-l">
+    <div class="hh">追踪机器人</div>
+    <div class="section">
+        <div class="tt hidden">兴趣追踪</div>
+        <div class="dd">自定义追踪你感兴趣的信息。</div>
+        <a href="/alerts?x=explore">创建追踪器</a>
+    </div>
+</div>            </div>
+            
+            <div class="p-c-m">
+                <div class="p-c-m-r" data-key="sidebar" data-limit="4" data-sponsors-status="1">                    
+    <div class="m-b-mo">
+        <a href="/sponsors">成为赞助商</a>
+    </div>
+
+        <!-- 非VIP用户显示广告 -->
+    <div class="adsense-sidebar-container" style="max-height:300px;margin-top:10px;overflow:hidden;">
+            </div>
+    </div>
+
+
+
+                <div class="p-c-m-l">
+
+                    <div class="c-m-l">
+                        <div class="c-m">
+                            <div class="c-i">
+                                <div class="c-i-b" style="background-image: url(&quot;https://file.ipadown.com/tophub/assets/images/bb.png&quot;);"></div>
+                                <div class="c-i-c">
+                                    <div class="ii"><img src="https://file.ipadown.com/tophub/assets/images/icon/icon-daily.png"/></div>
+                                    <div class="tt"><h3>每日早晚报</h3><p>聚合全网早报、晚报、日报、周刊、历史上的今天、每日新闻联播等。</p></div>
+                                    <div class="at"><a class="btn btn-node action-node-follow" href="javascript:;" id="require-vip">查看往日</a></div>
+                                </div>
+                            </div>
+                            <div class="c-m-tab">
+                                <div class="tab-classify">
+                                    <button type="button" class="action-export has-popover" export-title="导出日报内容" export-desc="将当日所有聚合的日报内容导出为文件，方便离线浏览或数据分析" export-params='{"module":"daily","date":"2026-11-14"}'><i class="m-n">&#xe617;</i></button>
+                                    <button type="button" class="action-share"><i class="m-n">&#xe7f9;</i></button>
+                                </div>
+                                <div class="tab-sort">
+                                    <a href="javascript:;" class="tab-sort-item active">2026年11月14日<span></span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>    
+
+                    <div class="f-t-l">
+                        <div class="jc item">
+                            <div class="jc-c">
+                                <div class="intro ">
+                                    今天是2026年11月14日                                    星期六，
+                                    农历二〇二六年十月初六。
+                                    <small>
+                                                                            </small>
+                                </div>                                
+                            </div>
+                            <div class="o"></div>
+                        </div>
+                    </div>
+
+                    <div class="f-t-l">
+                        <div class="jc item">
+                            <div class="jc-c">
+                                <div class="header"><span><span class="before">【</span>今日简报 • AI<span class="after">】</span></span></div>
+                                <div id="ai-summary-container">
+                                    <div id="ai-summary-content" data-hash="6b2fwlCyL4TlD3VIKvaqCU7D1+ugg3KULMgLyzsaglpYGh15D4bMEzvVF/V2vT+4B8WmO7WfOVn6Ig" class="ai-summary-wrapper">
+                                        <div class="ai-summary-loading">加载中...</div>
+                                    </div>
+                                </div>
+                                <div class="underline"></div>
+                                <div class="line-footer" style="margin-left:0;">🤖️「今日简报」由 AI 驱动，从 10,000+ 热榜信息源中精选摘要，呈现每日核心资讯。<a href="https://idaily.today" target="_blank">订阅更多简报</a></div>                    
+                                
+                                <!-- 弹窗 -->
+                                <div id="ai-dropdown" class="ai-dropdown-menu hidden">
+                                    <ul>
+                                        <li><a href="#" data-engine="chat_baidu">AI 搜集全网资料并解读 🤖</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" data-engine="baidu">百度一下了解详细</a></li>
+                                        <li><a href="#" data-engine="bing">用必应发现更多</a></li>
+                                        <li><a href="#" data-engine="google">谷歌搜索获取答案</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" data-engine="weibo">上微博看看讨论</a></li>
+                                        <li><a href="#" data-engine="wechat">用微信查找相关信息</a></li>
+                                        <li><a href="#" data-engine="douyin">抖音短视频了解更多</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#" data-engine="zhihu">知乎问答寻找答案</a></li>
+                                        <li><a href="#" data-engine="bilibili">B站视频了解详细</a></li>
+                                        <li><a href="#" data-engine="toutiao">头条热点查看更多</a></li>
+                                    </ul>
+                                </div>                                
+                            </div>
+                            <div class="o"></div>
+                        </div>
+                    </div>
+
+                                        <div class="f-t-l" id="union_morning_items">
+                        <div class="jc item">
+                            <div class="jc-c">
+                                <div class="header"><span><span class="before">【</span>早报聚合<span class="after">】</span></span></div>
+                                
+                                <div class="kt-t">
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/123.com.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>云掌财经</strong>
+                                                15小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.123.com.cn/kline/a1333436.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252880276">
+                                            早报（11.13）|一夜蒸发1.2万亿元！黄仁勋辞职英伟达，特朗普力荐库克；SpaceX、特斯拉合并最快12月宣布；特朗普放话<small>
+                                                                                            </small>
+                                        </a>
+                                                                                <a href="https://www.123.com.cn/kline/a1333447.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252894518">
+                                            早报（11.14）|突发！美国全境航班停飞，特朗普听取简报；英伟达市值一周蒸发超3.8万亿元；马斯克星舰第15次试飞！<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/dongqiudi.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>懂球帝</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.dongqiudi.com/article/6650644" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890335">
+                                            早报：给神话浇一罐7喜<small>
+                                                足球                                            </small>
+                                        </a>
+                                                                                <a href="https://www.dongqiudi.com/articles/6650644.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890371">
+                                            早报：给神话浇一罐7喜<small>
+                                                华小岚                                            </small>
+                                        </a>
+                                                                                <a href="https://www.dongqiudi.com/news/6650644.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891242">
+                                            早报：给神话浇一罐7喜<small>
+                                                足球                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/news.mbalib.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>MBA智库资讯</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://news.mbalib.com/story/259021" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890343">
+                                            早报|英伟达董事会否认已定CEO人选;前10月社融增量28.61万亿;美国全国航班停飞8千架次延误<small>
+                                                早报                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/chinanews.com.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>中国新闻网</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.chinanews.com.cn/iframe/2026/11-14/10731874.shtml" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890732">
+                                            11月14日新闻早报<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/cls.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>财联社</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.cls.cn/detail/2534356" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890833">
+                                            【早报】新型储能重磅实施方案印发；TCL中环、中国稀土下周一复牌<small>
+                                                33.2万                                            </small>
+                                        </a>
+                                                                                <a href="https://www.cls.cn/detail/2534391" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252897165">
+                                            财联社汽车早报【11月14日】<small>
+                                                31.1万                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/shobserver.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Shobserver</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.shobserver.com/staticsg/res/html/web/newsDetail.html?id=1213775&sid=11" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890906">
+                                            阴雨延续；上海这几天到处被挤爆，啥情况|新民早报[2026.11.14]<small>
+                                                天下                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/news.zhibo8.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>直播吧</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://news.zhibo8.com/zuqiu/2026-11-14/6af723398c4a8native.htm" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891071">
+                                            早报：希腊神话被打成了鬼故事<small>
+                                                直播吧                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/ccement.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>中国水泥网</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.ccement.com/news/content/64610964832685001.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891161">
+                                            11.14水泥早报：福建水泥的新算法；一水泥企业被吊销执照；江西水泥涨价落地存疑<small>
+                                                水泥                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/finance.eastmoney.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>东方财富网财经频道</strong>
+                                                7小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://finance.eastmoney.com/a/202611143931108285.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891942">
+                                            【早报】新型储能重磅实施方案印发；TCL中环、中国稀土下周一复牌<small>
+                                                6713                                            </small>
+                                        </a>
+                                                                                <a href="https://finance.eastmoney.com/a/202611143931287449.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252897056">
+                                            新华财经早报：11月14日<small>
+                                                1991                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/chaincatcher.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Chaincatcher</strong>
+                                                7小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.chaincatcher.com/article/2304658" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892630">
+                                            早报｜以太坊过去 24 小时下跌 4.4%<small>
+                                                文章                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/ithome.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>IT之家</strong>
+                                                7小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.ithome.com/1/027/020.htm" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252893166">
+                                            IT早报 1114：曝黄仁勋离任前夕心力交瘁；微软 365 核心服务全球宕机超 10 个小时；华为首个动态血糖仪官宣；37.98 万元起鸿蒙智行问界新 M8 上市...<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/gelonghui.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>格隆汇</strong>
+                                                7小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.gelonghui.com/p/7427318" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252893417">
+                                            早报（11.14）| 突发！美国全境航班停飞，特朗普听取简报；英伟达市值一周蒸发超3.8万亿元；马斯克星舰第15次试飞！<small>
+                                                3.4万                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/tmtpost.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>钛媒体</strong>
+                                                6小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.tmtpost.com/8204969.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252895209">
+                                            Edge AI Daily 早报（11月14日）<small>
+                                                AGI ‧ Edge AI Daily                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/chongdiantou.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>充电头网</strong>
+                                                5小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.chongdiantou.com/archives/1794620118729.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252896585">
+                                            11月14日充电早报<small>
+                                                新闻                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/cj.sina.com.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>新浪网</strong>
+                                                5小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://cj.sina.com.cn/articles/view/2868676035/aafc85c302001zos8" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252897648">
+                                            财联社汽车早报11月14日<small>
+                                                313                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                        <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/zaobao.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>联合早报</strong>
+                                                2小时前                                            </span>
+                                        </div>
+                            
+                                                                                <a href="https://www.zaobao.com/news/singapore/story20261114-9997170" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252905775">
+                                            黄仁勋加盟港科大？早报莫名多了篇“假独家”<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                
+                                </div>
+                            
+                                <div class="o"></div>
+                                <div class="underline"></div>
+                                <div class="line-footer">🤖️早报聚合由 <a href="/alerts/nBe0JpQv37" target="_blank">Tophub Alerts</a> 追踪机器人提供。</div>
+                            </div>
+                            <div class="o"></div>
+                        </div>
+                    </div>
+                    
+
+                                        <div class="f-t-l" id="union_evening_items">
+                        <div class="jc item">
+                            <div class="jc-c">
+                                <div class="header"><span><span class="before">【</span>晚报聚合<span class="after">】</span></span></div>
+                                
+                                <div class="kt-t">                        
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/google.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Google</strong>
+                                                13小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.google.com/url?rct=j&sa=t&url=https://www.yzwb.net/news/jiangsu/nanjing/202611/t20261113_412167.html&ct=ga&cd=CAIyHWFhOTVkNDgwODVlZWFkNzk6Y29tOnpoLUNOOlVT&usg=AOvVaw3uCiAbWKbPWBvXY-R8VRw-" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252883811">
+                                            南京汽车出海再添东南亚通道1191台商品车即将首航菲律宾 - 扬子晚报<small>
+                                                                                            </small>
+                                        </a>
+                                                                                <a href="https://www.google.com/url?rct=j&sa=t&url=https://www.yzwb.net/news/yw/202611/t20261113_412111.html&ct=ga&cd=CAIyHWFhOTVkNDgwODVlZWFkNzk6Y29tOnpoLUNOOlVT&usg=AOvVaw3J6uhqU_MKbRWmDQSXI7DJ" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892812">
+                                            【中国游记•宝藏江苏】古城扬州走出单项冠军这家中国外贸企业正“换挡向上” - 扬子晚报<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/dongqiudi.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>懂球帝</strong>
+                                                13小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.dongqiudi.com/article/6650741" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252884157">
+                                            标准晚报：若巴洛贡离开摩纳哥，枪手可拿到17.5%的二转分成<small>
+                                                足球                                            </small>
+                                        </a>
+                                                                                <a href="https://www.dongqiudi.com/articles/6650741.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252884311">
+                                            标准晚报：若巴洛贡离开摩纳哥，枪手可拿到17.5%的二转分成<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/chinastarmarket.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Chinastarmarket</strong>
+                                                7小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.chinastarmarket.cn/detail/2534156" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892755">
+                                            科创板晚报|源杰科技签订17.44亿元大功率激光器芯片销售订单 利扬芯片拟收购众望达51%股权<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/suzhou.gov.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Suzhou</strong>
+                                                6小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.suzhou.gov.cn/szsrmzf/szyw/202611/6c3ea3c038964af49ac423ef3bab069a.shtml" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252895201">
+                                            中国晚报工作者协会第41届年会在苏州举行<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/thepaper.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>澎湃新闻</strong>
+                                                5小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.thepaper.cn/newsDetail_forward_268385" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252898182">
+                                            澎湃早晚报｜早餐湃·不是又一次911<small>
+                                                舆论场                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/shm.com.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Shm</strong>
+                                                5小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="http://www.shm.com.cn/szb/ytrb/paper/pc/content/202611/14/content_286791.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252899020">
+                                            爱心晚报送老人<small>
+                                                第03版 要闻                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/shobserver.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Shobserver</strong>
+                                                3小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.shobserver.com/staticsg/res/html/web/newsDetail.html?id=1213821&sid=11" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252903544">
+                                            在主流媒体系统性变革中向新而行 全国多地专家学者畅谈晚报媒体融合发展经验<small>
+                                                社会                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/myzaker.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Zaker</strong>
+                                                3小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.myzaker.com/article/6af7d54d8e9f097ce428f02e" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252905304">
+                                            唱响“深圳有约”！羊城晚报原创MV《同一片海》发布<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/news.zhibo8.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>直播吧</strong>
+                                                2小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://news.zhibo8.com/zuqiu/2026-11-14/6af7e46b21304native.htm" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252905602">
+                                            新民晚报：国足冒雨开练，今晚会迎来一场胜利的“及时雨”吗<small>
+                                                微信                                            </small>
+                                        </a>
+                                                                                <a href="https://news.zhibo8.com/zuqiu/2026-11-14/6af7e52c54ef0native.htm" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252905911">
+                                            新民晚报：多位中生代教练参与中国女足主帅选聘，常卫魏最终胜出<small>
+                                                微信                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                    </div>
+                                
+                                <div class="o"></div>
+                                <div class="underline"></div>
+                                <div class="line-footer">🤖️晚报聚合由 <a href="/alerts/nBe0JpQv37" target="_blank">Tophub Alerts</a> 追踪机器人提供。</div>                    
+                            </div>
+                            <div class="o"></div>
+                        </div>
+                    </div>
+                    
+                                        <div class="f-t-l" id="union_daily_items">
+                        <div class="jc item">
+                            <div class="jc-c">
+                                <div class="header"><span><span class="before">【</span>日报周刊聚合<span class="after">】</span></span></div>
+                                
+                                <div class="kt-t">                        
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/arxiv.org.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Arxiv</strong>
+                                                15小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://arxiv.org/abs/2611.17334" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252880124">
+                                            Unbundling Multimodal Vision Encoding<small>
+                                                Ellis Brown, Chris Hoang, Shengyi Qian, Shang-Wen Li, Mike Lewis, Marjan Ghazvininejad, Luke Zettlemoyer, Lucas Beyer, Mengye Ren, Jakob Verbeek, Saining Xie, Hu Xu                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.15094" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252880760">
+                                            A frontier machine intelligence for human neuroimaging<small>
+                                                Chenhui Zhao, Akshay Rao, Akhil Kondepudi, Yiwei Lyu, Xinhai Hou, Rikhil Seshadri, Cheng Jiang, Soumyanil Banerjee, Rushikesh Joshi, Samir Harake, Ashok Srinivasan, Shruti Mishra, Francisco Rivas-Rodriguez, Seunghong Rhee, Nathaniel Roddenberry, Neeraj Ch                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.12750" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252881594">
+                                            The Narrative Gap: Can LLMs Help Us Navigate Diverse Narratives Across Languages?<small>
+                                                Nikhil Sharma, Kelly Marchisio, Kenton Murray, Ziang Xiao                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.16961" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252883195">
+                                            The Value of Thinking: Learning When to Reason in Hybrid Decision Models<small>
+                                                Zhengxu Yu, Ke Xu, Meng Fang, Haitham Ammar, Weilin Luo, Jun Wang                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.09567" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252885564">
+                                            TurtLES: A Large-Scale Benchmark for Turbulent 3D Neural PDE Surrogates<small>
+                                                Jarno Platenburg, Armand Kassaï Koupaï, Paola Cinnella, Patrick Gallinari                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.17190" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252887671">
+                                            Consensus Capture in Reference-Based UAV Video Stabilization: A Benchmark on Dynamic Urban Scenes<small>
+                                                Robert Fonod, Nikolas Geroliminis                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.17336" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890199">
+                                            Back to Pixels: Lifting Latent Video Diffusion into Pixel Space<small>
+                                                Yanke Song, Shuo Chen, Chris Rockwell, Guande He, Nan Liu, Desai Xie, Tianpei Gu, Yong-Hyun Park, Aryan V S, Dennis Yuren Menn, Ming-Hsuan Yang, Xun Huang                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.16728" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252894478">
+                                            EgoX: Egocentric Cross-Embodiment Manipulation with Embodiment Dreaming<small>
+                                                Yaru Niu, Binghong Chen, Changwei Yao, Shangtao Li, Zhenlong Fang, Revanth Krishna Senthilkumaran, Shuai Zhou, Yuemin Mao, Kalie Ching, Po-Ju Chao, Yudong Luo, Peiqi Yu, Heng Zhang, Hao Zhang, Bingqing Chen, Chen Qiu, H. Eric Tseng, Ye Yuan, Umar Iqbal, C                                            </small>
+                                        </a>
+                                                                                <a href="https://arxiv.org/abs/2611.10439" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252898165">
+                                            Who Remembers What? Multi-Granularity Memory Extraction for Multi-User, Multi-Agent Interaction<small>
+                                                Yunzhe Wang, Mesut Erhan Unal, Sheng Zhang, Shabnam Ghadar, Peng Tang                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/cn.bing.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>必应</strong>
+                                                15小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://cn.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E9%A6%99%E6%B8%AF%E7%BB%B4%E5%A4%9A%E5%88%A9%E4%BA%9A%E6%B8%AF&form=hpcapt&filters=HpDate:%2220261113_1600%22+mgzv3configlist:%22BingQA_Encyclopedia_Layout%22" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252880372">
+                                            中国香港维多利亚港<small>
+                                                © Juan Romero/Cavan Images                                            </small>
+                                        </a>
+                                                                                <a href="https://cn.bing.com/search?q=%e4%b8%ad%e5%9b%bd%e9%a6%99%e6%b8%af%e7%bb%b4%e5%a4%9a%e5%88%a9%e4%ba%9a%e6%b8%af&form=hpcapt&filters=HpDate:%2220261113_1600%22+mgzv3configlist:%22BingQA_Encyclopedia_Layout%22" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252888679">
+                                            中国香港维多利亚港<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/tool.lu.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>在线工具 </strong>
+                                                15小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://tool.lu/article/88N/url" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252855294">
+                                            从前端到全栈：我借助 AI 开发花椒小游戏玩法的交付拆解<small>
+                                                技术                                            </small>
+                                        </a>
+                                                                                <a href="https://tool.lu/article/88O/url" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252860070">
+                                            智能体 Skill 调优 “焚诀”——业务逻辑之外的胜负手<small>
+                                                技术                                            </small>
+                                        </a>
+                                                                                <a href="https://tool.lu/article/88P/url" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252860071">
+                                            Perplexity Decider<small>
+                                                技术                                            </small>
+                                        </a>
+                                                                                <a href="https://tool.lu/article/88Q/url" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252864420">
+                                            不只是 Memory：Ontology 如何让 Coding Agent 越用越懂项目？<small>
+                                                技术                                            </small>
+                                        </a>
+                                                                                <a href="https://tool.lu/article/88R/url" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252864421">
+                                            基于本体的 AI 数据研发落地：淘宝行业经营分析实战<small>
+                                                技术                                            </small>
+                                        </a>
+                                                                                <a href="https://tool.lu/article/88S/url" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252864422">
+                                            数值策划挂在嘴边的 15 个词，到底在说什么？<small>
+                                                产品                                            </small>
+                                        </a>
+                                                                                <a href="https://tool.lu/article/88T/url" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252900764">
+                                            Building always-on agents<small>
+                                                技术                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/react.statuscode.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Statuscode</strong>
+                                                14小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://react.statuscode.com/issues/497" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252881059">
+                                            shadcn's next thing: UI SDK<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/blog.jetbrains.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Jetbrains</strong>
+                                                14小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://blog.jetbrains.com/pycharm/2026/11/what-s-fixed-and-improved-in-pycharm-2026-3/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252879369">
+                                            PyCharm: What’s Fixed and Improved in PyCharm 2026.3<small>
+                                                releases ‧ Will Vincent                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/main--iosdevweekly.netlify.app.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Netlify</strong>
+                                                14小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://main--iosdevweekly.netlify.app/issues/776/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252882200">
+                                            Issue 776<small>
+                                                newsletter@iosdevweekly.com (next app's swiftCon team)                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/nasa.gov.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>美国国家航天航空局</strong>
+                                                14小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252882901">
+                                            Outbursts from a Massive Star<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/python.github.io.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Github</strong>
+                                                11小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://python.github.io/editorial-board/projects/improve-syntax-documentation/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252886003">
+                                            Python Docs Editorial Board: Improve syntax documentation<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/blog.rtwilson.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Rtwilson</strong>
+                                                11小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://blog.rtwilson.com/i-released-cloud-native-environment-agency-dem-data/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252886004">
+                                            Robin Wilson: I released Cloud-Native Environment Agency DEM data!<small>
+                                                Robin Wilson                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/decohack.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Decohack</strong>
+                                                10小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://decohack.com/producthunt-daily-2026-11-13/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252887207">
+                                            PH今日热榜 | 2026-11-13<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/blog.vrplumber.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Vrplumber</strong>
+                                                9小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="http://blog.vrplumber.com/b/2026/11/13/pyopengl-400b1-released/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252888279">
+                                            Mike C. Fletcher: PyOpenGL 4.0.0b1 Released<small>
+                                                                                            </small>
+                                        </a>
+                                                                                <a href="http://blog.vrplumber.com/b/2026/11/13/tim-peters-will-be-missed/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252888280">
+                                            Mike C. Fletcher: Tim Peters will be missed<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/readhub.cn.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Readhub</strong>
+                                                9小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://readhub.cn/topic/8y0YEUQIs6C" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252809689">
+                                            SpaceX 与特斯拉创纪录合并谈判取得进展<small>
+                                                股市 ‧ 快科技                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y0l5xU4AZc" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252826349">
+                                            微软 365 多个服务出现服务降级 官方称正逐步恢复受影响服务器<small>
+                                                软件服务 ‧ 快科技                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8xzo9BmoqFd" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252833797">
+                                            马化腾：面对 AI 大浪，必须更大地推动组织变革<small>
+                                                人工智能 ‧ 格隆汇                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y0bTZM9F2a" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252833798">
+                                            Anthropic 的 IPO 据称获得约六倍超额认购<small>
+                                                投融资 ‧ 格隆汇                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y0sG4e4sgM" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252850536">
+                                            字节跳动拟按 4000 亿美元估值回购股份<small>
+                                                财经 ‧ 电商报                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y0xg2r9kmp" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252851790">
+                                            英伟达员工联名呼吁黄仁勋回归<small>
+                                                人事变动 ‧ 快科技                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y1DKpkH0wl" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252851791">
+                                            英伟达披露文件：黄仁勋所持多数股份出售需妻子同意<small>
+                                                英伟达 ‧ 金融界                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y1PsW56WDv" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252853558">
+                                            腾讯混元发布全新实时语音模型 Hy Realtime<small>
+                                                应用软件 ‧ 快科技                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y1Op1awQ4w" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252859103">
+                                            月之暗面正考虑 2027 年初赴港 IPO，已着手拆除海外架构<small>
+                                                月之暗面 ‧ 新浪科技                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y1LttjotXy" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252859104">
+                                            消息称 OpenAI 解散机器人团队并入常规模型训练<small>
+                                                人工智能 ‧ 格隆汇                                            </small>
+                                        </a>
+                                                                                <a href="https://readhub.cn/topic/8y1nmMTI3ER" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252876492">
+                                            DeepSeek 发布全家桶应用 API<small>
+                                                快科技                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/view.inews.qq.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>腾讯新闻</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://view.inews.qq.com/a/20261114A00ER500" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890351">
+                                            NBA官方MVP榜：东契奇蝉联榜首塔图姆升第三 库里力压马克西挺进前五<small>
+                                                1.2万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A03Y8500" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890352">
+                                            哈弗茨屡失良机，维尔茨补射中场小将一条龙，德国3-1双杀9人塞尔维亚<small>
+                                                127                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0FGKB00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890353">
+                                            深圳男篮董事长介绍球队少帅：全国第一年轻教练<small>
+                                                502                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A01W8P00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890354">
+                                            WTT常规赛：国乒男单仅剩1人！希望之星0-3输前中国队主力方博<small>
+                                                3272                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A055EJ00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890355">
+                                            天津女排前王牌外援 续约费内巴切 曾与李盈莹多次夺中国联赛冠军<small>
+                                                192                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0D30X00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890356">
+                                            中国排协官宣！2027年世联赛首周落户中国内地 正式征集申办城市<small>
+                                                303                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0DX1Z00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890357">
+                                            女排冠军脱下球衣变身模特 朱婷 姚迪同框拍写真 最新造型亮相<small>
+                                                2357                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0EX5400" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890358">
+                                            萨巴吞蛋让巴托丽19年前伤心事被扒，科斯谈高芙发双误原因扎心<small>
+                                                1125                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A03TGW00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890792">
+                                            突发：美国联邦航空管理局下令所有航班暂停起飞<small>
+                                                53.4万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A02AOZ00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891164">
+                                            通用模型发展引发专用模型路线拷问？OpenAI被曝解散独立机器人团队<small>
+                                                725                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A01MYJ00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891165">
+                                            ChatGPT钱包发布，AI智能体可代表用户购物付款<small>
+                                                481                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A04BH900" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891364">
+                                            美股收盘：苹果、“美国茅台”再创新高AI交易依然颠簸<small>
+                                                1.4万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A04C3N00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891597">
+                                            曝C罗计划在沙特+五大洲办告别赛！拟邀请梅西 仍拒绝让热苏斯带队<small>
+                                                2.3万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A04BVE00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891599">
+                                            足坛一夜动态：荷兰7-0希腊！德国3-1 西乙门将被禁赛12场<small>
+                                                1.5万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A04PHK00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891852">
+                                            1-2憾负！萨巴伦卡无缘总决赛4强，斯维托丽娜7年后重返半决赛<small>
+                                                1.8万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A04GI600" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891853">
+                                            韦克林击败罗伯逊，首次杀入冠中冠决赛；明晨，墨菲大战囧哥<small>
+                                                6014                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A04CQ300" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891854">
+                                            仅丢3局速胜！安德列娃状态神勇豪夺3连胜，头名挺进总决赛四强<small>
+                                                3041                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0F5LB00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252891979">
+                                            贝森特：不应因能源冲击而加息，继续施压伊朗，英伟达能摆脱黄仁勋继续发展<small>
+                                                1.1万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A0343200" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892499">
+                                            观察：邵佳一挂帅国足，四连败是不可触摸的红线，精气神是不容失守的底线<small>
+                                                1552                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0EZSM00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892500">
+                                            中国女足新帅就位  奥预赛成首道难关<small>
+                                                3618                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A03XUI00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892501">
+                                            灯泡组合7年前分手内幕：哈登推动火箭送走保罗 主帅GM本无意拆散<small>
+                                                1.6万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A03GZ000" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892502">
+                                            34岁麦克德莫特宣布退役！12年NBA生涯效力7队：命中1032记三分<small>
+                                                6961                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A03WNB00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892503">
+                                            去圣克鲁兹勇士！巴特勒主动请求打G联赛 科尔支持还想到场观赛<small>
+                                                1.7万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A03VSX00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892504">
+                                            麦迪1号球衣有望被魔术退役！双方展开认真对话 若成真将成队史第二人<small>
+                                                1598                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A0408300" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892505">
+                                            还申京清白！休媒晒图力证库里并非被其所伤 科尔后悔应该提前换人<small>
+                                                2260                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0EXLM00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892506">
+                                            田联未采纳张可依青奥会成绩积分，跨栏美少女世界排名仍第360位<small>
+                                                1154                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A022F900" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892507">
+                                            WTT常规赛：男单8强出炉！国乒1胜6负，中日“独苗”狭路相逢<small>
+                                                1.6万                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261113A0DUSI00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892508">
+                                            波叔如何改造曼联？三人或成受益者，两大疑问曝光，B费或被弃用<small>
+                                                3468                                            </small>
+                                        </a>
+                                                                                <a href="https://view.inews.qq.com/a/20261114A03F7L00" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892509">
+                                            穆雷向鹈鹕提出交易申请 想去其他队担任核心 本赛季场均仅13.4分<small>
+                                                1.0万                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/dongqiudi.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>懂球帝</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.dongqiudi.com/articles/6650644.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890371">
+                                            早报：给神话浇一罐7喜<small>
+                                                华小岚                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/daily.zhihu.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>知乎日报</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://daily.zhihu.com/story/9793982" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890686">
+                                            全身麻醉醒来像「跳过了」几个小时，睡眠为什么没有这种感觉？<small>
+                                                                                            </small>
+                                        </a>
+                                                                                <a href="https://daily.zhihu.com/story/9793972" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890687">
+                                            「嘌呤」为什么字典读音为 piàolìng，而民间往往读为 piāolíng？<small>
+                                                                                            </small>
+                                        </a>
+                                                                                <a href="https://daily.zhihu.com/story/9793963" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890688">
+                                            围棋为啥不以棋盘上的棋子数定输赢<small>
+                                                                                            </small>
+                                        </a>
+                                                                                <a href="https://daily.zhihu.com/story/9793957" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890689">
+                                            如何看待全国各地古镇相似度高达 99%，连「特色小吃」都一模一样？为何会出现这一局面？<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/wallstreetcn.com.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>华尔街见闻</strong>
+                                                8小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://wallstreetcn.com/articles/3785925" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252890932">
+                                            华尔街见闻早餐FM-Radio | 2026年11月14日<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/aihot.news.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Aihot</strong>
+                                                7小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://aihot.news/daily/2026-11-14" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252892696">
+                                            AIHOT 日报 · 2026-11-14 — Nvidia 领导层变动引发以色列科技界关注，投资人认为挑战者或有机会<small>
+                                                noreply@aihot.news (AIHOT)                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/daemonology.net.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Daemonology</strong>
+                                                7小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.daemonology.net/hn-daily/2026-11-13.html" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252893357">
+                                            Daily Hacker News for 2026-11-13<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/t.me.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>T</strong>
+                                                6小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://t.me/XiaoZhangDuBao/2259" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252895183">
+                                            2026年11月14日周六读报！一切美好从❤开始：<small>
+                                                校长读报                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/kele.me.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Kele</strong>
+                                                3小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://www.kele.me/p/fatigue" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252902988">
+                                            如何战胜疲劳<small>
+                                                happy xiao                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                                                            <div class="kt-t__item">
+                                        <div class="kt-t__item-section">
+                                            <div class="kt-t__item-section-border">
+                                                <div class="kt-t__item-section-icon"><img src="https://file.ipadown.com/tophub/assets/images/media/hex2077.dev.png_120x120.png" width="56"
+                                                        onerror="this.onerror=null;this.src='https://file.ipadown.com/tophub/assets/images/nodomain.png'">
+                                                </div>
+                                            </div>
+                                            <span class="kt-t__item-header">
+                                                <strong>Hex2077</strong>
+                                                3小时前                                            </span>
+                                        </div>
+                                
+                                                                                <a href="https://hex2077.dev/docs/2026-11/2026-11-14/" class="kt-t__item-text" target="_blank" rel="nofollow"
+                                            itemid="252903722">
+                                            2026-11-14日刊<small>
+                                                                                            </small>
+                                        </a>
+                                                                            </div>
+                                                                    </div>
+                                
+                                <div class="o"></div>
+                                <div class="underline"></div>
+                                <div class="line-footer">🤖️日报周刊聚合所有相关节点当天更新，查看<a href="/c/brief">所有节点</a>。</div>                    
+                            </div>
+                            <div class="o"></div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="f-t-l">
+                        <div class="jc item">
+                            <div class="jc-c">
+                                <div class="header"><span><span class="before">【</span>历史上的今天<span class="after">】</span></span></div>
+                                                                                                <div class="line today-history underline" >
+                                    <span class="date">
+                                        -207年11月14日                                    </span>
+                                    秦朝灭亡。
+                                </div>
+                                                                                                <div class="line today-history underline" >
+                                    <span class="date">
+                                        565年11月14日                                    </span>
+                                    拜占庭查士丁尼大帝逝世。
+                                </div>
+                                                                                                <div class="line today-history underline" >
+                                    <span class="date">
+                                        673年11月14日                                    </span>
+                                    中国唐代画家阎立本逝世。
+                                </div>
+                                                                                                <div class="line today-history underline" >
+                                    <span class="date">
+                                        976年11月14日                                    </span>
+                                    宋朝第一任皇帝赵匡胤逝世。
+                                </div>
+                                                                                                <div class="line today-history underline" >
+                                    <span class="date">
+                                        1716年11月14日                                    </span>
+                                    德国数学家莱布尼茨逝世。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1831年11月14日                                    </span>
+                                    德国著名哲学家黑格尔逝世。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1840年11月14日                                    </span>
+                                    印象派创始人之一莫奈出生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1860年11月14日                                    </span>
+                                    清政府与俄国签订《中俄北京条约》。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1863年11月14日                                    </span>
+                                    “塑料之父”贝克兰出生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1885年11月14日                                    </span>
+                                    美国著名记者斯特朗诞辰。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1889年11月14日                                    </span>
+                                    “阿拉伯文学之柱”塔哈·侯赛因诞辰。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1889年11月14日                                    </span>
+                                    印度尼赫鲁总理诞生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1891年11月14日                                    </span>
+                                    加拿大著名医学家班廷出生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1908年11月14日                                    </span>
+                                    光绪帝病逝。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1911年11月14日                                    </span>
+                                    摩洛哥危机结束。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1912年11月14日                                    </span>
+                                    中国结构工程师林同炎出生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1919年11月14日                                    </span>
+                                    赵五贞在花轿中自杀引发社会大讨论。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1930年11月14日                                    </span>
+                                    毛泽东妻子杨开慧被害。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1946年11月14日                                    </span>
+                                    中共中央发出对俘虏工作的指示。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1949年11月14日                                    </span>
+                                    江姐被害牺牲。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1951年11月14日                                    </span>
+                                    中国导演张艺谋诞生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1955年11月14日                                    </span>
+                                    剧作家罗伯特·舍伍德去世。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1960年11月14日                                    </span>
+                                    三年困难时期。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1963年11月14日                                    </span>
+                                    著名地产商潘石屹出生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1965年11月14日                                    </span>
+                                    德浪河谷战役。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1969年11月14日                                    </span>
+                                    知名音乐人高晓松出生。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1979年11月14日                                    </span>
+                                    约旦河西岸所有市长全体辞职。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1979年11月14日                                    </span>
+                                    美国冻结伊朗政府在美财产。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1980年11月14日                                    </span>
+                                    陈云提出搞好党风的重要意见。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1983年11月14日                                    </span>
+                                    美提出削减中程核武器新建议遭苏拒绝。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1985年11月14日                                    </span>
+                                    民国第一外交家顾维钧逝世。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1988年11月14日                                    </span>
+                                    台湾核发首批“入台旅行证”。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1988年11月14日                                    </span>
+                                    中美登山队员征服南极文森峰。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1988年11月14日                                    </span>
+                                    澳决定用我火箭发射卫星。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1989年11月14日                                    </span>
+                                    联想集团公司在京成立。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1990年11月14日                                    </span>
+                                    德国和波兰两国奥得——尼斯边界问题化解。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1991年11月14日                                    </span>
+                                    柬埔寨西哈努克亲王返抵金边。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1993年11月14日                                    </span>
+                                    日本共产党领导人野坂参三逝世。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1994年11月14日                                    </span>
+                                    王府井新华书店停业扩建。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1997年11月14日                                    </span>
+                                    联合国武器核查人员从伊拉克撤出。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1998年11月14日                                    </span>
+                                    中国乡村走进直选时代。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        1998年11月14日                                    </span>
+                                    专家称珍奇物种白鳍豚将在20年内灭绝。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        2000年11月14日                                    </span>
+                                    著名表演艺术家李婉芬去世。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        2009年11月14日                                    </span>
+                                    奥巴马发表演说强调不谋求遏制中国。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        2010年11月14日                                    </span>
+                                    亚丁湾星门事件。
+                                </div>
+                                                                                                <div class="line today-history underline" style='display:none;'>
+                                    <span class="date">
+                                        2015年11月14日                                    </span>
+                                    南昌西汉黄金海昏候墓开棺。
+                                </div>
+                                                                <div class="line"><span class="more more-history" style="cursor:pointer;">查看全部</span></div>
+                            </div>
+                            <div class="o"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="f-t-l">
+                        <div class="jc item">
+                            <div class="jc-c">
+                                 
+								
+								                                <div class="header"><span><span class="before">【</span>摸鱼通知<span class="after">】</span></span></div>
+                                <div class="line today-soul">
+                                                                        11月14日下午好，摸鱼人！<br>
+                                                                        不要给自己的办公电脑做开机加速，你是在减少自己有偿发呆的总时长。<br>
+                                                                        放假就好好享受吧！<br>
+                                                                    </div>
+                                <div class="underline"></div>
+                                <div class="line"></div>
+								
+                                <div class="header"><span><span class="before">【</span>今日毒鸡汤<span class="after">】</span></span></div>
+                                <div class="line today-soul">
+                                    我也想做一个优雅的淑女，是生活把老娘逼成了泼妇。                                </div>
+                                <div class="underline"></div>
+                                <div class="line"></div>
+                                
+                                <div class="header"><span><span class="before">【</span>今日进度条<span class="after">】</span></span></div>
+                                <div class="line progress-bar">
+                                    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░                                </div>
+                                <div class="line today-schedule">
+                                    2026年，您已经使用了
+                                    86.85%
+                                </div>
+                            </div>
+                            <div class="o"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="scroller-status" style="display: block;">
+                        <p class="infinite-scroll-last" style="display: block;"><span class="loadmore-line"></span>我是有底线的<span class="loadmore-line"></span></p>
+                    </div>
+
+                    					<!-- 非VIP用户显示广告 -->
+					<div class="adsense-sidebar-container" style="margin:20px auto;max-width:100%;max-height:120px;">
+											</div>
+					
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	window.isVip = false;
+</script>
+
+<script src="https://file.ipadown.com/tophub/assets/js/stt.js" type="text/javascript"></script>
+<script src="https://file.ipadown.com/tophub/assets/js/statistics.js" type="text/javascript"></script></body>
+</html>
